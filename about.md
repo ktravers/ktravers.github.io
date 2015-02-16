@@ -4,12 +4,10 @@ title: About
 permalink: /about/
 ---
 
-Some information about you!
+Kate Travers is both a 1) broad and 2) programmer. When not writing technical blog posts, she's chasing green lights at [The Flatiron School](http://flatironschool.com/), building [Cool Things](http://www.kate-travers.com) for friends and colleagues, and filling the internet with [pictures of kittens](https://twitter.com/kittencamtv).
 
-### More Information
+### Contact Info:
 
-A place to include any other types of information that you'd like to include about yourself. 
-
-### Contact me
-
-[email@domain.com](mailto:email@domain.com)
+Email: [kate [dot] travers [at] flatironschool [dot] com](mailto:kate.travers@flatironschool.com)  
+Twitter: [@kttravers](http://twitter.com/kttravers)  
+Github: [ktravers](http://github.com/ktravers)  
