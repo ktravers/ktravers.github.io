@@ -3,7 +3,7 @@ layout: post
 title: How to Configure a Sick Bash Prompt
 ---
 
-When I was just starting out learning to code, it was clear from day one that I'd be spending A LOT of time in Terminal, so one of the first things I did as a rookie coder was learn how to fine tune my bash profile, starting with the bash prompt. 
+When I was just starting out learning to code, it was clear from day one that I'd be spending _a lot_ of time in Terminal, so one of the first things I did was learn how to fine tune my bash profile, starting with the bash prompt. 
 
 Now, I'll caution, there's an endless plethora of resources out there on the ol' internet about customizing your bash prompt, and my first time through, I think I read nearly all of them (really went down the `.bash_profile` rabbit hole, I'll admit). To save you some time and tedium, I'll summarize my specific mods below, with links to resources for further customization. 
 
