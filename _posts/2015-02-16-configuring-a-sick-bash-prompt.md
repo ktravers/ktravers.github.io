@@ -82,7 +82,7 @@ export GIT_PS1_SHOWUNTRACKEDFILES=true
   local       CHAR="⚡"
 {{ "{% endhighlight " }}%}
 
-I'm partial to the dark PRO theme for OSX Terminal, and I used the colors above to end up with a cyan prompt, purple git branch / status, and white command line text. 
+I'm partial to the dark PRO theme for OSX Terminal, and I used the colors above to end up with a cyan prompt, purple git branch / status, and white command line text. Check out [this source](https://wiki.archlinux.org/index.php/Color_Bash_Prompt#List_of_colors_for_prompt_and_Bash) for more color options.
 
 
 ###ASCII Characters
