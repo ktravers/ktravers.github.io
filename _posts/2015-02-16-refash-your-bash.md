@@ -1,6 +1,6 @@
 ---
 layout: post
-title: How to Configure a Sick Bash Prompt
+title: Refash' Your Bash - Bash Prompt Customization
 ---
 
 When I was just starting out learning to code, it was clear from day one that I'd be spending _a lot_ of time in Terminal, so one of the first things I did was learn how to fine tune my bash profile, starting with the bash prompt. 
