@@ -1,16 +1,14 @@
 ---
 layout: post
-title: Refash' Your Bash - Bash Prompt Customization
+title: Refash Your Bash - Bash Prompt Customization
 ---
 
-When I was just starting out learning to code, it was clear from day one that I'd be spending _a lot_ of time in Terminal, so one of the first things I did was learn how to fine tune my bash profile, starting with the bash prompt. 
+When I was just starting out learning to code, it quickly became clear I'd be spending _a lot_ of time in Terminal. Never one to skimp on workspace feng shui - just ask my old art world colleagues - I set about post haste to fine tune the CRUD out of my bash profile, starting with the bash prompt. 
 
-Now, I'll caution, there's an endless plethora of resources out there on the ol' internet about customizing your bash prompt, and my first time through, I think I read nearly all of them (really went down the `.bash_profile` rabbit hole, I'll admit). To save you some time and tedium, I'll summarize my specific mods below, with links to resources for further customization. 
+Now, I'll caution, there's an endless plethora of resources out there on the ol' internet about customizing your bash prompt, and my first time through, I think I read nearly all of them (really went down the `.bash_profile` rabbit hole, I'll admit). To save you some time and tedium, I'll summarize my specific mods below, with tl:dr links to resources for further customization. 
 
-_Note for fellow rookies:_ My bash prompt is contained inside a nice little function at the top of my `.bash_profile` file. I'd recommend putting the function at the top since 1) your terminal loads the prompt first and 2) it won't interfere with any of the rest of your bash code below. Now without further ado ...
+_Note for fellow rookies:_ My bash prompt is contained inside a nice little function at the top of my `.bash_profile` file. I'd recommend putting this function towards the top since 1) your terminal loads the prompt first and 2) that way it won't interfere with any of the rest of your bash code below. Now without further ado ...
 
-  
-----
 ###My Complete Bash Prompt Function
 
 ```
@@ -58,16 +56,18 @@ Let's dive into the build below.
 function parse_git_branch {
     git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
   }
+  
+  #...< more code >...#
+  
+  export GIT_PS1_SHOWDIRTYSTATE=true
+  export GIT_PS1_SHOWUNTRACKEDFILES=true
 ```
 
-If you're using command line for git, you want your prompt to display your current git branch and status. It's pretty invaluable, all in all. To really kick this into high gear, be sure to include the following two lines of code inside your prompt function, just above your `export PS1=...` line. 
+First up - the function `parse_git_branch` and subsequent `GIT_PS1_SHOW...` lines of code make my programming life infinitely easier by showing me my current git branch and git status (aka DIRTYSTATE) right there in my prompt. Now I always know what branch I'm on, as well as whether I have any tracked/untracked changes, staged commits, etc. 
 
-```
-export GIT_PS1_SHOWDIRTYSTATE=true
-export GIT_PS1_SHOWUNTRACKEDFILES=true
-```
+_Note #1:_ Place the two `export GIT_PS1_SHOW...1` lines of code inside your prompt function, just above your `export PS1=...` line. 
 
-_Note:_ You may need to have Git Bash Completion installed as well, which you can activate with the code below if you're a homebrew user like me.
+_Note #2:_ You may need to have Git Bash Completion installed as well, which you can activate by also including the code below if you're a homebrew user like me.
 
 ``` 
 if [ -f `brew --prefix`/etc/bash_completion ]; then
@@ -120,7 +120,7 @@ _Per the [Bash Manual](http://www.gnu.org/software/bash/manual/bashref.html#Cont
 `\W`  =>  the basename of the current working directory, with $HOME abbreviated with a tilde  
 `\$`  =>  if the effective UID is 0, a #, otherwise a $  
 `\\`  =>  a backslash  
-`\[`  =>  begin a sequence of non-printing characters, which could be used to embed a terminal control sequence into the prompt  
+`\[`  =>  begin a sequence of non-printing characters, which could be used to embed a terminal control sequence into the prompt
 `\]`  =>  end a sequence of non-printing characters  
 
 
