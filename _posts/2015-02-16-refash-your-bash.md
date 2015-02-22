@@ -20,7 +20,7 @@ function prompt {
   # DISPLAY GIT STATUS
   export GIT_PS1_SHOWDIRTYSTATE=true
   export GIT_PS1_SHOWUNTRACKEDFILES=true
-
+  
   # LOCAL COLORS
   local       CYAN='\e[0;36m'
   local    ON_CYAN='\e[46m'   # cyan background
@@ -57,7 +57,7 @@ function parse_git_branch {
     git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
   }
   
-  #...< more code >...#
+  #more code...
   
   export GIT_PS1_SHOWDIRTYSTATE=true
   export GIT_PS1_SHOWUNTRACKEDFILES=true
@@ -98,7 +98,7 @@ I'm partial to the dark PRO theme for OSX Terminal, and I used the colors above 
 ----
 ###ASCII Characters
 
-```shell
+```
 ♥ ☆ ★ ☼ ► 𝄞 ☠ 
 ```
 
@@ -139,7 +139,6 @@ PS1='\n\e[0;30m\e[46m\t\e[0;36m \u @\h: \W\e[0;35m$(__git_ps1)\e[0;37m\n⚡ '
 
 ```shell
 \n\e[0;30m\e[46m\t
-
 ```
 new line, current time (24h) in black text with cyan background  
 
