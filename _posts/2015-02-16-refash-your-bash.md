@@ -11,7 +11,7 @@ _Note for fellow rookies:_ My bash prompt is contained inside a nice little func
 
 ###My Complete Bash Prompt Function
 
-```
+```shell
 function parse_git_branch {
   git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
   }
@@ -52,7 +52,7 @@ Let's dive into the build below.
 ----
 ###Active Git Branch in Prompt
 
-``` 
+```shell
 function parse_git_branch {
     git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
   }
@@ -69,7 +69,7 @@ _Note #1:_ Place the two `export GIT_PS1_SHOW...1` lines of code inside your pro
 
 _Note #2:_ You may need to have Git Bash Completion installed as well, which you can activate by also including the code below if you're a homebrew user like me.
 
-``` 
+```shell
 if [ -f `brew --prefix`/etc/bash_completion ]; then
   . `brew --prefix`/etc/bash_completion
   GIT_PS1_SHOWDIRTYSTATE=true
@@ -81,7 +81,7 @@ fi
 ----
 ###Prompt Colors 
 
-``` 
+```shell 
   # LOCAL COLORS
   local       CYAN='\e[0;36m'
   local    ON_CYAN='\e[46m'   # cyan background
@@ -98,7 +98,7 @@ I'm partial to the dark PRO theme for OSX Terminal, and I used the colors above 
 ----
 ###ASCII Characters
 
-```
+```shell
 ♥ ☆ ★ ☼ ► 𝄞 ☠ 
 ```
 
@@ -131,29 +131,29 @@ _Per the [Bash Manual](http://www.gnu.org/software/bash/manual/bashref.html#Cont
 
 **Full prompt:**
 
-```
+```shell
 PS1='\n\e[0;30m\e[46m\t\e[0;36m \u @\h: \W\e[0;35m$(__git_ps1)\e[0;37m\n⚡ '
 ```
 
 **Components:**  
 
-```
+```shell
 \n\e[0;30m\e[46m\t
 
-``` 
+```
 new line, current time (24h) in black text with cyan background  
 
-```
+```shell
 \e[0;36m \u @\h: \W
 ``` 
 cyan username, @home directory short name:, basename of current working directory (with spaces)  
 
-```
+```shell
 \e[0;35m$(__git_ps1)
 ``` 
 purple git branch / status  
 
-```
+```shell
 \e[0;37m\n⚡ 
 ```
 all text after git branch will be white, new line with ⚡ unicode character  
