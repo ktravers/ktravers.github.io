@@ -81,12 +81,10 @@ The CLI responds to its own built-in commands ('help', 'list', 'follow', 'exit')
     self.command_request
   end
 
-  def command(input)              ## allows users to access t gem commands
-    if input.slice(0,2) == "t "   ## otherwise runs input through command_valid? method
-      system(input)
-    else
-      send(input) if command_valid?(input) 
-    end
+  def command(input)              
+    input.slice(0,2) == "t " ? system(input) : send(input) if command_valid?(input) 
+    ## allows users to access t gem commands
+    ## otherwise runs input through command_valid? method
   end
 
   def command_valid?(input); APPROVED_COMMANDS.include?(input.downcase.to_sym); end
