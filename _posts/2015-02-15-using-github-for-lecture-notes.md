@@ -11,9 +11,9 @@ But then comes the scary part for us git-n00bs - getting updates. I felt real co
 
 As I now do in all these types of situations, I went straight to Github support. Here's the solution, specific to our Flatiron repo.
 
-1. Open Terminal and `cd` to whatever folder you want to use for lecture notes storage.
+1) Open Terminal and `cd` to whatever folder you want to use for lecture notes storage.
 
-2. Check the current remote repo(s) for your fork using `git remote -v`. You should probably see something like the below.
+2) Check the current remote repo(s) for your fork using `git remote -v`. You should probably see something like the below.
 
 ```bash
 $ git remote -v
@@ -21,13 +21,13 @@ origin  git@github.com:ktravers/ruby-007-lectures-and-videos.git (fetch)
 origin  git@github.com:ktravers/ruby-007-lectures-and-videos.git (push)
 ```
 
-3. Time to make add Avi's source repo as a new remote _upstream_ repository. We do this using the command `git remote add [name you choose for upstream repo] [SSH clone url for upstream repo]` You can call this remote whatever you want, but "upstream" is the usual convention.
+3) Time to make add Avi's source repo as a new remote _upstream_ repository. We do this using the command `git remote add [name you choose for upstream repo] [SSH clone url for upstream repo]` You can call this remote whatever you want, but "upstream" is the usual convention.
 
 ```bash
 $ git remote add upstream git@github.com:flatiron-school-ironboard/ruby-007-lectures-and-videos.git
 ```
 
-4. That's it! Now just verify the new upstream repo is there by keying in `git remote -v` again. You should now see something like this:
+4) That's it! Now just verify the new upstream repo is there by keying in `git remote -v` again. You should now see something like this:
 
 ```bash
 $ git remote -v
@@ -39,11 +39,11 @@ upstream  git@github.com:flatiron-school-ironboard/ruby-007-lectures-and-videos.
 
 Ok, we've got our upstream repo configured. Now to get the notes. 
 
-1. First be sure to add and commit any local changes using `git add .` then `git commit -m "message"`. If you push your commit, BE SURE TO PUSH TO ORIGIN using `git push origin [branch]`. **DO NOT PUSH TO UPSTREAM.** If you push to upstream, it's all over, pal.
+1) First be sure to add and commit any local changes using `git add .` then `git commit -m "message"`. If you push your commit, BE SURE TO PUSH TO ORIGIN using `git push origin [branch]`. **DO NOT PUSH TO UPSTREAM.** If you push to upstream, it's all over, pal.
 
 ![Corgi Death Star gif]({{ site.baseurl }}/assets/corgi.gif "Corgi Death Star gif")
 
-2. Pull down new lecture material using `git pull upstream [branch]`. You'll see something like the dialogue below, noting updates and merges. Note: you might need to manually merge any changes that couldn't be auto-merged. 
+2) Pull down new lecture material using `git pull upstream [branch]`. You'll see something like the dialogue below, noting updates and merges. Note: you might need to manually merge any changes that couldn't be auto-merged. 
 
 ```bash
 $ git pull upstream master
