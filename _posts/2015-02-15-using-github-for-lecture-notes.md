@@ -21,7 +21,7 @@ origin  git@github.com:ktravers/ruby-007-lectures-and-videos.git (fetch)
 origin  git@github.com:ktravers/ruby-007-lectures-and-videos.git (push)
 ```
 
-3) Time to make add Avi's source repo as a new remote _upstream_ repository. We do this using the command `git remote add [name you choose for upstream repo] [SSH clone url for upstream repo]` You can call this remote whatever you want, but "upstream" is the usual convention.
+3) Time to make add Avi's source repo as a new remote _upstream_ repository. We do this using the command `git remote add [name you choose for upstream repo] [SSH clone url for upstream repo]`. You can call this remote whatever you want, but "upstream" is the usual convention.
 
 ```bash
 $ git remote add upstream git@github.com:flatiron-school-ironboard/ruby-007-lectures-and-videos.git
