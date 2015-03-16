@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Side Project - Flatiron Twitter CLI
+title: Flatiron Twitter CLI
 ---
 
 Last week, Avi pitched a pretty cool idea to the class: build an "auto-follow bot" for Flatiron student twitter accounts - something we could use to easily auto-follow everyone in the class.
