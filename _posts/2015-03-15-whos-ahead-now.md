@@ -9,11 +9,11 @@ Now obviously a website that just says "aw yass" every time it renders doesn't h
 
 [![Texts from Hillary]({{ site.baseurl }}/assets/hillpost.jpg "HillaryPost")](http://textsfromhillaryclinton.tumblr.com/post/20838007265/original-image-by-diana-walker-for-time "HillaryPost")
 
-The app ended up being pretty simple:
-- **One model** (Search)
-- **Three controllers** (ApplicationController, Search_Controller, and WelcomeController, which has zero methods)
-- **Two views** (plus header/footer layouts)
-- **Five routes** (some of which I can probably get rid of, actually): 
+The app ended up being pretty simple:  
+- **One model** (Search)  
+- **Three controllers** (ApplicationController, Search_Controller, and WelcomeController, which has zero methods)  
+- **Two views** (plus header/footer layouts)  
+- **Five routes** (some of which I can probably get rid of, actually):   
 
 ```bash
 $ rake routes
@@ -131,20 +131,20 @@ _*ed. note:_ In researching links for the paragraph above, I think I just stumbl
 
 Next challenge was deploying to [Heroku](https://www.heroku.com), something I'd never done before. I started with their [Ruby walkthrough](https://devcenter.heroku.com/articles/getting-started-with-ruby#introduction) and was quickly sidelined on the ["Run the app locally" step of the demo](https://devcenter.heroku.com/articles/getting-started-with-ruby#run-the-app-locally). My PostgreSQL configuration was off, then after I `brew uninstall`ed and re-installed, I started getting authentication errors ... things were getting ugly. Briefly discouraged, I thought to myself, "What would Hill-dawg do?" She didn't let The Patriarchy stop her; no way she'd let some Postgres db-nonsense get her down.
 
-[![Hillary Deal With It]({{ site.baseurl }}/assets/dealwithit.gif "Hillary Deal With It")]
+![Hillary Deal With It]({{ site.baseurl }}/assets/dealwithit.gif "Hillary Deal With It")
 
 So I went forward and deployed anyway, following the steps below:
 
-1. [Install Heroku](https://devcenter.heroku.com/articles/getting-started-with-ruby#set-up) and login using `heroku login`.
-2. `cd` into your app directory
-3. Run `heroku create [app name]` from your app's root directory
-4. Run `git add .` and `git commit -m "message"` same as usual
-5. Run `git push heroku master` to push to Heroku. If all goes well, the last line should read `http://your-app-name.herokuapp.com/ deployed to Heroku`
-6. Key in `heroku ps:scale web=1` to make sure an instance of the app is running
-7. Run `heroku open` to open up http://your-app-name.herokuapp.com/ in the browser
+1. [Install Heroku](https://devcenter.heroku.com/articles/getting-started-with-ruby#set-up) and login using `heroku login`.  
+2. `cd` into your app directory  
+3. Run `heroku create [app name]` from your app's root directory  
+4. Run `git add .` and `git commit -m "message"` same as usual  
+5. Run `git push heroku master` to push to Heroku. If all goes well, the last line should read `http://your-app-name.herokuapp.com/ deployed to Heroku`  
+6. Key in `heroku ps:scale web=1` to make sure an instance of the app is running  
+7. Run `heroku open` to open up http://your-app-name.herokuapp.com/ in the browser  
 
 The last mile was connecting my app to a custom URL. Setup on the Heroku side of things was pretty simple. Just run `heroku domains:add www.example.com` from the command line to attach the URL to the app. Then go into your DNS settings and add a CNAME record pointing your www subdomain to your Heroku hostname (your-app-name.herokuapp.com). Wait for the servers to propogate, and you're done.
 
 ![Happy Hillary](http://38.media.tumblr.com/tumblr_m46rufsN9r1r3whbto1_500.gif "Happy Hillary gif")
 
-Who's Ahead Now is live at [www.whosaheadnow.com](www.whosaheadnow.com). Please contribute to the [source code](https://github.com/ktravers/whos-ahead-now); there's a lot of potential features to add, plus plenty of code clean-up needed as well. Thanks to [HuffPost's Pollster API](http://elections.huffingtonpost.com/pollster/api) for the easily accessible and excellent polling data.
+Who's Ahead Now is live at [www.whosaheadnow.com](http://www.whosaheadnow.com). Please contribute to the [source code](https://github.com/ktravers/whos-ahead-now); there's a lot of potential features to add, plus plenty of code clean-up needed as well. Thanks to [HuffPost's Pollster API](http://elections.huffingtonpost.com/pollster/api) for the easily accessible and excellent polling data.
