@@ -78,9 +78,9 @@ The views all hinge on a single user action: clicking the Democrat or Republican
 ```html
 <!-- welcome#index -->
 
-<div class="dem">
+<div class="gop">
   <%= form_for(:search, :url => search_index_path, :method => 'GET' ) do |f| %>
-  <%= f.submit "gop", :type => :image, :src => image_path("democrat.png") %>
+  <%= f.submit "gop", :type => :image, :src => image_path("republican.png") %>
   <% end %>
 </div>
 ```
