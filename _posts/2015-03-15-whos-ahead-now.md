@@ -11,7 +11,7 @@ Now obviously a website that just says "aw yass" every time it renders doesn't h
 
 The app ended up being pretty simple:  
 - **One model** (Search)  
-- **Three controllers** (ApplicationController, Search_Controller, and WelcomeController, which has zero methods)  
+- **Three controllers** (ApplicationController, SearchController, and WelcomeController, which has zero methods)  
 - **Two views** (plus header/footer layouts)  
 - **Five routes** (some of which I can probably get rid of, actually):   
 
