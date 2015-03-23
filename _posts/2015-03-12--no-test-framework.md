@@ -13,3 +13,16 @@ a) overwrite any existing tests that you, your colleagues, or your instructors h
 b) generate unnecessary / unwanted tests (see [Thoughtbot's helpful post on diminishing test coverage returns](https://robots.thoughtbot.com/unit-and-functional-tests-are-as-useful-as-100-code)).   
 
 Better to write your own tests. Here's hoping repetition leads to retention...
+
+**UPDATE:** my classmate [Rachel Nackman](http://code.rachelnackman.com/) wrote an [excellent blog post](http://code.rachelnackman.com/post/113868603109/rails-g-quick-reference) on Rails generators, which included an extremely helpful tip for not overwriting tests. Just add the following code to your `config/application.rb` file:
+
+```ruby
+module Testing
+  class Application < Rails::Application
+    ...
+    config.generators.test_framework false
+  end
+end
+```
+
+Voila! Your generators are now auto-`--no-test-framework`ed.
