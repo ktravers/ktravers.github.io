@@ -31,8 +31,9 @@ to this:
 
 That's right. Adding `remote: true` allowed us to nix our entire jQuery listener + ajax request for that form, because all that functionality is contained within `remote: true`. 
 
+<div align="center">
 ![Taylor Swift Mind Blown]({{ site.baseurl }}/assets/mind-blown-taylor.gif "Taylor Swift Mind Blown")
-
+</div>
 
 So how's it work? Maybe you're thinking this:
 
