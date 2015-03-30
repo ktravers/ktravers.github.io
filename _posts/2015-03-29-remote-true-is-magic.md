@@ -3,9 +3,7 @@ layout: post
 title: Remote True is Magic
 ---
 
-![Remote True is MAGIC]({{ site.baseurl }}/assets/remote-true-is-magic.png "Remote True is MAGIC")
-
-I had a really fun time this weekend building a [small side project](http://www.amiruby.com/) this weekend with [Sophie DeBenedetto](https://github.com/SophieDeBenedetto), [Jeremy Sklarsky](https://github.com/jeremysklarsky), and [Rachel Nackman](https://github.com/rnackman). We learned a lot of very cool things that you can do with Rails + jQuery, but the coolest was easily `remote: true`. This one little option is crazy powerful. Case in point: by adding `remote: true` to our `Search` form, our `searches.js` file went from this:
+I had a really fun time this weekend building a [small side project](http://www.amiruby.com/) with [Sophie DeBenedetto](https://github.com/SophieDeBenedetto), [Jeremy Sklarsky](https://github.com/jeremysklarsky), and [Rachel Nackman](https://github.com/rnackman). We learned a lot of very cool things that you can do with Rails + jQuery, but the coolest was easily `remote: true`. This one little option is crazy powerful. Case in point: by adding `remote: true` to our `Search` form, our `searches.js` file went from this:
 
 ```jquery
 $(function(){submitListener();})
@@ -36,7 +34,12 @@ That's right. Adding `remote: true` allowed us to nix our entire jQuery listener
 ![Taylor Swift Mind Blown]({{ site.baseurl }}/assets/mind-blown-taylor.gif "Taylor Swift Mind Blown")
 
 
-So how's it work? The Rails documentation puts it pretty simply:
+So how's it work? Maybe you're thinking this:
+
+![Remote True is MAGIC]({{ site.baseurl }}/assets/remote-true-is-magic.png "Remote True is MAGIC")
+
+
+Let's demystify it a bit. The Rails documentation puts things pretty simply:
 
 > Rails provides a bunch of view helper methods written in Ruby to assist you in generating HTML [including Ajax helpers]. ...The Rails "Ajax helpers" are in two parts: the JavaScript half and the Ruby half.
 
