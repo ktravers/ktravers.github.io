@@ -87,7 +87,7 @@ end
 
 Now that we're using `remote: true`, we don't want to render a view; we want to execute a jQuery function of our choosing. So we replace the `render` command and with `respond_to` instructions for each format we want our controller to serve. Here, our controller can serve html AND Javascript responses to the ajax success function. 
 
-### Step 3: Add `create.js.erb` file
+#### Step 3: Add `create.js.erb` file
 
 In your `create.js.erb` view file, you can add whatever actions you want to happen upon a successful ajax request. In our case, we wanted to display the result of our search form (which was querying BuiltWith.com and returning "yes" or "no", depending on whether or not the domain we sent it included Ruby code in its stack).
 
