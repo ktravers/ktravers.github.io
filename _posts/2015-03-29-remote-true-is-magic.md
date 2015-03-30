@@ -31,11 +31,9 @@ to this:
 
 That's right. Adding `remote: true` allowed us to nix our entire jQuery listener + ajax request for that form, because all that functionality is contained within `remote: true`. 
 
-<div align="center">
 ![Taylor Swift Mind Blown]({{ site.baseurl }}/assets/mind-blown-taylor.gif "Taylor Swift Mind Blown")
-</div>
 
-So how's it work? Maybe you're thinking this:
+So how's it work? Well, if this is your first `remote: true` rodeo, you might be thinking something like this:
 
 ![Remote True is MAGIC]({{ site.baseurl }}/assets/remote-true-is-magic.png "Remote True is MAGIC")
 
