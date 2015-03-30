@@ -51,7 +51,7 @@ That explanation was pretty abstract, so let's look at a concrete example of how
 
 #### Step 1: Add `remote: true` to your form. 
 
-```erb
+```html
 <!-- index.html.erb -->
 
 <h1>Am I Ruby?</h1>
