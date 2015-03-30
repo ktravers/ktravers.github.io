@@ -48,7 +48,7 @@ To recap, when you use `remote: true` inside a view helper method, like `form_fo
 
 That explanation was pretty abstract, so let's look at a concrete example of how to implement `remote: true` inside some actual working code. I'll step through pieces of our code below, and you can always [check out the repo here](https://github.com/jeremysklarsky/AmIRuby) for the full source.
 
-#### Step 1: Add `remote: true` to your form. 
+### Step 1: Add `remote: true` to your form. 
 
 ```html
 <!-- index.html.erb -->
@@ -63,7 +63,7 @@ That explanation was pretty abstract, so let's look at a concrete example of how
 
 Originally, our `form_for` method took a single argument, `@search`. We simply added the additional option `remote: true` to that argument. Now our form submits data (formerly expressed as `data: $form.serialize()` inside the ajax method) to the server without refreshing the page. However, you won't see anything happen in your browser yet, because our contorller doesn't yet know how exactly to `respond_to` the successful ajax request. We'll need to make some adjuments there next.
 
-#### Step 2: Update your controller action to `respond_to` `format.js`.
+### Step 2: Update your controller action to `respond_to` `format.js`.
 
 ```ruby
 class SearchesController < ApplicationController
@@ -89,7 +89,7 @@ end
 
 Now that we're using `remote: true`, we don't want to render a view; we want to execute a jQuery function of our choosing. So we replace the `render` command and with `respond_to` instructions for each format we want our controller to serve. Here, our controller can serve html AND Javascript responses to the ajax success function. 
 
-#### Step 3: Add `create.js.erb` file
+### Step 3: Add `create.js.erb` file
 
 In your `create.js.erb` view file, you can add whatever actions you want to happen upon a successful ajax request. In our case, we wanted to display the result of our search form (which was querying BuiltWith.com and returning "yes" or "no", depending on whether or not the domain we sent it included Ruby code in its stack).
 
