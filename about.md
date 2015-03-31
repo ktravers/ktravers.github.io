@@ -8,6 +8,6 @@ Kate Travers is both a 1) broad and 2) programmer. When not writing technical bl
 
 ### Contact Info:
 
-Email: [kate [dot] travers [at] flatironschool [dot] com](mailto:kate.travers@flatironschool.com)  
+Email: [kate [at] kate-travers [dot] com](mailto:kate@kate-travers.com)  
 Twitter: [@kttravers](http://twitter.com/kttravers)  
 Github: [ktravers](http://github.com/ktravers)  
