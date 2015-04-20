@@ -27,13 +27,13 @@ The easiest way to do this is through the [Command Palette](http://docs.sublimet
 
 There's also a few other ways to do this:  
 
-**Menu > Tools**
+**Menu > Tools**  
 Go to the Sublime Text menu bar and select `Tools` > `SublimeLinter` > `Mark Style`.  
 
-**Context Menu**
+**Context Menu**  
 Right click within the file view to pull up the context menu, then select `SublimeLinter` > `Mark Style`  
 
-**SublimeLinter.sublime-settings**
+**SublimeLinter.sublime-settings**  
 Open up the `SublimeLinter.sublime-settings` file and edit `"mark_style"`:  
 
 ```json
