@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Rendering from a Model with ActionView::Base.new - WAT?
+title: Rendering from a Model with ActionView::Base.new => WAT?
 ---
 
 I'm a firm believer in the "make it work" philosophy - solve problems first, then refactor. That said, my team may have gotten a little too creative making our [last project](http://www.approvablefeast.com/) work. Just take a look at this gnarly method we cooked up:
