@@ -5,7 +5,7 @@ title: Dynamic Duos - Dependent Select Menus with JQuery and Rails
 
 The first time I tried to apply "dynamic selection" within a Rails form - where selecting an option in one select field dynamically updates the menu options in a second select field, I had a surprisingly hard time with it. I'd watched the [Railscast](http://railscasts.com/episodes/88-dynamic-select-menus-revised) and [read](http://pullmonkey.com/2012/08/11/dynamic-select-boxes-ruby-on-rails-3/) [multiple](https://kernelgarden.wordpress.com/2014/02/26/dynamic-select-boxes-in-rails-4/) [tutorials](http://www.falsepositives.com/index.php/2010/05/28/building-a-casscading-drop-down-selection-list-for-ruby-on-rails-with-jquery-ajax/), but just couldn't crack the code.
 
-Problem was, I was trying to use a collection of _model attributes_ in the first `collection_select` menu and a collection of _model instances_ in the second menu, organized using the [`grouped_collection_select`](http://api.rubyonrails.org/classes/ActionView/Helpers/FormOptionsHelper.html#method-i-grouped_collection_select) helper. What I learned after much trial, error and a deep dive into the [documentation](http://api.rubyonrails.org/classes/ActionView/Helpers/FormOptionsHelper.html#method-i-grouped_collection_select), was that **the menu options should both be collections of model instances, where the models are associated through a join table**. <-- _tldr: central lesson of this post._
+Problem was, I was trying to use a collection of _model attributes_ in the first [`collection_select`](http://api.rubyonrails.org/classes/ActionView/Helpers/FormOptionsHelper.html#method-i-collection_select) menu and a collection of _model instances_ in the second menu, organized using the [`grouped_collection_select`](http://api.rubyonrails.org/classes/ActionView/Helpers/FormOptionsHelper.html#method-i-grouped_collection_select) helper. What I learned after much trial, error and a deep dive into the [documentation](http://api.rubyonrails.org/classes/ActionView/Helpers/FormOptionsHelper.html#method-i-grouped_collection_select), was that **the menu options should both be collections of model instances, where the models are associated through a join table**. <-- _tldr: central lesson of this post._
 
 I could have benefitted from more explicit discussion of those mechanisms, one with a slightly more complex example than countries and states. Towards that end, let's walk through the steps I took to apply this solution in my Rails application, **[Parkster](http://www.parksternyc.com/)**.
 
@@ -17,7 +17,7 @@ SECTIONS:
 5. [Adding jQuery](#add-jquery), a nice alternative to [Railscasts' CoffeeScript solution](http://railscasts.com/episodes/88-dynamic-select-menus-revised)
 
 ### Pre-Refactor Setup
-All code here is from my Rails app **[Parkster](http://www.parksternyc.com/)**, a [Meetup](http://www.meetup.com/)-esque web app that allows users to organize games in NYC parks with friends. You can check out the full source code [here](https://github.com/ktravers/park_friends).
+All code here is from my Rails app **[Parkster](http://www.parksternyc.com/)**, a [Meetup](http://www.meetup.com/)-esque app that allows users to organize games in NYC parks with friends. You can check out the full source code [here](https://github.com/ktravers/park_friends).
 
 Before the refactor, my schema was structured as follows:
 
@@ -100,7 +100,7 @@ end
 
 ###<a id="update-associations"></a>Step 3: Add ActiveRecord associations
 
-Model associtations are fairly straight-forward. 
+The updated model associations are fairly straight-forward. 
 
 A Park has one Activity, through ActivityParks.
 
@@ -122,7 +122,7 @@ class Activity < ActiveRecord::Base
 end
 ```
 
-ActivityParks belong to one Park and one Activity.
+An ActivityPark belongs to one Park and one Activity.
 
 ```ruby
 class ActivityPark < ActiveRecord::Base
@@ -143,15 +143,15 @@ At this point, it was easiest for me to remove SimpleForm and use the built-in A
 collection_select(object, method, collection, value_method, text_method, options = {}, html_options = {})
 ```
 
-We want this menu to list each `Activity` by name, and send the user's selection to the `GamesController`'s `#create` or `#update` action as part of `game_params`, specifically `params['game']['game_category']`. So we'll set the method/attribute as `#game_category`, collection as `Activity.order(:name)`, and `value_method` as `#name`. I included the Bootstrap "form-control" class as part of the `html_options` hash for styling purposes.
+We want this menu to list each Activity by name, and send the user's selection to the GamesController's `#create` or `#update` action as part of game_params, specifically `params['game']['game_category']`. So we'll set the method/attribute as `#game_category`, collection as `Activity.order(:name)`, and `value_method` as `#name`. I included the Bootstrap "form-control" class as part of the `html_options` hash for styling purposes.
 
-The second select menu options need to be grouped by `Park` #activity, so we'll use the [`grouped_collection_select`](http://api.rubyonrails.org/classes/ActionView/Helpers/FormOptionsHelper.html#method-i-grouped_collection_select) FormOptionsHelper:
+The second select menu options need to be grouped by Park #activity, so we'll use the [`grouped_collection_select`](http://api.rubyonrails.org/classes/ActionView/Helpers/FormOptionsHelper.html#method-i-grouped_collection_select) FormOptionsHelper:
 
 ```ruby
 grouped_collection_select(object, method, collection, group_method, group_label_method, option_key_method, option_value_method, options = {}, html_options = {})
 ```
 
-This menu should list each `Park` by name, grouped by associated `Activity`, and send the user's selection to the `GamesController`'s `#create` or `#update` action as part of the `game_params`, specifically `params['game']['park_id']`. We'll set the method/attribute as `park_id`, collection as `Activity.all`, and group by group_method `#parks` (i.e. all the parks that are associated with that instance of `Activity`).
+This menu should list each Park by name, grouped by associated Activity, and send the user's selection to the GamesController's `#create` or `#update` action as part of game_params, specifically `params['game']['park_id']`. We'll set the method/attribute as `park_id`, collection as `Activity.all`, and group by group_method `#parks` (i.e. all the parks that are associated with that instance of `Activity`).
 
 ```html
 <div class="game-form">
