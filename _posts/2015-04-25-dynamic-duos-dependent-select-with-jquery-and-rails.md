@@ -5,7 +5,7 @@ title: Dynamic Duos - Dependent Select Menus with JQuery and Rails
 
 The first time I tried to apply "dynamic selection" within a Rails form - where selecting an option in one select field dynamically updates the menu options in a second select field, I had a surprisingly hard time with it. I'd watched the [Railscast](http://railscasts.com/episodes/88-dynamic-select-menus-revised) and [read](http://pullmonkey.com/2012/08/11/dynamic-select-boxes-ruby-on-rails-3/) [multiple](https://kernelgarden.wordpress.com/2014/02/26/dynamic-select-boxes-in-rails-4/) [tutorials](http://www.falsepositives.com/index.php/2010/05/28/building-a-casscading-drop-down-selection-list-for-ruby-on-rails-with-jquery-ajax/), but just couldn't crack the code.
 
-Problem was, I was trying to use a collection of _model attributes_ in the first `f.collection_select` menu and a collection of _model instances_ in the second menu, organized using the [`grouped_collection_select`](http://api.rubyonrails.org/classes/ActionView/Helpers/FormOptionsHelper.html#method-i-grouped_collection_select) helper. What I learned after much trial, error and a deep dive into the [documentation](http://api.rubyonrails.org/classes/ActionView/Helpers/FormOptionsHelper.html#method-i-grouped_collection_select), was that **the menu options should both be collections of model instances, where the models are associated through a join table**. <-- _tldr: central lesson of this post._
+Problem was, I was trying to use a collection of _model attributes_ in the first `collection_select` menu and a collection of _model instances_ in the second menu, organized using the [`grouped_collection_select`](http://api.rubyonrails.org/classes/ActionView/Helpers/FormOptionsHelper.html#method-i-grouped_collection_select) helper. What I learned after much trial, error and a deep dive into the [documentation](http://api.rubyonrails.org/classes/ActionView/Helpers/FormOptionsHelper.html#method-i-grouped_collection_select), was that **the menu options should both be collections of model instances, where the models are associated through a join table**. <-- _tldr: central lesson of this post._
 
 I could have benefitted from more explicit discussion of those mechanisms, one with a slightly more complex example than countries and states. Towards that end, let's walk through the steps I took to apply this solution in my Rails application, **[Parkster](http://www.parksternyc.com/)**.
 
@@ -65,7 +65,7 @@ Run two commands from the terminal:
 
 ###<a id="update-seeds"></a>Step 2: Update seeds file
 
-Activities and ActivityParks are derived from the Park #facility attribute, so we can efficiently create and persist instances of all three models on the fly in our seeds file. Given the limited number of unique activities/facilities, I used a simple switch statement on JSON park['type'] data.
+Activities and ActivityParks are derived from the Park #facility attribute, so we can efficiently create and persist instances of all three models on the fly in our seeds file. Given the limited number of unique activities/facilities, I used a simple switch statement on JSON `park['type']` data.
 
 ```ruby
 # seeds.rb
@@ -103,6 +103,7 @@ end
 Model associtations are fairly straight-forward. 
 
 A Park has one Activity, through ActivityParks.
+
 ```ruby
 class Park < ActiveRecord::Base
   has_one :activity_park
@@ -113,6 +114,7 @@ end
 ```
 
 An Activity has many Parks, through (many) ActivityParks.
+
 ```ruby
 class Activity < ActiveRecord::Base
   has_many :activity_parks
@@ -121,6 +123,7 @@ end
 ```
 
 ActivityParks belong to one Park and one Activity.
+
 ```ruby
 class ActivityPark < ActiveRecord::Base
   belongs_to :activity
@@ -130,7 +133,7 @@ end
 
 Our migrations, associations, and seeds file are all properly updated, so now's a good time to run `rake db:reset` (shortcut for `db:drop, db:create, db:schema:load, db:seed`). Now we have a schema we can work with:
 
-[ ![Parkster schema before]({{ site.baseurl }}/assets/schema-before.png "Parkster schema before") ](https://github.com/voormedia/rails-erd "Generated with rails-erd gem")
+[ ![Parkster schema after]({{ site.baseurl }}/assets/schema-after.png "Parkster schema after") ](https://github.com/voormedia/rails-erd "Generated with rails-erd gem")
 
 ###<a id="update-form"></a>Step 4: Update form partial
 
@@ -140,9 +143,9 @@ At this point, it was easiest for me to remove SimpleForm and use the built-in A
 collection_select(object, method, collection, value_method, text_method, options = {}, html_options = {})
 ```
 
-We want this menu to list each `Activity` by name, and send the user's selection to the `GamesController`'s `#create` or `#update` action as part of `game_params`, specifically `params['game']['game_category']`. So we'll set the method/attribute as `#game_category`, collection as `Activity.order(:name)`, and value_method as `#name`. I included the Bootstrap "form-control" class as part of the `html_options` hash for styling purposes.
+We want this menu to list each `Activity` by name, and send the user's selection to the `GamesController`'s `#create` or `#update` action as part of `game_params`, specifically `params['game']['game_category']`. So we'll set the method/attribute as `#game_category`, collection as `Activity.order(:name)`, and `value_method` as `#name`. I included the Bootstrap "form-control" class as part of the `html_options` hash for styling purposes.
 
-The second select menu options need to be grouped by `Park` #activity, so we'll use the [`grouped_colection_select`](http://api.rubyonrails.org/classes/ActionView/Helpers/FormOptionsHelper.html#method-i-grouped_collection_select) FormOptionsHelper:
+The second select menu options need to be grouped by `Park` #activity, so we'll use the [`grouped_collection_select`](http://api.rubyonrails.org/classes/ActionView/Helpers/FormOptionsHelper.html#method-i-grouped_collection_select) FormOptionsHelper:
 
 ```ruby
 grouped_collection_select(object, method, collection, group_method, group_label_method, option_key_method, option_value_method, options = {}, html_options = {})
@@ -170,7 +173,7 @@ This menu should list each `Park` by name, grouped by associated `Activity`, and
 
 ###<a id="add-jquery"></a>Final Step: Add jQuery
 
-On document load, we want to add a listener to the first select menu, which form_for has given the helpful id of `#game_game_category`. If that menu's value changes (e.g. if a user makes a selection), it'll trigger a function that grabs the selected option's value and passes it to the second select menu, `#game_park_id`, as a filter, so the menu's `optgroup` automatically filters to show just the Parks associated with the user's selection.
+On document load, we want to add a listener to the first select menu, which `form_for` has given the helpful id of `#game_game_category`. If that menu's value changes (e.g. if a user makes a selection), it'll trigger a function that grabs the selected option's value and passes it to the second select menu, `#game_park_id`, as a filter, so the menu's `optgroup` automatically filters to show just the Parks associated with the user's selection.
 
 ```javascript
 $(function(){
@@ -191,10 +194,11 @@ function filterParksList(){
 }
 ```
 
-I made a conscious decision to leave the "Other" Activity category available to users, in which case we'd want them to be able to choose from all NYC parks, which is why the jQuery doesn't filter `#game_park_id`'s `optgroup` for that case.
+I made a conscious decision to leave the "Other" Activity category available to users, and in the case when "Other" is selected, we'd want users to be able to choose from all NYC parks. That's why the jQuery doesn't filter `#game_park_id`'s `optgroup` for that case.
 
+---
 
-That's the full refactor. Hope it was helpful - let me know in the comments below!
+That's the full refactor. Your select menus are now working in tandem, filtering on change like a truly dynamic duo. Hope it was helpful - let me know in the comments below!
 
 
 #### More helpful resources:
