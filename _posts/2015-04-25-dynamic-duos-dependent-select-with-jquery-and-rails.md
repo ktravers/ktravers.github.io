@@ -143,7 +143,7 @@ At this point, it was easiest for me to remove SimpleForm and use the built-in A
 collection_select(object, method, collection, value_method, text_method, options = {}, html_options = {})
 ```
 
-We want this menu to list each Activity by name, and send the user's selection to the GamesController's `#create` or `#update` action as part of game_params, specifically `params['game']['game_category']`. So we'll set the method/attribute as `#game_category`, collection as `Activity.order(:name)`, and `value_method` as `#name`. I included the Bootstrap "form-control" class as part of the `html_options` hash for styling purposes.
+We want this menu to list each Activity by name, and send the user's selection to the GamesController's `#create` or `#update` action as part of `game_params`, specifically `params['game']['game_category']`. So we'll set the method/attribute as `#game_category`, collection as `Activity.order(:name)`, and `value_method` as `#name`. I included the Bootstrap "form-control" class as part of the `html_options` hash for styling purposes.
 
 The second select menu options need to be grouped by Park #activity, so we'll use the [`grouped_collection_select`](http://api.rubyonrails.org/classes/ActionView/Helpers/FormOptionsHelper.html#method-i-grouped_collection_select) FormOptionsHelper:
 
@@ -151,7 +151,7 @@ The second select menu options need to be grouped by Park #activity, so we'll us
 grouped_collection_select(object, method, collection, group_method, group_label_method, option_key_method, option_value_method, options = {}, html_options = {})
 ```
 
-This menu should list each Park by name, grouped by associated Activity, and send the user's selection to the GamesController's `#create` or `#update` action as part of game_params, specifically `params['game']['park_id']`. We'll set the method/attribute as `park_id`, collection as `Activity.all`, and group by group_method `#parks` (i.e. all the parks that are associated with that instance of `Activity`).
+This menu should list each Park by name, grouped by associated Activity, and send the user's selection to the GamesController's `#create` or `#update` action as part of `game_params`, specifically `params['game']['park_id']`. We'll set the method/attribute as `park_id`, collection as `Activity.all`, and group by group_method `#parks` (i.e. all the parks that are associated with that instance of `Activity`).
 
 ```html
 <div class="game-form">
