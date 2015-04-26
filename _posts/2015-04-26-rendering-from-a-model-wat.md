@@ -28,7 +28,7 @@ But the thing is, it worked. And I'd like to explore how and why before ~~purgin
 
 ## THE PROBLEM
 
-The problem we were trying to solve was relatively simple. In our Menu views, we'd created a partial `_menu` that contains multiple [`collection_check_boxes`](http://api.rubyonrails.org/classes/ActionView/Helpers/FormOptionsHelper.html#method-i-collection_check_boxes) fields. Each checkbox renders another partial `_recipe`, which serves up an image and a link. The end result is a row of recipes cards, where each card has an image, a link, and a checkbox that users can tick to select that recipe for their final menu.
+The problem we were trying to solve was relatively simple. In our Menu views, we'd created a partial `_menu` that contains multiple [`collection_check_boxes`](http://api.rubyonrails.org/classes/ActionView/Helpers/FormOptionsHelper.html#method-i-collection_check_boxes) fields. Each checkbox renders another partial `_recipe`, which serves up an image and a link. The end result is a row of recipes cards, where each card has an image, a link, and a checkbox that users can tick to select that recipe for their final menu:
 
 ![Approvable Feast recipe cards]({{ site.baseurl }}/assets/recipe-cards.png "Approvable Feast recipe cards")
 
@@ -46,7 +46,7 @@ Ultimately, we kept circling back to the `text_method` argument. In most of the 
 
 Turns out with a little hackery, you can render a view from a model. Let's follow the pass-and-catch below. 
 
-☠ Start in the `_menu` partial, where [`collection_check_boxes`](http://api.rubyonrails.org/classes/ActionView/Helpers/FormOptionsHelper.html#method-i-collection_check_boxes) `:recipe_card` argument points us to the Recipe model's method `#recipe_card`.
+☠ Start in the menu partial, where [`collection_check_boxes`](http://api.rubyonrails.org/classes/ActionView/Helpers/FormOptionsHelper.html#method-i-collection_check_boxes) `:recipe_card` argument points us to the Recipe model's method `#recipe_card`.
 
 ```html
 <!-- menu partial -->
@@ -61,7 +61,7 @@ Turns out with a little hackery, you can render a view from a model. Let's follo
 <% end %>
 ```
 
-☠ Inside Recipe, `#recipe_card` instantiates a new instance of ActionView::Base and calls `#render` on it, passing in the `menus/recipe` partial, `:format`, and local variables - in this case, the current instance of Recipe.
+☠ Inside Recipe, `#recipe_card` instantiates a new instance of ActionView::Base and calls `#render` on it, passing in the recipe partial, `:format`, and local variables - in this case, the current instance of Recipe.
 
 ```ruby
 class Recipe < ActiveRecord::Base
@@ -74,7 +74,7 @@ class Recipe < ActiveRecord::Base
 end
 ```
 
-☠ Nothing strange happening in the `_recipe` partial. We have access to an instance of Recipe, thanks to the locals we passed in, so the partial serves up the recipe's image, `short_name`, and link, blissfully unaware of the oddness that's allowing it to do so.
+☠ Nothing strange happening in the recipe partial. We have access to an instance of Recipe, thanks to the locals we passed in, so the partial serves up the recipe's image, `short_name`, and link, blissfully unaware of the oddness that's allowing it to do so.
 
 ```html
 <!-- recipe partial -->
@@ -99,7 +99,7 @@ def recipe_card
 end
 ```
 
-First up, what's happening with [`ActionView::Base.new(args)`](https://github.com/rails/rails/blob/700ec897f97c60016ad748236bf3a49ef15a20de/actionview/lib/action_view/base.rb)? If you check the [source code](https://github.com/rails/rails/blob/700ec897f97c60016ad748236bf3a49ef15a20de/actionview/lib/action_view/base.rb), you'll see that the first argument passed to `ActionView::Base#initialize` is `context` [(line 185)](https://github.com/rails/rails/blob/700ec897f97c60016ad748236bf3a49ef15a20de/actionview/lib/action_view/base.rb#L185). The context we're passing here is [`Rails.configuration.paths['app/views']`](https://github.com/rails/rails/blob/f295c2fb364e2b6b5d73073c2a3287bbbe7c81fa/railties/lib/rails/application/configuration.rb#L79), which selects the `app/views` path object from our application. Anyone curious about what that path object looks like can check it out [here](https://gist.githubusercontent.com/ktravers/295bebf2ed87c89aa54a/raw/2dc2c5ba854541f8e2da765bd2ac951850289288/rails-config-paths-app-views) (spoiler alert: it's a doozy). We have to configure our view paths, otherwise our new ActionView instance won't have access to them.
+First up, let's inspect [`ActionView::Base.new(args)`](https://github.com/rails/rails/blob/700ec897f97c60016ad748236bf3a49ef15a20de/actionview/lib/action_view/base.rb). If you check the [source code](https://github.com/rails/rails/blob/700ec897f97c60016ad748236bf3a49ef15a20de/actionview/lib/action_view/base.rb), you'll see that the first argument passed to `ActionView::Base#initialize` is `context` [(line 185)](https://github.com/rails/rails/blob/700ec897f97c60016ad748236bf3a49ef15a20de/actionview/lib/action_view/base.rb#L185). The context we're passing here is [`Rails.configuration.paths['app/views']`](https://github.com/rails/rails/blob/f295c2fb364e2b6b5d73073c2a3287bbbe7c81fa/railties/lib/rails/application/configuration.rb#L79), which selects the `app/views` path object from our application. Anyone curious about what that path object looks like can check it out [here](https://gist.githubusercontent.com/ktravers/295bebf2ed87c89aa54a/raw/2dc2c5ba854541f8e2da765bd2ac951850289288/rails-config-paths-app-views) (spoiler alert: it's a doozy). _Note:_ Since we're instantiating outside the controller, we have to explicitly configure our view paths, otherwise our new ActionView instance won't have access to them.
 
 Moving on, as `context` travels through the `#initialize` method, it's eventually passed into [`ActionView::Renderer`](http://api.rubyonrails.org/classes/ActionView/Renderer.html) (in [line 195](https://github.com/rails/rails/blob/700ec897f97c60016ad748236bf3a49ef15a20de/actionview/lib/action_view/base.rb#L195), in our case), which parses it into the ultimate return value from `#initialize`. We then call `#render` on that return value, passing it :partials and :locals arguments. That `#render` method is the ["main render entry point shared by ActionView and ActionController"](http://api.rubyonrails.org/classes/ActionView/Renderer.html#method-i-render), and it taps [`ActionView::PartialRenderer`](http://api.rubyonrails.org/classes/ActionView/PartialRenderer.html) to take care of the rest of the work.
 
