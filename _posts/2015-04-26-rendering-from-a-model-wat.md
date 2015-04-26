@@ -28,7 +28,7 @@ But the thing is, it worked. And I'd like to explore how and why before ~~purgin
 
 ## THE PROBLEM
 
-The problem we were trying to solve was relatively simple. In our Menu views, we'd created a partial `_menu` that contains multiple [`collection_check_boxes`](http://api.rubyonrails.org/classes/ActionView/Helpers/FormOptionsHelper.html#method-i-collection_check_boxes) fields. Each checkbox renders another partial `_recipe`, which serves up an image and a link. The end result is a row of recipes cards, where each card has an image, a link, and a checkbox that users can tick to select that recipe for their final menu:
+The problem we were trying to solve was relatively simple. In our Menu views, we'd created a partial `_menu` that contains multiple [`collection_check_boxes`](http://api.rubyonrails.org/classes/ActionView/Helpers/FormOptionsHelper.html#method-i-collection_check_boxes) fields. Each checkbox renders another partial `_recipe`, which serves up an image and a link. The end result is a row of recipe cards, where each card has an image, a link, and a checkbox that users can tick to select that recipe for their final menu:
 
 ![Approvable Feast recipe cards]({{ site.baseurl }}/assets/recipe-cards.png "Approvable Feast recipe cards")
 
@@ -46,7 +46,7 @@ Ultimately, we kept circling back to the `text_method` argument. In most of the 
 
 Turns out with a little hackery, you can render a view from a model. Let's follow the pass-and-catch below. 
 
-☠ Start in the menu partial, where [`collection_check_boxes`](http://api.rubyonrails.org/classes/ActionView/Helpers/FormOptionsHelper.html#method-i-collection_check_boxes) `:recipe_card` argument points us to the Recipe model's method `#recipe_card`.
+☠ Start in the menu partial, where [`collection_check_boxes`](http://api.rubyonrails.org/classes/ActionView/Helpers/FormOptionsHelper.html#method-i-collection_check_boxes) `:recipe_card` argument calls the Recipe model's method `#recipe_card`.
 
 ```html
 <!-- menu partial -->
@@ -107,9 +107,9 @@ Under normal circumstances, [controllers instantiate new instances of the Action
 
 ## WAT DID WE LEARN
 
-Main takeaway: while it's not too hard to override Rails' MVC conventions, it's almost always a bad idea. First off, it introduces unnecessary complexity into your code base. Look, it took me 3 paragraphs to break down what was happening in that `#recipe_card` method. Imagine if we'd pulled this same trick other places in our code. Good luck to new team adds trying to grok / refactor that...
+Main takeaway: while it's not too hard to override Rails' MVC conventions, it's almost always a bad idea. First off, it introduces unnecessary complexity into your code base. Look, it took me 3 paragraphs to break down what was happening in that `#recipe_card` method. Imagine if we'd pulled this same trick other places in our code. Good luck to new team members trying to grok / refactor that...
 
-Also, if you find yourself trying to override Rails built-in conventions, that's probably a good sign you're approaching your problem the wrong way. I'm not [José Valim](https://github.com/josevalim); there's probably a simpler solution. Likely somewhere in the [`collection_check_boxes`](http://api.rubyonrails.org/classes/ActionView/Helpers/FormOptionsHelper.html#method-i-collection_check_boxes) [source code](https://github.com/rails/rails/blob/71c7fd101324046995d8f7e51e78475c0e37ec1a/actionview/lib/action_view/helpers/form_options_helper.rb#L710), which is where I'm heading next...
+Also, if you find yourself trying to override Rails' built-in conventions, that's probably a good sign you're approaching your problem the wrong way. I'm not [José Valim](https://github.com/josevalim); there's probably a simpler solution. Likely somewhere in the [`collection_check_boxes`](http://api.rubyonrails.org/classes/ActionView/Helpers/FormOptionsHelper.html#method-i-collection_check_boxes) [source code](https://github.com/rails/rails/blob/71c7fd101324046995d8f7e51e78475c0e37ec1a/actionview/lib/action_view/helpers/form_options_helper.rb#L710), which is where I'm heading next...
 
 ---
 
