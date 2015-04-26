@@ -203,7 +203,7 @@ That's the full refactor. Your select menus are now working in tandem, filtering
 
 #### More helpful resources:
 1. [Railscasts ep. 88: Dynamic Select Menus (Revised)](http://railscasts.com/episodes/88-dynamic-select-menus-revised)  
-2. [Rails documentation: grouped_collection_select](http://api.rubyonrails.org/classes/ActionView/Helpers/FormOptionsHelper.html#method-i-grouped_collection_select)  
+2. [Rails documentation: `grouped_collection_select`](http://api.rubyonrails.org/classes/ActionView/Helpers/FormOptionsHelper.html#method-i-grouped_collection_select)  
 3. [Pull Monkey blog - Dynamic Select Boxes in Rails 3](http://pullmonkey.com/2012/08/11/dynamic-select-boxes-ruby-on-rails-3/)  
 4. [Kernel Garden blog - Dynamic Select Boxes in Rails 4](https://kernelgarden.wordpress.com/2014/02/26/dynamic-select-boxes-in-rails-4/)  
 5. [False Positives blog - Building Cascading Drop Down Selection List for Rails with JQuery/Ajax](http://www.falsepositives.com/index.php/2010/05/28/building-a-casscading-drop-down-selection-list-for-ruby-on-rails-with-jquery-ajax/) 
