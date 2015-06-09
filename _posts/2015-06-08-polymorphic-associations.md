@@ -30,7 +30,7 @@ end
 
 And in our Vote model:
 
-```
+```ruby
 class Vote < ActiveRecord::Base
   belongs_to :actor
   belongs_to :movie
@@ -40,7 +40,7 @@ end
 
 Man, I haven't seen that much gratuitous repetition since Chris Nolan's [Memento](http://www.imdb.com/title/tt0209144/). Let's DRY this up a bit with a polymorphic association.
 
-First step, we need to ask ourselves what our models have in common. Or better, what common trait do they all share? In this case, they're all able to be voted on - i.e. `Voteable`. Our polymorphic association is born.
+First step, we need to ask ourselves what our non-Vote models have in common. Or better, what common trait do they all share? In this case, they're all able to be voted on - that is, they're `Voteable`. Our polymorphic association is born.
 
 We can update our `CreateVotes` migration as follows:
 
@@ -71,7 +71,7 @@ class CreateVotes < ActiveRecord::Migration
 end
 ```
 
-Notice that instead of adding explicit foreign keys for Actor, Movie, and Director, we're instead adding a single `imageable_id` foreign_key, which Rails will automagically couple with the `imageable_type` field to reference the correct corresponding model.
+Notice that instead of adding explicit foreign keys for Actor, Movie, and Director, we're instead adding a single `imageable_id` foreign key, which Rails will automagically couple with the `imageable_type` field to reference the correct corresponding model.
 
 Speaking of models, ours look much better now with our new polymorphic-association-enabled, DRY-er declarations:
 
@@ -98,22 +98,22 @@ Thanks to polymorphic `belongs_to: :voteable` declaration, we now have access to
 
 ![Meryl Streep Loves It]({{ site.baseurl }}/assets/meryl.gif "Meryl Streep Loves It") 
 
-### Summary (tldr) <a href="#tldr"></a> 
+## Summary (tldr) <a href="#tldr"></a> 
 
-#### 1. Do you have one model that `belongs_to` many other models?
+### 1. Do you have one model that `belongs_to` many other models?
 - Does this one model only exist in relation to the other models?   
   Examples: Comments and Posts; Likes and Tweets  
 - Think about using polymorphic association instead of multiple foreign_keys / `belongs_to` declarations  
         
-#### 2. Ask yourself what these models have in common
+### 2. Ask yourself what these models have in common
 - Describe that commonality in a single trait, like `Commentable` or `Likeable`  
 - Use this shared trait to name the polymorphic association  
 
-#### 3. Build model migrations and associations
+### 3. Build model migrations and associations
 - Model migrations: use `awardable_id` and `awardable_type` columns  
 - Model associations: use `belongs_to :awardable, polymorphic: true` and `has_many :awards, as: :awardable`  
 
-### More helpful resources:
+## More helpful resources:
 - [Rails Guides - Association Basics](http://guides.rubyonrails.org/association_basics.html#polymorphic-associations)  
 - [Rails docs - ActiveRecord::Associations::ClassMethods](http://api.rubyonrails.org/classes/ActiveRecord/Associations/ClassMethods.html#module-ActiveRecord::Associations::ClassMethods-label-Polymorphic+Associations)  
 - [Railscasts Episode 154 - Polymorphic Association (Revised)](http://railscasts.com/episodes/154-polymorphic-association-revised)  
