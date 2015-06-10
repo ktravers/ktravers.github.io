@@ -94,7 +94,7 @@ class Director < ActiveRecord::Base
 end
 ```
 
-Thanks to polymorphic `belongs_to: :voteable` declaration, we now have access to all kinds of fun methods on our models. We can call `@actor.votes`, `@movie.votes` and `@director.votes`, as expected. To retrieve a Vote object's parent, we can call `@vote.voteable`, which returns its corresponding `Actor`, `Movie`, or `Director`. Throw a User class in there - plus some simple routes, controllers, and views - and we have the makings of a pretty functional Oscar ballot app - - - but that's the topic for another (future) post. In the meantime, bravo. You've built an award-worthy polymorphic association.
+Thanks to our polymorphic `belongs_to: :voteable` declaration, we now have access to all kinds of fun methods on our models. We can call `@actor.votes`, `@movie.votes` and `@director.votes`, as expected. To retrieve a Vote object's parent, we can call `@vote.voteable`, which returns its corresponding `Actor`, `Movie`, or `Director`. Throw a User class in there - plus some simple routes, controllers, and views - and we have the makings of a pretty functional Oscar ballot app - - - but that's the topic for another (future) post. In the meantime, bravo. You've built an award-worthy polymorphic association.
 
 ![Meryl Streep Loves It]({{ site.baseurl }}/assets/meryl.gif "Meryl Streep Loves It") 
 
@@ -103,7 +103,7 @@ Thanks to polymorphic `belongs_to: :voteable` declaration, we now have access to
 ### 1. Do you have one model that `belongs_to` many other models?
 - Does this one model only exist in relation to the other models?   
   Examples: Comments and Posts; Likes and Tweets  
-- Think about using polymorphic association instead of multiple foreign_keys / `belongs_to` declarations  
+- Think about using polymorphic association instead of multiple foreign keys / `belongs_to` declarations  
         
 ### 2. Ask yourself what these models have in common
 - Describe that commonality in a single trait, like `Commentable` or `Likeable`  
