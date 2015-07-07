@@ -11,14 +11,14 @@ Today I discovered I could extend its usefulness even further with a small monke
 
 Moving right along...
 
-#### Desired functionality:
-#### 1. Multiple break tokens
+### Desired functionality:
+### 1. Multiple break tokens
 
 Per [`truncate_html`'s docs](https://github.com/hgmnz/truncate_html#example), you can truncate your html after a after a certain number of characters (`options[:length]`) or at a designated piece of content, like `<!-- break -->` (`options[:break_token]`).
 
 Setting a single `break_token` is great if I've created the HTML and set my own unique `break_token` wherever necessary. But what about situations where I want to pass in any old HTML and truncate based on the content? If I want to cut the string before it hits a video for example, I'll need two `break_tokens` at minimum - `video` and `iframe`. I could do this with a couple iterations over the same HTML string, but it'd be way better to just be able to set multiple `break_tokens` right there in the options hash.
 
-#### 2. More flexible token matching
+### 2. More flexible token matching
 
 Playing around with different tokens, I noticed that if I set `break_token` to an html element, like `<img>` or `img`, for example, the string wouldn't be truncated as I intended if that element had any attributes, like `class`, `id`, or `src`. I had to match the full tag content exactly.
 
@@ -108,13 +108,13 @@ While this approach worked, it's a little blunt.
 
 As [Justin Weiss cautions](http://www.justinweiss.com/blog/2015/01/20/3-ways-to-monkey-patch-without-making-a-mess), there are a number of potential problems with punching your patch in this way:
 
-> **1. If two libraries monkey-patch the same method, you won’t be able to tell.**
+> **1. If two libraries monkey-patch the same method, you won’t be able to tell.**  
 >    - The first monkey-patch will get overwritten and disappear forever.  
 >
-> **2. If there’s an error, it’ll look like the error happened inside [TruncateHtml].**
+> **2. If there’s an error, it’ll look like the error happened inside [TruncateHtml].**  
 >    - While technically true, it’s not that helpful.  
 >
-> **3. It’s harder to turn off your monkey patches.**
+> **3. It’s harder to turn off your monkey patches.**  
 >    - You have to either comment out your entire patch, or skip requiring your monkey patch file if you want to run code without it.  
 >    - If you, say, forgot to require [truncate_html] before running this monkey patch, you’ll accidentally redefine [the class] instead of patching it.  
 
@@ -172,8 +172,11 @@ TruncateHtml.send(:include, GemExtensions::TruncateHtml::HtmlTruncator)
 ```
 
 Benefits of this approach include:  
+
 1. Better error tracing - now clear when errors originate in module vs gem  
+
 2. Easy to include / exclude modules - just comment out as needed in the initializer  
+
 3. Clearer intentions - easy for new developers to recognize what these modules do and why  
 
 
