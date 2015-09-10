@@ -1,9 +1,7 @@
 ---
 layout: post
-title: Code Talk Notes: User Progresses Update
+title: Code Talk Notes - User Progresses Update
 ---
-
-# Notes from Flatiron Code Talk
 
 Pain points:
 - Submission retention

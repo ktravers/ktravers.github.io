@@ -1,9 +1,7 @@
 ---
 layout: post
-title: Code Talk Notes: Promises and Asynchronous Code
+title: Code Talk Notes - Promises and Asynchronous Code
 ---
-
-# Notes from Flatiron Code Talk
 
 ![Callback Hell]({{ site.baseurl }}/assets/callback-hell.jpg "Callback Hell")
 
