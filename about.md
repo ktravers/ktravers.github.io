@@ -4,7 +4,7 @@ title: About
 permalink: /about/
 ---
 
-Kate Travers is both a 1) broad and 2) programmer. When not writing technical blog posts, she's chasing green lights at [The Flatiron School](http://flatironschool.com/), building [Cool Things](http://www.kate-travers.com) for friends and colleagues, and filling the internet with [pictures of kittens](https://twitter.com/kittencamtv).
+Kate Travers is both a 1) broad and 2) programmer. When not writing technical blog posts, she's chasing green lights at [The Flatiron School](http://flatironschool.com/), building [Cool Things](http://www.kate-travers.com) for friends and colleagues, and training for the [Art Handling Olympics](http://www.ahonyc.com/).
 
 ### Contact Info:
 
