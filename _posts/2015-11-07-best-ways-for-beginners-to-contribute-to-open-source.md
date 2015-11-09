@@ -56,7 +56,7 @@ Once you've verified you've found a valid, unreported bug, you'll want to open a
 
 - **System/version information (your OS version, browser information, etc.)**
 
-  _example: "OX 10.11.1 (15B42), Ruby v2.2.0"_
+    _example: "OX 10.11.1 (15B42), Ruby v2.2.0"_
 
 - **Full text of any error messages**
 
@@ -67,9 +67,9 @@ Once you've verified you've found a valid, unreported bug, you'll want to open a
     Installing bcrypt-ruby (3.0.1) with native extensions
     Gem::Installer::ExtensionBuildError: ERROR: Failed to build gem native extension.
         /usr/bin/ruby2.2.0 extconf.rb
-        /usr/lib/ruby/2.2.0/rubygems/custom_require.rb:36:in `require': cannot load such file -- mkmf (LoadError)
-        from /usr/lib/ruby/2.2.0/rubygems/custom_require.rb:36:in `require'
-        from extconf.rb:36:in `<main>'
+        /usr/lib/ruby/2.2.0/rubygems/custom_require.rb:36:in 'require': cannot load such file -- mkmf (LoadError)
+        from /usr/lib/ruby/2.2.0/rubygems/custom_require.rb:36:in 'require'
+        from extconf.rb:36:in '<main>'
 
     An error occurred while installing bcrypt-ruby (3.0.1), and Bundler cannot continue.
     Make sure that `gem install bcrypt-ruby -v '3.0.1'` succeeds before bundling.
