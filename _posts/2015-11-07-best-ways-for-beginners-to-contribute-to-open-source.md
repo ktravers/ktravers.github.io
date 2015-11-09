@@ -47,10 +47,10 @@ Once you've verified you've found a valid, unreported bug, you'll want to open a
 
     Start from the beginning, and provide any necessary context.
 
-    _example:_
+    _example:_  
     ```
-    1. Add 'bcrypt-ruby' to Gemfile
-    2. `cd` into Rails app directory
+    1. Add 'bcrypt-ruby' to Gemfile  
+    2. `cd` into Rails app directory  
     3. Run `bundle`
     ```
 
@@ -60,18 +60,18 @@ Once you've verified you've found a valid, unreported bug, you'll want to open a
 
 - **Full text of any error messages**
 
-    _example:_
+    _example:_  
     ```bash
-    example@ubuntu:~/$ bundle
-    Fetching gem metadata from http://rubygems.org/.........
-    Installing bcrypt-ruby (3.0.1) with native extensions
-    Gem::Installer::ExtensionBuildError: ERROR: Failed to build gem native extension.
-        /usr/bin/ruby2.2.0 extconf.rb
-        /usr/lib/ruby/2.2.0/rubygems/custom_require.rb:36:in 'require': cannot load such file -- mkmf (LoadError)
-        from /usr/lib/ruby/2.2.0/rubygems/custom_require.rb:36:in 'require'
-        from extconf.rb:36:in '<main>'
+    example@ubuntu:~/$ bundle  
+    Fetching gem metadata from http://rubygems.org/.........  
+    Installing bcrypt-ruby (3.0.1) with native extensions  
+    Gem::Installer::ExtensionBuildError: ERROR: Failed to build gem native extension.  
+        /usr/bin/ruby2.2.0 extconf.rb  
+        /usr/lib/ruby/2.2.0/rubygems/custom_require.rb:36:in 'require': cannot load such file -- mkmf (LoadError)  
+        from /usr/lib/ruby/2.2.0/rubygems/custom_require.rb:36:in 'require'  
+        from extconf.rb:36:in '<main>'  
 
-    An error occurred while installing bcrypt-ruby (3.0.1), and Bundler cannot continue.
+    An error occurred while installing bcrypt-ruby (3.0.1), and Bundler cannot continue.  
     Make sure that `gem install bcrypt-ruby -v '3.0.1'` succeeds before bundling.
     ```
 
@@ -100,15 +100,15 @@ All developers rely on good documentation; it's the first place you're going to 
 
 - **Add a description**
 
-  If you run across an undocumented method, chances are it's not an easter egg. Write up a clear description, ideally with usage examples, and submit for review.
+    If you run across an undocumented method, chances are it's not an easter egg. Write up a clear description, ideally with usage examples, and submit for review.
 
 - **Write an example**
 
-  Good docs provide example usage for all methods / features / etc. ([example: Rails ActiveRecord callbacks](http://api.rubyonrails.org/classes/ActiveRecord/Callbacks.html)). If you run across a method that could be clarified with an example (or maybe needs a better example), add one in there. This could be your express ticket to [becoming a bonafide Rails contributor](https://github.com/rails/rails/pull/22119).
+    Good docs provide example usage for all methods / features / etc. ([example: Rails ActiveRecord callbacks](http://api.rubyonrails.org/classes/ActiveRecord/Callbacks.html)). If you run across a method that could be clarified with an example (or maybe needs a better example), add one in there. This could be your express ticket to [becoming a bonafide Rails contributor](https://github.com/rails/rails/pull/22119).
 
 - **Fix a typo**
 
-  Here's your time to shine, English majors. Remember - (almost) [no fix is too small!](https://github.com/rails/rails/pull/21728)
+    Here's your time to shine, English majors. Remember - (almost) [no fix is too small!](https://github.com/rails/rails/pull/21728)
 
 ### 4. Add specs
 
