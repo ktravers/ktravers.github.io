@@ -38,11 +38,13 @@ If you uncover a bug, before filing a new issue, **check and see if it's already
 Once you've verified you've found a valid, unreported bug, you'll want to open a new issue and include as much information as possible for the maintainers. A quality issue report should include:
 
 - **Clear title and description of the bug**
+
     Keep the title concise, but provide clear info in the description below.
 
     _example: "Unable to bundle install bcrypt-ruby. Added bcrypt-ruby to my Gemfile, but `bundle` command is throwing error: Failed to build gem native extension."_
 
 - **Steps to reproduce the problem**
+
     Start from the beginning, and provide any necessary context.
 
     _example:_
@@ -53,9 +55,11 @@ Once you've verified you've found a valid, unreported bug, you'll want to open a
     ```
 
 - **System/version information (your OS version, browser information, etc.)**
+
   _example: "OX 10.11.1 (15B42), Ruby v2.2.0"_
 
 - **Full text of any error messages**
+
     _example:_
     ```bash
     example@ubuntu:~/$ bundle
@@ -95,13 +99,16 @@ Any info you can add will will help take the issue one step closer to being clos
 All developers rely on good documentation; it's the first place you're going to go when learning new tech. As you've probably noticed, though, project docs aren't always maintained in pace with the rest of the project. You'll run into info that's unclear, outdated, or non-existent. Here's a chance for you to do yourself and other developers a huge favor - fill in those gaps in documentation.
 
 - **Add a description**
-If you run across an undocumented method, chances are it's not an easter egg. Write up a clear description, ideally with usage examples, and submit for review.
+
+  If you run across an undocumented method, chances are it's not an easter egg. Write up a clear description, ideally with usage examples, and submit for review.
 
 - **Write an example**
-Good docs provide example usage for all methods / features / etc. ([example: Rails ActiveRecord callbacks](http://api.rubyonrails.org/classes/ActiveRecord/Callbacks.html)). If you run across a method that could be clarified with an example (or maybe needs a better example), add one in there. This could be your express ticket to [becoming a bonafide Rails contributor](https://github.com/rails/rails/pull/22119).
+
+  Good docs provide example usage for all methods / features / etc. ([example: Rails ActiveRecord callbacks](http://api.rubyonrails.org/classes/ActiveRecord/Callbacks.html)). If you run across a method that could be clarified with an example (or maybe needs a better example), add one in there. This could be your express ticket to [becoming a bonafide Rails contributor](https://github.com/rails/rails/pull/22119).
 
 - **Fix a typo**
-Here's your time to shine, English majors. Remember - (almost) [no fix is too small!](https://github.com/rails/rails/pull/21728)
+
+  Here's your time to shine, English majors. Remember - (almost) [no fix is too small!](https://github.com/rails/rails/pull/21728)
 
 ### 4. Add specs
 
@@ -126,8 +133,8 @@ When you're ready to open your pull request, be sure to cover the following:
 
 Most importantly, be patient. It might take a while for your contribution to be reviewed, but don't let that stress you out. Stay positive, keep contributing, and be proud of your new open source contributor chops.
 
-More resources:
-1. [Github contributing guidelines](https://guides.github.com/activities/contributing-to-open-source/)
-2. [Github guide to finding open source projects](https://help.github.com/articles/where-can-i-find-open-source-projects-to-work-on/)
-3. [Learn.co contributing guidelines](https://github.com/learn-co-curriculum/hello-world-ruby/blob/master/CONTRIBUTING.md)
+More resources:  
+1. [Github contributing guidelines](https://guides.github.com/activities/contributing-to-open-source/)  
+2. [Github guide to finding open source projects](https://help.github.com/articles/where-can-i-find-open-source-projects-to-work-on/)  
+3. [Learn.co contributing guidelines](https://github.com/learn-co-curriculum/hello-world-ruby/blob/master/CONTRIBUTING.md)  
 4. [Rails documentation guidelines](http://guides.rubyonrails.org/api_documentation_guidelines.html)
