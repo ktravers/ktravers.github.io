@@ -47,7 +47,8 @@ Once you've verified you've found a valid, unreported bug, you'll want to open a
 
     Start from the beginning, and provide any necessary context.
 
-    _example:_  
+    _example:_
+
     ```
     1. Add 'bcrypt-ruby' to Gemfile  
     2. `cd` into Rails app directory  
@@ -60,7 +61,8 @@ Once you've verified you've found a valid, unreported bug, you'll want to open a
 
 - **Full text of any error messages**
 
-    _example:_  
+    _example:_
+
     ```bash
     example@ubuntu:~/$ bundle  
     Fetching gem metadata from http://rubygems.org/.........  
