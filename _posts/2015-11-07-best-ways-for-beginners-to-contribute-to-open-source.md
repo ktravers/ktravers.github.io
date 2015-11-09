@@ -41,41 +41,22 @@ Once you've verified you've found a valid, unreported bug, you'll want to open a
 
     Keep the title concise, but provide clear info in the description below.
 
-    _example: "Unable to bundle install bcrypt-ruby. Added bcrypt-ruby to my Gemfile, but `bundle` command is throwing error: Failed to build gem native extension."_
+    ![Example issue]({{ site.baseurl }}/assets/issue-description.png "Example issue")
 
 - **Steps to reproduce the problem**
 
     Start from the beginning, and provide any necessary context.
 
-    _example:_
-
-    ```
-    1. Add 'bcrypt-ruby' to Gemfile  
-    2. `cd` into Rails app directory  
-    3. Run `bundle`
-    ```
+    ![Example issue]({{ site.baseurl }}/assets/issue-steps.png "Example issue")
 
 - **System/version information (your OS version, browser information, etc.)**
 
-    _example: "OX 10.11.1 (15B42), Ruby v2.2.0"_
+    ![Example issue]({{ site.baseurl }}/assets/issue-version.png "Example issue")
 
 - **Full text of any error messages**
 
-    _example:_
+    ![Example issue]({{ site.baseurl }}/assets/issue-error.png "Example issue")
 
-    ```bash
-    example@ubuntu:~/$ bundle  
-    Fetching gem metadata from http://rubygems.org/.........  
-    Installing bcrypt-ruby (3.0.1) with native extensions  
-    Gem::Installer::ExtensionBuildError: ERROR: Failed to build gem native extension.  
-        /usr/bin/ruby2.2.0 extconf.rb  
-        /usr/lib/ruby/2.2.0/rubygems/custom_require.rb:36:in 'require': cannot load such file -- mkmf (LoadError)  
-        from /usr/lib/ruby/2.2.0/rubygems/custom_require.rb:36:in 'require'  
-        from extconf.rb:36:in '<main>'  
-
-    An error occurred while installing bcrypt-ruby (3.0.1), and Bundler cannot continue.  
-    Make sure that `gem install bcrypt-ruby -v '3.0.1'` succeeds before bundling.
-    ```
 
 If there's a UI/UX component to the bug, it's helpful to include a screenshot, or better yet, an animated gif screen capture using a program like [licecap](https://github.com/lepht/licecap), a great project with a terrible name.
 
