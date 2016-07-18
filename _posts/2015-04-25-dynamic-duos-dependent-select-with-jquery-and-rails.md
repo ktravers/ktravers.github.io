@@ -31,13 +31,13 @@ The Game form lives in its own partial that's rendered from both the `create.htm
 <div class="game-form">
   <%= simple_form_for(@game) do |f| %>
     <div class="input-group input-group-lg">
-    <span class="input-group-addon"><%= f.label "Activity" %></span>
-    <%= f.select :game_category, collection: @game.game_categories.keys, class: "form-control", placeholder: "Baseball" %>
+      <span class="input-group-addon"><%= f.label "Activity" %></span>
+      <%= f.select :game_category, collection: @game.game_categories.keys, class: "form-control", placeholder: "Baseball" %>
     </div>
 
     <div class="input-group input-group-lg">
-    <span class="input-group-addon"><%= f.label :location %></span>
-    <%= f.select :park_id, label: false, collection: Park.all.order("name"), class: "form-control" %> 
+      <span class="input-group-addon"><%= f.label :location %></span>
+      <%= f.select :park_id, label: false, collection: Park.all.order("name"), class: "form-control" %>
     </div>
     <%= f.submit %>
   <% end %>
@@ -57,9 +57,9 @@ end
 
 ###<a id="update-schema"></a>Step 1: Update schema
 
-We noticed above that there's a relationship between Park `#activity` and Game `#game_category`, so first thing is to extract this connection into its own model and associated join table. 
+We noticed above that there's a relationship between Park `#activity` and Game `#game_category`, so first thing is to extract this connection into its own model and associated join table.
 
-Run two commands from the terminal:   
+Run two commands from the terminal:  
  -- `rails g migration CreateActivities name:string`  
  -- `rails g migration CreateActivityParks park_id:integer activity_id:integer`  
 
@@ -100,7 +100,7 @@ end
 
 ###<a id="update-associations"></a>Step 3: Add ActiveRecord associations
 
-The updated model associations are fairly straight-forward. 
+The updated model associations are fairly straight-forward.
 
 A Park has one Activity, through ActivityParks.
 
@@ -157,16 +157,16 @@ This menu should list each Park by name, grouped by associated Activity, and sen
 <div class="game-form">
    <%= form_for(@game) do |f| %>
       <div class="input-group input-group-lg">
-      <span class="input-group-addon"><%= f.label "Activity" %></span>
-      <%= f.collection_select :game_category, Activity.order(:name), :name, :name, include_blank: 'Select an activity...', class: "form-control" %>
+        <span class="input-group-addon"><%= f.label "Activity" %></span>
+        <%= f.collection_select :game_category, Activity.order(:name), :name, :name, include_blank: 'Select an activity...', class: "form-control" %>
       </div>
 
       <div class="input-group input-group-lg">
-      <span class="input-group-addon"><%= f.label :location %></span>
-      <%= f.grouped_collection_select :park_id, Activity.all, :parks, :name, :id, :name, include_blank: 'Select a park...', class: "form-control" %> 
+        <span class="input-group-addon"><%= f.label :location %></span>
+        <%= f.grouped_collection_select :park_id, Activity.all, :parks, :name, :id, :name, include_blank: 'Select a park...', class: "form-control" %>
       </div>
-  <%= f.submit %>
-<% end %>
+    <%= f.submit %>
+  <% end %>
 </div>
 ```
 
@@ -181,16 +181,17 @@ $(function(){
 })
 
 function filterParksList(){
-  parks = $('#game_park_id').html();
-  $('#game_game_category').change(function(){
-    game_category = $('#game_game_category :selected').text();
-    optgroup = "optgroup[label='"+ game_category + "']"
-    options = $(parks).filter(optgroup).html();
+  var parks = $('#game_park_id').html();
 
-    if(game_category != "Other"){ 
-      $('#game_park_id').html(options);
+  $('#game_game_category').change(function(){
+    var selectedGameCategory = $('#game_game_category :selected').text();
+    var optgroup = "optgroup[label='"+ selectedGameCategory + "']";
+    var parkOptions = $(parks).filter(optgroup).html();
+
+    if(selectedGameCategory != 'Other'){
+      $('#game_park_id').html(parkOptions);
     }
-  }); 
+  });
 }
 ```
 
@@ -201,10 +202,10 @@ I made a conscious decision to leave the "Other" Activity category available to 
 That's the full refactor. Your select menus are now working in tandem, filtering on change like a truly dynamic duo. Hope it was helpful - let me know in the comments below!
 
 
-#### More helpful resources:
+#### More helpful resources:  
 1. [Railscasts ep. 88: Dynamic Select Menus (Revised)](http://railscasts.com/episodes/88-dynamic-select-menus-revised)  
 2. [Rails documentation: `grouped_collection_select`](http://api.rubyonrails.org/classes/ActionView/Helpers/FormOptionsHelper.html#method-i-grouped_collection_select)  
 3. [Pull Monkey blog - Dynamic Select Boxes in Rails 3](http://pullmonkey.com/2012/08/11/dynamic-select-boxes-ruby-on-rails-3/)  
 4. [Kernel Garden blog - Dynamic Select Boxes in Rails 4](https://kernelgarden.wordpress.com/2014/02/26/dynamic-select-boxes-in-rails-4/)  
-5. [False Positives blog - Building Cascading Drop Down Selection List for Rails with JQuery/Ajax](http://www.falsepositives.com/index.php/2010/05/28/building-a-casscading-drop-down-selection-list-for-ruby-on-rails-with-jquery-ajax/) 
+5. [False Positives blog - Building Cascading Drop Down Selection List for Rails with JQuery/Ajax](http://www.falsepositives.com/index.php/2010/05/28/building-a-casscading-drop-down-selection-list-for-ruby-on-rails-with-jquery-ajax/)  
 
