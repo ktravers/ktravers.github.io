@@ -3,7 +3,7 @@ layout: post
 title: Monkey Patching truncate_html
 ---
 
-The [`truncate_html` gem](https://github.com/hgmnz/truncate_html) is a really useful tool for clipping off a string of html at a designated point. It has some nice [customizeable config options](https://github.com/hgmnz/truncate_html#example), and best of all, zero third party dependencies. Per its docs, it even does the unthinkable: 
+The [`truncate_html` gem](https://github.com/hgmnz/truncate_html) is a really useful tool for clipping off a string of html at a designated point. It has some nice [customizeable config options](https://github.com/hgmnz/truncate_html#example), and best of all, zero third party dependencies. Per its docs, it even does the unthinkable:
 
 > This library...[parses HTML using regular expressions](http://stackoverflow.com/questions/1732348/regex-match-open-tags-except-xhtml-self-contained-tags/1732454#1732454).
 
@@ -28,21 +28,21 @@ To illustrate:
 html_string = "<h1 class='title'>Cats!</h1><img src='/img/cat.gif'><p>Cats are cute.</p>"
 
 truncate_html(html_string, break_token: 'h1')
-=> "<h1 class='title'>Cats!</h1><img src='/img/cat.gif'><p>Cats are cute.</p>"
+# => "<h1 class='title'>Cats!</h1><img src='/img/cat.gif'><p>Cats are cute.</p>"
 # wat?
 
 truncate_html(html_string, break_token: '<img>')
-=> "<h1 class='title'>Cats!</h1><img src='/img/cat.gif'><p>Cats are cute.</p>"
+# => "<h1 class='title'>Cats!</h1><img src='/img/cat.gif'><p>Cats are cute.</p>"
 # double wat?
 
 truncate_html(html_string, break_token: "<img src='/img/cat.gif'>")
-=> "<h1 class='title'>Cats!</h1>"
+# => "<h1 class='title'>Cats!</h1>"
 
 truncate_html(html_string, break_token: "<p>")
-=> "<h1 class='title'>Cats!</h1><img src='/img/cat.gif'>"
+# => "<h1 class='title'>Cats!</h1><img src='/img/cat.gif'>"
 ```
 
-I went into the [source](https://github.com/hgmnz/truncate_html/blob/master/lib/truncate_html/html_string.rb) to see what was going on, and turns out this behavior was completely by design. When your html string is passed into HtmlString, it's spliced into an array of `html_tokens`, each one an open tag, closed tag, comment or plain text. 
+I went into the [source](https://github.com/hgmnz/truncate_html/blob/master/lib/truncate_html/html_string.rb) to see what was going on, and turns out this behavior was completely by design. When your html string is passed into HtmlString, it's spliced into an array of `html_tokens`, each one an open tag, closed tag, comment or plain text.
 
 For example:
 
@@ -50,17 +50,17 @@ For example:
 html_string = "<h1 class='title'>Cats!</h1><img src='/img/cat.gif'><p>Cats are cute.</p>"
 
 HtmlString.new(html).html_tokens
-=> [ "<h1 class='title'>",
-     "Cats!",
-     "</h1>",
-     "<img src='/img/cat.gif'>",
-     "<p>",
-     "Cats",
-     " ",
-     "are",
-     " ",
-     "cute.",
-     "</p>" ]
+# => [ "<h1 class='title'>",
+#     "Cats!",
+#     "</h1>",
+#     "<img src='/img/cat.gif'>",
+#     "<p>",
+#     "Cats",
+#     " ",
+#     "are",
+#     " ",
+#     "cute.",
+#     "</p>" ]
 ```
 
 Each one of these `html_tokens` is matched against your `break_token`, and only a perfect match will trigger truncate. I'd like to make this a little more flexible.
@@ -78,22 +78,22 @@ My first solution was to just dive in, open up the necessary classes, and overwr
 class TruncateHtml::Configuration
   attr_accessor :break_tokens
 end
- 
+
 class TruncateHtml::HtmlTruncator
   def initialize(original_html, options = {})
     @original_html   = original_html
-    length           = options[:length]       || TruncateHtml.configuration.length
-    @omission        = options[:omission]     || TruncateHtml.configuration.omission
-    @word_boundary   = (options.has_key?(:word_boundary) ? options[:word_boundary] : TruncateHtml.configuration.word_boundary)
-    @break_token     = options[:break_token]  || TruncateHtml.configuration.break_token || nil
-    @break_tokens    = options[:break_tokens] || TruncateHtml.configuration.break_tokens || []
+    length           = options[:length]        || TruncateHtml.configuration.length
+    @omission        = options[:omission]      || TruncateHtml.configuration.omission
+    @word_boundary   = options[:word_boundary] || TruncateHtml.configuration.word_boundary
+    @break_token     = options[:break_token]   || TruncateHtml.configuration.break_token  || nil
+    @break_tokens    = options[:break_tokens]  || TruncateHtml.configuration.break_tokens || []
     @break_tokens    << @break_token if @break_token
     @chars_remaining = length - @omission.length
     @open_tags, @closing_tags, @truncated_html = [], [], ['']
   end
- 
+
   private
- 
+
   def truncate_token?(token)
     @break_tokens.any? do |break_token|
       token.include?(break_token)
@@ -123,7 +123,7 @@ A much safer, surgical solution is to put your patch in a module.
 
 ### Option 2: Put Patches Inside Modules (not blunt)
 
-Following [Justin's](http://www.justinweiss.com/blog/2015/01/20/3-ways-to-monkey-patch-without-making-a-mess/#) and many [other Rubyists recommendations](http://stackoverflow.com/questions/580314/overriding-a-module-method-from-a-gem-in-rails), I refactored my patch so that it was safely stowed inside namespaced modules. 
+Following [Justin's](http://www.justinweiss.com/blog/2015/01/20/3-ways-to-monkey-patch-without-making-a-mess/#) and many [other Rubyists recommendations](http://stackoverflow.com/questions/580314/overriding-a-module-method-from-a-gem-in-rails), I refactored my patch so that it was safely stowed inside namespaced modules.
 
 I added individual modules for each monkey-patched class, organized into folders like so: `lib/gem_extensions/:gem_name/:class.rb`. Note: reader recommendations welcome on better ways to organize this.
 
@@ -145,18 +145,18 @@ module GemExtensions
     module HtmlTruncator
       def initialize(original_html, options = {})
         @original_html   = original_html
-        length           = options[:length]       || TruncateHtml.configuration.length
-        @omission        = options[:omission]     || TruncateHtml.configuration.omission
-        @word_boundary   = (options.has_key?(:word_boundary) ? options[:word_boundary] : TruncateHtml.configuration.word_boundary)
-        @break_token     = options[:break_token]  || TruncateHtml.configuration.break_token || nil
-        @break_tokens    = options[:break_tokens] || TruncateHtml.configuration.break_tokens || []
+        length           = options[:length]        || TruncateHtml.configuration.length
+        @omission        = options[:omission]      || TruncateHtml.configuration.omission
+        @word_boundary   = options[:word_boundary] || TruncateHtml.configuration.word_boundary
+        @break_token     = options[:break_token]   || TruncateHtml.configuration.break_token  || nil
+        @break_tokens    = options[:break_tokens]  || TruncateHtml.configuration.break_tokens || []
         @break_tokens    << @break_token if @break_token
         @chars_remaining = length - @omission.length
         @open_tags, @closing_tags, @truncated_html = [], [], ['']
       end
-     
+
       private
-     
+
       def truncate_token?(token)
         @break_tokens.any? do |break_token|
           token.include?(break_token)

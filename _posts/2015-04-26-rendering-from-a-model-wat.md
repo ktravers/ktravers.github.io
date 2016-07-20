@@ -89,7 +89,7 @@ end
 <!-- recipe partial -->
 <div class="recipe-card-partial">
   <div class="recipe-card-partial-image">
-    <img src="<%= recipe.image_upload.url %>" class="img-thumbnail"><br>
+    <img src="<%= recipe.image_upload.url %>" class="img-thumbnail">
     <%= link_to recipe.short_name, "/recipes/#{recipe.id}"%>
   </div>
 </div>

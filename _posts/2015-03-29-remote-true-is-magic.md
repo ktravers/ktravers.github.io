@@ -6,19 +6,23 @@ title: Remote True is Magic
 I had a really fun time this weekend building a [small side project](http://www.amiruby.com/) with [Sophie DeBenedetto](https://github.com/SophieDeBenedetto), [Jeremy Sklarsky](https://github.com/jeremysklarsky), and [Rachel Nackman](https://github.com/rnackman). We learned a lot of very cool things that you can do with Rails + jQuery, but the coolest was easily `remote: true`. This one little option is crazy powerful. Case in point: by adding `remote: true` to our `Search` form, our `searches.js` file went from this:
 
 ```javascript
-$(function(){submitListener();})
-function submitListener(){$('#new_search').on("submit", submitSearch)}
+$(function () { submitListener(); })
 
-function submitSearch(e){
+function submitListener () {
+  $('#new_search').on('submit', submitSearch);
+}
+
+function submitSearch (e) {
   e.preventDefault();
-  var url = $(this).attr('action')
-  var $form =  $("form#new_search");
+  var url = $(this).attr('action');
+  var $form = $('form#new_search');
+
   $.ajax(url, {
-    method: "POST",
+    method: 'POST',
     url: url,
-    "data": $form.serialize(),
-    dataType: "script",
-    "complete": function(response){}
+    data: $form.serialize(),
+    dataType: 'script',
+    complete: function(response){}
   });
 }
 ```
@@ -29,7 +33,7 @@ to this:
 
 ```
 
-That's right. Adding `remote: true` allowed us to nix our entire jQuery listener + ajax request for that form, because all that functionality is contained within `remote: true`. 
+That's right. Adding `remote: true` allowed us to nix our entire jQuery listener + ajax request for that form, because all that functionality is contained within `remote: true`.
 
 ![Taylor Swift Mind Blown]({{ site.baseurl }}/assets/mind-blown-taylor.gif "Taylor Swift Mind Blown")
 
@@ -44,18 +48,18 @@ Let's demystify it a bit. The Rails documentation puts things pretty simply:
 
 > `rails.js` provides the JavaScript half, and the regular Ruby view helpers add appropriate tags to your DOM. The CoffeeScript in `rails.js` then listens for these attributes and attaches appropriate handlers.
 
-To recap, when you use `remote: true` inside a view helper method, like `form_for` or `link_to`, Rails automatically **adds a jQuery listener to that object** (the form or the link) and **executes the appropriate action** (such as `e.preventDefault();` and `e.stopPropogation();`, as two examples). With that basic functionality taken care of, you're then free to add your own jQuery actions as needed within a `.js.erb` view file, after making sure your controller will `respond_to` both `format.js` and `format.html`. 
+To recap, when you use `remote: true` inside a view helper method, like `form_for` or `link_to`, Rails automatically **adds a jQuery listener to that object** (the form or the link) and **executes the appropriate action** (such as `e.preventDefault();` and `e.stopPropogation();`, as two examples). With that basic functionality taken care of, you're then free to add your own jQuery actions as needed within a `.js.erb` view file, after making sure your controller will `respond_to` both `format.js` and `format.html`.
 
 That explanation was pretty abstract, so let's look at a concrete example of how to implement `remote: true` inside some actual working code. I'll step through pieces of our code below, and you can always [check out the repo here](https://github.com/jeremysklarsky/AmIRuby) for the full source.
 
-### Step 1: Add `remote: true` to your form. 
+### Step 1: Add `remote: true` to your form.
 
 ```html
 <!-- index.html.erb -->
 
 <h1>Am I Ruby?</h1>
 <%= form_for(@search, remote: true) do |f| %>
-  <%= f.text_field :keyword, id: 'keyword' %><br><br>
+  <%= f.text_field :keyword, id: 'keyword' %>
   <%=f.submit "Search", class: "search-btn"%>
 <% end %>
 <section id="result"></section>
@@ -67,12 +71,11 @@ Originally, our `form_for` method took a single argument, `@search`. We simply a
 
 ```ruby
 class SearchesController < ApplicationController
-
   def create
-    @result = Search.new.am_i_ruby(params[:search][:keyword])    
+    @result = Search.new.am_i_ruby(params[:search][:keyword])
     respond_to do |format|
       format.html
-      format.js 
+      format.js
     end
   end
 end
@@ -87,7 +90,7 @@ def create
 end
 ```
 
-Now that we're using `remote: true`, we don't want to render a view; we want to execute a jQuery function of our choosing. So we replace the `render` command and with `respond_to` instructions for each format we want our controller to serve. Here, our controller can serve html AND Javascript responses to the ajax success function. 
+Now that we're using `remote: true`, we don't want to render a view; we want to execute a jQuery function of our choosing. So we replace the `render` command and with `respond_to` instructions for each format we want our controller to serve. Here, our controller can serve html AND Javascript responses to the ajax success function.
 
 ### Step 3: Add `create.js.erb` file
 

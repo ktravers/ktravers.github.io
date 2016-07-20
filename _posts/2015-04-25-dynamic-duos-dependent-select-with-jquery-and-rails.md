@@ -39,6 +39,7 @@ The Game form lives in its own partial that's rendered from both the `create.htm
       <span class="input-group-addon"><%= f.label :location %></span>
       <%= f.select :park_id, label: false, collection: Park.all.order("name"), class: "form-control" %>
     </div>
+
     <%= f.submit %>
   <% end %>
 </div>
@@ -51,7 +52,11 @@ Finally, the seeds file made a simple JSON call to [NYC Open Data's](https://dat
 require 'open-uri'
 json = JSON.load(open("https://data.cityofnewyork.us/resource/e4ej-j6hn.json"))
 json.each do |park|
-  Park.create(name: park['name'], location: park['location'], facility: park['type']) unless park['type'] == 'Bathroom' # filter out parks without game facilities
+  Park.create(
+    name: park['name'],
+    location: park['location'],
+    facility: park['type']
+  ) unless park['type'] == 'Bathroom' # filter out parks without game facilities
 end
 ```
 
@@ -60,8 +65,8 @@ end
 We noticed above that there's a relationship between Park `#activity` and Game `#game_category`, so first thing is to extract this connection into its own model and associated join table.
 
 Run two commands from the terminal:  
- -- `rails g migration CreateActivities name:string`  
- -- `rails g migration CreateActivityParks park_id:integer activity_id:integer`  
+ 1. `rails g migration CreateActivities name:string`  
+ 2. `rails g migration CreateActivityParks park_id:integer activity_id:integer`  
 
 ###<a id="update-seeds"></a>Step 2: Update seeds file
 
@@ -72,7 +77,12 @@ Activities and ActivityParks are derived from the Park #facility attribute, so w
 require 'open-uri'
 json = JSON.load(open("https://data.cityofnewyork.us/resource/e4ej-j6hn.json"))
 json.each do |park|
-  park = Park.create(name: park['name'], location: park['location'], facility: park['type']) unless park['type'] == 'Bathroom' # filter out parks without game facilities
+  park = Park.create(
+    name: park['name'],
+    location: park['location'],
+    facility: park['type']
+  ) unless park['type'] == 'Bathroom' # filter out parks without game facilities
+
   park_activity = ''
   park_facility = Park.all.last.facility # most recently-created Park's facility
 
@@ -140,7 +150,10 @@ Our migrations, associations, and seeds file are all properly updated, so now's 
 At this point, it was easiest for me to remove SimpleForm and use the built-in ActiveView form_for helper instead. The first select menu should use the [`collection_select`](http://api.rubyonrails.org/classes/ActionView/Helpers/FormOptionsHelper.html#method-i-collection_select) FormOptionsHelper:
 
 ```ruby
-collection_select(object, method, collection, value_method, text_method, options = {}, html_options = {})
+# ActionView::Helpers::FormOptionsHelper#collection_select
+collection_select(
+  object, method, collection, value_method, text_method, options={}, html_options={}
+)
 ```
 
 We want this menu to list each Activity by name, and send the user's selection to the GamesController's `#create` or `#update` action as part of `game_params`, specifically `params['game']['game_category']`. So we'll set the method/attribute as `#game_category`, collection as `Activity.order(:name)`, and `value_method` as `#name`. I included the Bootstrap "form-control" class as part of the `html_options` hash for styling purposes.
@@ -148,23 +161,27 @@ We want this menu to list each Activity by name, and send the user's selection t
 The second select menu options need to be grouped by Park #activity, so we'll use the [`grouped_collection_select`](http://api.rubyonrails.org/classes/ActionView/Helpers/FormOptionsHelper.html#method-i-grouped_collection_select) FormOptionsHelper:
 
 ```ruby
-grouped_collection_select(object, method, collection, group_method, group_label_method, option_key_method, option_value_method, options = {}, html_options = {})
+# ActionView::Helpers::FormOptionsHelper#grouped_collection_select
+grouped_collection_select(
+  object, method, collection, group_method, group_label_method, option_key_method, option_value_method, options={}, html_options={}
+)
 ```
 
 This menu should list each Park by name, grouped by associated Activity, and send the user's selection to the GamesController's `#create` or `#update` action as part of `game_params`, specifically `params['game']['park_id']`. We'll set the method/attribute as `park_id`, collection as `Activity.all`, and group by group_method `#parks` (i.e. all the parks that are associated with that instance of `Activity`).
 
 ```html
 <div class="game-form">
-   <%= form_for(@game) do |f| %>
-      <div class="input-group input-group-lg">
-        <span class="input-group-addon"><%= f.label "Activity" %></span>
-        <%= f.collection_select :game_category, Activity.order(:name), :name, :name, include_blank: 'Select an activity...', class: "form-control" %>
-      </div>
+  <%= form_for(@game) do |f| %>
+    <div class="input-group input-group-lg">
+      <span class="input-group-addon"><%= f.label "Activity" %></span>
+      <%= f.collection_select :game_category, Activity.order(:name), :name, :name, include_blank: 'Select an activity...', class: "form-control" %>
+    </div>
 
-      <div class="input-group input-group-lg">
-        <span class="input-group-addon"><%= f.label :location %></span>
-        <%= f.grouped_collection_select :park_id, Activity.all, :parks, :name, :id, :name, include_blank: 'Select a park...', class: "form-control" %>
-      </div>
+    <div class="input-group input-group-lg">
+      <span class="input-group-addon"><%= f.label :location %></span>
+      <%= f.grouped_collection_select :park_id, Activity.all, :parks, :name, :id, :name, include_blank: 'Select a park...', class: "form-control" %>
+    </div>
+
     <%= f.submit %>
   <% end %>
 </div>
