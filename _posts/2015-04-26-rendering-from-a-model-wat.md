@@ -9,10 +9,13 @@ I'm a firm believer in the "make it work" philosophy - solve problems first, the
 class Recipe < ActiveRecord::Base
   def recipe_card
     ActionView::Base.new(
-      Rails.configuration.paths['app/views']).render(
-      :partial => 'menus/recipe', :format => :txt,
-      :locals => { :recipe => self })
-      ###🙊🚷 W A T ☠😿###
+      Rails.configuration.paths['app/views']
+    ).render(
+      partial: 'menus/recipe',
+      format: :txt,
+      locals: { recipe: self }
+    )
+    ###🙊🚷 W A T ☠😿###
   end
 end
 ```
@@ -35,16 +38,19 @@ The problem we were trying to solve was relatively simple. In our Menu views, we
 After reviewing the documentation on [`collection_check_boxes`](http://api.rubyonrails.org/classes/ActionView/Helpers/FormOptionsHelper.html#method-i-collection_check_boxes), we thought we'd be able to pass the `render` method inside the `&block` argument.
 
 ```ruby
-collection_check_boxes(object, method, collection, value_method, text_method, options = {}, html_options = {}, &block)
+# ActionView::Helpers::FormOptionsHelper#collection_check_boxes
+collection_check_boxes(
+  object, method, collection, value_method, text_method, options={}, html_options={}, &block
+)
 ```
 
-Unfortunately, no matter what we tried, we couldn't get that `_recipe` partial to render. We tried passing HTML options to the `label` and `check_box` builder methods. Nothing. We tried utilizing the "special" `object`, `text`, and `value` methods - no dice. 
+Unfortunately, no matter what we tried, we couldn't get that `_recipe` partial to render. We tried passing HTML options to the `label` and `check_box` builder methods. Nothing. We tried utilizing the "special" `object`, `text`, and `value` methods - no dice.
 
 Ultimately, we kept circling back to the `text_method` argument. In most of the examples we found online, `text_method` called a method defined in the form's associated model. This got us thinking - could we write a method in the Recipe model that would render the `_recipe` partial? That way we could pass it as an argument into [`collection_check_boxes`](http://api.rubyonrails.org/classes/ActionView/Helpers/FormOptionsHelper.html#method-i-collection_check_boxes) and boom, problem solved.
 
 ## THE WAT SOLUTION
 
-Turns out with a little hackery, you can render a view from a model. Let's follow the pass-and-catch below. 
+Turns out with a little hackery, you can render a view from a model. Let's follow the pass-and-catch below.
 
 ☠ Start in the menu partial, where [`collection_check_boxes`](http://api.rubyonrails.org/classes/ActionView/Helpers/FormOptionsHelper.html#method-i-collection_check_boxes) `:recipe_card` argument calls the Recipe model's method `#recipe_card`.
 
@@ -67,9 +73,12 @@ Turns out with a little hackery, you can render a view from a model. Let's follo
 class Recipe < ActiveRecord::Base
   def recipe_card
     ActionView::Base.new(
-      Rails.configuration.paths['app/views']).render(
-      :partial => 'menus/recipe', :format => :txt,
-      :locals => { :recipe => self })
+      Rails.configuration.paths['app/views']
+    ).render(
+      partial: 'menus/recipe',
+      format: :txt,
+      locals: { recipe: self }
+    )
   end
 end
 ```
@@ -88,14 +97,17 @@ end
 
 ## THE WHY
 
-Let's break down exactly what's happening in that `#recipe_card` method. 
+Let's break down exactly what's happening in that `#recipe_card` method.
 
 ```ruby
 def recipe_card
   ActionView::Base.new(
-    Rails.configuration.paths['app/views']).render(
-    :partial => 'menus/recipe', :format => :txt,
-    :locals => { :recipe => self })
+    Rails.configuration.paths['app/views']
+  ).render(
+    partial: 'menus/recipe',
+    format: :txt,
+    locals: { recipe: self }
+  )
 end
 ```
 
