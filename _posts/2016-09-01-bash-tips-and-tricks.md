@@ -99,11 +99,11 @@ change into last directory you were in
 
 ## Keyboard shortcuts
 
-CTRL + k => delete from cursor to end of line
-CTRL + u => delete from cursor to beginning of line
-CTRL + y => print deleted chars back
-CTRL + s => to go forward in history
-CTRL + r => to go back in history
+CTRL + k => delete from cursor to end of line  
+CTRL + u => delete from cursor to beginning of line  
+CTRL + y => print deleted chars back  
+CTRL + s => to go forward in history  
+CTRL + r => to go back in history  
 
 ## Searching
 
