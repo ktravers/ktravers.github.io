@@ -3,6 +3,8 @@ layout: post
 title: BASH Tips and Tricks
 ---
 
+All tips courtesy [@devinburnette](https://github.com/devinburnette)
+
 ## Basics
 
 ### `$ w`
