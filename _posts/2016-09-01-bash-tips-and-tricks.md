@@ -26,7 +26,7 @@ ktravers s005     -                Mon11   3days redis-server *:6379
 ### `$ write [user]`
 send message to specific user
 
-### `$ banner`
+### `$ wall`
 broadcast to all users on box
 
 ### `$ whoami`
@@ -226,11 +226,11 @@ word count only
 ### `$ netstat -an | grep :22 | wc -l`
 port connection count
 
-### `$ ls -of`
+### `$ lsof`
 list open files on system (and what process is keeping them open)
 
 ```bash
-$ ls -of
+$ lsof
 total 80
 drwxr-xr-x  19 ktravers   646 Aug  1 13:06 .
 drwxr-xr-x  10 ktravers   340 Aug  8 19:09 ..
