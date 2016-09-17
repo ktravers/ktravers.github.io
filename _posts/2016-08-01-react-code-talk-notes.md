@@ -18,44 +18,48 @@ title: React Code Talk Notes
 
 ### Setup
 
-1. Add `_src` file (`_src/code-reading.js`)
-  ```javascript
-  // _src/code-reading.js
+##### 1. Add `_src` file (`_src/code-reading.js`)
 
-  var React = require('react')
-    , ReactDom = require('react-dom')
-    , AppComponent = require('code-reading/app.jsx')
-    ;
+```javascript
+// _src/code-reading.js
 
-  document.addEventListener('DOMContentLoaded', function () {
-    ReactDom.render(<AppComponent/>, document.getElementById('js-main'));
-  });
-  ```
-2. Create manifest (`javascripts/code-reading.js`) and require src file in via sprockets
+var React = require('react')
+  , ReactDom = require('react-dom')
+  , AppComponent = require('code-reading/app.jsx')
+  ;
 
-  ```javascript
-  // javascripts/code-reading.js
+document.addEventListener('DOMContentLoaded', function () {
+  ReactDom.render(<AppComponent/>, document.getElementById('js-main'));
+});
+```
 
-  //= require _bundles/code-reading
-  ```
-3. Add to asset pipeline (`application.rb`) and blacklist
-4. Create AppComponent (`/javascripts/code-reading/app.jsx`)
+##### 2. Create manifest (`javascripts/code-reading.js`) and require src file in via sprockets
+
+```javascript
+// javascripts/code-reading.js
+
+//= require _bundles/code-reading
+```
+
+##### 3. Add to asset pipeline (`application.rb`) and blacklist
+
+##### 4. Create AppComponent (`/javascripts/code-reading/app.jsx`)
   - `React.createClass(){}` requires render function
   - **React can only return one top level node**
 
-  ```jsx
-  // javascripts/code-reading/app.jsx
+```javascript
+// javascripts/code-reading/app.jsx
 
-  var AppComponent = React.createClass({
-    render(){
-      return(
-        <div>Hello World!</div>
-      )
-    }
-  });
+var AppComponent = React.createClass({
+  render(){
+    return(
+      <div>Hello World!</div>
+    )
+  }
+});
 
-  module.exports = AppComponent;
-  ```
+module.exports = AppComponent;
+```
 
 ## Components Overview
 
@@ -95,7 +99,7 @@ module.exports = AppComponent;
 
 Use `getInitialState` and `onChange` events inside elements.
 
-```
+```javascript
 // javascripts/code-reading/app.jsx
 
 var AppComponent = React.createClass({
@@ -155,7 +159,7 @@ module.exports = AppComponent;
 
 Normally separate out into ListCollection and ListItem components.
 
-```
+```javascript
 // javascripts/code-reading/app.jsx
 
 var AppComponent = React.createClass({
