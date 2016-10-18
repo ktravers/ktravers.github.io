@@ -18,8 +18,6 @@ Refactoring CSS With Object Oriented Design
 
 ### INTRO
 
-Who am I?
-
 Kate Travers // [kate@flatironschool.com](mailto:kate@flatironschool.com) // [@kttravers](https://www.twitter.com/kttravers) // github: [ktravers](https://www.github.com/ktravers)
 
 Web Developer at [The Flatiron School](www.flatironschool.com), NYC
@@ -289,29 +287,41 @@ Good news is we won everyone over once they started actually using the framework
 
 **PERFORMANCE GAINS**
 
-Payload:  
-V1: at least 60 KB minified  
-V2: 28.7 KB minified
+Payload
 
-|        |  LEARN_V1  |  LEARN_V2 |
-|--------|------------|-----------|
-| NATIVE | 213 sheets | 31 sheets |
-|        | 1.3 MB     |   193 KB  |
-| VENDOR | 116 sheets | 6 sheets  |
-|        | 848 KB     |   49 KB   |
-| TOTAL  | 329 sheets | 37 sheets |
-|        | 2.1 MB     |   242 KB  |
+Native stylesheets
+
+  - LEARN_V1: 213 sheets, 1.3 MB
+  - LEARN_V2: 31 sheets, 193 KB
+
+Vendor stylesheets
+
+  - LEARN_V1: 116 sheets, 848 KB
+  - LEARN_V2: 6 sheets, 49 KB
+
+Total stylesheets
+
+  - LEARN_V1: 329 sheets, 2.1 MB
+  - LEARN_V2: 37 sheets, 242 KB
 
 
-Page load benchmarks:  
-Average render times (last 24hrs)  
-source: Librato
+Page load benchmarks  
+Average render times (source: Librato)
 
-|                    | LEARN_V1 | LEARN_V2 |
-|--------------------|----------|----------|
-| TRACK#SHOW         | 262 ms   | 108 ms   |
-| LESSON#SHOW        | 98 ms    |  48 ms   |
-| PUBLIC_LESSON#SHOW | 40 ms    |  21 ms   |
+TRACK#SHOW
+
+  - LEARN_V1: 262 ms
+  - LEARN_V2: 108 ms
+
+LESSON#SHOW
+
+  - LEARN_V1: 98 ms
+  - LEARN_V2: 48 ms
+
+PUBLIC_LESSON#SHOW
+
+  - LEARN_V1: 40 ms
+  - LEARN_V2: 21 ms
 
 
 ### QUESTIONS?
