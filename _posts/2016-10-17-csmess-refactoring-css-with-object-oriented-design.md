@@ -1,6 +1,6 @@
 ---
 layout: post
-title: CSMess to OOCSS: Refactoring CSS With Object Oriented Design
+title: CSMess to OOCSS - Refactoring CSS With Object Oriented Design
 ---
 
 [Presented at Fullstack Toronto Conf. 2016](https://eventmobi.com/fstoco2016/agenda/141857/806561)
