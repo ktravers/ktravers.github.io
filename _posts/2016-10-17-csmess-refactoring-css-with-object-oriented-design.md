@@ -274,8 +274,6 @@ Good news is we won everyone over once they started actually using the framework
 - More consistent UI
 - Greater parity with mocks
 
----
-
 **DEVELOPMENT GAINS**
 
 - Ship faster: BUILD NEW VIEWS WITHOUT WRITING ANY NEW CSS
@@ -283,46 +281,39 @@ Good news is we won everyone over once they started actually using the framework
 - More accessible to those without extensive frontend experience
 - Prototyping becomes more rapid and more accurate to the final product
 
----
-
 **PERFORMANCE GAINS**
 
 Payload
 
-Native stylesheets
+  - Native stylesheets
+    - LEARN_V1: 213 sheets, 1.3 MB
+    - LEARN_V2: 31 sheets, 193 KB
 
-  - LEARN_V1: 213 sheets, 1.3 MB
-  - LEARN_V2: 31 sheets, 193 KB
+  - Vendor stylesheets
+    - LEARN_V1: 116 sheets, 848 KB
+    - LEARN_V2: 6 sheets, 49 KB
 
-Vendor stylesheets
-
-  - LEARN_V1: 116 sheets, 848 KB
-  - LEARN_V2: 6 sheets, 49 KB
-
-Total stylesheets
-
-  - LEARN_V1: 329 sheets, 2.1 MB
-  - LEARN_V2: 37 sheets, 242 KB
+  - Total stylesheets
+    - LEARN_V1: 329 sheets, 2.1 MB
+    - LEARN_V2: 37 sheets, 242 KB
 
 
 Page load benchmarks  
 Average render times (source: Librato)
 
-TRACK#SHOW
+  - TRACK#SHOW
+    - LEARN_V1: 262 ms
+    - LEARN_V2: 108 ms
 
-  - LEARN_V1: 262 ms
-  - LEARN_V2: 108 ms
+  - LESSON#SHOW
+    - LEARN_V1: 98 ms
+    - LEARN_V2: 48 ms
 
-LESSON#SHOW
+  - PUBLIC_LESSON#SHOW
+    - LEARN_V1: 40 ms
+    - LEARN_V2: 21 ms
 
-  - LEARN_V1: 98 ms
-  - LEARN_V2: 48 ms
-
-PUBLIC_LESSON#SHOW
-
-  - LEARN_V1: 40 ms
-  - LEARN_V2: 21 ms
-
+---
 
 ### QUESTIONS?
 
