@@ -59,7 +59,8 @@ code lives at: [https://github.com/StevenNunez/redux_chat_hedgehog](https://gith
 11. `npm install --save axios` (for fetch requests)
 12. `npm install --save redux-thunk`
 13. wipe out boilerplace in `web/static/js/app.js`
-14. update `brunch-config.js`:
+14. update `brunch-config.js`
+  - plugins config should look like this:
 
   ```javascript
   // Configure your plugins
@@ -72,7 +73,6 @@ code lives at: [https://github.com/StevenNunez/redux_chat_hedgehog](https://gith
   },
   //...
   ```
-
 15. in `web/static/js/app.js`: `import { createStore } from 'redux'`
   - with ES6 module system, couple ways to export from a class
   - can export as a constant
