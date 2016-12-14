@@ -72,6 +72,7 @@ code lives at: [https://github.com/StevenNunez/redux_chat_hedgehog](https://gith
   },
   //...
   ```
+
 15. in `web/static/js/app.js`: `import { createStore } from 'redux'`
   - with ES6 module system, couple ways to export from a class
   - can export as a constant
