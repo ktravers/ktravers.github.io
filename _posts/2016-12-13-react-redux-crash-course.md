@@ -153,69 +153,69 @@ plugins: {
   ```
   - each reducer will now receive dispatched message and then execute accordingly
 18. Example `web/static/js/app.js` so far:
-  ```js
-  import { createStore, combineReducers } from 'redux'
-  import React from 'react'
-  import { render } from 'react-dom'
+```js
+import { createStore, combineReducers } from 'redux'
+import React from 'react'
+import { render } from 'react-dom'
 
-  function counter(state=0, action) { // this is our Reducer
-    switch (action.type) {
-      case 'INCREMENT':
-        return state + 1;
-      case 'DECREMENT':
-        return state - 1;
-      default:
-        return state;
-    }
+function counter(state=0, action) { // this is our Reducer
+  switch (action.type) {
+    case 'INCREMENT':
+      return state + 1;
+    case 'DECREMENT':
+      return state - 1;
+    default:
+      return state;
   }
+}
 
-  function lastMessage(state='No Message Yet', action) { // Another reducer
-    switch (action.type) {
-      case 'INCREMENT':
-        return 'Was incremented!';
-      case 'DECREMENT':
-        return 'Was decremented!';
-      default:
-        return state;
-    }
+function lastMessage(state='No Message Yet', action) { // Another reducer
+  switch (action.type) {
+    case 'INCREMENT':
+      return 'Was incremented!';
+    case 'DECREMENT':
+      return 'Was decremented!';
+    default:
+      return state;
   }
+}
 
-  const rootReducer = combineReducers({ // map reducers
-    counter: counter,
-    lastMessage: lastMessage
-  });
+const rootReducer = combineReducers({ // map reducers
+  counter: counter,
+  lastMessage: lastMessage
+});
 
-  const store = createStore(rootReducer);
+const store = createStore(rootReducer);
 
-  const App = (props) => {
-    return (
+const App = (props) => {
+  return (
+    <div>
+      <div>The current value is: {props.counterValue}</div>
+      <div>The last message was {props.lastMessage}</div>
       <div>
-        <div>The current value is: {props.counterValue}</div>
-        <div>The last message was {props.lastMessage}</div>
-        <div>
-          <button onClick={()=> store.dispatch({type: 'INCREMENT'})}>
-            Up
-          </button>
-          <button onClick={()=> store.dispatch({type: 'DECREMENT'})}>
-            Down
-          </button>
-        </div>
+        <button onClick={()=> store.dispatch({type: 'INCREMENT'})}>
+          Up
+        </button>
+        <button onClick={()=> store.dispatch({type: 'DECREMENT'})}>
+          Down
+        </button>
       </div>
-    )
-  }
+    </div>
+  )
+}
 
-  store.subscribe(function () {
-    render(
-      <App
-        counterValue={store.getState().counter}
-        lastMessage={store.getState().lastMessage}
-      />,
-      document.querySelector('#root')
-    );
-  });
+store.subscribe(function () {
+  render(
+    <App
+      counterValue={store.getState().counter}
+      lastMessage={store.getState().lastMessage}
+    />,
+    document.querySelector('#root')
+  );
+});
 
-  store.dispatch({type: 'Banana'});
-  ```
+store.dispatch({type: 'Banana'});
+```
 19. Concepts: immutability and functional purity
   - immutability helps w/ performance
   - pure function == function that if you give it same inputs, will always return same thing, not affected by outside world
