@@ -17,8 +17,8 @@ title: React and Redux Crash Course with Steven Nunez
 1. "Surprisingly simple" says Steven
 2. Very specific purpose
 3. Supes popular
-4. Lots of high quality curriculum available from Flatiron School
-5. They hired Dan Abramov
+4. Lots of high quality curriculum available from [Flatiron School](https://flatironschool.com/)
+5. They hired [Dan Abramov](https://github.com/gaearon)
 
 ### What is Redux?
 
@@ -44,7 +44,7 @@ The part that's Redux is actually fairly small. Redux covers Reducers, Dispatch,
 
 Building a chat app
 
-code lives at: git@github.com:StevenNunez/redux_chat_hedgehog.git
+code lives at: [https://github.com/StevenNunez/redux_chat_hedgehog](https://github.com/StevenNunez/redux_chat_hedgehog)
 
 1. `brew install elixir`
 2. `mix phoenix.new redux_chat_hedgehog` (using phoenix bc it has nice tools for modern web workflow)
@@ -60,6 +60,7 @@ code lives at: git@github.com:StevenNunez/redux_chat_hedgehog.git
 12. `npm install --save redux-thunk`
 13. wipe out boilerplace in `web/static/js/app.js`
 14. update `brunch-config.js`:
+
   ```javascript
   // Configure your plugins
   plugins: {
