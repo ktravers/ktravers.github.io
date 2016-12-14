@@ -158,7 +158,7 @@ code lives at: [https://github.com/StevenNunez/redux_chat_hedgehog](https://gith
     ```
   - each reducer will now receive dispatched message and then execute accordingly
 
-    ```jsx
+    ```javascript
     // state of web/static/js/app.js so far
 
     import { createStore, combineReducers } from 'redux'
