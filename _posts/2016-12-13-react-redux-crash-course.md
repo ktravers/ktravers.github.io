@@ -5,9 +5,10 @@ title: React and Redux Crash Course with Steven Nunez
 
 ### Instructor
 
-Steven Nunez, Lead Instructor/Developer at Flatiron School
+[Steven Nunez](https://github.com/StevenNunez), Lead Instructor/Developer at Flatiron School
 
 ### Goals:
+
 1. Learn through doing
 2. Knowledge up on cool new tech
 
@@ -57,8 +58,8 @@ code lives at: git@github.com:StevenNunez/redux_chat_hedgehog.git
 10. `npm install --save react-dom`
 11. `npm install --save axios` (for fetch requests)
 12. `npm install --save redux-thunk`
-12. wipe out boilerplace in `web/static/js/app.js`
-13. update `brunch-config.js`:
+13. wipe out boilerplace in `web/static/js/app.js`
+14. update `brunch-config.js`:
   ```javascript
   // Configure your plugins
   plugins: {
@@ -70,14 +71,14 @@ code lives at: git@github.com:StevenNunez/redux_chat_hedgehog.git
   },
   //...
   ```
-14. in `web/static/js/app.js`: `import { createStore } from 'redux'`
+15. in `web/static/js/app.js`: `import { createStore } from 'redux'`
   - with ES6 module system, couple ways to export from a class
   - can export as a constant
   - can export default
   - `import Something from 'aFile'` gets you the default
   - `import { thing1, thing2 } from 'aFile'` gets specific stuff (constants, functions, etc)
   - that way when you open a file, you can see up top what all the collaborators are
-15. About Redux store:
+16. About Redux store:
   - In Redux, store is really stupid (aka simple)
   - Store can receive messages and do a thing
   - Store has method called dispatch: `store.dispatch({type: 'whatevs'})`
@@ -101,7 +102,7 @@ code lives at: git@github.com:StevenNunez/redux_chat_hedgehog.git
 
     const store = createStore(counter);
     ```
-16. About the Reducer
+17. About the Reducer
   - first argument we receive in the reducer is state
   - common/best practice to define default state
   - second argument is the action
@@ -119,7 +120,7 @@ code lives at: git@github.com:StevenNunez/redux_chat_hedgehog.git
       }
     }
     ```
-17. Another thing: Combined Reducers
+18. Another thing: Combined Reducers
   - composing reducers
   - multiple reducers to handle different things, manage different parts of the page
 
@@ -154,71 +155,72 @@ code lives at: git@github.com:StevenNunez/redux_chat_hedgehog.git
     const store = createStore(rootReducer);
     ```
   - each reducer will now receive dispatched message and then execute accordingly
-18. Example `web/static/js/app.js` so far:
 
-  ```javascript
-  import { createStore, combineReducers } from 'redux'
-  import React from 'react'
-  import { render } from 'react-dom'
+    ```javascript
+    // state of web/static/js/app.js so far
 
-  function counter(state=0, action) { // this is our Reducer
-    switch (action.type) {
-      case 'INCREMENT':
-        return state + 1;
-      case 'DECREMENT':
-        return state - 1;
-      default:
-        return state;
+    import { createStore, combineReducers } from 'redux'
+    import React from 'react'
+    import { render } from 'react-dom'
+
+    function counter(state=0, action) { // this is our Reducer
+      switch (action.type) {
+        case 'INCREMENT':
+          return state + 1;
+        case 'DECREMENT':
+          return state - 1;
+        default:
+          return state;
+      }
     }
-  }
 
-  function lastMessage(state='No Message Yet', action) { // Another reducer
-    switch (action.type) {
-      case 'INCREMENT':
-        return 'Was incremented!';
-      case 'DECREMENT':
-        return 'Was decremented!';
-      default:
-        return state;
+    function lastMessage(state='No Message Yet', action) { // Another reducer
+      switch (action.type) {
+        case 'INCREMENT':
+          return 'Was incremented!';
+        case 'DECREMENT':
+          return 'Was decremented!';
+        default:
+          return state;
+      }
     }
-  }
 
-  const rootReducer = combineReducers({ // map reducers
-    counter: counter,
-    lastMessage: lastMessage
-  });
+    const rootReducer = combineReducers({ // map reducers
+      counter: counter,
+      lastMessage: lastMessage
+    });
 
-  const store = createStore(rootReducer);
+    const store = createStore(rootReducer);
 
-  const App = (props) => {
-    return (
-      <div>
-        <div>The current value is: {props.counterValue}</div>
-        <div>The last message was {props.lastMessage}</div>
+    const App = (props) => {
+      return (
         <div>
-          <button onClick={()=> store.dispatch({type: 'INCREMENT'})}>
-            Up
-          </button>
-          <button onClick={()=> store.dispatch({type: 'DECREMENT'})}>
-            Down
-          </button>
+          <div>The current value is: {props.counterValue}</div>
+          <div>The last message was {props.lastMessage}</div>
+          <div>
+            <button onClick={()=> store.dispatch({type: 'INCREMENT'})}>
+              Up
+            </button>
+            <button onClick={()=> store.dispatch({type: 'DECREMENT'})}>
+              Down
+            </button>
+          </div>
         </div>
-      </div>
-    )
-  }
+      )
+    }
 
-  store.subscribe(function () {
-    render(
-      <App
-        counterValue={store.getState().counter}
-        lastMessage={store.getState().lastMessage}
-      />,
-      document.querySelector('#root')
-    );
-  });
+    store.subscribe(function () {
+      render(
+        <App
+          counterValue={store.getState().counter}
+          lastMessage={store.getState().lastMessage}
+        />,
+        document.querySelector('#root')
+      );
+    });
 
-  store.dispatch({type: 'Banana'});
-  ```
+    store.dispatch({type: 'Banana'});
+    ```
 19. Concepts: immutability and functional purity
   - immutability helps w/ performance
   - pure function == function that if you give it same inputs, will always return same thing, not affected by outside world
