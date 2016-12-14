@@ -83,6 +83,7 @@ code lives at: git@github.com:StevenNunez/redux_chat_hedgehog.git
   - Store has method called dispatch: `store.dispatch({type: 'whatevs'})`
   - dispatch requires `type` key
   - we can add kinda like an event listener where when state changes, can re-run code:
+
     ```javascript
     store.subscribe(()=>{
       // whenever receives message, function will be called
@@ -91,7 +92,8 @@ code lives at: git@github.com:StevenNunez/redux_chat_hedgehog.git
     ```
   - note: you have to pass a function to createStore
   - chain of events: dispatch then call subscribe
-  - function that you pass to store is known as the **Reducer**
+  - function that you pass to store is known as the Reducer
+
     ```javascript
     function counter() { // this is our Reducer
       return 1;
@@ -104,6 +106,7 @@ code lives at: git@github.com:StevenNunez/redux_chat_hedgehog.git
   - common/best practice to define default state
   - second argument is the action
   - super simple example:
+
     ```javascript
     function counter(state=0, action) { // this is our Reducer
       switch (action.type) {
@@ -119,6 +122,7 @@ code lives at: git@github.com:StevenNunez/redux_chat_hedgehog.git
 17. Another thing: Combined Reducers
   - composing reducers
   - multiple reducers to handle different things, manage different parts of the page
+
     ```javascript
     function counter(state=0, action) { // this is our Reducer
       switch (action.type) {
