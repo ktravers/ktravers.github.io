@@ -40,7 +40,7 @@ Seems like a lot of stuff at first.
 
 The part that's Redux is actually fairly small. Redux covers Reducers, Dispatch, middleware. The rest is mostly Redux+React. And then conventions like ALL_THE_CAPS and Action Creators are separate conventions (oof).
 
-### Exercise
+### Exercise: Simple Chat App
 
 Building a chat app
 
