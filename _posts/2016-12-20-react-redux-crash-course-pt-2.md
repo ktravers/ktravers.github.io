@@ -34,10 +34,10 @@ Next up, set groundwork for testing. Use this post for reference: [https://keita
 1. `npm install --save-dev mocha`
 2. `npm install --save-dev chai`
 3. `npm install --save-dev babel-register`
-4. in .babelrc
-  - give preset:
+4. in .babelrc:
+  - give preset
 
-    ```
+    ```javascript
     {
       "presets": ["es2015"]
     }
@@ -45,7 +45,7 @@ Next up, set groundwork for testing. Use this post for reference: [https://keita
 5. in package.json:
   - update scripts
 
-    ```
+    ```javascript
     {
       "dependencies": {
         ...
