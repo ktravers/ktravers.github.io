@@ -34,23 +34,21 @@ Next up, set groundwork for testing. Use this post for reference: [https://keita
 1. `npm install --save-dev mocha`
 2. `npm install --save-dev chai`
 3. `npm install --save-dev babel-register`
-4. in .babelrc, set preset
-```javascript
-{
-  "presets": ["es2015"]
-}
-```
-5. in package.json, update scripts
-```javascript
-{
-  "dependencies": {
-    ...
-  },
-  "scripts": {
-    "test": "mocha --compilers js:babel-register test/js/**/*.js"
-  }
-}
-```
+4. in .babelrc, set preset: `{ "presets": ["es2015"] }`
+5. in package.json
+  - update scripts
+  - register mocha js files
+
+    ```javascript
+    {
+      "dependencies": {
+        ...
+      },
+      "scripts": {
+        "test": "mocha --compilers js:babel-register test/js/**/*.js"
+      }
+    }
+    ```
 6. mkdir -p test/js/reducers
 7. touch test/js/reducers/RoomReducerSpec.js
 8. write some tests (see [example repo](https://github.com/StevenNunez/redux_chat_hedgehog))
