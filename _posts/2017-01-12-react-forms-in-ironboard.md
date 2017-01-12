@@ -8,12 +8,12 @@ Presenter: [Seiji](https://github.com/snags88)
 ## Problem
 
 React is not an opionated library
-- too many options for building forms
-- we ended up with a bunch of different implementations / approaches
+  - too many options for building forms
+  - we ended up with a bunch of different implementations / approaches
 
 Forms are omnipresent in our app
-- lots of repeated code
-- need to DRY this up
+  - lots of repeated code
+  - need to DRY this up
 
 ## Solution
 
@@ -43,7 +43,7 @@ Acts as building block / starting point for new form
 Alt Form: existing library, but outdated and not super functional, so Seiji rebuilt one specific to our app
 
 Uses Curring pattern
- - Referred to in React community as "high order component"
+  - Referred to in React community as "high order component"
 
 3 Objects:
 
@@ -86,22 +86,23 @@ Goal: build form with first name, last name submittable inputs
   - passes FormObject into FormComponent, returns React component w/ everything needed to render
 4. Import individual input components from shared react components (ex. TextFieldInput, etc)
   - Use REST spread syntax to pass fields into props:
-  ```javascript
-  // generic example
-  var props = {
-    a: 'hello',
-    b: 'world'
-  }
-  var {a, ...rest} = props
 
-  // input component example
-  const {fields} = this.props
+    ```javascript
+    // generic example
+    var props = {
+      a: 'hello',
+      b: 'world'
+    }
+    var {a, ...rest} = props
 
-  <TextFieldInput
-    {...fields}
-    labelText='Cool label'
-  />
-  ```
+    // input component example
+    const {fields} = this.props
+
+    <TextFieldInput
+      {...fields}
+      labelText='Cool label'
+    />
+    ```
 5. Question: how to validate server-side?
   - might need more configuration, but FormObject does handle `onFormSubmitFailure`
 6. Sending data to server
@@ -119,5 +120,5 @@ Handles decision making for you
 Abstracts out state management
 
 Goal: open source this project
-- good resource for Alt users
-- nothing else out there as good as ReactForms
+  - good resource for Alt users
+  - nothing else out there as good as ReactForms
