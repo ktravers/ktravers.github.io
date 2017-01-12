@@ -87,22 +87,23 @@ Goal: build form with first name, last name submittable inputs
 4. Import individual input components from shared react components (ex. TextFieldInput, etc)
   - Use REST spread syntax to pass fields into props:
 
-  ```javascript
-  // generic example
-  var props = {
-    a: 'hello',
-    b: 'world'
-  }
-  var {a, ...rest} = props
+```javascript
+// generic example
+var props = {
+  a: 'hello',
+  b: 'world'
+}
+var {a, ...rest} = props
 
-  // input component example
-  const {fields} = this.props
+// input component example
+const {fields} = this.props
 
-  <TextFieldInput
-    {...fields}
-    labelText='Cool label'
-  />
-  ```
+<TextFieldInput
+  {...fields}
+  labelText='Cool label'
+/>
+```
+
 5. Question: how to validate server-side?
   - might need more configuration, but FormObject does handle `onFormSubmitFailure`
 6. Sending data to server
