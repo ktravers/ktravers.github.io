@@ -7,12 +7,12 @@ Presenter: [Seiji](https://github.com/snags88)
 
 ## Problem
 
-React is not an opionated library
-  - too many options for building forms
+React is not an opionated library  
+  - too many options for building forms  
   - we ended up with a bunch of different implementations / approaches
 
-Forms are omnipresent in our app
-  - lots of repeated code
+Forms are omnipresent in our app  
+  - lots of repeated code  
   - need to DRY this up
 
 ## Solution
@@ -27,22 +27,22 @@ Forms are omnipresent in our app
 
 ## Shared Component Library
 
-Can be used for controlled + uncontrolled inputs
-  - examples at `/admin/react/forms`
+Can be used for controlled + uncontrolled inputs  
+  - examples at `/admin/react/forms`  
   - documentation on ironboard wiki
 
 Robust test coverage
 
 Default styles can be overridden
 
-Acts as building block / starting point for new form
-  - won't just magically build your entire form for you
+Acts as building block / starting point for new form  
+  - won't just magically build your entire form for you  
   - use lego blocks to build lego set
 
 
 Alt Form: existing library, but outdated and not super functional, so Seiji rebuilt one specific to our app
 
-Uses Curring pattern
+Uses Curring pattern  
   - Referred to in React community as "high order component"
 
 3 Objects:
@@ -119,6 +119,6 @@ Handles decision making for you
 
 Abstracts out state management
 
-Goal: open source this project
-  - good resource for Alt users
+Goal: open source this project  
+  - good resource for Alt users  
   - nothing else out there as good as ReactForms
