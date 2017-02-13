@@ -9,321 +9,255 @@ title: CSMess to OOCSS - Refactoring CSS With Object Oriented Design
 
 <iframe src="https://docs.google.com/presentation/d/12H2MLnGdaFN2xk-MRVyIRX4j77zQeAHytcUmFcQ6b2Q/embed?start=false&loop=false&delayms=5000" frameborder="0" width="560" height="344" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
 
-## Outline
+## How Object-Oriented Design Saved Our CSS (and Site Performance)
 
-CSMESS TO OOCSS  
-Refactoring CSS With Object Oriented Design
+Back in January 2016, our CSS was easily the messiest part of the [Learn.co](https://learn.co) codebase… something that probably sounds familiar to many other web developers out there. Last spring, we budgeted time and resources to overhaul it. I led that project. Here's what we learned.
 
----
+Before diving in, let’s clarify what we’re talking about when we talk about object-oriented design. Object-oriented code is:
 
-### INTRO
+- **Modular:** reusable
+- **Encapsulated:** self-contained with minimal dependencies
+- **Maintainable:** easy to work with, which is especially important for smaller dev teams like ours
 
-Kate Travers // [kate@flatironschool.com](mailto:kate@flatironschool.com) // [@kttravers](https://www.twitter.com/kttravers) // github: [ktravers](https://www.github.com/ktravers)
+[Learn.co](https://learn.co) is built on a Rails backend, and Rails strongly encourages writing code in an object-oriented paradigm. But how does object orientation apply to stylesheets? As good Rubyists, we tried to follow object orientation with our CSS, but we were doing it wrong. To illustrate, let’s take a look at our old stylesheets directory tree.
 
-Web Developer at [The Flatiron School](www.flatironschool.com), NYC
+![Stylesheet Directory Tree]({{ site.baseurl }}/assets/css-tree.png "Stylesheet Directory Tree")
 
-Working on [Learn.co](https://learn.co), platform that powers Flatiron’s online campus
+Very similar to the Rails boilerplate setup, we had one stylesheet per view, with styles namespaced under a top level ID. This approach is fine when you’re starting out, but over time, it can get out of hand. Just look at where ours was pre-rewrite:
 
----
+![Stylesheet Directory Bundle]({{ site.baseurl }}/assets/css-bundle.png "Stylesheet Directory Bundle")
 
-CSS is awesome, but at Learn.co, ours definitely wasn’t.
+As you might be able to guess from this sizeable bundle, this approach is NOT object oriented.
 
-Our CSS was easily the messiest part of our web app - which probably sounds familiar to many web devs out there.
+**It’s not modular.** Styles are page-specific, so opportunities for code sharing are missed, and you end up with lots of code duplication. Plus, if you redefine styles on a page-by-page basis, you inevitably end up with inconsistencies in implementation and the visual interface itself.
 
-This spring (2016), we budgeted time + resources to overhaul it. I led that project. This is my story.
+**It’s not encapsulated.** Nesting everything under a top-level ID kicks things off with a high level of specificity that you’ll be battling throughout the rest of your stylesheets. This setup also makes it hard to predict what’ll happen when you change a class name or reorganize the sheet.
 
----
-
-Before moving any further, let's clarify what we mean when we talk about OO design.
-
-OO design is code that is:  
-
-1. Modular - reusable
-2. Encapsulated - minimize dependencies
-3. Maintainable - esp. important for smaller dev teams
-
-But how does OO apply to stylesheets?
-
----
-
-Some background: Learn.co is built on a Rails backend.
-
-As Rubyists, we love OO design... except when it came to our CSS. And it's not that we weren't trying. We were just doing it wrong.
-
-Here’s your average stylesheets directory tree:  
-- one sheet per view
-- within each sheet, styles are namespaced under top level id
-
-This approach is fine for smaller projects, but over time, gets out of hand. Grows bloated + broken, because not actually achieving goals of OO design.
-
-**NOT MODULAR**
-
-No re-use =>  
-
-- lots of code duplication  
-- inconsistency in code implementation and visual UI
-
-**NOT ENCAPSULATED**
-
-Improper namespacing =>  
-
-- CSS specificity battles  
-- Unpredictable behavior when you change a class name or try to reorganization sheet
-
-**NOT MAINTAINABLE**
-
-Painful to maintain =>  
-
-- Writing new CSS for every view => slows down pace of development  
-- Massive bloat over time => slow pageloads  
-- Lots of churn => inconsistencies in code and design  
-- Not future-proof. Standards change, but painful to update across tons of stylesheets
-
-Good luck trying to onboard into that.
-
----
+**It’s not maintainable.** Maintaining this kind of CSS is PAINFUL. Writing new CSS for every new view slows down development. It slows down page performance, too, contributing to a massive assets payload. Lots of new CSS means lots of churn, again increasing the risk of inconsistencies in code and design. And good luck trying to onboard into that mess.
 
 We knew our CSS was broken. But what’s the solution?
 
-Enter...
+Enter OOCSS.
 
-OOCSS (insert snappy Pulp Fiction one-liner here)
+![OOCSS]({{ site.baseurl }}/assets/briefcase.gif "OOCSS")
 
----
+After consulting with our good pals at [Cantilever.co](http://cantilever.co/), we committed to an OOCSS solution. But now we had another decision to make: use an existing OOCSS framework or roll our own?
 
-Once we decided to move to OOCSS, we had another decision to make: use existing OOCSS framework or roll our own?
+There are lots of off-the-shelf frameworks out there, including [Twitter Bootstrap](https://getbootstrap.com/2.3.2/), [Yahoo Pure](https://purecss.io/), and [Zurb Foundation](http://foundation.zurb.com/) (some of the most popular options). We considered three main factors.
 
-OOCSS is not a new thing. There are lots of frameworks out there:  
+**Performance.** Most off-the-shelf OOCSS frameworks are one-size-fits-all, aka HEAVY. We thought it’d be more efficient to roll our own framework, because we could limit it to the leanest, cleanest version possible.
 
-- Twitter Bootstrap
-- Yahoo Pure
-- Zurb Foundation
+**Adaptability.** Pre-rewrite, we relied on a good amount of vendor styles. Any time we needed to customize something, we’d create an “override” sheet, adding more payload and more specificity conflicts. So we loved the idea of sticking to easily-adaptable, in-house styles only.
 
-Here’s how we evaluated our options.
+**Speed of development.** With third party libraries, you have to wait for the maintainers to make updates and fix bugs, and their schedules don’t always align with yours. We ship fast, so being able to manage dependencies and handle updates internally was super appealing.
 
-**OFF-THE-SHELF VS ROLL YOUR OWN**
+![OOCSS Options]({{ site.baseurl }}/assets/oocss-solution-table.png "OOCSS Options")
 
-1. Performance
-  - Most off-the-shelf OOCSS frameworks are one-size-fits all, aka HEAVY.
-  - More efficient / lightweight to roll your own framework, because you can limit to leanest, cleanest version possible.
-
-2. Adaptability:
-  - Don’t want to touch vendor code, so use override sheets for any customization
-  - Vs. easily extensible if built in-house
-
-3. Speed of development:
-  - Wait for 3rd party maintainers to fix bugs, update things
-  - Vs. Manage dependencies, updates internally
-
----
-
-### CASE STUDY: Flatiron School’s Learn CSS Framework
-
-**ROADMAP**
+We had a big task in front of us: writing our own Learn.co-customized OOCSS framework. We broke the process out into a four step roadmap:
 
 1. Take visual inventory of app’s UI/UX
 2. Build component OOCSS library
 3. Rewrite CSS and markup
-4. Onboard your team
+4. Onboard the rest of the team
 
----
 
 ### STEP 1: VISUAL INVENTORY
 
-Essentially pattern recognition. Our example: the Learn.co landing page.
+The first thing you’ll want to do is take a visual inventory of your entire site. The goal is to break down the design into recognizable patterns. We can use the [Learn.co](https://learn.co) landing page as an example.
 
-Break down design into recognizable patterns. Start with base layout. Then look for containers. Then look for objects.
+![Learn.co homepage]({{ site.baseurl }}/assets/learn-co-homepage.png "Learn.co homepage")
 
-Once you’ve identified repeating patterns, translate them into CSS.
+Start with the base layout - your header, footer, sidebar, etc.
 
----
+![Learn.co layout scope]({{ site.baseurl }}/assets/learn-layout-scope.png "Learn.co layout scope")
+
+Then take one step inward and look for “containers”. Look inside those containers for recurring “objects”.
+
+![Learn.co container scope]({{ site.baseurl }}/assets/learn-container-scope.png "Learn.co container scope")
+
 
 ### STEP 2: COMPONENT LIBRARY
 
-Modular components defined through strong naming conventions.
+After you’ve identified repeating patterns, the next step is to translate them into CSS. Working with [Cantilever.co](http://cantilever.co/), we designed a system that groups stylesheets into four main scopes:
 
-**MODULAR COMPONENTS:**
+**Layout components** set the baseline styles for the page grid, headers, footers, overlays, etc. Since these classes require the most precision and are the least likely to change, they tend to contain more rigid, powerful rules than the rest of your components.
 
-Compartmentalized. Individual classes should tend to do small things. In combination, classes can create complex looks, but complexity should come from the convergence of simple styles.
+![Layout Components]({{ site.baseurl }}/assets/layout-components.png "Layout Components")
 
-Portable. Our container and object elements should fit neatly into any column width. For the most part, one should be able to grab a contained HTML element from one template and plop it into another template with no stylistic issues.
+**Container components** are the real workhorse of your OOCSS system. They’re built to contain other elements, like lists or images, and they’re in charge of handling spacing, background, borders, and alignment.
 
-**STRONG NAMING CONVENTIONS**
+![Container Components]({{ site.baseurl }}/assets/container-components.png "Container Components")
 
-Shared semantic syntax =>  
+**Object components** handle styles for the smallest, discrete elements at the very bottom of the DOM tree, like buttons, links and images. They’re always the containee, not the container, and they should have the same, predictable behavior no matter what container they’re placed inside.
 
-- Less confusion  
-- More consistency
+![Object Components]({{ site.baseurl }}/assets/object-components.png "Object Components")
 
-Use abstract, generic class names.
+**Global components** are your cleanup classes, little helpers that allow you to make precision adjustments. Examples include display utilities that hide/show elements at certain breakpoints. These should be applied sparingly to prevent inconsistencies in implementation and/or UX.
 
-Class names should very rarely reference their location or actual use-case, but should instead refer abstractly to the role they play in creating a layout. For instance `.homepage-project-list` is a poor class, but `.block-list` is a good name.
+![Global Components]({{ site.baseurl }}/assets/global-components.png "Global Components")
 
-We chose BEM syntax to define classes that are verbose, accurate, and clear. BEM stands for `.block__element--modifier`.
+Now our stylesheets directory looks something like this:
 
-Group related classes according to a root namespace. Single namespace is at the front of every class in the stylesheet makes it easy to find where a particular style is located, and to affect it locally without accidents.
+```
+└── assets
+      └── stylesheets
+          ├── layout
+          │   ├── site-header.scss
+          │   ├── site-footer.scss
+          │   └── site-main.scss
+          ├── containers
+          │   ├── list.scss
+          │   ├── media-block.scss
+          │   └── module.scss
+          ├── objects
+          │   ├── button.scss
+          │   ├── image-frame.scss
+          │   └── input.scss
+          ├── global
+          │   ├── special.scss
+          │   ├── typography.scss
+          │   └── vars.scss
+          └── application.scss
+```
 
-Nesting is not necessary, because the BEM classes are already at the perfect level of specificity. In fact, nesting would bloat the final stylesheet, because each BEM class directly copies its parent class in its own name, duplicating the same string for each class in the chain. Nesting is useful for creating contextual or alternate styles, but should only be used when required.
+When it comes to actually writing the CSS, you’ll want to focus on writing modular components defined through strong naming conventions.
 
-Component library contains 4 scopes:
+**Modular components** are compartmentalized. Individual classes should do small things. Combine these small classes to get the big, complex looks you want. They should also be portable; our container and object elements should fit neatly into any column width. Your end goal should be to have a system where you can grab a block of markup from one template and drop it into another with complete confidence in what the end result will look like.
 
-**LAYOUT COMPONENTS**
+**Strong naming conventions** provide structure. CSS gives you so much freedom when it comes to naming things, so it’s important to develop a shared semantic syntax for your class names. Your devs should be able to glance at a class name and have a reasonable idea of what the element looks like on the page. You’ll want to use abstract, generic class names. Don’t base names on a specific location or use-case. Instead, class names should reference their visual role. For example, `.homepage-project-list` is not so great, but `.bubble-list` is pretty good.
 
-- HIGHEST LEVEL
-- DEFINES GRID
-- USED ON EVERY PAGE
-- MOST RIGID STYLES bc least likely to change
+We chose [BEM syntax](https://en.bem.info/method/key-concepts/) for our system, which gives us self-documenting class names that are accurate and clear, if a little verbose.
 
-Baseline styles for the grid, headers, footers, overlays, etc. Because they are one-off objects which must be rendered with great precision, Layout classes are often exceptions to the object-oriented paradigm and are created with efficient, powerful CSS. However, they do often create boxes in which our object-oriented elements may sit.
+BEM stands for "Block-Element-Modifier":
 
-**CONTAINER COMPONENTS**
+```scss
+/* Block component */
+.list
 
-- Elements built to contain other elements, like lists or modules.
-- In charge of SPACING, BACKGROUND, BORDERS, ALIGNMENT.
+/* Child element of parent block */
+.list__card
 
-**OBJECT COMPONENTS**
+/* Modifier that changes the style of the block */
+.list--accordion
+.list--spacing-large
 
-- LOWEST LEVEL => most elemental component
-- Small, atomic pieces at the very bottom of the DOM tree
-- Rarely contains other objects; always inside a container
+```
 
-Most quarantined part of our CSS framework:
+When you use BEM naming conventions for CSS, think of your class names like objects. Apply the root namespace to the parent element - in the above example, an unordered list `<ul>`. Child elements are designated by the double underscore, and any modifiers are indicated with a double dash. Note that we’re not nesting any of these classes; there’s no need, since we can read the relationship between objects from the name itself. Plus this way, we avoid any specificity battles because everything’s on the same level.
 
-- no knowledge of or effect on its container
-- rules don’t "infect" other things on the page
-
-**GLOBAL COMPONENTS**
-
-Use these sparingly to make precision adjustments.
-
----
 
 ### STEP 3: REWRITE
 
-See code samples.
+We’ve designed our system. Now it’s time to rewrite all of our markup. We’ll look at one of the most commonly-used patterns as an example: `.media-block`.
 
-1. Start by outlining the basic container + objects
-2. Semantic BEM syntax provides information on relationship between elements (parent vs. child, nesting level)
-3. Place objects inside container
+![Media Block]({{ site.baseurl }}/assets/media-block.png "Media Block")
 
-End product: encapsulated, reusable block of markup that's ready to drop into any view
+`.media-block` has three main parts: the parent `.media-block` class and two child classes: `.media-block__content` and `.media-block__media`.
 
----
+![Media Block with markup]({{ site.baseurl }}/assets/media-block-with-markup.png "Media Block with markup")
 
-But what about your JAVASCRIPT?
+When writing the markup, start by outlining the basic container and objects. Rely on the semantic BEM syntax to provide information the the relationships between elements - parent <> child, nesting level, etc.
 
-This project required us to rewrite all CSS and markup, which means we rewrote our JS selectors, too.
+```html
+<div class="media-block">
 
-Javascript needs DOM element to hook into. Agreed on the following shared syntax: any JS selector element prefixed with `.js--`, for example `.js--toggle`.
+  <div class="media-block__media">
 
-- `.js--` classes have no styles attached to them
-- Used for JS selectors only
+    <!-- circle with user’s profile picture -->
 
----
+  </div>
 
-### STEP 4: ONBOARDING
+  <div class="media-block__content">
 
-**PHASE 1**
+    <!-- text object: user name -->
+    <!-- text object: time ago -->
+    <!-- text object: action completed by user -->
 
-- New stylesheets and markup shipped behind feature flag
-- Training session on BEM syntax, OOCSS basics
+  </div>
 
-**PHASE 2**
+</div>
+```
 
-- QA testing: feature turned on for select user groups
-- Training session on rewriting existing markup
-- Identify & assign views for “hands-on learning” rewrites
+After you’ve built the frame, add text and media elements to fill out the card. Your end product is a fully encapsulated, reusable block of markup that’s ready to drop into any view.
 
-**PHASE 3**
+```html
+<div class="media-block">
 
-- Launch: feature 100% live
-- Ship style guide with full framework documentation
-- Pair with teammates as needed on new feature builds
+  <div class="media-block__media">
+    <div class="image-frame image-frame--border-radius-full">
+      <img class="image-frame__image" src="img.png"/>
+    </div>
+  </div>
 
----
+  <div class="media-block__content">
+    <span class="heading heading--level-5">Brent...</span>
+    <span class="heading heading--level-6">5 min ago</span>
+    <h5 class="heading heading--level-5">Built...</h5>
+  </div>
+
+</div>
+```
+
+![Record Scratch]({{ site.baseurl }}/assets/record-scratch.gif "Record Scratch")
+
+::record scratch::
+
+But what about our JAVASCRIPT?
+
+This project required us to rewrite all of our CSS and markup, which means we had to rewrite our Javascript selectors, too. We relied on semantic BEM syntax here as well, adopting the following syntax for any Javascript selector element: descriptor prefixed with `.js--`. For example, `.js--toggle`.
+
+This was also a good opportunity to decouple our JS and CSS. Moving forward, `.js--` classes have no styles attached to them. They’re reserved for JS selectors only.
+
+
+### STEP 4: ONBOARD THE TEAM
+
+We onboarded our team in three phases.
+
+In phase 1, we shipped new stylesheets and markup as dark code, “hidden” behind a feature flag. I also held a brief training session with the team on BEM syntax and OOCSS basics.
+
+In phase 2, we QA’d the feature while gradually turning the feature flag on for a greater and greater percentage of our users. I held a second training session with the team where we did some hands-on practice rewriting existing markup.
+
+In phase 3, we flipped the feature live for 100% of our users. I shipped a style guide with full framework documentation, and then paired with teammates as needed on new feature builds, until the whole team was comfortable with the new system.
+
+In all, the process took about two and half months, with three dedicated devs at peak, eventually scaling back down to one.
 
 ### CHALLENGES
 
-**SCOPE CREEP**
+This project wasn’t without its challenges.
 
-- Originally prototyped for 3 user-facing views
-- Grew to cover ALL user-facing views
-- Packaged with JS refactor
+The primary beast we faced was **scope creep**. Originally, this project was prototyped for three user-facing views. It grew to cover ALL user-facing views. And since we had to rewrite our JS selectors anyway, we ended up refactoring most of our Javascript alongside our markup and CSS. Letting things expand like this easily added another few weeks to the project.
 
-**NEOPHOBES**
+After scope creep, the second biggest challenge we faced was something I'll call **neophobia - fear of change**. Change is scary, and some people on our team were very comfortable doing things the old way (maybe too comfortable). Some folks were also pretty wary of CSS in general, and those deep-seeded biases were hard to overcome. But I’m happy to say once everyone started actually using the system, they were completely won over.
 
-- Change is scary
-- Some people too comfortable doing things the “old way”
-- Wary of CSS, so extra wary new system
-
-Good news is we won everyone over once they started actually using the framework.
-
-**OUTLIERS**
-
-- New designs may introduce “one-off” elements
-- Engineer's responsibility to push back on design/product before adding any new CSS
-- Product/design need to justify introduction of stylistic inconsistencies
-
----
+Finally, we had to and continue to be vigilant against **“outliers”**. Whenever designs introduce one-off elements, or something otherwise inconsistent with our existing UI, it’s our responsibility as engineers to push back before adding any new CSS. Product/design now needs to justify the introduction of stylistic inconsistencies.
 
 ### RESULTS
 
-**UX GAINS**
+So what did all this work earn us?
 
-- Faster pageloads
-- More consistent UI
-- Greater parity with mocks
+First, we saw **impressive UX gains.** Paring down our code gave us faster pageloads, a more consistent UI, and greater parity with our product mocks.
 
-**DEVELOPMENT GAINS**
+We also enjoyed some **nice developer gains.** This plug-and-play system allows our team to ship faster. Now we can build new views without writing any new CSS. We can reuse markup with predictable results, so prototyping becomes faster and better reflects the final product, and you no longer need much front-end experience to be able to put up a pretty view quickly.
 
-- Ship faster: BUILD NEW VIEWS WITHOUT WRITING ANY NEW CSS
-- reuse markup with predictable results
-- More accessible to those without extensive frontend experience
-- Prototyping becomes more rapid and more accurate to the final product
+Maybe most impressive our all were our **performance gains.** Below are unzipped, unminified size comparisons for our assets payload. You’ll see we were able to reduce our payload 10x.
 
-**PERFORMANCE GAINS**
+![Results - File Count]({{ site.baseurl }}/assets/results-file-count.png "Results - File Count")
 
-Payload
+Here’s average page render times for our most heavily trafficked views. We cut most of these in half.
 
-  - Native stylesheets
-    - LEARN_V1: 213 sheets, 1.3 MB
-    - LEARN_V2: 31 sheets, 193 KB
+![Results - Page Load]({{ site.baseurl }}/assets/results-page-load.png "Results - Page Load")
 
-  - Vendor stylesheets
-    - LEARN_V1: 116 sheets, 848 KB
-    - LEARN_V2: 6 sheets, 49 KB
-
-  - Total stylesheets
-    - LEARN_V1: 329 sheets, 2.1 MB
-    - LEARN_V2: 37 sheets, 242 KB
+We devoted a lot of resources to this project, but as you can see from these big wins, it was well worth it. The biggest lesson learned was not to wait. You can save yourself a lot of pain by applying OO design to your CSS from the start.
 
 
-Page load benchmarks  
-Average render times (source: Librato)
-
-  - TRACK#SHOW
-    - LEARN_V1: 262 ms
-    - LEARN_V2: 108 ms
-
-  - LESSON#SHOW
-    - LEARN_V1: 98 ms
-    - LEARN_V2: 48 ms
-
-  - PUBLIC_LESSON#SHOW
-    - LEARN_V1: 40 ms
-    - LEARN_V2: 21 ms
-
----
-
-### QUESTIONS?
-
-Contact Kate Travers // [kate@flatironschool.com](mailto:kate@flatironschool.com) // [@kttravers](https://www.twitter.com/kttravers) // github: [ktravers](https://www.github.com/ktravers)
-
-### ADDITIONAL RESOURCES
+### ADDITIONAL RESOURCES:
 
 Nicole Sullivan’s OOCSS  
 - https://github.com/stubbornella/oocss/wiki
 - http://confreaks.tv/presenters/nicole-sullivan
+
+SMACSS Style Guide  
+- https://smacss.com/
 
 BEM Syntax  
 - https://css-tricks.com/bem-101/
