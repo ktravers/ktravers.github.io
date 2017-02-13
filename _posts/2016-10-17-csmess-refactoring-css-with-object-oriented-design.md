@@ -71,9 +71,13 @@ Start with the base layout - your header, footer, sidebar, etc.
 
 ![Learn.co layout scope]({{ site.baseurl }}/assets/learn-layout-scope.png "Learn.co layout scope")
 
-Then take one step inward and look for “containers”. Look inside those containers for recurring “objects”.
+Then take one step inward and look for “containers”.
 
 ![Learn.co container scope]({{ site.baseurl }}/assets/learn-container-scope.png "Learn.co container scope")
+
+Look inside those containers for recurring “objects”.
+
+![Learn.co object scope]({{ site.baseurl }}/assets/learn-object-scope.png "Learn.co object scope")
 
 
 ### STEP 2: COMPONENT LIBRARY
@@ -132,14 +136,14 @@ BEM stands for "Block-Element-Modifier":
 
 ```scss
 /* Block component */
-.list
+.list {}
 
 /* Child element of parent block */
-.list__card
+.list__card {}
 
 /* Modifier that changes the style of the block */
-.list--accordion
-.list--spacing-large
+.list--accordion {}
+.list--spacing-large {}
 
 ```
 
