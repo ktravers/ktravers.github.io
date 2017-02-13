@@ -158,7 +158,7 @@ We’ve designed our system. Now it’s time to rewrite all of our markup. We’
 
 `.media-block` has three main parts: the parent `.media-block` class and two child classes: `.media-block__content` and `.media-block__media`.
 
-![Media Block with markup]({{ site.baseurl }}/assets/media-block-with-markup.png "Media Block with markup")
+![Media Block with markup]({{ site.baseurl }}/assets/media-block-and-markup.png "Media Block with markup")
 
 When writing the markup, start by outlining the basic container and objects. Rely on the semantic BEM syntax to provide information the the relationships between elements - parent <> child, nesting level, etc.
 
@@ -256,13 +256,13 @@ We devoted a lot of resources to this project, but as you can see from these big
 
 ### ADDITIONAL RESOURCES:
 
-Nicole Sullivan’s OOCSS  
+#### Nicole Sullivan’s OOCSS
 - https://github.com/stubbornella/oocss/wiki
 - http://confreaks.tv/presenters/nicole-sullivan
 
-SMACSS Style Guide  
+#### SMACSS Style Guide
 - https://smacss.com/
 
-BEM Syntax  
+#### BEM Syntax
 - https://css-tricks.com/bem-101/
 - https://en.bem.info/method/key-concepts/
