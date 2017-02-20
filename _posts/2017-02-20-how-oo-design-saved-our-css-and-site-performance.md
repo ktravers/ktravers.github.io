@@ -11,7 +11,7 @@ Before diving in, let’s clarify what we’re talking about when we talk about 
 - **Encapsulated:** self-contained with minimal dependencies
 - **Maintainable:** easy to work with, which is especially important for smaller dev teams like ours
 
-[Learn.co](https://learn.co) is built on a Rails backend, and Rails strongly encourages writing code in an object-oriented paradigm. But how does object orientation apply to stylesheets? As good Rubyists, we tried to follow object orientation with our CSS, but we were doing it wrong. To illustrate, let’s take a look at our old stylesheets directory tree.
+[Learn.co](https://learn.co) is built on a Rails backend, and Rails strongly encourages writing code in an object-oriented paradigm. But how does that apply to stylesheets? As good Rubyists, we tried to follow object orientation with our CSS, but we were doing it wrong. To illustrate, let’s take a look at our old stylesheets directory tree.
 
 ![Stylesheet Directory Tree]({{ site.baseurl }}/assets/css-tree.png "Stylesheet Directory Tree")
 
@@ -19,7 +19,7 @@ Very similar to the Rails boilerplate setup, we had one stylesheet per view, wit
 
 ![Stylesheet Directory Bundle]({{ site.baseurl }}/assets/css-bundle.png "Stylesheet Directory Bundle")
 
-As you might be able to guess from this sizeable bundle, this approach is NOT object oriented.
+As you might be able to guess from this monster bundle, this approach is NOT object oriented.
 
 **It’s not modular.** Styles are page-specific, so opportunities for code sharing are missed, and you end up with lots of code duplication. Plus, if you redefine styles on a page-by-page basis, you inevitably end up with inconsistencies in implementation and the visual interface itself.
 
@@ -209,11 +209,11 @@ This was also a good opportunity to decouple our JS and CSS. Moving forward, `.j
 
 We onboarded our team in three phases.
 
-In phase 1, we shipped new stylesheets and markup as dark code, “hidden” behind a feature flag. I also held a brief training session with the team on BEM syntax and OOCSS basics.
+**In phase 1**, we shipped new stylesheets and markup as dark code, “hidden” behind a feature flag. I also held a brief training session with the team on BEM syntax and OOCSS basics.
 
-In phase 2, we QA’d the feature while gradually turning the feature flag on for a greater and greater percentage of our users. I held a second training session with the team where we did some hands-on practice rewriting existing markup.
+**In phase 2**, we QA’d the feature while gradually turning the feature flag on for a greater and greater percentage of our users. I held a second training session with the team where we did some hands-on practice rewriting existing markup.
 
-In phase 3, we flipped the feature live for 100% of our users. I shipped a style guide with full framework documentation, and then paired with teammates as needed on new feature builds, until the whole team was comfortable with the new system.
+**In phase 3**, we flipped the feature live for 100% of our users. I shipped a style guide with full framework documentation, and then paired with teammates as needed on new feature builds, until the whole team was comfortable with the new system.
 
 In all, the process took about two and half months, with three dedicated devs at peak, eventually scaling back down to one.
 
@@ -233,9 +233,9 @@ So what did all this work earn us?
 
 First, we saw **impressive UX gains.** Paring down our code gave us faster pageloads, a more consistent UI, and greater parity with our product mocks.
 
-We also enjoyed some **nice developer gains.** This plug-and-play system allows our team to ship faster. Now we can build new views without writing any new CSS. We can reuse markup with predictable results, so prototyping becomes faster and better reflects the final product, and you no longer need much front-end experience to be able to put up a pretty view quickly.
+We also enjoyed some **nice developer gains.** This plug-and-play system allows our team to ship faster. Now we can build new views without writing any new CSS. We can reuse markup with predictable results, so prototyping becomes faster and better reflects the final product, and devs don't need much front-end experience to be able to put up a nice looking view quickly.
 
-Maybe most impressive our all were our **performance gains.** Below are unzipped, unminified size comparisons for our assets payload. You’ll see we were able to reduce our payload 10x.
+Maybe most impressive our all were our **performance gains.** Below are unzipped, unminified size comparisons for our before-and-after assets payload. You’ll see we were able to _reduce our payload by 10X_.
 
 ![Results - File Count]({{ site.baseurl }}/assets/results-file-count.png "Results - File Count")
 
