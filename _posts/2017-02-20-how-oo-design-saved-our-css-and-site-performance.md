@@ -1,15 +1,7 @@
 ---
 layout: post
-title: CSMess to OOCSS - Refactoring CSS With Object Oriented Design
+title: How Object-Oriented Design Saved Our CSS (and Site Performance)
 ---
-
-[Presented at Fullstack Toronto Conf. 2016](https://eventmobi.com/fstoco2016/agenda/141857/806561)
-
-## Slide deck
-
-<iframe src="https://docs.google.com/presentation/d/12H2MLnGdaFN2xk-MRVyIRX4j77zQeAHytcUmFcQ6b2Q/embed?start=false&loop=false&delayms=5000" frameborder="0" width="560" height="344" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
-
-## Text (no video available, unfortunately)
 
 Back in January 2016, our CSS was easily the messiest part of the [Learn.co](https://learn.co) codebase… something that probably sounds familiar to many other web developers out there. Last spring, we budgeted time and resources to overhaul it. I led that project. Here's what we learned.
 
@@ -266,4 +258,3 @@ We devoted a lot of resources to this project, but as you can see from these big
 #### BEM Syntax
 - https://css-tricks.com/bem-101/
 - https://en.bem.info/method/key-concepts/
-
