@@ -75,9 +75,11 @@ We also have a separate group for users with root access (all other users on box
 
 **Permissions:**
 
+```
 | Special     | User         | Group          | World          |
 |:------------|:-------------|:---------------|:---------------|
 | (d)ir       | (r)ead == 4  | (w)rite == 2   | e(x)ecute == 1 |
 |             | rwx          | rwx            | rwx            |
 |             | 101          | 001            | 111            |
 |             | 5            | 1              | 7              |
+```
