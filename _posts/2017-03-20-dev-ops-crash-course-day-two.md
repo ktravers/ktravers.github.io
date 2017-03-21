@@ -111,7 +111,7 @@ We also have a separate group for users with root access (all other users on box
 |             | 5            | 1              | 7              |
 ```
 
-### Server Goes Down
+### Live Debugging: Server Goes Down
 
 1. Gather info
  - Check memory on Librato
@@ -135,4 +135,12 @@ We also have a separate group for users with root access (all other users on box
       uri                         = *
       uri                         = *
   ```
-3. Hypothesis: do we have a timeout on Elastisearch?
+3. Hypothesis: do we have a timeout on Elastisearch? Are we DDOSing ourselves?
+4. Test hypothesis: hit endpoint from browser
+5. Confirmed: DDOSing endpoint brought down Learn.co
+6. Restart all servers to bring back up
+
+Lessons learned:
+  - Decouple Elastisearch from Learn (bringing down Elastisearch should not bring down site)
+  - Add timeouts to Elastisearch
+  - Throttle Elastisearch requests from client- and server-side (so we're not sending 1 character queries)
