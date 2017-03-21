@@ -87,7 +87,7 @@ VIP: "virtual IP"
 
 ### Users and Permissions
 
-**Users:**
+#### Users
 
 Get all list of all users: `less /etc/passwd`  
 Get list of all users in groups: `less /etc/groups`
@@ -100,7 +100,7 @@ We store dev team keys under single user to maintain separate concerns.
 
 We also have a separate group for users with root access (all other users on box DO NOT have root access).
 
-**Permissions:**
+#### Permissions
 
 ```
 | Special     | User         | Group          | World          |
