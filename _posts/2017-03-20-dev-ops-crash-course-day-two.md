@@ -16,15 +16,12 @@ A: When first created, more of a concept than a well-defined position. Even toda
 > of software delivery and infrastructure changes.
 > - [@devinburnette](https://github.com/devinburnette)
 
-### Goal 1: Strengthen our system
+### [Postgres Database Replication](https://github.com/flatiron-labs/operations/wiki/PostgreSQL-Replication)
 
-Eliminate single points of failure. Affects revenue and trust.
-
-One example of this: setting up Postgres Database Replication
-  - Read-Only replica: all transactions are mirrored to 2nd server
-  - Hot standby in case of failure
-  - Easy failover strategy
-  - Lowers risk of downtime
+- Read-Only replica: all transactions are mirrored to 2nd server
+- Hot standby in case of failure
+- Easy failover strategy
+- Lowers risk of downtime
 
 Backups stored in `/var/lib/postgres` along with backup config.
 
@@ -43,6 +40,36 @@ Kick this off by running script (see operations wiki article).
 
 - Set up another stand-by replica
 - Use something like [Octopus gem](https://github.com/thiagopradi/octopus) to handle [replication](https://github.com/thiagopradi/octopus/wiki/replication), configured through yaml file
+
+### Load Balancers
+
+Load balancer in front of all of our hosts. Default in front of Learn. Separate ones for Rabbit, Elastisearch, etc.
+
+We get automatic failover from [keepalived](https://supermarket.chef.io/cookbooks/keepalived)
+
+See operations wiki for more info on [HAProxy Automatic Failover](https://github.com/flatiron-labs/operations/wiki/HAProxy-Automatic-Failover).
+
+#### To inspect:
+
+1. ssh into load balancer (see DO floating ips for what's active)
+2. config is in `/user/local/etc/haproxy`
+3. config set by chef recipe
+
+#### Config details
+
+- `listen admin` creates an admin portal (but not accessible now bc bound locally`)
+- `frontend` where initial connection happens (i.e. learn.co), where we terminate ssl
+- `backend` our actual web servers
+
+haproxy backend makes a httpchk GET request to `*` that hits a healthcheck route defined in Rails app `routes.rb`. Which brings us to...
+
+### Healthchecks
+
+When Elastisearch is down, healthchecks will fail, and that server will be pulled out of pool. Temporary fix was to use load balancer to fail over to another Elastisearch server, but issue remains if all Elastisearch servers + load balancer are taken down (for example, during DO maintenance on 3/24).
+
+Proposed solution: pull Elastisearch out of healthchecks.
+
+See `Healthchecks` initializer, model, controller.
 
 
 ## Debugging tools
@@ -83,3 +110,29 @@ We also have a separate group for users with root access (all other users on box
 |             | 101          | 001            | 111            |
 |             | 5            | 1              | 7              |
 ```
+
+### Server Goes Down
+
+1. Gather info
+ - Check memory on Librato
+ - Run `htop` on server
+ - Check logs on server (`root@/var/logs/apache2/error.log`)
+ - Lookit passenger processes: `sudo passenger-status --show=requests`
+2. In this case (3/21), requests suggest that problem might be with Elastisearch (showing a lot of search uris)
+  ```
+  root@ironboard08:/var/log/apache2# rvmsudo passenger-status --show=requests | grep uri
+      uri                         = /api/v1/users/search/a
+      uri                         = /api/v1/users/search/a
+      uri                         = /api/v1/users/search/a
+      uri                         = /api/v1/users/search/e
+      uri                         = /api/v1/users/search/e
+      uri                         = /api/v1/users/search/e
+      uri                         = /api/v1/users/search/e
+      uri                         = /api/v1/users/search/e
+      uri                         = /api/v1/users/search/e
+      uri                         = /api/v1/users/search/e
+      uri                         = /api/v1/users/me?ile_login=true
+      uri                         = *
+      uri                         = *
+  ```
+3. Hypothesis: do we have a timeout on Elastisearch?
