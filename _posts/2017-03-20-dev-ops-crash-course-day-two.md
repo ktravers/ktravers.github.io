@@ -35,7 +35,9 @@ Backups stored in `/var/lib/postgres` along with backup config.
 - For restore, first imports base image to db, then applies deltas (write-ahead logs).
 - WAL-E has interface for deleting backups. We go in every 6mo or so and rms old files.
 
-Recovery config `/var/lib/postgres/9.3/main/recovery.conf` lives on replica.
+Recovery config `/var/lib/postgres/9.3/main/recovery.conf` lives on replica. When designated trigger file is created on the replica, then it becomes primary and starts running recovery.
+
+Kick this off by running script (see operations wiki article).
 
 #### Future work:
 
