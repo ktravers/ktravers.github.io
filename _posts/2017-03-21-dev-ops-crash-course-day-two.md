@@ -43,9 +43,11 @@ Kick this off by running script (see operations wiki article).
 
 ### Load Balancers
 
-Load balancer in front of all of our hosts. Default in front of Learn. Separate ones for Rabbit, Elasticsearch, etc.
+Load balancer in front of all of our hosts. Default in front of Learn. Separate ones for Rabbit, [Elasticsearch](https://github.com/elastic/elasticsearch), etc.
 
 We get automatic failover from [keepalived](https://supermarket.chef.io/cookbooks/keepalived)
+
+When healthcheck fails, keepalived runs master script that reassigns the floating IP.
 
 See operations wiki for more info on [HAProxy Automatic Failover](https://github.com/flatiron-labs/operations/wiki/HAProxy-Automatic-Failover).
 
@@ -117,7 +119,7 @@ We also have a separate group for users with root access (all other users on box
  - Check memory on Librato
  - Run `htop` on server
  - Check logs on server (`root@/var/logs/apache2/error.log`)
- - Lookit passenger processes: `sudo passenger-status --show=requests`
+ - Lookit [Passenger](https://www.phusionpassenger.com/library/walkthroughs/basics/nodejs/) processes: `sudo passenger-status --show=requests`
 2. In this case (3/21), requests suggest that problem might be with Elasticsearch (showing a lot of search uris)
   ```
   root@ironboard08:/var/log/apache2# rvmsudo passenger-status --show=requests | grep uri
@@ -143,7 +145,7 @@ We also have a separate group for users with root access (all other users on box
 Vulnerabilities identified:
   1. Healthcheck: when [Elasticsearch](https://github.com/elastic/elasticsearch) is down, healthcheck fails and load balancer takes all servers out of rotation, 500ing the site
   2. [Searchkick](https://github.com/ankane/searchkick): when Elasticsearch is down, Searchkick indexing fails and 500s the site
-  3. Passenger: long search requests don't timeout, overload queue
+  3. [Passenger](https://www.phusionpassenger.com/library/walkthroughs/basics/nodejs/): long search requests don't timeout, overload queue
 
 Remediation:
   1. Decouple Elasticsearch from Learn (bringing down Elasticsearch should not bring down site)
