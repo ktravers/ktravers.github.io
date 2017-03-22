@@ -43,7 +43,7 @@ Kick this off by running script (see operations wiki article).
 
 ### Load Balancers
 
-Load balancer in front of all of our hosts. Default in front of Learn. Separate ones for Rabbit, Elastisearch, etc.
+Load balancer in front of all of our hosts. Default in front of Learn. Separate ones for Rabbit, Elasticsearch, etc.
 
 We get automatic failover from [keepalived](https://supermarket.chef.io/cookbooks/keepalived)
 
@@ -65,9 +65,9 @@ haproxy backend makes a httpchk GET request to `*` that hits a healthcheck route
 
 ### Healthchecks
 
-When Elastisearch is down, healthchecks will fail, and that server will be pulled out of pool. Temporary fix was to use load balancer to fail over to another Elastisearch server, but issue remains if all Elastisearch servers + load balancer are taken down (for example, during DO maintenance on 3/24).
+When [Elasticsearch](https://github.com/elastic/elasticsearch) is down, healthchecks will fail, and that server will be pulled out of pool. Temporary fix was to use load balancer to fail over to another Elasticsearch server, but issue remains if all Elasticsearch servers + load balancer are taken down (for example, during DO maintenance on 3/24).
 
-Proposed solution: pull Elastisearch out of healthchecks.
+Proposed solution: pull [Elasticsearch](https://github.com/elastic/elasticsearch) out of healthchecks.
 
 See `Healthchecks` initializer, model, controller.
 
@@ -118,7 +118,7 @@ We also have a separate group for users with root access (all other users on box
  - Run `htop` on server
  - Check logs on server (`root@/var/logs/apache2/error.log`)
  - Lookit passenger processes: `sudo passenger-status --show=requests`
-2. In this case (3/21), requests suggest that problem might be with Elastisearch (showing a lot of search uris)
+2. In this case (3/21), requests suggest that problem might be with Elasticsearch (showing a lot of search uris)
   ```
   root@ironboard08:/var/log/apache2# rvmsudo passenger-status --show=requests | grep uri
       uri                         = <search endpoint>
@@ -135,18 +135,18 @@ We also have a separate group for users with root access (all other users on box
       uri                         = *
       uri                         = *
   ```
-3. Hypothesis: do we have a timeout on Elastisearch? Are we DDOSing ourselves?
+3. Hypothesis: do we have a timeout on Elasticsearch? Are we DDOSing ourselves?
 4. Test hypothesis: hit endpoint from browser
 5. Confirmed: DDOSing endpoint brought down Learn.co
 6. Restart all servers to bring back up
 
 Vulnerabilities identified:
-  1. Healthcheck: when Elastisearch is down, healthcheck fails and load balancer takes all servers out of rotation, 500ing the site
-  2. Searchkick: when Elastisearch is down, Searchkick indexing fails and 500s the site
+  1. Healthcheck: when [Elasticsearch](https://github.com/elastic/elasticsearch) is down, healthcheck fails and load balancer takes all servers out of rotation, 500ing the site
+  2. [Searchkick](https://github.com/ankane/searchkick): when Elasticsearch is down, Searchkick indexing fails and 500s the site
   3. Passenger: long search requests don't timeout, overload queue
 
 Remediation:
-  1. Decouple Elastisearch from Learn (bringing down Elastisearch should not bring down site)
-  2. Add timeouts to Elastisearch
-  3. Throttle Elastisearch requests from client- and server-side (so we're not sending 1 character queries)
-  4. Upgrade Elastisearch version (?)
+  1. Decouple Elasticsearch from Learn (bringing down Elasticsearch should not bring down site)
+  2. Add timeouts to Elasticsearch
+  3. Throttle Elasticsearch requests from client- and server-side (so we're not sending 1 character queries)
+  4. Upgrade Elasticsearch version (?)
