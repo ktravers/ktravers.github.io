@@ -31,7 +31,7 @@ DO tools probably better suited since they incorporate all DO's latest features.
 
 ### Faster Deploys
 
-[Drew](https://github.com/drewprice) and [Devin](https://github.com/devinburnette) [put work in]((https://github.com/flatiron-labs/ironboard/pull/9920/files)) to speed up server-side only deploys. More work needs to done on speeding up asset compilation.
+[Drew](https://github.com/drewprice) and [Devin](https://github.com/devinburnette) [put work in](https://github.com/flatiron-labs/ironboard/pull/9920/files) to speed up server-side only deploys. More work needs to done on speeding up asset compilation.
 
 ### Weekly DB Migrations
 
