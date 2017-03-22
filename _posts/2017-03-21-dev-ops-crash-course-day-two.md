@@ -121,16 +121,16 @@ We also have a separate group for users with root access (all other users on box
 2. In this case (3/21), requests suggest that problem might be with Elastisearch (showing a lot of search uris)
   ```
   root@ironboard08:/var/log/apache2# rvmsudo passenger-status --show=requests | grep uri
-      uri                         = /api/v1/users/search/a
-      uri                         = /api/v1/users/search/a
-      uri                         = /api/v1/users/search/a
-      uri                         = /api/v1/users/search/e
-      uri                         = /api/v1/users/search/e
-      uri                         = /api/v1/users/search/e
-      uri                         = /api/v1/users/search/e
-      uri                         = /api/v1/users/search/e
-      uri                         = /api/v1/users/search/e
-      uri                         = /api/v1/users/search/e
+      uri                         = <search endpoint>
+      uri                         = <search endpoint>
+      uri                         = <search endpoint>
+      uri                         = <search endpoing>
+      uri                         = <search endpoing>
+      uri                         = <search endpoing>
+      uri                         = <search endpoing>
+      uri                         = <search endpoing>
+      uri                         = <search endpoing>
+      uri                         = <search endpoing>
       uri                         = /api/v1/users/me?ile_login=true
       uri                         = *
       uri                         = *
@@ -140,7 +140,13 @@ We also have a separate group for users with root access (all other users on box
 5. Confirmed: DDOSing endpoint brought down Learn.co
 6. Restart all servers to bring back up
 
-Lessons learned:
-  - Decouple Elastisearch from Learn (bringing down Elastisearch should not bring down site)
-  - Add timeouts to Elastisearch
-  - Throttle Elastisearch requests from client- and server-side (so we're not sending 1 character queries)
+Vulnerabilities identified:
+  1. Healthcheck: when Elastisearch is down, healthcheck fails and load balancer takes all servers out of rotation, 500ing the site
+  2. Searchkick: when Elastisearch is down, Searchkick indexing fails and 500s the site
+  3. Passenger: long search requests don't timeout, overload queue
+
+Remediation:
+  1. Decouple Elastisearch from Learn (bringing down Elastisearch should not bring down site)
+  2. Add timeouts to Elastisearch
+  3. Throttle Elastisearch requests from client- and server-side (so we're not sending 1 character queries)
+  4. Upgrade Elastisearch version (?)
