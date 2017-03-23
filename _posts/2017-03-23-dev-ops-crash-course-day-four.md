@@ -74,7 +74,7 @@ When you run a cron job, it sends mail to user. Run `mail` command to see messag
 
 #### Templates
 
- vm.args.erb: lives on server so when build process finishes, copies args into the right place. Essentially a config file.
+`vm.args.erb`: lives on server so when build process finishes, copies args into the right place. Essentially a config file.
 
 
 #### Files
@@ -86,6 +86,9 @@ Bash scripts used by Rocket. Hijacks setup scripts. Tells it to install in conta
 
 Take out `acbuild --debug run -- /bin/bash -l -c "easy_install tzupdate nose nose-json"`? For python, which we don't use.
 
+`create_user` script:
+  - when container gets spun up, pass in a variable so we can create user account for the actual connected user.
+  - `chown`s permissions
 
 
 #### TODOs
@@ -94,6 +97,23 @@ Take out `acbuild --debug run -- /bin/bash -l -c "easy_install tzupdate nose nos
 - haproxy default recipe doesn't seem to be up-to-date. Ask Devin to push file that may or may not be on his local.
 - Down the road: use simpler Elixir load balancer where we have more control over hashing algorithm.
 
+
+### IDE Backend
+
+`ide_umbrella`: main application for IDE backend. Elixir app.
+
+It's not actually an umbrella application (aka an app that manages a bunch of microservices). Name is a misnomer. Originally conceived as a true umbrella app, but then took different approach and never renamed.
+
+`.deliver` directory: builds releases, orchestrates delivering to server. Puts abstraction on top of [distillery](https://github.com/bitwalker/distillery).
+
+#### Dependencies
+
+Listed in mix.exs file. Run `mix deps.get`
+
+- [`gproc`](https://github.com/uwiger/gproc): global process registry
+- [`distillery`](https://github.com/bitwalker/distillery): distribution
+- [`poolboy`](https://github.com/devinus/poolboy): pooling system
+- [`cowboy`](https://github.com/ninenines/cowboy): web server
 
 ### Monitoring
 
