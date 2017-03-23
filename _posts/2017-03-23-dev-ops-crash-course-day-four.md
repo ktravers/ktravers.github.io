@@ -5,6 +5,7 @@ title: Dev Ops Crash Course - Day Four
 
 Notes from [day one](http://blog.kate-travers.com/dev-ops-crash-course-day-one/), [day two](http://blog.kate-travers.com/dev-ops-crash-course-day-two/) and [day three](http://blog.kate-travers.com/dev-ops-crash-course-day-three/).
 
+
 ## Learn IDE
 
 ### Load Balancers
@@ -64,6 +65,27 @@ We use [Rocket](https://github.com/coreos/rkt) instead of [Docker](https://www.d
   - When under heavy load, it'll tell you container started, but it's actually NOT
 
 [runpty](https://en.wikipedia.org/wiki/Pseudoterminal) - without using this, we can't properly stream output from terminal stream (rkt container) to Elixir port. Does something with rkt command to make it work.
+
+
+#### Cron
+
+When you run a cron job, it sends mail to user. Run `mail` command to see messages.
+
+
+#### Templates
+
+ vm.args.erb: lives on server so when build process finishes, copies args into the right place. Essentially a config file.
+
+
+#### Files
+
+Bash scripts used by Rocket. Hijacks setup scripts. Tells it to install in container.
+
+
+#### Build script
+
+Take out `acbuild --debug run -- /bin/bash -l -c "easy_install tzupdate nose nose-json"`? For python, which we don't use.
+
 
 
 #### TODOs
