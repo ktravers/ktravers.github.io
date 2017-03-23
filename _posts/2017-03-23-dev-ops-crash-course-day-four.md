@@ -115,6 +115,63 @@ Listed in mix.exs file. Run `mix deps.get`
 - [`poolboy`](https://github.com/devinus/poolboy): pooling system
 - [`cowboy`](https://github.com/ninenines/cowboy): web server
 
+
+#### Running the app
+
+Comment out any rkt stuff, since it's a pain to get that running locally (`lib/ide/remote_server/supervisor.ex`)
+
+Jump into interactive console: `iex -S mix`
+
+Observer: `:observer.start`. Hard to run on servers, but could install something like `wobserver` for this instead. [Logan](https://github.com/loganhasson) has a branch up for this; working, but needs auth on endpoint.
+
+GenServers: any time you need to manage state plus a little behavior, use a GenServer. Similar to when you'd use a Ruby object.
+
+
+#### Debugging:
+
+```erlang
+require IEx
+IEx.pry
+```
+
 ### Monitoring
 
 [Wombat](wombat01.students.learn.co:8080)
+
+
+### Deployments
+
+Can deploy a release (not hot swap) or an upgrade (hot swap).
+
+Upgrade ships to server w/ relup file that contains set of instructions for running hot swap.
+
+Ideally, we want to do upgrade (hot swap) whenever possible.
+
+Today:
+  1. Build release and deploy to QA
+  2. Run upgrade on QA
+  3. Run upgrade on prod
+
+Deploy config in `.deliver` directory.
+
+For upgrade to work, version names need to be sequential.
+
+From master:
+  1. Check version: `mix edeliver version qa`
+  2. Build release: `mix edeliver build release`
+  3. Deploy release to QA: `mix edeliver deploy release to qa` then enter version (or run `mix edeliver deploy release to qa --version=x`)
+  4. `mix edeliver restart qa` but there's something wrong with our QA server, where this command doesn't actually restart the server.
+  5. Manually restart server after ssh'ing into QA: `ssh ide-qa-server`, become deployer, `cd ide`, `bin/ide start`, `bin/ide attach`, then ctrl+d to exit
+  6. Build upgrade: `mix edeliver build upgrade --with=x` where x is version on production
+  7. Deploy upgrade to QA: `mix edeliver deploy upgrade to qa`
+  8. Check version: `mix edeliver version qa`
+  9. Deploy upgrade to production: `mix edeliver deploy upgrade to production`
+  10. Check version: `mix edeliver version production`
+
+
+### Mini Elixir App Demo
+
+1. `mix new seltzer`
+2. Entry point: `lib/seltzer.ex`
+3. Run tests `mix test`
+4. Recompile `r(Seltzer)` (name of module)
