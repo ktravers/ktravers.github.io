@@ -1,9 +1,9 @@
 ---
 layout: post
-title: Dev Ops Crash Course - Day Two
+title: Dev Ops Crash Course - Day Three
 ---
 
-Notes from [day one](http://blog.kate-travers.com/dev-ops-crash-course-day-one/) and [day two](http://blog.kate-travers.com/dev-ops-crash-course-day-two/)
+Notes from [day one](http://blog.kate-travers.com/dev-ops-crash-course-day-one/) and [day two](http://blog.kate-travers.com/dev-ops-crash-course-day-two/).
 
 ## Year in Review Review (continued)
 
@@ -40,5 +40,3 @@ See `qa-support` server. Runs cron job: `root@qa-support /etc/cron.d`. Why `cron
 Takes daily db dump, terminates all qa db connections, drops + restores db from dump.
 
 See full docs on [operations wiki](https://github.com/flatiron-labs/operations/wiki/Restoring-Production-db-to-QA).
-
-
