@@ -3,7 +3,7 @@ layout: post
 title: Dev Ops Crash Course - Day Two
 ---
 
-Notes from [day one](http://blog.kate-travers.com/dev-ops-crash-course-day-one/).
+Notes from [day one](http://blog.kate-travers.com/dev-ops-crash-course-day-one/), [day three](http://blog.kate-travers.com/dev-ops-crash-course-day-three/), and [day four](http://blog.kate-travers.com/dev-ops-crash-course-day-four/).
 
 ## Year In Review Review
 

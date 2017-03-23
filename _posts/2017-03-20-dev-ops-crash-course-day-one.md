@@ -3,6 +3,8 @@ layout: post
 title: Dev Ops Crash Course - Day One
 ---
 
+Notes from [day one](http://blog.kate-travers.com/dev-ops-crash-course-day-one/), [day two](http://blog.kate-travers.com/dev-ops-crash-course-day-two/), [day three](http://blog.kate-travers.com/dev-ops-crash-course-day-three/), and [day four](http://blog.kate-travers.com/dev-ops-crash-course-day-four/).
+
 ## Internet 101
 
 Videos: https://www.khanacademy.org/computing/computer-science/internet-intro/internet-works-intro/v/the-internet-wires-cables-and-wifi
