@@ -7,6 +7,13 @@ Notes from [day one](http://blog.kate-travers.com/dev-ops-crash-course-day-one/)
 
 ## Learn IDE
 
+### Load Balancers
+
+Using haproxy for load balancers. Config lives in `/usr/local/etc/haproxy`
+
+IDE config is using slightly different approach than Learn. Not using cookie. Instead using hashed token from user (as url param).
+
+
 ### DNS
 
 In general, SSL certificate needs to match what IP address the web request resolves to (resolves to DNS entry). DNS entry is for floating IP. So you can use the same certificate for multiple servers, depending on what server floating IP points to. That allows us to SSL terminate at load balancer server. Certicate is on load balancer.
@@ -42,17 +49,26 @@ We have a separate [chef domain](chef.students.learn.co) and [repo](https://gith
 
 When you build a new release, it doesn't get built on your machine. It gets built on elixir-build server, then distributed.
 
+[Gluster](https://www.gluster.org/) manages distributing archives across servers. Gluster servers mount disk on archive server.
 
-#### Cookbook
+Gluster mounts onto `/archive/user_files` directory.
 
-Using haproxy for load balancers. Config lives in `/usr/local/etc/haproxy`
 
-IDE config is using slightly different approach than Learn. Not using cookie. Instead using hashed token from user (as url param).
+#### Container mgmt
+
+In the user's home directory in the container, we're mounting directory from host machine (similar to network drive mounted on your local computer). Things get written to hard disk while using it, but only in mounted directory. See [union file system](https://en.wikipedia.org/wiki/Aufs) and [UnionFS](https://en.wikipedia.org/wiki/OverlayFS).
+
+We use [Rocket](https://github.com/coreos/rkt) instead of [Docker](https://www.docker.com/). Why?
+  - Docker slow closing down
+  - Docker uses daemon to run all container creation commands through, and it doesn't handle heavy load well
+  - When under heavy load, it'll tell you container started, but it's actually NOT
+
+[runpty](https://en.wikipedia.org/wiki/Pseudoterminal) - without using this, we can't properly stream output from terminal stream (rkt container) to Elixir port. Does something with rkt command to make it work.
 
 
 #### TODOs
 
-- Currently we have more servers than we need running this elixir application. We should/can scale back. Gluster servers can _probably_ be deprecated.
+- Currently we have more servers than we need running this [Elixir](http://elixir-lang.org/docs.html) application. We should/can scale back. Gluster servers can _probably_ be deprecated.
 - haproxy default recipe doesn't seem to be up-to-date. Ask Devin to push file that may or may not be on his local.
 - Down the road: use simpler Elixir load balancer where we have more control over hashing algorithm.
 
