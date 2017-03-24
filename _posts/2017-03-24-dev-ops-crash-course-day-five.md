@@ -53,3 +53,9 @@ When using community cookbooks, probably want to wrap rather than fork. After a 
 Plus it's hard to use a community cookbook if you don't understand server setup to begin with, so worth it to gain knowledge by writing your own.
 
 Another good exercise: set up servers by hand (like we did on [day one](http://blog.kate-travers.com/dev-ops-crash-course-day-one/)).
+
+### Testing cookbooks
+
+[ChefSpec](https://sethvargo.github.io/chefspec/)
+
+[ServerSpec](http://serverspec.org/)
