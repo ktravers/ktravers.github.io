@@ -126,13 +126,13 @@ We also have a separate group for users with root access (all other users on box
       uri                         = <search endpoint>
       uri                         = <search endpoint>
       uri                         = <search endpoint>
-      uri                         = <search endpoing>
-      uri                         = <search endpoing>
-      uri                         = <search endpoing>
-      uri                         = <search endpoing>
-      uri                         = <search endpoing>
-      uri                         = <search endpoing>
-      uri                         = <search endpoing>
+      uri                         = <search endpoint>
+      uri                         = <search endpoint>
+      uri                         = <search endpoint>
+      uri                         = <search endpoint>
+      uri                         = <search endpoint>
+      uri                         = <search endpoint>
+      uri                         = <search endpoint>
       uri                         = /api/v1/users/me?ile_login=true
       uri                         = *
       uri                         = *
