@@ -13,7 +13,7 @@ Contractor working on our marketing website CMS needs a staging environment to d
 
 We set up a one-click droplet on Digital Ocean. But we use chef for server management, so we need to custom configure this setup.
 
-### Needs:
+### Requirements:
 
 - Wordpress
 - MySQL
