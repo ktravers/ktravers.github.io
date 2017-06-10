@@ -27,14 +27,14 @@ Git blamed cookbook, and it was added in March around the same time this marketi
 
 _Side note:_ Spencer is using the Elflord color scheme for VIM. Loves it.
 
-Diving into `fis-msql` cookbook code:
+Diving into `fis-msql` cookbook code:  
   - see our base cookbook
   - setting up msql v5.6, so update to latest v5.7 (bc why not)
   - rm `mysql2_chef_gem` (don't need it)
   - rm [`chef-cookbooks/database`](https://github.com/chef-cookbooks/database) bc it was doomed and deprecated
   - rm all code associated with deprecated `database` cookbook
 
-Lots of unknowns:
+Lots of unknowns:  
   - Seeing attributes for `db_names`
   - Seeing references to [Scotch Box](https://box.scotch.io/), a Vagrant LAMP stack.
   - Where did `flatiron-v3-db.sql` come from? is it worth keeping?
@@ -43,7 +43,7 @@ Next tried setting up regular ol' [Vagrant](https://www.vagrantup.com/) (the bes
 
 _Side note:_ we tried getting [Vagrant](https://www.vagrantup.com/) running with Ironbroker, RabbitMQ, etc., but turned out to be waaaay too big a project for us. Abandoned.
 
-Benefits of [`test-kitchen`](https://docs.chef.io/kitchen.html):
+Benefits of [`test-kitchen`](https://docs.chef.io/kitchen.html):  
   - can run script locally to see how it builds
   - sets up virtual machine
   - ops code supported; good documentation

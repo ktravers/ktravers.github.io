@@ -142,12 +142,12 @@ We also have a separate group for users with root access (all other users on box
 5. Confirmed: DDOSing endpoint brought down Learn.co
 6. Restart all servers to bring back up
 
-Vulnerabilities identified:
+Vulnerabilities identified:  
   1. Healthcheck: when [Elasticsearch](https://github.com/elastic/elasticsearch) is down, healthcheck fails and load balancer takes all servers out of rotation, 500ing the site
   2. [Searchkick](https://github.com/ankane/searchkick): when Elasticsearch is down, Searchkick indexing fails and 500s the site
   3. [Passenger](https://www.phusionpassenger.com/library/walkthroughs/basics/nodejs/): long search requests don't timeout, overload queue
 
-Remediation:
+Remediation:  
   1. Decouple Elasticsearch from Learn (bringing down Elasticsearch should not bring down site)
   2. Add timeouts to Elasticsearch
   3. Throttle Elasticsearch requests from client- and server-side (so we're not sending 1 character queries)

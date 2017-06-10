@@ -9,12 +9,12 @@ Notes from [day two](http://blog.kate-travers.com/dev-ops-crash-course-day-two/)
 
 Videos: https://www.khanacademy.org/computing/computer-science/internet-intro/internet-works-intro/v/the-internet-wires-cables-and-wifi
 
-Some vocab:
+Some vocab:  
   - Bandwidth: capacity to receive information
   - Bitrate: speed of sending information (bits per second)
   - Latency: drag / delay when sending information
 
-Internet is a design philosophy expressed through agreed upon protocols:
+Internet is a design philosophy expressed through agreed upon protocols:  
   - IPv4 - current protocol (32bit)
   - IPv6 - new protocol to provide more IP addresses (128bit)
 
@@ -24,7 +24,7 @@ IP addresses have A, B, and C classes.
 
 How DNS works: https://howdns.works/
 
-In local network settings, DNS is set to [Google Public DNS](https://en.wikipedia.org/wiki/Google_Public_DNS).
+In local network settings, DNS is set to [Google Public DNS](https://en.wikipedia.org/wiki/Google_Public_DNS).  
   - better performance
   - better security
 
@@ -37,7 +37,7 @@ Anatomy of a URL: https://doepud.co.uk/blog/anatomy-of-a-url
 
 ## DNS records
 
-Record types:
+Record types:  
   1. **A record:** address, maps hostname to physical IP address
   2. **PTR record:** pointer, maps IP to name (helpful when scanning logs)
   3. **CNAME record:** alias, map domain name to another domain name
@@ -193,7 +193,7 @@ Made possible by TCP + IP routing
 
 Your computer has a hardware address that you can change. Look up with `ifconfig`.
 
-Example: free wifi networks
+Example: free wifi networks  
   - allow you to log on for limited time, then they try to upsell you
   - they identify your device by hardware address
   - change hardware address will allow you to stay on for free (bc you look like a new device)
