@@ -104,6 +104,7 @@ Side note: `rails server -b 0.0.0.0` binds to all ports.
   EXPOSE 3000
   CMD rails server -b 0.0.0.0
   ```
+
 2. Optional: add [.dockerignore file](https://docs.docker.com/engine/reference/builder/#dockerignore-file)
 3. `cat .gitignore >> .dockerignore`
 4. Build image: `docker build -t ironboard .`
