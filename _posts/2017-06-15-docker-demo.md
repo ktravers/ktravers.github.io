@@ -82,28 +82,30 @@ Side note: `rails server -b 0.0.0.0` binds to all ports.
 ## Workshop: Running Learn on Docker
 
 1. Create Dockerfile in app directory (app === build context)  
-```
-FROM ruby:2.2.2cat
 
-RUN apt-get update -yqq \
-  && apt-get install -yqq --no-install-recommends \
-  postgresql-client nodejs npm \
-  && npm install gulp -g \
-  # symlink nodejs -> node
-  && ln -s /usr/bin/nodejs /usr/bin/node
+  ```
+  FROM ruby:2.2.2cat
 
-WORKDIR /var/app
+  RUN apt-get update -yqq \
+    && apt-get install -yqq --no-install-recommends \
+    postgresql-client nodejs npm \
+    && npm install gulp -g \
+    # symlink nodejs -> node
+    && ln -s /usr/bin/nodejs /usr/bin/node
 
-COPY Gemfile* ./
-RUN bundle install
+  WORKDIR /var/app
 
-COPY package.json ./
-RUN npm install
+  COPY Gemfile* ./
+  RUN bundle install
 
-COPY . .
-EXPOSE 3000
-CMD rails server -b 0.0.0.0
-```
+  COPY package.json ./
+  RUN npm install
+
+  COPY . .
+  EXPOSE 3000
+  CMD rails server -b 0.0.0.0
+  ```
+
 2. Optional: add [.dockerignore file](https://docs.docker.com/engine/reference/builder/#dockerignore-file)
 3. `cat .gitignore >> .dockerignore`
 4. Build image: `docker build -t ironboard .`
