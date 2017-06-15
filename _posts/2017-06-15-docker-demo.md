@@ -82,6 +82,7 @@ Side note: `rails server -b 0.0.0.0` binds to all ports.
 ## Workshop: Running Learn on Docker
 
 1. Create Dockerfile in app directory (app === build context)
+
   ```
   FROM ruby:2.2.2cat
 
