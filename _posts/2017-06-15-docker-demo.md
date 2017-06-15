@@ -3,7 +3,7 @@ layout: post
 title: Code Reading - Learn ❤️ Docker
 ---
 
-#### Prereqs:
+### Prereqs:
 
   - Watch this [Youtube playlist](https://www.youtube.com/playlist?list=PLbG4OyfwIxjEe5Y3hQCiQjYnSgRH051iJ) (~90 min)
   - Clone down existing Rails app (in our case, the Learn codebase)
@@ -11,11 +11,11 @@ title: Code Reading - Learn ❤️ Docker
 
 ## Intro
 
-#### What is Docker?
+### What is Docker?
 
   - Tool for managing and creating containers
 
-#### Why use Docker?
+### Why use Docker?
 
   - Maintain a stable, consistent environment
   - Encapsulate all pices of an app
@@ -26,32 +26,32 @@ title: Code Reading - Learn ❤️ Docker
 
 ## Basics
 
-#### Docker image:
+### Docker image:
 
   - Pre-packaged layer
   - Can stack layers on each other
   - Result of running Dockerfile
   - Can create containers off of image
 
-#### Docker container:
+### Docker container:
 
   - Running isolated container of your app's code
 
-#### Docker networking:
+### Docker networking:
 
   - Built-in
   - Allows containers to talk to each other over same network
 
-#### Docker volumes:
+### Docker volumes:
 
   - Take local files and put them into your container
   - Edit locally, see changes in container
 
-#### Docker compose:
+### Docker compose:
 
   - Toolset for coordinating containers
 
-#### [Docker Hub](https://hub.docker.com/):
+### [Docker Hub](https://hub.docker.com/):
 
   - Store and access repositories (images)
 
