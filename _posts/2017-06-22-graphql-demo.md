@@ -54,20 +54,54 @@ title: Code Reading - Learn ❤️ GraphQL
     }
   end
   ```
-8. Define types in `/types` dir
+8. Define types in `/graphql/types` dir
   ```ruby
   Types::CourseType = GraphQL::ObjectType.define do
     name "Course"
     field :name, types.String
     field :description, types.String
   end
+
+  Types::StudentType = GraphQL::ObjectType.define do
+    name "Student"
+    field :first_name, types.String
+    field :last_name, types.String
+  end
   ```
 9. Make the request
-  ```json
+  ```
   {
     course(id: 1) {
       name
       description
+    }
+    student(id: 2) {
+      first_name
+    }
+  }
+  ```
+10. Note: doesn't handle 404s very gracefully. Tries to parse error message as JSON, so you end up w/ strange error responses
+11. How to do associations
+  ```ruby
+  # type
+  Types::CourseType = GraphQL::ObjectType.define do
+    name "Course"
+    field :name, types.String
+    field :description, types.String
+    field :students, Types::StudentType.to_list_type
+      resolve -> (obj, args, ctx) {
+        obj.students
+      }
+  end
+
+  # request
+  {
+    course(id: 1) {
+      name
+      students {
+        first_name
+        last_name
+      }
     }
   }
   ```
