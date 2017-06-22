@@ -38,6 +38,7 @@ title: Code Reading - Learn ❤️ GraphQL
 5. Lookit `/app/graphql/graphql_demo_schema.rb`
 6. Lots of demo boilerplate-y examples generated for us
 7. Add more field queries to `Types::QueryType`
+
   ```ruby
   field :course, Types::CourseType do
     description "This will return a single course"
@@ -55,6 +56,7 @@ title: Code Reading - Learn ❤️ GraphQL
   end
   ```
 8. Define types in `/graphql/types` dir
+
   ```ruby
   Types::CourseType = GraphQL::ObjectType.define do
     name "Course"
@@ -69,6 +71,7 @@ title: Code Reading - Learn ❤️ GraphQL
   end
   ```
 9. Make the request
+
   ```
   {
     course(id: 1) {
@@ -82,6 +85,7 @@ title: Code Reading - Learn ❤️ GraphQL
   ```
 10. Note: doesn't handle 404s very gracefully. Tries to parse error message as JSON, so you end up w/ strange error responses
 11. How to do associations
+
   ```ruby
   # type
   Types::CourseType = GraphQL::ObjectType.define do
