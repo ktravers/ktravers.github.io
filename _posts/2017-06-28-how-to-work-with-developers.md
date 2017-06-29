@@ -3,7 +3,7 @@ layout: post
 title: How to Work with Developers
 ---
 
-[Presented to Venture for America 2017 Fellows](http://ventureforamerica.org/life-as-a-vfa-fellow/train/)
+Presented to [Venture for America 2017 Fellows](http://ventureforamerica.org/life-as-a-vfa-fellow/train/)
 
 ## Slide deck
 
@@ -15,9 +15,13 @@ Today, I'll be sharing my (completely unbiased) perspective on how to work with 
 
 ### Developers: They're Just Like Us... or are they?
 
-So why is this talk necessary? Are developers really so different from your average co-worker? Yes. Yes, we absolutely are.
+So why is this talk necessary? Are developers really so different from your average co-worker?
 
-Take Flatiron School's engineering team, for example. Here's a picture of us from last summer, happily hacking away in the park outside our office. Why are we in a park? Well, this was moments after our building was evacuated during a fire at about 5:30pm in the afternoon. When the alarms went off, the rest of the office did what you'd expect: went home for the day. Not us. Without any pre-planning or conversation, every single one of our engineers picked up their laptops, filed outside, sat down on the nearest benches, and immediately went back to work. Like I said, we're a little different.
+**Yes.** Yes, we absolutely are.
+
+Take Flatiron School's engineering team, for example. Here's a picture of us from last summer, happily hacking away in the park outside our office. Why are we in a park? Well, this was moments after our building was evacuated during a fire at about 5:30pm in the afternoon. When the alarms went off, the rest of the office did what you'd expect: went home for the day.
+
+Not us. Without any pre-planning or conversation, every single one of our engineers picked up their laptops, filed outside, sat down on the nearest benches, and immediately went back to work. Like I said, we're a little different.
 
 ### Why Bridge the Divide?
 
@@ -29,9 +33,8 @@ That’s a good thing, because it means that with a little empathy from both sid
 
 Succeeding here is in everyone's best interest. It's good for your business to have a happy, productive office. But it's also good on an individual level. Being able to communicate with the “other side” is one of the most valuable skillsets you can bring to the table.
 
-An engineer who’s a good communicator is perceived as better than an engineer with more technical skills but poorer communication skills.
-
-Likewise, a non-technical person who can “speak developer” is perceived as more valuable, because engineers are more likely to get stuff done for them.
+- An engineer who’s a good communicator is perceived as better than an engineer with more technical skills but poorer communication skills.
+- Likewise, a non-technical person who can “speak developer” is perceived as more valuable, because engineers are more likely to get stuff done for them.
 
 So what are some of the obstacles we're up against? We'll look at two of the biggest: vocabulary and misconceptions.
 
@@ -95,7 +98,7 @@ You'll also hear engineers talking about what part of the stack they work in.
 >
 > "She's a backend engineer."
 >
-> "All engineers at startups have to be fullstack engineers."
+> "We expect all our engineers to be fullstack engineers."
 
 These terms loosely refer to what part of the codebase the engineer spends most of their time in.
 
@@ -169,7 +172,7 @@ False. Bring engineers in early.
 
 > “Engineers are tremendous assets in brainstorming sessions and when reviewing initial designs” [[source]](https://www.nczonline.net/blog/2012/06/12/the-care-and-feeding-of-software-engineers-or-why-engineers-are-grumpy/)
 
-> “You should consult engineers early in the process, when the product is still being defined. If you don't, you risk both charting an impossible course and alienating your engineer.” [[source]](http://www.peachpit.com/articles/)article.aspx?p=99803
+> “You should consult engineers early in the process, when the product is still being defined. If you don't, you risk both charting an impossible course and alienating your engineer.” [[source]](http://www.peachpit.com/articles/article.aspx?p=99803)
 
 ### Exercises
 
@@ -313,16 +316,16 @@ Last but not least, let developers know when you appreciate their work. Thank yo
 
 ### Resources: Articles
 
-1. [Krzysztof Rakowski - How To Communicate Effectively In IT Projects](https://www.smashingmagazine.com/2014/06/communicating-effectively-in-projects/)
-2. [Julie Zhuo - How to Work with Engineers](https://medium.com/the-year-of-the-looking-glass/how-to-work-with-engineers-a3163ff1eced)
-3. [Nicholas Zakas - The care and feeding of software engineers](https://www.nczonline.net/blog/2012/06/12/the-care-and-feeding-of-software-engineers-or-why-engineers-are-grumpy/)
-4. [Cliff Gilley - How to Work Effectively With Engineers](https://community.uservoice.com/blog/work-effectively-engineers/)
-5. [June Cohen - How to Work with Engineers on a Web Development Project](http://www.peachpit.com/articles/article.aspx?p=99803)
+1. [Krzysztof Rakowski - How To Communicate Effectively In IT Projects](https://www.smashingmagazine.com/2014/06/communicating-effectively-in-projects/)  
+2. [Julie Zhuo - How to Work with Engineers](https://medium.com/the-year-of-the-looking-glass/how-to-work-with-engineers-a3163ff1eced)  
+3. [Nicholas Zakas - The care and feeding of software engineers](https://www.nczonline.net/blog/2012/06/12/the-care-and-feeding-of-software-engineers-or-why-engineers-are-grumpy/)  
+4. [Cliff Gilley - How to Work Effectively With Engineers](https://community.uservoice.com/blog/work-effectively-engineers/)  
+5. [June Cohen - How to Work with Engineers on a Web Development Project](http://www.peachpit.com/articles/article.aspx?p=99803)  
 6. [Stella Garber - 5 Best Practices for Working with Developers](https://www.forbes.com/sites/stellafayman/2013/03/14/5-best-practices-for-working-with-developers/#5274f3153ef1)
 
 ### Resources: Videos
 
-1. [​Ron Lichty - How to Get Your Development Team to Love You](http://www.mindtheproduct.com/2016/04/product-owners-how-to-get-your-development-team-to-love-you/)
-2​. [Laura Klein - Building Happy Product Teams like Heist Teams](http://www.mindtheproduct.com/2016/07/building-happy-product-teams-like-heist-teams-laura-klein/)
-3​. [Ryan Hughes - Bridging the Gap between Designers and Developers](https://www.youtube.com/watch?v=mweTM1hsn84)
+1. [​Ron Lichty - How to Get Your Development Team to Love You](http://www.mindtheproduct.com/2016/04/product-owners-how-to-get-your-development-team-to-love-you/)  
+2​. [Laura Klein - Building Happy Product Teams like Heist Teams](http://www.mindtheproduct.com/2016/07/building-happy-product-teams-like-heist-teams-laura-klein/)  
+3​. [Ryan Hughes - Bridging the Gap between Designers and Developers](https://www.youtube.com/watch?v=mweTM1hsn84)  
 4​. [Salesforce Case Study - How Admins And Developers Can Collaborate](https://www.salesforce.com/video/296975/)
