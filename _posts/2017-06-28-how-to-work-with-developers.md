@@ -325,7 +325,7 @@ Last but not least, let developers know when you appreciate their work. Thank yo
 
 ### Resources: Videos
 
-1. [​Ron Lichty - How to Get Your Development Team to Love You](http://www.mindtheproduct.com/2016/04/product-owners-how-to-get-your-development-team-to-love-you/)  
-2​. [Laura Klein - Building Happy Product Teams like Heist Teams](http://www.mindtheproduct.com/2016/07/building-happy-product-teams-like-heist-teams-laura-klein/)  
-3​. [Ryan Hughes - Bridging the Gap between Designers and Developers](https://www.youtube.com/watch?v=mweTM1hsn84)  
-4​. [Salesforce Case Study - How Admins And Developers Can Collaborate](https://www.salesforce.com/video/296975/)
+1. [Laura Klein - Building Happy Product Teams like Heist Teams](http://www.mindtheproduct.com/2016/07/building-happy-product-teams-like-heist-teams-laura-klein/)  
+2. [Ryan Hughes - Bridging the Gap between Designers and Developers](https://www.youtube.com/watch?v=mweTM1hsn84)  
+3. [Salesforce Case Study - How Admins And Developers Can Collaborate](https://www.salesforce.com/video/296975/)  
+4. [​Ron Lichty - How to Get Your Development Team to Love You](http://www.mindtheproduct.com/2016/04/product-owners-how-to-get-your-development-team-to-love-you/)
