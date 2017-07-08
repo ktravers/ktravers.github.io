@@ -9,7 +9,7 @@ You'd think the answer to this question would be a simple Google search away. Un
 
 [`Mix`](https://elixirschool.com/lessons/basics/mix/). `Mix` tasks aren't compiled into your deployed release, and as evidenced in [this exciting discussion](https://github.com/bitwalker/exrm/issues/67), there's no plans to change this any time soon.
 
-So don't try using your trusty local `mix ecto.migrate` task on production. It won't help you here.
+So don't try using your trusty local `mix ecto.migrate` task on production. Not gonna help you here.
 
 ## What Does Work
 
