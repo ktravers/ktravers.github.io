@@ -25,7 +25,7 @@ Not us. Without any pre-planning or conversation, every single one of our engine
 
 ### Why Bridge the Divide?
 
-As a bootcamp graduate, I didn't begin my career as a programmer. I’ve worked in a number of different fields - both in- and outside- tech - and in every workplace, there’s been a divide between developers and the rest of the company.
+As a bootcamp graduate, I didn't begin my career as a programmer. I’ve worked in a number of different fields - both in and outside tech - and in every workplace, there’s been a divide between developers and the rest of the company.
 
 Having been on both sides of that divide, I like to think I have a uniquely well-informed perspective, and as far as I can tell, the problems are almost exclusively due to miscommunication.
 
@@ -42,18 +42,20 @@ So what are some of the obstacles we're up against? We'll look at two of the big
 
 #### Developer, engineer, programmer
 
-What's the difference between these terms? Effectively nothing. These terms all describe people who code. There's no need to make it any more complicated than that.
+What's the difference between these terms? As far as your average day-to-day work is concerned, nothing. These terms all describe people who code. There's no need to make it any more complicated than that.
 
 For anyone interested in the technical distinction, check out this [blog post from Alan Skorkin](http://www.skorks.com/2010/03/the-difference-between-a-developer-a-programmer-and-a-computer-scientist/).
 
 #### Feature Development
 
-What does the engineering workflow look like at most companies? Most startups will do some version of the agile scrum process.
+What does the engineering workflow look like at most companies? Most startups follow some version of the agile scrum process, where team members from the Product, Engineering, and QA teams work together with stakeholders to deliver a feature.
 
 - Product manager oversees feature ideation, manages backlog.
-- Product manager identifies discrete set of stories/tickets for sprint and assigns tickets to developers.
+- Product manager works with stakeholders and engineering to identify discrete set of stories/tickets for sprint
+- Product manager (and/or engineering manager) assigns tickets to developers.
 - Developers work through stories, with daily standups and feedback from product manager.
 - Engineering and product work with QA to fully test before launch
+- Review (ideally with a “retro” where everyone involved provides feedback)
 - Launch / deliver to stakeholders
 - Repeat
 
@@ -86,9 +88,10 @@ Yes, I mainly showed this slide to scare you.
 
 A lot of you will be working at a company that uses something that looks just like this.
 
-If you ever ask an engineer to describe your company’s stack to you, they’ll probably sketch out something like this. Entities and relationships. Abstraction, not exhaustive detail. Think of it like this: you don’t think about all the individual components of an engine. You're just fine thinking about gas going in and force for turning the wheels coming out.
+If you ask an engineer to describe your company’s stack to you, they’ll probably sketch out something like this. Entities and relationships, not exhaustive details. And that’s the right amount of information for most people. Think about a motor engine, for example. Most of us don’t need to know the exact inner workings. We can get by knowing that gas goes in and force for turning the wheels comes out.
 
-So don’t sweat having a perfect grasp on this stuff. It's complicated, even to most engineers.
+So don’t sweat having a perfect grasp on this stuff. It's complicated for everyone, even the most experienced engineers.
+
 
 #### Backend vs. Frontend vs. Full Stack
 
@@ -129,6 +132,8 @@ Read more on the [HandsConnect blog](https://www.handsonconnect.org/blog/2016/8/
 
 This little cutie started as an inside joke at [Github](https://github.com), but its adorableness quickly permeated the industry. When your code has been approved to ship, your teammates tag it with the :shipit: squirrel, the universal mascot of pushing code.
 
+So if you notice your engineering team sharing a bunch of squirrel pictures, don’t worry - they haven’t lost their minds. They’re just excited to push some new code to your users.
+
 Read the full lore [here](https://www.quora.com/GitHub-What-is-the-significance-of-the-Ship-It-squirrel) and [here](https://github.com/blog/1271-how-we-ship-github-for-windows).
 
 
@@ -138,37 +143,37 @@ Read the full lore [here](https://www.quora.com/GitHub-What-is-the-significance-
 
 False.
 
-Engineers are just as social as your average co-worker.
-
-We’re just very protective of our precious (and limited) attention span.
+Engineers are just as social as your average co-worker. We’re just very protective of our precious (and limited) attention span.
 
 1. Choose the appropriate communication channel for the situation.
   - Emergency: cannot wait, equivalent to pulling someone out of a meeting
   - Urgent: within the hour
   - General: within the next few days / weeks
 
-2. Most of the time, talk to a manager first. Trust them to triage appropriately.
+2. Most of the time, you’ll want to talk to a manager first, rather than an individual engineer.
+  - They’re the ones who have the most information about their team’s availability, abilities, and work load.
+  - Trust them to triage your request appropriately.
 
 
 #### True or false? When you ask for something from an engineer, don't get too detailed. They're the experts, so let them decide how to do it.
 
 False.
 
-Engineers are detail-oriented problem solvers.
+Engineers are detail-oriented problem solvers. Ambiguity slows us down; the more blanks we have to fill in, the more likely we’ll end up with a final product that doesn’t make anyone happy.
 
-Ambiguity slows us down; the more blanks we have to fill in, the more likely we’ll end up with a final product that doesn’t make anyone happy.
+Here's a [true story from Salesforce's engineering team](https://www.salesforce.com/video/296975/) about the importance of being precise. A Salesforce product manager asked that “when an account was updated, shoot the owner an email.”  The developer said ok. Then the first email the account owner received read “TRUE”.
+
+Remember to clearly define your desired **outcome**, but not the means of getting there. For example, often times a stakeholder will ask for data in a specific format - like CSV - which they then take and upload into Google Sheets and spend hours making pivot tables, etc. An easier route would have been to just tell the developer that they need to know X from this data. The developer might know an easier, faster means of analyzing the data (using tools like [Periscope](https://periscopedata.com), for example).
 
 Don’t hide things from developers; if you think feature requirements will change soon or eventually, disclose that up front.
 
-Here's a [true story](https://www.salesforce.com/video/296975/) about the importance of being precise. A Salesforce product manager asked that “when an account was updated, shoot the owner an email.”  The developer said ok. Then the first email the account owner received read “TRUE”.
-
-Remember to clearly define your desired **outcome**, but not the means of getting there. For example, often times a stakeholder will ask for data in a specific format - like CSV - which they then take and upload into Google Sheets and spend hours making pivot tables, etc. An easier route would have been to just tell the developer that they need to know X from this data. The developer might know an easier, faster means of analyzing the data (using tools like [Periscope](periscopedata.com), for example).
-
 #### True or false? Engineers love details and hate meetings, so don’t bring them into a project until you’ve mapped everything out completely in advance.
 
-False. Bring engineers in early.
+False.
 
-> “There’s a tendency in many companies to “insulate” the development teams from “the business” — usually in the name of trying to reduce randomization and to ensure execution overall. This is a very sideways way of thinking, which usually results in expecting people to execute without context — without understanding the vision, the strategy, the tactics, or especially the customer. And therein lies the problem — people are motivated most when they share a vision of what the future might be, and can see themselves and their contributions in that picture.” [[source]](https://community.uservoice.com/blog/work-effectively-engineers/)
+Bring engineers in early. Their insights can save you from sinking time and effort into unrealistic goals, and by including them in the decision-making process, you’ll help them feel more invested in the project and its outcomes.
+
+> “There’s a tendency in many companies to 'insulate' the development teams from 'the business' — usually in the name of trying to reduce randomization and to ensure execution overall. This is a very sideways way of thinking, which usually results in expecting people to execute without context — without understanding the vision, the strategy, the tactics, or especially the customer. And therein lies the problem — people are motivated most when they share a vision of what the future might be, and can see themselves and their contributions in that picture.” [[source]](https://community.uservoice.com/blog/work-effectively-engineers/)
 
 > “Engineers are tremendous assets in brainstorming sessions and when reviewing initial designs” [[source]](https://www.nczonline.net/blog/2012/06/12/the-care-and-feeding-of-software-engineers-or-why-engineers-are-grumpy/)
 
