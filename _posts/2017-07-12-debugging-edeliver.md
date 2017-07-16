@@ -205,7 +205,7 @@ ESC[01;31mabcESC[00mdef
 
 Here's the problem. If you pipe colorized output into a function like `less` that doesn't know how to interpret it, the escape codes get treated as if they're regular ol' characters. Same thing happens if you're running `ls` or `grep` in a terminal that doesn't support whatever escape codes you've set through `LSCOLORS` or `GREP_COLOR` variables (see this [helpful post](https://unix.stackexchange.com/questions/143684/what-is-the-problem-with-the-output-of-plink) for a longer explanation).
 
-And that's what was happening to me in the `edeliver` deploy script.
+And that's what was happening to me in the [edeliver](https://github.com/edeliver/edeliver) deploy script.
 
 Looking back at the [edeliver source code](https://github.com/edeliver/edeliver/blob/master/libexec/erlang#L662), the archived release file name is built from the output of `ls` and/or `grep` commands. Because I had those colorization variables set in my `.bash_profile`, my machine added the color escape codes as extra characters in the release archive filename, breaking the deploy.
 
@@ -235,6 +235,7 @@ Next steps from here will be to raise this issue for [edeliver](https://github.c
 
 ## Resources
 
+- [Official edeliver Debugging Tips](https://github.com/edeliver/edeliver#help)
 - [More on ANSI escape codes](https://en.wikipedia.org/wiki/ANSI_escape_code)
 - [More on GNU `grep` environment variables](https://www.gnu.org/software/grep/manual/html_node/Environment-Variables.html)
 - [Similar issue reported on edeliver](https://github.com/edeliver/edeliver/issues/14)
