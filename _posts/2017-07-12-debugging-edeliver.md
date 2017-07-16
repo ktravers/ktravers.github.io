@@ -58,7 +58,7 @@ My first recourse here was the same I use any time I hit a weird error: start ov
 
 I was running the deploy command with the `--verbose` flag, but the edeliver error message wasn't telling me much about _why_ the command was failing (more on that [later](#learnings)). I needed more info.
 
-On my teammate Steven's excellent advice, I opened up `deps/edeliver`, found the command that was failing by searching for the error message ("Uploading release file failed"), and flipped it into verbose debug mode by adding the `-vvvvv` option (more `v`s => more verbose):
+On my teammate Steven's excellent advice, I opened up `deps/edeliver`, found the command that was failing by searching for the error message ("Uploading release file failed"), and flipped it into verbose debug mode by adding the `-vvvvv` option (more `v`'s == more verbose):
 
 ```bash
 # https://github.com/edeliver/edeliver/blob/master/libexec/erlang#L685-L759
