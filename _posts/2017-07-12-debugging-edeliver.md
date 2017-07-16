@@ -3,7 +3,7 @@ layout: post
 title: How My Bash Color Settings Broke edeliver
 ---
 
-Yep, you read that right. My bash color settings broke [edeliver](https://github.com/edeliver/edeliver), the tool my team uses to deploy our Elixir apps. Not a great situation... it's kind of hard to ship code if you can't deploy to your staging or production environments.
+Yep, you read that right. My bash color settings broke [edeliver](https://github.com/edeliver/edeliver), the tool my team uses to deploy our Elixir apps.
 
 Now, anyone who's [tinkered with their `.bash_profile`](http://blog.kate-travers.com/refash-your-bash/) knows there's an infinite number of ways to totally bork your system. But this bug was well camouflaged, hiding inside a common, seemingly-benign bash setting I'd had in place for over two and a half years without issue - a bash setting you, too, might have on your machine RIGHT NOW ::dun dun dun::
 
