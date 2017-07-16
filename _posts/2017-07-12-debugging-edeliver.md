@@ -5,7 +5,7 @@ title: How My Bash Color Settings Broke edeliver
 
 Yep, you read that right. My bash color settings broke [edeliver](https://github.com/edeliver/edeliver), the tool my team uses to deploy our Elixir apps.
 
-Now, anyone who's [tinkered with their `.bash_profile`](http://blog.kate-travers.com/refash-your-bash/) knows there's an infinite number of ways to totally bork your system. But this bug was well camouflaged, hiding inside a common, seemingly-benign bash setting I'd had in place for over two and a half years without issue - a bash setting you, too, might have on your machine RIGHT NOW ::dun dun dun::
+Now, anyone who's [tinkered with their `.bash_profile`](http://blog.kate-travers.com/refash-your-bash/) knows there's an infinite number of ways to totally bork your system. But this bug was well camouflaged, hiding inside a common, seemingly-benign bash setting I'd had in place for over two and a half years without issue - a bash setting you, too, might have on your machine RIGHT NOW 😱
 
 But don't worry, I tracked down the little bugger, so read on to save yourself the same hassle I went through. And for those of you in a rush, here's the [tl;dr](#the-solution).
 
@@ -58,7 +58,7 @@ My first recourse here was the same I use any time I hit a weird error: start ov
 
 I was running the deploy command with the `--verbose` flag, but the edeliver error message wasn't telling me much about _why_ the command was failing (more on that [later](#learnings)). I needed more info.
 
-On my teammate Steven's excellent advice, I opened up `deps/edeliver`, found the command that was failing by searching for the error message ("Uploading release file failed"), and flipped it into verbose debug mode by adding the `-vvvvv` option (more `v`'s == more verbose):
+On my teammate Steven's excellent advice, I opened up `my_app/deps/edeliver`, found the command that was failing by searching for the error message ("Uploading release file failed"), and flipped it into verbose debug mode by adding the `-vvvvv` option (more `v`'s == more verbose):
 
 ```bash
 # https://github.com/edeliver/edeliver/blob/master/libexec/erlang#L685-L759
@@ -111,7 +111,7 @@ Uploading release file failed
 
 Steven did the same thing on his machine, so we'd have his successful debug log for comparison.
 
-His output also gave us another valuable piece of information: the actual bash command `$_remote_job` built by the `upload_release_archive` function, i.e. the one that copies the release from our build server to our production server, i.e. the one throwing the error. We'd follow that lead next.
+His output also gave us another valuable piece of information: the actual bash command [`$_remote_job`](https://github.com/edeliver/edeliver/blob/master/libexec/erlang#L754-L755) built by the [`upload_release_archive` function](https://github.com/edeliver/edeliver/blob/master/libexec/erlang#L689), i.e. the one that copies the release from our build server to our production server, i.e. the one throwing the error. We'd follow that lead next.
 
 **Outcome:**  
 ✅ Better output with verbose debug mode  
@@ -119,13 +119,14 @@ His output also gave us another valuable piece of information: the actual bash c
 ✅ Learned a new debugging technique (thanks Steven!)  
 ❌ Hard to separate signal from noise
 
+
 ### 3. Manual Workaround
 
-We'd pinpointed the command that was failing locally ([`edeliver/libexec/erlang#upload_release_archive`](https://github.com/edeliver/edeliver/blob/master/libexec/erlang#L689)), so why not try running it from the build server?
+We'd pinpointed the command that was failing locally, so why not try running it directly from the build server?
 
-I ssh'd into our build server, switched to our deployer user, and ran the `$_remote_job` command above. What do you know, it worked! The release archive was copied from the build server to our production server, as expected.
+I ssh'd into our build server, switched to our deployer user, and ran the [`$_remote_job` command](https://github.com/edeliver/edeliver/blob/master/libexec/erlang#L754-L755) above. What do you know, it worked! The release archive was copied from the build server to our production server, as expected.
 
-I dropped back onto my local machine, commented out the `upload_release_archive` function from the edeliver script (since the archive was already copied over), and ran the deploy command. Success!
+I dropped back onto my local machine, commented out the [`upload_release_archive` function](https://github.com/edeliver/edeliver/blob/master/libexec/erlang#L689) from the edeliver script (since the archive was already copied over), and ran the deploy command. Success!
 
 So now things are getting interesting. When I run the command from my local as my `kate` user, it fails. When I run it from our build server as `deployer`, it succeeds. Conclusion: something's messed up with my user.
 
@@ -155,7 +156,7 @@ At this point, desperation was setting in. My teammates and I were stumped, and 
 
 Enter Andres from [OzoneOps](https://ozoneops.com/), our devops contractor. I'd sent him Steven's and my output logs, and he was the first to notice a pretty important difference: in my output, the archive filename had a bunch of weird characters in it.
 
-```
+```bash
 # Filename from Steven's output
 my_app_X.X.X-XXX-XXXXXXX.release.tar.gz
 
@@ -165,9 +166,9 @@ my_app_\033[4;38m\033[KX.X.X-XXX-XXXXXXX\033[m\033[K.release.tar.gz
 
 What was going on here? Where were those extra characters coming from?
 
-A quick Google search revealed that these are terminal escape sequences, or [ANSI escape codes](https://en.wikipedia.org/wiki/ANSI_escape_code). Your terminal normally interprets these sequences as functions, not characters, so you can use them to format output, like adding color to the output of `grep` or `ls` commands.
+A quick Google search revealed that these are terminal escape sequences, or [ANSI escape codes](https://en.wikipedia.org/wiki/ANSI_escape_code). The terminal normally interprets these sequences as functions, not characters, so you can use them to format output, like adding color to the output of `grep` or `ls` commands.
 
-I like me some colors in my terminal output, so way back in the day (like, two years ago), I added settings to my `.bash_profile` to always colorize my `ls` and `grep` output.
+I like me some colors in my terminal output, so way back in the day (like, two and a half years ago), I added settings to my `.bash_profile` to colorize my `ls` and `grep` output.
 
 ```bash
 export LSCOLORS=gxxxxxxxcxxxxxcxcxgxgx
@@ -180,7 +181,7 @@ I'd never given these settings a second thought... until now. Turns out they've 
 
 ## The Explanation
 
-The settings above work their colorizing magic by adding ANSI escape codes into output from `ls` and `grep` commands. For example, let's run `grep` on `example.txt` below.
+The settings above work their colorizing magic by adding ANSI escape codes to output from `ls` and `grep` commands. For example, let's run `grep` on `example.txt` below.
 
 ```bash
 $ cat example.txt
@@ -203,11 +204,11 @@ ESC[01;31mabcESC[00mdef
 (END)
 ```
 
-Here's the problem. If you pipe colorized output into a function like `less` that doesn't know how to interpret it, the escape codes get treated as if they're regular ol' characters. Same thing happens if you're running `ls` or `grep` in a terminal that doesn't support whatever escape codes you've set through `LSCOLORS` or `GREP_COLOR` variables (see this [helpful post](https://unix.stackexchange.com/questions/143684/what-is-the-problem-with-the-output-of-plink) for a longer explanation).
+Here's the problem. If you pipe colorized output into a function like `less` that doesn't know how to interpret it, the escape codes get treated as if they're regular ol' characters. Same thing happens if you're colorizing `ls` or `grep` in a terminal that doesn't support whatever escape codes you've set through `LSCOLORS` or `GREP_COLOR` variables (see this [helpful post](https://unix.stackexchange.com/questions/143684/what-is-the-problem-with-the-output-of-plink) for a longer explanation).
 
 And that's what was happening to me in the [edeliver](https://github.com/edeliver/edeliver) deploy script.
 
-Looking back at the [edeliver source code](https://github.com/edeliver/edeliver/blob/master/libexec/erlang#L662), the archived release file name is built from the output of `ls` and/or `grep` commands. Because I had those colorization variables set in my `.bash_profile`, my machine added the color escape codes as extra characters in the release archive filename, breaking the deploy.
+Looking back at the [edeliver source code](https://github.com/edeliver/edeliver/blob/master/libexec/erlang#L662), the archived release file name is built from the output of `ls` and `grep` commands. Because I had those colorization variables set in my `.bash_profile`, my machine added the color escape codes to the output, which were "misinterpretted" as extra characters in the release archive filename, breaking the deploy.
 
 ✋  
 .  
