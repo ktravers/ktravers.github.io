@@ -3,11 +3,11 @@ layout: post
 title: How My Bash Profile Broke edeliver
 ---
 
-Yep, you read that right. A setting in my `.bash_profile` broke [edeliver](https://github.com/edeliver/edeliver), preventing me from _doing my job_ for about a week. You see, [edeliver](https://github.com/edeliver/edeliver) is the tool my team uses to deploy our Elixir apps, and it's kind of hard to ship code if you can't deploy to your staging or production environments.
+Yep, you read that right. A setting in my `.bash_profile` broke [edeliver](https://github.com/edeliver/edeliver), the tool my team uses to deploy our Elixir apps. Not a great situation... it's kind of hard to ship code if you can't deploy to your staging or production environments.
 
-Now, anyone who's [tinkered with their `.bash_profile`](http://blog.kate-travers.com/refash-your-bash/) config knows there's an infinite number of ways to totally bork your system. But this bug was well camouflaged, hiding inside a common, seemingly-benign bash setting I'd had in place for ~2.5 years without issue - a bash setting you, too, might have on your machine RIGHT NOW.
+Now, anyone who's [tinkered with their `.bash_profile`](http://blog.kate-travers.com/refash-your-bash/) knows there's an infinite number of ways to totally bork your system. But this bug was well camouflaged, hiding inside a common, seemingly-benign bash setting I'd had in place for ~2.5 years without issue - a bash setting you, too, might have on your machine RIGHT NOW.
 
-But don't worry - I tracked down the little bugger, so read on to save yourself the same hassle I went through. And for those of you in a rush, here's the [tl;dr](#solution).
+But don't worry, I tracked down the little bugger, so read on to save yourself the same hassle I went through. And for those of you in a rush, here's the [tl;dr](#solution).
 
 - [The Problem](#the-problem)
 - [Debugging Steps](#debugging-steps)
