@@ -1,6 +1,6 @@
 ---
 layout: post
-title: How My Bash Profile Broke edeliver
+title: How My Bash Color Settings Broke edeliver
 ---
 
 Yep, you read that right. A setting in my `.bash_profile` broke [edeliver](https://github.com/edeliver/edeliver), the tool my team uses to deploy our Elixir apps. Not a great situation... it's kind of hard to ship code if you can't deploy to your staging or production environments.
@@ -229,6 +229,13 @@ export GREP_COLOR='4;38'
 
 ## Learnings
 
-Debugging is hard, especially when you're working in a new codebase and/or new language. One thing that can really save you is good error messaging, something Elixir does well and edeliver can do better.
+Debugging is hard, especially when you're working in a new codebase and/or new language. One thing that can really save you is good error messaging, something Elixir does well and [edeliver can do better](https://github.com/edeliver/edeliver/issues/80).
 
 Next steps from here will be to raise this issue for [edeliver](https://github.com/edeliver/edeliver) and try to contribute some error message improvements (and maybe a fix for this escape sequence nonsense... think we'll just need to disable the color settings before running the deploy command).
+
+## Resources
+
+- [More on ANSI escape codes](https://en.wikipedia.org/wiki/ANSI_escape_code)
+- [More on GNU `grep` environment variables](https://www.gnu.org/software/grep/manual/html_node/Environment-Variables.html)
+- [Similar issue reported on edeliver](https://github.com/edeliver/edeliver/issues/14)
+- [More details on edeliver error messaging](https://github.com/edeliver/edeliver/issues/80)
