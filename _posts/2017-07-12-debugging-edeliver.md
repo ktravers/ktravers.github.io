@@ -19,7 +19,7 @@ But don't worry, I tracked down the little bugger, so read on to save yourself t
 
 ## The Problem
 
-I'd just started working on one of our Elixir projects, doing my best to learn a new codebase and a new language all at once. Things were going well until it came time to deploy changes. I could build a release, no problem, but I couldn't deploy; the command would fail every time with the following output:
+I'd just started working on one of our Elixir projects, doing my best to learn a new codebase and a new language all at once. Things were going well until it came time to deploy changes. I could [build a release](https://github.com/edeliver/edeliver#build-commands), no problem, but I couldn't [deploy](https://github.com/edeliver/edeliver#deploy-commands); the command would fail every time with the following output:
 
 ```bash
 $ mix edeliver deploy release to production --version=X.X.X-XXX-XXXXXXX --verbose
