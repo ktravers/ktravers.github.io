@@ -7,7 +7,7 @@ Yep, you read that right. My bash color settings broke [edeliver](https://github
 
 Now, anyone who's [tinkered with their `.bash_profile`](http://blog.kate-travers.com/refash-your-bash/) knows there's an infinite number of ways to totally bork your system. But this bug was well camouflaged, hiding inside a common, seemingly-benign bash setting I'd had in place for over two and a half years without issue - a bash setting you, too, might have on your machine RIGHT NOW ::dun dun dun::
 
-But don't worry, I tracked down the little bugger, so read on to save yourself the same hassle I went through. And for those of you in a rush, here's the [tl;dr](#solution).
+But don't worry, I tracked down the little bugger, so read on to save yourself the same hassle I went through. And for those of you in a rush, here's the [tl;dr](#the-solution).
 
 - [The Problem](#the-problem)
 - [Debugging Steps](#debugging-steps)
@@ -215,6 +215,7 @@ Looking back at the [edeliver source code](https://github.com/edeliver/edeliver/
 .  
 🎤 ::mike drop::
 
+
 ## The Solution
 
 Remove any `ls` or `grep` color settings from your `.bash_profile`:
@@ -226,12 +227,12 @@ export GREP_OPTIONS='--color=always'
 export GREP_COLOR='4;38'
 ```
 
-
 ## Learnings
 
 Debugging is hard, especially when you're working in a new codebase and/or new language. One thing that can really save you is good error messaging, something Elixir does well and [edeliver can do better](https://github.com/edeliver/edeliver/issues/80).
 
 Next steps from here will be to raise this issue for [edeliver](https://github.com/edeliver/edeliver) and try to contribute some error message improvements (and maybe a fix for this escape sequence nonsense... think we'll just need to disable the color settings before running the deploy command).
+
 
 ## Resources
 
