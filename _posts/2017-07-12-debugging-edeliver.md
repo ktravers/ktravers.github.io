@@ -47,7 +47,7 @@ My teammates _could_ deploy using the same command; I was the only one getting t
 
 ### 1. Hard reset
 
-My first recourse here was the same I use any time I hit a weird error: start over fresh. I deleted the project directory from my machine, re-cloned it back down from GitHub, and tried deploying the master branch (which was already running on production). No dice; deploy failed.
+My first recourse here was the same I use any time I hit a weird error: start over fresh. I deleted the project directory from my machine, re-cloned it back down, and tried deploying the master branch (which was already running on production). No dice.
 
 **Outcome:**  
 ✅ Confirmed issue wasn't with something I'd changed in the codebase  
@@ -56,7 +56,7 @@ My first recourse here was the same I use any time I hit a weird error: start ov
 
 ### 2. Get Verbose
 
-Even though I was running the deploy command with the `--verbose` flag, the edeliver error message wasn't telling me much about _why_ the command was failing (more on that [later](#learnings)). I needed more info.
+I was running the deploy command with the `--verbose` flag, but the edeliver error message wasn't telling me much about _why_ the command was failing (more on that [later](#learnings)). I needed more info.
 
 On my teammate Steven's excellent advice, I opened up `deps/edeliver`, found the command that was failing by searching for the error message ("Uploading release file failed"), and flipped it into verbose debug mode by adding the `-vvvvv` option (more `v`s => more verbose):
 
@@ -111,9 +111,7 @@ Uploading release file failed
 
 Steven did the same thing on his machine, so we'd have his successful debug log for comparison.
 
-His output also gave us another valuable piece of information: the actual bash command `$_remote_job` built by the `upload_release_archive` function, i.e. the one that copies the release from our build server to our production server, i.e. the one throwing the error.
-
-We'd follow this lead next.
+His output also gave us another valuable piece of information: the actual bash command `$_remote_job` built by the `upload_release_archive` function, i.e. the one that copies the release from our build server to our production server, i.e. the one throwing the error. We'd follow that lead next.
 
 **Outcome:**  
 ✅ Better output with verbose debug mode  
@@ -139,12 +137,12 @@ So now things are getting interesting. When I run the command from my local as m
 
 ### 4. SSH Sanity Check
 
-We'd narrowed down the issue to my user on my machine, so next step was to check my ssh config. I confirmed that my keys were on the required servers by ssh'ing in as my user... no problems there. Then I compared my `.ssh/config` file to my teammates' config... nothing out of wack there either.
+We'd narrowed down the issue to my user, so next step was to check my ssh config. I confirmed that my keys were on the required servers by ssh'ing in as my user... no problems there. Then I compared my `.ssh/config` file to my teammates' config... nothing out of wack there either.
 
 I also tried deploying after removing everything from the following config files (testing each in isolation, one-by-one), still with zero success:  
-- `.ssh/known_hosts`
-- `.bashrc`
-- `.profile`
+- `~/.ssh/known_hosts`
+- `~/.bashrc`
+- `~/.profile`
 
 **Outcome:**  
 ✅ Confirmed problem wasn't with my ssh config  
@@ -167,9 +165,9 @@ my_app_\033[4;38m\033[KX.X.X-XXX-XXXXXXX\033[m\033[K.release.tar.gz
 
 What was going on here? Where were those extra characters coming from?
 
-A quick Google search revealed that these are terminal escape sequences, or [ANSI escape codes](https://en.wikipedia.org/wiki/ANSI_escape_code). Your terminal normally interprets these sequences as functions, not characters, which is why they're used to format output, like adding color to the output of `grep` or `ls` commands.
+A quick Google search revealed that these are terminal escape sequences, or [ANSI escape codes](https://en.wikipedia.org/wiki/ANSI_escape_code). Your terminal normally interprets these sequences as functions, not characters, so you can use them to format output, like adding color to the output of `grep` or `ls` commands.
 
-I like me some colors in my terminal output, so years ago, I added settings to my `.bash_profile` that always colorize my `ls` and `grep` output.
+I like me some colors in my terminal output, so way back in the day (like, two years ago), I added settings to my `.bash_profile` to always colorize my `ls` and `grep` output.
 
 ```bash
 export LSCOLORS=gxxxxxxxcxxxxxcxcxgxgx
