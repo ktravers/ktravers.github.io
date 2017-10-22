@@ -1,0 +1,45 @@
+/*
+ * Variables
+ */
+
+
+/*
+ * Key sizes
+ */
+
+$content-spacing: 16px;
+
+
+/*
+ * Responsive Breakpoints
+ * Apply breakpoints with the following format:
+ * @media only screen and (min-width: $breakpoint-x) { ... }
+ */
+
+$breakpoint-mobile: 320px;
+$breakpoint-small: 640px;
+$breakpoint-medium: 800px;
+$breakpoint-large: 1080px;
+
+
+/*
+ * Colors
+ */
+
+$blue: #4183C4;
+
+$black: #000000;
+$grey-darker: #222;
+$grey-dark: #333;
+$grey: #7D7D7D;
+$grey-light: #EEE;
+$white: #FFFFFF;
+
+
+/*
+ *  Font stacks
+ */
+
+$helvetica: Helvetica, Arial, sans-serif;
+$helveticaNeue: "Helvetica Neue", Helvetica, Arial, sans-serif;
+$georgia: Georgia, serif;

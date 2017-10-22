@@ -1,0 +1,13 @@
+/*
+ * Base Site Rules
+ */
+
+body {
+  font-family: $helvetica;
+  color: $grey-darker;
+  font-smoothing: antialiased;
+  -webkit-font-smoothing: antialiased;
+  font-kerning: normal;
+  -webkit-font-kerning: normal;
+  -moz-osx-font-smoothing: grayscale;
+}

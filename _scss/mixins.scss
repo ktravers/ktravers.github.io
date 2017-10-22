@@ -1,0 +1,74 @@
+.clearfix {
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
+.border-box {
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+}
+
+
+/*
+ * Box Shadow
+ */
+
+@mixin box-shadow($val) {
+  /* offset-x | offset-y | blur-radius | spread-radius | color */
+  -webkit-box-shadow: $val;
+  -moz-box-shadow: $val;
+  -ms-box-shadow: $val;
+  -o-box-shadow: $val;
+  box-shadow: $val;
+}
+
+
+/*
+ * Transforms
+ * Courtesy: http://codepen.io/sawmac/pen/qGudy
+ */
+
+// Base mixin
+@mixin transform($transforms) {
+     -moz-transform: $transforms;
+  -webkit-transform: $transforms;
+          transform: $transforms;
+}
+
+// Rotate
+@mixin rotate ($deg) {
+  @include transform(rotate(#{$deg}deg));
+}
+
+// Scale
+@mixin scale($scale) {
+   @include transform(scale($scale));
+}
+
+// Translate
+@mixin translate ($x, $y) {
+   @include transform(translate($x, $y));
+}
+
+// Origin
+@mixin transform-origin($x,$y) {
+  -webkit-transform-origin: $x $y;
+          transform-origin: $x $y;
+}
+
+
+/*
+ * Transitions
+ * Courtesy: http://codepen.io/sawmac/pen/cayhK/
+ */
+
+@mixin transition($transition...) {
+  -moz-transition:    $transition;
+  -webkit-transition: $transition;
+  -o-transition:      $transition;
+  transition:         $transition;
+}

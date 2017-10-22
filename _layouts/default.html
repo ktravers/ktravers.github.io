@@ -35,21 +35,12 @@
   </head>
 
   <body>
-    <div class="wrapper-masthead">
-      <div class="container">
-        {% include header.html %}
-      </div>
-    </div>
 
-    <div id="main" role="main" class="container">
-      {{ content }}
-    </div>
+    {% include header.html %}
 
-    <div class="wrapper-footer">
-      <div class="container">
-        {% include footer.html %}
-      </div>
-    </div>
+    {{ content }}
+
+    {% include footer.html %}
 
     {% include analytics.html %}
   </body>
