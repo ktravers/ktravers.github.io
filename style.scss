@@ -1,16 +1,18 @@
 ---
 ---
 
-//
-// IMPORTS
-//
+/**************/
+/* IMPORTS
+/**************/
 
 @import "_reset";
 @import "_variables";
-// Syntax highlighting @import is at the bottom of this file
+@import "_highlights";
+@import "_svg-icons";
+
 
 /**************/
-/* BASE RULES */
+/* BASE RULES
 /**************/
 
 html {
@@ -143,7 +145,7 @@ img {
 }
 
 /*********************/
-/* LAYOUT / SECTIONS */
+/* LAYOUT / SECTIONS
 /*********************/
 
 //
@@ -282,8 +284,3 @@ footer {
   padding: 20px 0;
   text-align: center;
 }
-
-// Settled on moving the import of syntax highlighting to the bottom of the CSS
-// ... Otherwise it really bloats up the top of the CSS file and makes it difficult to find the start
-@import "_highlights";
-@import "_svg-icons";

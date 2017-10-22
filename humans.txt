@@ -1,0 +1,13 @@
+/* AUTHOR */
+
+	Master Chef: Kate Travers
+	Contact: kate [at] kate-travers [dot] com
+	Twitter: @kttravers
+	Github: ktravers
+	From: Brooklyn, New York
+
+/* SITE */
+
+	Last update: 10/22/2017
+	Language: English
+	Doctype: HTML5

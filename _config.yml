@@ -2,7 +2,7 @@
 name: Kate Travers
 
 # Short bio or description (displayed in the header)
-description: bro(ad)grammer
+description: Kate Travers is a Brooklyn-based fullstack web developer and graphic designer. Available for freelance web + design projects.
 
 # URL of your avatar or profile pic (you could use your GitHub profile pic)
 avatar: https://avatars0.githubusercontent.com/u/8152930
@@ -10,13 +10,13 @@ avatar: https://avatars0.githubusercontent.com/u/8152930
 # Includes an icon in the footer for each username you enter
 footer-links:
   email: kate@kate-travers.com
-  facebook:
   github: ktravers
-  instagram: ktravers
-  linkedin: katettravers
-  rss:
-  twitter: kttravers
   stackoverflow: users/3880374/ktravers
+  twitter: kttravers
+  linkedin: katettravers
+  facebook:
+  instagram:
+  rss:
 
 # Your disqus shortname, entering this will enable commenting on posts
 disqus: kttravers
@@ -26,7 +26,7 @@ google_analytics: UA-17583145-6
 
 # Your website URL (e.g. http://barryclark.github.io or http://www.barryclark.co)
 # Used for Sitemap.xml and your RSS feed
-url: http://blog.kate-travers.com
+url: http://www.kate-travers.com
 
 # If you're hosting your site at a Project repository on GitHub pages (http://yourusername.github.io/repository-name)
 # and NOT your User repository (http://yourusername.github.io) then add in the baseurl here, like this: "/repository-name"
