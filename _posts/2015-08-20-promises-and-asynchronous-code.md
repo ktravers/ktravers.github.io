@@ -3,7 +3,7 @@ layout: post
 title: Code Talk Notes - Promises and Asynchronous Code
 ---
 
-![Callback Hell]({{ site.baseurl }}/assets/callback-hell.jpg "Callback Hell")
+![Callback Hell]({{ site.baseurl }}/images/posts/callback-hell.jpg "Callback Hell")
 
 Promises are a pattern for managing async callbacks.
 

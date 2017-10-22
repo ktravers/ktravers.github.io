@@ -7,7 +7,7 @@ Flatiron School has a great system for sharing lecture notes: a dedicated Github
 
 But then comes the scary part for us git-n00bs - getting updates. I felt real comfortable pushing to / pulling from my own repositories. But to get the next days' lecture material, I was gonna have to add my instructor's repo as a remote. Yikes. Now that's a scary connection to make. Any mistakes, and I'm screwing up the lecture docs for Avi, who might have to redo them, and my classmates, who need this material asap for labs + projects. I needed to handle this delicate operation with extreme care.
 
-![Indiana Jones Raiders of the Lost Ark animated gif]({{ site.baseurl }}/assets/raiders.gif "Indiana Jones Raiders of the Lost Ark animated gif")
+![Indiana Jones Raiders of the Lost Ark animated gif]({{ site.baseurl }}/images/posts/raiders.gif "Indiana Jones Raiders of the Lost Ark animated gif")
 
 As I now do in all these types of situations, I went straight to Github support. Here's the solution, specific to our Flatiron repo.
 
@@ -41,7 +41,7 @@ Ok, we've got our upstream repo configured. Now to get the notes.
 
 1) First be sure to add and commit any local changes using `git add .` then `git commit -m "message"`. If you push your commit, BE SURE TO PUSH TO ORIGIN using `git push origin [branch]`. **DO NOT PUSH TO UPSTREAM.** If you push to upstream, it's all over, pal.
 
-![Corgi Death Star gif]({{ site.baseurl }}/assets/corgi.gif "Corgi Death Star gif")
+![Corgi Death Star gif]({{ site.baseurl }}/images/posts/corgi.gif "Corgi Death Star gif")
 
 2) Pull down new lecture material using `git pull upstream [branch]`. You'll see something like the dialogue below, noting updates and merges. Note: you might need to manually merge any changes that couldn't be auto-merged. 
 
@@ -62,7 +62,7 @@ Merge made by the 'recursive' strategy.
 
 That's it! Now you've got an easy-to-maintain local directory for all your lecture materials. Easy to `subl .` into for review whenever needed. Victory dance.
 
-![Brad Pitt dance]({{ site.baseurl }}/assets/brad-pitt-burn-after-reading.gif "Brad Pitt dance")
+![Brad Pitt dance]({{ site.baseurl }}/images/posts/brad-pitt-burn-after-reading.gif "Brad Pitt dance")
 
 TLDR:   
 - Add remote notes repo: `git remote add upstream [SSH clone url for upstream repo]`  

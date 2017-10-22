@@ -5,7 +5,7 @@ title: Flatiron Twitter CLI
 
 Last week, Avi pitched a pretty cool idea to the class: build an "auto-follow bot" for Flatiron student twitter accounts - something we could use to easily auto-follow everyone in the class.
 
-![Avi Flatiron Twitter pitch]({{ site.baseurl }}/assets/avi-pitch.png "Avi Flatiron Twitter pitch")
+![Avi Flatiron Twitter pitch]({{ site.baseurl }}/images/posts/avi-pitch.png "Avi Flatiron Twitter pitch")
 
 I'd been looking for a side project to work on (inspired by my classmates who've built some very sweet side-projects already: [ex.1](http://rebecca-eakins.github.io/2015/02/23/how-to-combat-writers-block-and-boost-noob-cred.html), [ex.2](http://www.thegreatcodeadventure.com/weather-for-dummies/), [ex.3](http://www.thegreatcodeadventure.com/sinatra-gets-me-all-the-cats/), [ex.4](http://www.seijinaganuma.com/2015/02/scrape-it-ball/)) and this seemed like a perfect opportunity. I've never built a bot, but I know how to build a CLI, so I put labwork on pause and spent my Saturday building the [FLATIRON TWITTER CLI](https://github.com/ktravers/flatiron-twitter-cli) instead (available at your [local github](https://github.com/ktravers/flatiron-twitter-cli)).
 
@@ -126,7 +126,7 @@ class StaffScraper
 end
 ```
 
-![April Ludgate Cry for Help]({{ site.baseurl }}/assets/aprilhelp.gif "Cry for Help")
+![April Ludgate Cry for Help]({{ site.baseurl }}/images/posts/aprilhelp.gif "Cry for Help")
 
 Once we get the the StaffScraper fixed, we'll be able to uncomment the `staff` methods/commands inside `FlatironTwitterCLI` to add the capability to list & follow staff members. Until then, just students and instructors are working.
 

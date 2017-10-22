@@ -7,7 +7,7 @@ After week one of learning Rails, I was eager to test out my new skills on a new
 
 Now obviously a website that just says "aw yass" every time it renders doesn't have much utility. So I decided to expand the concept a bit and build a site that yields the current frontrunners for each party in the current presidential race. A quick [rubygems](https://rubygems.org) search pointed me to [HuffPost's Pollster API](http://elections.huffingtonpost.com/pollster/api), which is really nicely maintained. Armed with data and a plan, I started building.
 
-[![Texts from Hillary]({{ site.baseurl }}/assets/hillpost.jpg "HillaryPost")](http://textsfromhillaryclinton.tumblr.com/post/20838007265/original-image-by-diana-walker-for-time "HillaryPost")
+[![Texts from Hillary]({{ site.baseurl }}/images/posts/hillpost.jpg "HillaryPost")](http://textsfromhillaryclinton.tumblr.com/post/20838007265/original-image-by-diana-walker-for-time "HillaryPost")
 
 The app ended up being pretty simple:  
 - **One model** (Search)  
@@ -131,7 +131,7 @@ _*ed. note:_ In researching links for the paragraph above, I think I just stumbl
 
 Next challenge was deploying to [Heroku](https://www.heroku.com), something I'd never done before. I started with their [Ruby walkthrough](https://devcenter.heroku.com/articles/getting-started-with-ruby#introduction) and was quickly sidelined on the ["Run the app locally" step of the demo](https://devcenter.heroku.com/articles/getting-started-with-ruby#run-the-app-locally). My PostgreSQL configuration was off, then after I `brew uninstall`ed and re-installed, I started getting authentication errors ... things were getting ugly. Briefly discouraged, I thought to myself, "What would Hill-dawg do?" She didn't let The Patriarchy stop her; no way she'd let some Postgres db-nonsense get her down.
 
-![Hillary Deal With It]({{ site.baseurl }}/assets/dealwithit.gif "Hillary Deal With It")
+![Hillary Deal With It]({{ site.baseurl }}/images/posts/dealwithit.gif "Hillary Deal With It")
 
 So I went forward and deployed anyway, following the steps below:
 

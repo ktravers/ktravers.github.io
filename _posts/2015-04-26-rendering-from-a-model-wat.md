@@ -33,7 +33,7 @@ But the thing is, it worked. And I'd like to explore how and why before ~~purgin
 
 The problem we were trying to solve was relatively simple. In our Menu views, we'd created a partial `_menu` that contains multiple [`collection_check_boxes`](http://api.rubyonrails.org/classes/ActionView/Helpers/FormOptionsHelper.html#method-i-collection_check_boxes) fields. Each checkbox renders another partial `_recipe`, which serves up an image and a link. The end result is a row of recipe cards, where each card has an image, a link, and a checkbox that users can tick to select that recipe for their final menu:
 
-![Approvable Feast recipe cards]({{ site.baseurl }}/assets/recipe-cards.png "Approvable Feast recipe cards")
+![Approvable Feast recipe cards]({{ site.baseurl }}/images/posts/recipe-cards.png "Approvable Feast recipe cards")
 
 After reviewing the documentation on [`collection_check_boxes`](http://api.rubyonrails.org/classes/ActionView/Helpers/FormOptionsHelper.html#method-i-collection_check_boxes), we thought we'd be able to pass the `render` method inside the `&block` argument.
 

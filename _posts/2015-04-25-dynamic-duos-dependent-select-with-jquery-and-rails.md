@@ -21,7 +21,7 @@ All code here is from my Rails app **[Parkster](http://www.parksternyc.com/)**, 
 
 Before the refactor, my schema was structured as follows:
 
-[ ![Parkster schema before]({{ site.baseurl }}/assets/schema-before.png "Parkster schema before") ](https://github.com/voormedia/rails-erd "Generated with rails-erd gem")
+[ ![Parkster schema before]({{ site.baseurl }}/images/posts/schema-before.png "Parkster schema before") ](https://github.com/voormedia/rails-erd "Generated with rails-erd gem")
 
 You'll notice that Parks have an `#activity` attribute (ex. "Baseball Field", "Basketball Court"), and Games have a `#game_category` attribute (ex. "Baseball", "Basketball"). Hopefully some readers' smell test sensors are pinging here already...
 
@@ -143,7 +143,7 @@ end
 
 Our migrations, associations, and seeds file are all properly updated, so now's a good time to run `rake db:reset` (shortcut for `db:drop, db:create, db:schema:load, db:seed`). Now we have a schema we can work with:
 
-[ ![Parkster schema after]({{ site.baseurl }}/assets/schema-after.png "Parkster schema after") ](https://github.com/voormedia/rails-erd "Generated with rails-erd gem")
+[ ![Parkster schema after]({{ site.baseurl }}/images/posts/schema-after.png "Parkster schema after") ](https://github.com/voormedia/rails-erd "Generated with rails-erd gem")
 
 ###<a id="update-form"></a>Step 4: Update form partial
 

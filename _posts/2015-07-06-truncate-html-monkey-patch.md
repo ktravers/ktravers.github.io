@@ -104,7 +104,7 @@ end
 
 While this approach worked, it's a little blunt.
 
-![Gratuitous Blunt]({{ site.baseurl }}/assets/emily-blunt.gif "Gratuitous Blunt")
+![Gratuitous Blunt]({{ site.baseurl }}/images/posts/emily-blunt.gif "Gratuitous Blunt")
 
 As [Justin Weiss cautions](http://www.justinweiss.com/blog/2015/01/20/3-ways-to-monkey-patch-without-making-a-mess), there are a number of potential problems with punching your patch in this way:
 

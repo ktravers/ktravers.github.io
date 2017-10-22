@@ -7,7 +7,7 @@ This week's [Ruby Weekly](http://rubyweekly.com/issues/242) had a nice post from
 
 Well, word to the wise: don't install a new linter package a couple hours before a technical interview. I didn't have a chance to tweak the default settings, which as you'll see below, are a bit...aggressive.
 
-![Mark Style Outline]({{ site.baseurl }}/assets/mark-style-outline.png "Mark Style Outline")
+![Mark Style Outline]({{ site.baseurl }}/images/posts/mark-style-outline.png "Mark Style Outline")
 
 I knew I'd be pair-programming with my interviewer, and no way was I gonna subject her to literally ugly code. I had to scramble to find a fix, and after jumping through a couple different sections in the [SublimeLinter documentation](http://www.sublimelinter.com/en/latest/index.html), I found the solution. Here's the lowdown. 
 
@@ -58,4 +58,4 @@ Open up the `SublimeLinter.sublime-settings` file and edit `"mark_style"`:
 
 Now you've got total control over the aggressiveness of your linter highlighting. Thanks Rubocop!
 
-![Rubocop puppies]({{ site.baseurl }}/assets/rubocop.gif "Rubocop puppies gif")
+![Rubocop puppies]({{ site.baseurl }}/images/posts/rubocop.gif "Rubocop puppies gif")

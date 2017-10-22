@@ -9,7 +9,7 @@ Librato has two stats types: `counter` vs `gauge`
 
 When using counter (aka `#send_increment`), be sure to set summary function to `sum` and check `Service-Side Aggregation`.
 
-![Librato counter]({{ site.baseurl }}/assets/librato-counter.png "Librato counter")
+![Librato counter]({{ site.baseurl }}/images/posts/librato-counter.png "Librato counter")
 
 ### Ironbroker Refactor
 

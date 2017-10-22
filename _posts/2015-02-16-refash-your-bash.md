@@ -42,7 +42,7 @@ prompt
 ```
 
 ###Result:
-![Ktravers Bash Prompt]({{ site.baseurl }}/assets/bash-prompt.png "Travers' Bash Prompt")
+![Ktravers Bash Prompt]({{ site.baseurl }}/images/posts/bash-prompt.png "Travers' Bash Prompt")
 
 
 Not bad, huh?  

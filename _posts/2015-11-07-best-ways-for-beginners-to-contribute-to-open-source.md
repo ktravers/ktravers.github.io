@@ -41,21 +41,21 @@ Once you've verified you've found a valid, unreported bug, you'll want to open a
 
     Keep the title concise, but provide clear info in the description below.
 
-    ![Example issue]({{ site.baseurl }}/assets/issue-description.png "Example issue")
+    ![Example issue]({{ site.baseurl }}/images/posts/issue-description.png "Example issue")
 
 - **Steps to reproduce the problem**
 
     Start from the beginning, and provide any necessary context.
 
-    ![Example issue]({{ site.baseurl }}/assets/issue-steps.png "Example issue")
+    ![Example issue]({{ site.baseurl }}/images/posts/issue-steps.png "Example issue")
 
 - **System/version information (your OS version, browser information, etc.)**
 
-    ![Example issue]({{ site.baseurl }}/assets/issue-version.png "Example issue")
+    ![Example issue]({{ site.baseurl }}/images/posts/issue-version.png "Example issue")
 
 - **Full text of any error messages**
 
-    ![Example issue]({{ site.baseurl }}/assets/issue-error.png "Example issue")
+    ![Example issue]({{ site.baseurl }}/images/posts/issue-error.png "Example issue")
 
 
 If there's a UI/UX component to the bug, it's helpful to include a screenshot, or better yet, an animated gif screen capture using a program like [licecap](https://github.com/lepht/licecap), a great project with a terrible name.

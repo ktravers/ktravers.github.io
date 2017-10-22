@@ -7,7 +7,7 @@ Discovered a super handy Postgres extension tonight: [`fuzzystrmatch`](https://w
 
 Here's a visual:
 
-![Login Modal]({{ site.baseurl }}/assets/wedding-modal.gif "Login Modal")
+![Login Modal]({{ site.baseurl }}/images/posts/wedding-modal.gif "Login Modal")
 
 Imagining that scenario, one might be concerned about poor conversion due to typos, misspellings, or any other of the myriad problems that plague "uncontrolled" user input. And extra sadly, poor conversion here translates to a sparsely attended wedding and future full of angry inlaws... no bueno.
 

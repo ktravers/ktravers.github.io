@@ -13,11 +13,11 @@ Before diving in, let’s clarify what we’re talking about when we talk about 
 
 [Learn.co](https://learn.co) is built on a Rails backend, and Rails strongly encourages writing code in an object-oriented paradigm. But how does that apply to stylesheets? As good Rubyists, we tried to follow object orientation with our CSS, but we were doing it wrong. To illustrate, let’s take a look at our old stylesheets directory tree.
 
-![Stylesheet Directory Tree]({{ site.baseurl }}/assets/css-tree.png "Stylesheet Directory Tree")
+![Stylesheet Directory Tree]({{ site.baseurl }}/images/posts/css-tree.png "Stylesheet Directory Tree")
 
 Very similar to the Rails boilerplate setup, we had one stylesheet per view, with styles namespaced under a top level ID. This approach is fine when you’re starting out, but over time, it can get out of hand. Just look at where ours was pre-rewrite:
 
-![Stylesheet Directory Bundle]({{ site.baseurl }}/assets/css-bundle.png "Stylesheet Directory Bundle")
+![Stylesheet Directory Bundle]({{ site.baseurl }}/images/posts/css-bundle.png "Stylesheet Directory Bundle")
 
 As you might be able to guess from this monster bundle, this approach is NOT object oriented.
 
@@ -31,7 +31,7 @@ We knew our CSS was broken. But what’s the solution?
 
 Enter OOCSS.
 
-![OOCSS]({{ site.baseurl }}/assets/briefcase.gif "OOCSS")
+![OOCSS]({{ site.baseurl }}/images/posts/briefcase.gif "OOCSS")
 
 After consulting with our good pals at [Cantilever.co](http://cantilever.co/), we committed to an OOCSS solution. But now we had another decision to make: use an existing OOCSS framework or roll our own?
 
@@ -43,7 +43,7 @@ There are lots of off-the-shelf frameworks out there, including [Twitter Bootstr
 
 **Speed of development.** With third party libraries, you have to wait for the maintainers to make updates and fix bugs, and their schedules don’t always align with yours. We ship fast, so being able to manage dependencies and handle updates internally was super appealing.
 
-![OOCSS Options]({{ site.baseurl }}/assets/oocss-solution-table.png "OOCSS Options")
+![OOCSS Options]({{ site.baseurl }}/images/posts/oocss-solution-table.png "OOCSS Options")
 
 We had a big task in front of us: writing our own Learn.co-customized OOCSS framework. We broke the process out into a four step roadmap:
 
@@ -57,19 +57,19 @@ We had a big task in front of us: writing our own Learn.co-customized OOCSS fram
 
 The first thing you’ll want to do is take a visual inventory of your entire site. The goal is to break down the design into recognizable patterns. We can use the [Learn.co](https://learn.co) landing page as an example.
 
-![Learn.co homepage]({{ site.baseurl }}/assets/learn-co-homepage.png "Learn.co homepage")
+![Learn.co homepage]({{ site.baseurl }}/images/posts/learn-co-homepage.png "Learn.co homepage")
 
 Start with the base layout - your header, footer, sidebar, etc.
 
-![Learn.co layout scope]({{ site.baseurl }}/assets/learn-layout-scope.png "Learn.co layout scope")
+![Learn.co layout scope]({{ site.baseurl }}/images/posts/learn-layout-scope.png "Learn.co layout scope")
 
 Then take one step inward and look for “containers”.
 
-![Learn.co container scope]({{ site.baseurl }}/assets/learn-container-scope.png "Learn.co container scope")
+![Learn.co container scope]({{ site.baseurl }}/images/posts/learn-container-scope.png "Learn.co container scope")
 
 Look inside those containers for recurring “objects”.
 
-![Learn.co object scope]({{ site.baseurl }}/assets/learn-object-scope.png "Learn.co object scope")
+![Learn.co object scope]({{ site.baseurl }}/images/posts/learn-object-scope.png "Learn.co object scope")
 
 
 ### STEP 2: COMPONENT LIBRARY
@@ -78,19 +78,19 @@ After you’ve identified repeating patterns, the next step is to translate them
 
 **Layout components** set the baseline styles for the page grid, headers, footers, overlays, etc. Since these classes require the most precision and are the least likely to change, they tend to contain more rigid, powerful rules than the rest of your components.
 
-![Layout Components]({{ site.baseurl }}/assets/layout-components.png "Layout Components")
+![Layout Components]({{ site.baseurl }}/images/posts/layout-components.png "Layout Components")
 
 **Container components** are the real workhorse of your OOCSS system. They’re built to contain other elements, like lists or images, and they’re in charge of handling spacing, background, borders, and alignment.
 
-![Container Components]({{ site.baseurl }}/assets/container-components.png "Container Components")
+![Container Components]({{ site.baseurl }}/images/posts/container-components.png "Container Components")
 
 **Object components** handle styles for the smallest, discrete elements at the very bottom of the DOM tree, like buttons, links and images. They’re always the containee, not the container, and they should have the same, predictable behavior no matter what container they’re placed inside.
 
-![Object Components]({{ site.baseurl }}/assets/object-components.png "Object Components")
+![Object Components]({{ site.baseurl }}/images/posts/object-components.png "Object Components")
 
 **Global components** are your cleanup classes, little helpers that allow you to make precision adjustments. Examples include display utilities that hide/show elements at certain breakpoints. These should be applied sparingly to prevent inconsistencies in implementation and/or UX.
 
-![Global Components]({{ site.baseurl }}/assets/global-components.png "Global Components")
+![Global Components]({{ site.baseurl }}/images/posts/global-components.png "Global Components")
 
 Now our stylesheets directory looks something like this:
 
@@ -146,11 +146,11 @@ When you use BEM naming conventions for CSS, think of your class names like obje
 
 We’ve designed our system. Now it’s time to rewrite all of our markup. We’ll look at one of the most commonly-used patterns as an example: `.media-block`.
 
-![Media Block]({{ site.baseurl }}/assets/media-block.png "Media Block")
+![Media Block]({{ site.baseurl }}/images/posts/media-block.png "Media Block")
 
 `.media-block` has three main parts: the parent `.media-block` class and two child classes: `.media-block__content` and `.media-block__media`.
 
-![Media Block with markup]({{ site.baseurl }}/assets/media-block-and-markup.png "Media Block with markup")
+![Media Block with markup]({{ site.baseurl }}/images/posts/media-block-and-markup.png "Media Block with markup")
 
 When writing the markup, start by outlining the basic container and objects. Rely on the semantic BEM syntax to provide information the the relationships between elements - parent <> child, nesting level, etc.
 
@@ -194,7 +194,7 @@ After you’ve built the frame, add text and media elements to fill out the card
 </div>
 ```
 
-![Record Scratch]({{ site.baseurl }}/assets/record-scratch.gif "Record Scratch")
+![Record Scratch]({{ site.baseurl }}/images/posts/record-scratch.gif "Record Scratch")
 
 ::record scratch::
 
@@ -237,11 +237,11 @@ We also enjoyed some **nice developer gains.** This plug-and-play system allows 
 
 Maybe most impressive our all were our **performance gains.** Below are unzipped, unminified size comparisons for our before-and-after assets payload. You’ll see we were able to _reduce our payload by 10X_.
 
-![Results - File Count]({{ site.baseurl }}/assets/results-file-count.png "Results - File Count")
+![Results - File Count]({{ site.baseurl }}/images/posts/results-file-count.png "Results - File Count")
 
 Here’s average page render times for our most heavily trafficked views. We cut most of these in half.
 
-![Results - Page Load]({{ site.baseurl }}/assets/results-page-load.png "Results - Page Load")
+![Results - Page Load]({{ site.baseurl }}/images/posts/results-page-load.png "Results - Page Load")
 
 We devoted a lot of resources to this project, but as you can see from these big wins, it was well worth it. The biggest lesson learned was not to wait. You can save yourself a lot of pain by applying OO design to your CSS from the start.
 

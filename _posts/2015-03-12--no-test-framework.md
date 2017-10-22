@@ -4,7 +4,7 @@ title: --no-test-framework
 ---
 ### Note to self:
 
-[ ![Bart Simpson chalkboard]({{ site.baseurl }}/assets/bart-simpson-generator.gif "Bart Simpson chalkboard generator") ](http://www.addletters.com/pictures/bart-simpson-generator/5302585.htm#.VQJJlxDF-5I "Chalkboard Generator")
+[ ![Bart Simpson chalkboard]({{ site.baseurl }}/images/posts/bart-simpson-generator.gif "Bart Simpson chalkboard generator") ](http://www.addletters.com/pictures/bart-simpson-generator/5302585.htm#.VQJJlxDF-5I "Chalkboard Generator")
 
 Why? Without the `--no-test-framework` flag, Rails `generate` will do the following:   
 
