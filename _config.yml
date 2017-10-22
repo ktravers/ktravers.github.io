@@ -9,15 +9,12 @@ avatar: https://avatars0.githubusercontent.com/u/8152930
 
 # Includes an icon in the footer for each username you enter
 footer-links:
-  dribbble: 
   email: kate@kate-travers.com
-  facebook: 
-  flickr: 
+  facebook:
   github: ktravers
   instagram: ktravers
   linkedin: katettravers
-  pinterest: 
-  rss: rss # just type anything here for a working RSS icon, make sure you set the "url" above!
+  rss:
   twitter: kttravers
   stackoverflow: users/3880374/ktravers
 
@@ -57,7 +54,7 @@ gems:
 
 # Exclude these files from your production _site
 exclude:
-    - Gemfile
-    - Gemfile.lock
-    - LICENSE
-    - README.md
+  - Gemfile
+  - Gemfile.lock
+  - LICENSE
+  - README.md
