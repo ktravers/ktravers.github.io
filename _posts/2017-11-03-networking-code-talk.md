@@ -10,19 +10,12 @@ Why? Because we’re moving to AWS and [Scot](https://github.com/awesomescot) wa
 
 ## Types of addresses:
 
-1. IP address
-  - Dynamic
-  - Change every time you reboot
-  - Somewhat related to geolocation (network location associated with physical location)
-  - Higher level than Mac address (IP layer, layer 3)
-  - 32bit, example: `10.10.2.2`
-
-2. Mac address
-  - Static
-  - Hardwired to computer's network card
-  - Lower level (ethernet, layer 2)
-  - 48bit, usually represented in hex, example: `F1:4F:AF:FF:FF:FF`
-
+| IP address | Mac address  |
+|:-----------|:-------------|
+| Dynamic   | Static |
+| Related to geolocation (network location associated with physical location) | Hardwired to computer's network card |
+| Higher level (IP layer, layer 3) | Lower level (ethernet, layer 2) |
+| 32bit, example: `10.10.2.2` | 48bit, usually represented in hex, example: `F1:4F:AF:FF:FF:FF` |
 
 `ifconfig` - shows IP address, netmask, _and more_
 
@@ -103,9 +96,7 @@ Our router is our default gateway. Check it out in System Preferences > Network 
 
 In our packet, Mac address is local router, and IP address is for example, Google's IP address.
 
-Route tables resolve urls to IP addresses.
-
-Check out routes using `netstat -nr`
+Check out routing tables using `netstat -nr`
 
 ```bash
 $ netstat -nr
@@ -124,5 +115,46 @@ default            10.9.96.1          UGSc           39        0     en0
 10.9.97.209        d4:61:9d:0:7c:c6   UHLWI           0        0     en0    763
 10.9.97.225        e0:ac:cb:8c:d6:60  UHLWI           0        0     en0    752
 10.9.97.227        0:24:36:b8:14:1a   UHLWI           0        0     en0    830
+```
+
+Why do we need IP address AND Mac address to send stuff?
+
+- IP addresses change
+- When you boot, you don't have an IP address
+- Need Mac address to hit the right device (packet will go from device to device, moving towards one IP address)
+
+## Traffic crossing the internet
+
+Methods we used to get our packet out of our local network are repeated for many other networks until we arrive at destination network and given to host.
+
+Packet is reassembled each router it passes through, updating src Mac address and destination Mac address.
+
+### Example packet route:
+
+START:  
+IP dest 8.8.8.8  
+IP src 104.x.x.x  
+Mac address src="your Mac address"  
+Mac address dest=gateway1
+
+FIRST STOP:  
+IP dest 8.8.8.8  
+IP src 104.x.x.x  
+Mac address src=gateway1  
+Mac address dest=gateway2
+
+Use `traceroute` to see routers packet passes through.
+
+```bash
+$ traceroute google.com
+traceroute to google.com (172.217.12.174), 64 hops max, 52 byte packets
+ 1  10.9.96.2 (10.9.96.2)  10.974 ms  1.879 ms  0.870 ms
+ 2  65.206.95.145 (65.206.95.145)  2.047 ms  11.580 ms  2.100 ms
+ 3  google-gw.customer.alter.net (204.148.18.34)  1.985 ms  2.070 ms  1.755 ms
+ 4  * * *
+ 5  108.170.226.201 (108.170.226.201)  2.976 ms
+    108.170.226.199 (108.170.226.199)  2.919 ms
+    108.170.226.201 (108.170.226.201)  7.841 ms
+ 6  lga25s62-in-f14.1e100.net (172.217.12.174)  4.204 ms  2.743 ms  2.624 ms
 ```
 
