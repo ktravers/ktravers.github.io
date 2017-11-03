@@ -10,9 +10,9 @@ Why? Because we’re moving to AWS and [Scot](https://github.com/awesomescot) wa
 
 ## Types of addresses:
 
-| IP address | Mac address  |
-|:-----------|:-------------|
-| Dynamic   | Static |
+| **IP address** | **Mac address**  |
+|:---------------|:-----------------|
+| Dynamic        | Static           |
 | Related to geolocation (network location associated with physical location) | Hardwired to computer's network card |
 | Higher level (IP layer, layer 3) | Lower level (ethernet, layer 2) |
 | 32bit, example: `10.10.2.2` | 48bit, usually represented in hex, example: `F1:4F:AF:FF:FF:FF` |
@@ -157,4 +157,18 @@ traceroute to google.com (172.217.12.174), 64 hops max, 52 byte packets
     108.170.226.201 (108.170.226.201)  7.841 ms
  6  lga25s62-in-f14.1e100.net (172.217.12.174)  4.204 ms  2.743 ms  2.624 ms
 ```
+
+## NAT
+
+Problem: we're running out of IP address.
+
+IPv4 is a 32bit address space, so limited to ~4 billion addresses. We're pretty close to hitting that limit.
+
+Solution: NAT (network address translations) gateways
+
+NAT gateways turn local address spaces to public address spaces (aka publically routeable spaces).
+
+In AWS, they use 1to1 NAT for almost everything with public IP address.
+
+
 
