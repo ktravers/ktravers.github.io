@@ -169,6 +169,3 @@ Solution: NAT (network address translations) gateways
 NAT gateways turn local address spaces to public address spaces (aka publically routeable spaces).
 
 In AWS, they use 1to1 NAT for almost everything with public IP address.
-
-
-

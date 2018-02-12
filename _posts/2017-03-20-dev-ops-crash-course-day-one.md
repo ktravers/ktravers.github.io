@@ -3,7 +3,7 @@ layout: post
 title: Dev Ops Crash Course - Day One
 ---
 
-Notes from [day two](http://blog.kate-travers.com/dev-ops-crash-course-day-two/), [day three](http://blog.kate-travers.com/dev-ops-crash-course-day-three/), and [day four](http://blog.kate-travers.com/dev-ops-crash-course-day-four/).
+Notes from [day two](http://blog.kate-travers.com/dev-ops-crash-course-day-two/), [day three](http://blog.kate-travers.com/dev-ops-crash-course-day-three/), [day four](http://blog.kate-travers.com/dev-ops-crash-course-day-four/), and [day five](http://blog.kate-travers.com/dev-ops-crash-course-day-five/).
 
 ## Internet 101
 
