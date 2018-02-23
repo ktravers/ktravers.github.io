@@ -40,6 +40,7 @@ Examples in other languages (places you might already be familiar with it)
 - Regex
 - Destructuring/decomposition with ES6
 - JS Switch statements (more sophisticated w/ Elixir pattern matching)
+- Card games (c/o Wojtek Mach ElixirConf.eu Lightning Talk)
 
 
 Misconceptions
@@ -114,4 +115,5 @@ Blog posts:
 
 Videos:  
 - [ElixirConf 2015 - Confident Elixir by Lance Halvorsen](https://www.youtube.com/watch?v=E-3G7g0Dm7c)
-- [Montreal Elixir - Pattern Matching in Elixir](https://www.youtube.com/watch?v=nEUHb7RJspQ&list=PLCFmW8UCDqfCA9kpbFirPEDoQYc9nCy_W&index=2&t=5s)
+- [Montreal Elixir - Pattern Matching in Elixir by Mark Crisp](https://www.youtube.com/watch?v=nEUHb7RJspQ&list=PLCFmW8UCDqfCA9kpbFirPEDoQYc9nCy_W&index=2&t=5s)
+- [ElixirConf.eu Lightning talks - Pattern Matching by Wojtek Mach](https://www.youtube.com/watch?v=pOR1z8sAjzQ&list=PLCFmW8UCDqfCA9kpbFirPEDoQYc9nCy_W&index=3)
