@@ -3,12 +3,31 @@ layout: post
 title: Pattern Matching in Elixir
 ---
 
+## Outline
+
+* Intro
+  * Story about first loves
+  * Pattern matching was how I fell in love with Elixir
+  * Cool thing you learn early, sells you on the language right away
+* What is Pattern Matching?
+  * Match operator
+  * Binding != Assignment
+  * Simple Examples
+* Why Pattern Matching?
+  * Declarative
+  * Self documenting (legible) ("Tells a good story" - Lance)
+  * Encapsulated (w/ multi-clause functions)
+* Practical Examples
+
+
+
+
+
+###### SCRATCH PAD
+
 ## Title ideas
 
 Pattern Matching in Elixir, Better Elixir through Pattern Matching, Writing Confident Elixir with Pattern Matching, Declarative Elixir through Pattern Matching, Match game, Match point, PatternMatch.com, Match Maker, Perfect Match, Pattern Matchbox20, Matchless, Holding Patterns
-
-
-## Outline
 
 Outline ideas:  
 - ['What is it?', 'Why use it?', 'How to Use it']
@@ -46,6 +65,13 @@ From Packt video series:
 > - Introduce function guard clauses and complete use case
 
 
+## Intro
+
+Why pattern matching? One of the things that hooked me on / sold me on Elixir right off the bat.
+
+Super cool. See the value right away. One of the best things about the language. Don't have to get deep to love it and see it's utility.
+
+
 ## Basics
 
 ### Structure
@@ -69,6 +95,16 @@ Can rebind by default
 pin operator => don't rebind
 
 underscore => match, but won't bind
+
+
+```ruby
+# looks the same, but doing something very different
+
+a = 12 # ruby assignment
+
+a = 20 # elixir binding
+```
+
 
 
 ### Literals
@@ -103,13 +139,11 @@ Think of the termination case, then happy path
 - Elixir vs Erlang (pin operator?)
 
 
-```
-# looks the same, but doing something very different
+## Examples
 
-a = 12 # ruby assignment
-
-a = 20 # elixir binding
-```
+- Texas Holdem
+- Markdown Parsing
+- HTTP Responses
 
 
 ## Resources
