@@ -3,6 +3,134 @@ layout: post
 title: Pattern Matching in Elixir
 ---
 
+Think back to the last time someone tried to sell you on some shiny, new tech. Maybe it was (yet another) a Javascript framework. Maybe it was non-relational databases. Or maybe it was this cool new functional programming language everyone's talking about: [Elixir](https://elixir-lang.org/).
+
+As programmers, we hear these pitches all the time, so it takes something truly compelling to win us over.
+
+For me with Elixir, that thing was pattern matching. It's a key feature of the language and a great entry point for exploring all the things that make Elixir such an awesome, powerful, and fun language to develop in.
+
+So let's break down what it is and why it's so great.
+
+### The Match Operator
+
+To understand pattern matching in Elixir, you have to reframe the way you think about programming right off the bat. Take the statement `x = 1`. You probably read that as "x equals 1", where we're assigning the value `1` to the variable `x`, right?
+
+Welp, not in Elixir.
+
+In that statement, the `=` operator is known as the "match operator", and it's not assigning anything. Instead, it's evaluating whether the value on the right _matches_ the pattern on the left. If it's a match, then the value is bound to the variable.[1] If not, then a `MatchError` is raised.
+
+| x     | =            | 1   |
+|:-----:|:------------:|:---:|
+|pattern|match operator|value|
+
+What does it mean to "match"? It means the value on the right matches the form and sequence of the pattern on the left.
+
+
+### Simple Examples
+
+Let's run through the basics of pattern matching with these simple examples below.
+
+
+```elixir
+x = 1
+```
+
+Here, the match evaluates to true, since an empty variable matches anything on the right-hand-side, so the empty variable on the left is bound to the value on the right.
+
+```elixir
+x = 1
+1 = x
+```
+
+Both of these statements are valid expressions, and they also both match, since the integer `1` matches the bound value of `x`.
+
+In the top expression, the match evaluates to true and the value is bound to the variable. In the bottom expression, the match evaluates to true, but nothing is bound, since variables can only be bound on the left side of the `=` match operator. For example, the statement `2 = y` would throw a `CompileError`, since `y` is not defined.
+
+```elixir
+x = 1
+x = 2
+```
+
+If you pattern match on a bound variable, like `x` above, it will be rebound if it matches.
+
+#### Pin Operator
+
+```elixir
+ x = 1
+^x = 2
+#=> ** (MatchError) no match of right hand side value: 2
+```
+
+If you don't want the variable to be rebound on match, use the `^` [pin operator](https://elixir-lang.org/getting-started/pattern-matching.html#the-pin-operator). The pin operator prevents the variable from being rebound by forcing a strict match against its existing value.
+
+
+#### Lists
+
+```elixir
+iex(1)> [a, b, c] = [1, 2, 3]
+iex(2)> a
+#=> 1
+iex(3)> b
+#=> 2
+iex(4) c
+#=> 3
+```
+
+We can pattern match on more complex data structures, like lists. Again, any left side variables will bound on a match.
+
+```elixir
+iex(1)> [head | tail] = [1,2,3,4]
+iex(2)> head
+#=> 1
+iex(3)> tail
+#=> [2,3,4]
+```
+
+One cool thing you can do with lists is pattern match on the head and tail. Use the `|` syntax to bind the leftmost variable to the first element in the list and the remaining elements to the rightmost variable (these don't have to be `head` and `tail`; you can choose any variable names you want).
+
+This syntax comes in handy when you have a list of elements you want to operate on one-by-one, since it allows you to recursively iterate over the list very cleanly and succinctly.
+
+```elixir
+iex(1)> list = [2,3,4]
+iex(2)> [1 | list]
+#=> [1,2,3,4]
+```
+
+You can use this syntax to prepend elements to lists, too, if you're feeling fancy.
+
+
+```elixir
+iex(4)> [first | rest] = []
+#=> ** (MatchError) no match of right hand side value: []
+```
+
+Watch out for empty lists, though. You'll raise a `MatchError` if you use this syntax on an empty list, since there's nothing to bind either variable to.
+
+```elixir
+iex(1)> [x,y] = [4,5,6,7]
+#=> ** (MatchError) no match of right hand side value: [4,5,6,7]
+```
+
+Keep in mind, the match will fail if you compare different size lists.
+
+```elixir
+iex(2)> [foo, bar] = {:foo, :bar}
+#=> ** (MatchError) no match of right hand side value: {:foo, :bar}
+```
+
+Matches also fail if you try to compare two different data structures, like a list and a tuple.
+
+
+#### Tuples
+
+
+
+
+
+
+[1] Binding vs assignment
+
+
 ## Outline
 
 * Intro
@@ -146,9 +274,9 @@ Think of the termination case, then happy path
 - HTTP Responses
 
 
-## Resources
+### Resources
 
-Readings:  
+#### Readings:
 - https://elixir-lang.org/getting-started/pattern-matching.html
 - https://elixirschool.com/en/lessons/basics/pattern-matching/
 https://elixirschool.com/en/lessons/basics/functions/#pattern-matching
@@ -156,7 +284,7 @@ https://elixirschool.com/en/lessons/basics/functions/#pattern-matching
 - https://joyofelixir.com/6-pattern-matching/
 - http://www.littlealchemist.io/2017-03-15-understading-elixir-pattern-matching/
 
-Videos:  
+#### Videos:
 - [Getting Started with Elixir : Pattern Matching versus Assignment by Joao Goncalves](https://www.youtube.com/watch?v=zwPqQngLn9w&index=6&list=PLCFmW8UCDqfCA9kpbFirPEDoQYc9nCy_W)
 - [Keynote: Think Different by Dave Thomas](https://www.youtube.com/watch?v=5hDVftaPQwY)
 - [ElixirConf 2015 - Confident Elixir by Lance Halvorsen](https://www.youtube.com/watch?v=E-3G7g0Dm7c)
@@ -166,5 +294,5 @@ Videos:
 - [Elixir bits - recursion, guards, and pattern matching by Isaac Ben Hutta](https://www.youtube.com/watch?v=jVl-Pp1iELQ&list=PLCFmW8UCDqfCA9kpbFirPEDoQYc9nCy_W&index=7)
 
 
-Tutorials:  
+#### Tutorials:
 - [Code School Try Elixir - Pattern Matching](http://campus.codeschool.com/courses/try-elixir/level/3/section/1/pattern-matching)
