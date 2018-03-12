@@ -82,7 +82,7 @@ iex(4)> c
 
 We can pattern match on more complex data structures, like lists. Again, any left side variables will bound on a match.
 
-#### `[head | tail]` Format
+#### List `[head | tail]` Format
 
 ```elixir
 iex(1)> [head | tail] = [1,2,3,4]
@@ -185,13 +185,13 @@ Let's take a look at some practical real world applications.
 
 ### Real World Examples
 
-We'll start with a problem that most web developers have probably had to solve: displaying users' names based on user-inputted data.
+We'll start with a familiar problem for most web developers: displaying users' names based on user-inputted data.
 
 This was something I worked on recently in the [Learn.co](https://learn.co) codebase. On our site, we like to encourage an active, friendly sense of community, so we display user's names (built from information volunteered by the user) in lots of places across the site, including the [Ask a Question chat feature](http://help.learn.co/ask-a-question/where-can-i-ask-a-question-about-a-lesson).
 
 ![Learn.co Ask a Question]({{ site.baseurl }}/images/posts/learn-co-aaq.png "Learn.co Ask a Question")
 
-Problem is, we don't require users to give us their full name, or even set a username, so when it comes to building a public-facing display name, there's no guarantee that any identifying information - first name, last name, or username - is available. Additionally, all of this information is inputted manually by the user, and while we sanitize it to some degree before persisting, weird stuff can still get through.
+Problem is, we don't require users to give us their full name or even set a username, so when it comes to building a public-facing display name, there's no guarantee that any identifying information - first name, last name, or username - is available. Additionally, all of this information is inputted manually by the user, and while we sanitize it to some degree before persisting, weird stuff can still get through.
 
 To address this problem, our product team developed the following requirements:  
   1. If the user has provided their first and last name, display both as their full name
@@ -220,9 +220,9 @@ export const displayName = (user) => {
 
 &#42; I realize these examples are somewhat contrived, but bear with me. They're for illustrative purposes, not code review.
 
-Even knowing Javascript isn't the easiest language on the eyes, it's still hard to grok exactly what this function is doing at first glance (or hold all the conditionals in your head as you parse through each logic branch). We've got nested conditionals, nil checking (via `length`), and even some string sanitation going on.
+All the nested conditionals make it hard to grok exactly what this function is doing at first glance. There's too many branches to easily hold all the logic in your head as you parse through each conditional. Additionally, we're doing some nil checking (via `length`), throwing in some string sanitation for good measure, all of which isn't helped by Javascript's punctuation-heavy syntax.
 
-Switching to Ruby - a language praised as far more developer-friendly than Javascript - doesn't improve the situation much.
+Switching to Ruby - a language praised for being more developer-friendly than Javascript - doesn't improve the situation much.
 
 ```ruby
 def display_name(user)
@@ -256,6 +256,10 @@ defmodule Account do
   def display_name(_), do: “New User”
 end
 ```
+
+Now each conditional lives in it's own function clause.
+
+
 
 
 
