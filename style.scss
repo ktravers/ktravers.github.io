@@ -115,6 +115,15 @@ img {
   max-width: none;
 }
 
+// GitHub markdown table styles
+table th, table td {
+  padding: 6px 13px;
+  border: 1px solid #ddd;
+}
+table th {
+  font-weight: bold;
+}
+
 .date {
   font-style: italic;
   color: $gray;
