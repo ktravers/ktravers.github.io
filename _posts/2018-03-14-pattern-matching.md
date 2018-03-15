@@ -80,7 +80,7 @@ iex(4)> c
 #=> 3
 ```
 
-We can pattern match on more complex data structures, like lists. Again, any left side variables will bound on a match.
+We can pattern match on more complex data structures, like [lists](https://hexdocs.pm/elixir/List.html). Again, any left side variables will bound on a match.
 
 #### List `[head | tail]` Format
 
@@ -139,7 +139,7 @@ iex(4)> c
 #=> 3
 ```
 
-Pattern matching with tuples operates much the same as with lists.
+Pattern matching with [tuples](https://hexdocs.pm/elixir/Tuple.html) operates much the same as with lists.
 
 ```elixir
 iex(1)> {:ok, message} = {:ok, "success"}
@@ -149,7 +149,7 @@ iex(3)> {:ok, message} = {:error, "womp womp"}
 #=> ** (MatchError) no match of right hand side value: {:error, "womp womp"}
 ```
 
-One common pattern you'll see in Elixir is functions returning tuples where the first element is an atom that signals status, like `:ok` or `:error`, and the second element is a string message.
+One common pattern you'll see in Elixir is functions returning tuples where the first element is an [atom](https://elixir-lang.org/getting-started/basic-types.html#atoms) that signals status, like `:ok` or `:error`, and the second element is a [string](https://elixir-lang.org/getting-started/basic-types.html#strings) message.
 
 #### `_` Underscore Variable
 
@@ -202,7 +202,7 @@ How could we represent these conditions in code?
 
 #### Javascript Example
 
-Writing that function in Javascript might look something like this:&#42;
+Writing that function in [Javascript](https://developer.mozilla.org/en-US/docs/Web/JavaScript) might look something like this:&#42;
 
 ```javascript
 export const displayName = (user) => {
@@ -226,7 +226,7 @@ There's a lot of things that make this function pretty hard to grok in one glanc
 
 #### Ruby Example
 
-If we switch to Ruby, a language praised for being "developer-friendly", the situation doesn't improve much.
+If we switch to [Ruby](https://www.ruby-lang.org/en/), a language praised for being "developer-friendly", the situation doesn't improve much.
 
 ```ruby
 def display_name(user)
@@ -244,7 +244,7 @@ def display_name(user)
 end
 ```
 
-We still have our nested conditionals, and this long, "pointy" method decidedly does not pass the ["squint test"](https://atom.io/packages/squint-test).
+We still have our nested conditionals, and this long, "pointy" method decidedly does not pass the [Sandi Metz "squint test"](https://atom.io/packages/squint-test).
 
 #### Elixir Example
 
@@ -273,7 +273,7 @@ Multi-clause functions allow us to break our conditional logic into the smallest
 
 But you might have noticed our Elixir example here has a bit of an unfair advantage. Most of the added complexity in the Ruby and Javascript examples came from handling `nil` cases, and we're not checking for those at all in the Elixir example - yet.
 
-You might be tempted to throw a `case` statement into the first `display_name/1` function clause. You'll want to resist, though, because `case` statements are not The Elixir Way™. Before reaching for `case`, try adding more clauses with higher specificity instead:
+You might be tempted to throw a `case` statement into the first `display_name/1` function clause (more on function `name/arity` syntax [here](https://elixirschool.com/en/lessons/basics/functions/#function-naming-and-arity)). You'll want to resist, though, because `case` statements are not The Elixir Way™. Before reaching for `case`, try adding more clauses with higher specificity instead:
 
 ```elixir
 defmodule Account do
