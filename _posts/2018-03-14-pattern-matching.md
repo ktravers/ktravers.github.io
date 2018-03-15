@@ -5,7 +5,7 @@ title: Pattern Matching in Elixir
 
 ![Pattern Matching Hearts Elixir]({{ site.baseurl }}/images/posts/pattern-matching-heart-elixir.png "Pattern Matching Hearts Elixir")
 
-Think back to the last time someone tried to sell you on some shiny, new tech. Maybe it was (yet another) a Javascript framework. Maybe it was non-relational databases. Or maybe it was this cool new functional programming language everyone's talking about: [Elixir](https://elixir-lang.org/).
+Think back to the last time someone tried to sell you on some shiny, new tech. Maybe it was (yet another) Javascript framework. Maybe it was non-relational databases. Or maybe it was this cool new functional programming language everyone's talking about, [Elixir](https://elixir-lang.org/).
 
 As programmers, we hear these pitches all the time, so it takes something truly compelling to win us over.
 
