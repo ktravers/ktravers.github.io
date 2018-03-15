@@ -3,6 +3,8 @@ layout: post
 title: Pattern Matching in Elixir
 ---
 
+![Pattern Matching Hearts Elixir]({{ site.baseurl }}/images/posts/pattern-matching-heart-elixir.png "Pattern Matching Hearts Elixir")
+
 Think back to the last time someone tried to sell you on some shiny, new tech. Maybe it was (yet another) a Javascript framework. Maybe it was non-relational databases. Or maybe it was this cool new functional programming language everyone's talking about: [Elixir](https://elixir-lang.org/).
 
 As programmers, we hear these pitches all the time, so it takes something truly compelling to win us over.
@@ -197,6 +199,8 @@ To address this problem, our product team developed the following requirements:
   1. If the user has provided their first and last name, display both together as their full name
   2. If we don't have first or last name, check if the user has provided their username, and if yes, display the username in place of full name
   3. If we don't have any of the above, display a reasonable generic default (here, we'll just use "New User")
+
+![Display Name Logic]({{ site.baseurl }}/images/posts/display-name-logic.png "Display Name Logic")
 
 How could we represent these conditions in code?
 
