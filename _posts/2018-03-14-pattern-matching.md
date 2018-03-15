@@ -305,7 +305,7 @@ Clearly, we need to change something about this UI. But in the meantime, we can 
 
 So far, our `display_name/1` function clauses look like this:
 
-```
+```elixir
 defmodule Account do
   # Nil checks
   def display_name(%{first: nil, last: nil, username: nil}), do: display_name(%{})
