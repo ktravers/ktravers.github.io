@@ -3,18 +3,18 @@ layout: post
 title: Ops Roadmap for Learn.co
 ---
 
-### Outline:
+### Outline
 
 1. Review current setup
 2. Share upcoming challenges/priorities
 3. Share roadmap + new concepts/tools
 
-#### Priorities:
+#### Priorities
 
 1. Ensure new collaborative ventures are successful
 2. Support our team as we grow (make ops more automated + manageable)
 
-#### Requirements:
+#### Requirements
 
 - Move to AWS for hosting
 - Need high amounts of infrastructure + environment automation and orchestration ([Terraform](https://www.terraform.io/))
@@ -51,8 +51,8 @@ title: Ops Roadmap for Learn.co
 
 Guiding principle: Principle of Least Privilege (limit surface area / attack vectors)
 
-- [x] GitHub 2FA
-- [x] Remove root AWS keys
+- [X] GitHub 2FA
+- [X] Remove root AWS keys
 - [ ] Secrets encryption through [AWS KMS](https://aws.amazon.com/kms/) (in progress)
 - [ ] VPN for local development
 - [ ] Migrate to [AWS Virtual Private Cloud](https://aws.amazon.com/vpc/)
@@ -68,7 +68,7 @@ Guiding principle: Principle of Least Privilege (limit surface area / attack vec
 All about automation
 
 - [ ] Managed services instead of self-hosting
-- [x] Migrate DNS from Dyn to [AWS Route 53](https://aws.amazon.com/route53/)
+- [X] Migrate DNS from Dyn to [AWS Route 53](https://aws.amazon.com/route53/)
 - [ ] [Terraform](https://www.terraform.io/) for "Infrastructure as Code" orchestration automation
 - [ ] [Packer](https://www.packer.io/docs/builders/amazon-ebs.html) for automated AMI builds (images for Amazon instances)
 
@@ -77,6 +77,7 @@ All about automation
   - Alerting
   - Monitoring
   - Logs
+  - Containerization / Kubernetes (way down the road)
 
 #### More about [Terraform](https://www.terraform.io/)
 
@@ -85,6 +86,11 @@ Infrastructure as code: automates your environment to match your config file (de
 - Source controlled code
 - Reduces documentation (self-documenting system)
 - Support for multiple cloud providers
+
+### Next steps
+
+- Port Redis (tested)
+- Port workers and SQS/Rabbit (spike in progress)
 
 ### More in the Learn.co ops series
 
