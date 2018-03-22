@@ -69,8 +69,8 @@ All about automation
 
 - [ ] Managed services instead of self-hosting
 - [x] Migrate DNS from Dyn to [AWS Route 53](https://aws.amazon.com/route53/)
-- [ ] Terraform for "Infrastructure as Code" orchestration automation
-- [ ] Packer for automated AMI builds (images for Amazon instances)
+- [ ] [Terraform](https://www.terraform.io/) for "Infrastructure as Code" orchestration automation
+- [ ] [Packer](https://www.packer.io/docs/builders/amazon-ebs.html) for automated AMI builds (images for Amazon instances)
 
 - Additional things we're thinking about:
   - Deployments
