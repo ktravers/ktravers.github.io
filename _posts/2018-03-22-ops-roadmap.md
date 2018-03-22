@@ -85,3 +85,11 @@ Infrastructure as code: automates your environment to match your config file (de
 - Source controlled code
 - Reduces documentation (self-documenting system)
 - Support for multiple cloud providers
+
+### More in the Learn.co ops series
+
+- [Ops Crash Course: Day One](http://blog.kate-travers.com/dev-ops-crash-course-day-one/)
+- [Ops Crash Course: Day Two](http://blog.kate-travers.com/dev-ops-crash-course-day-two/)
+- [Ops Crash Course: Day Three](http://blog.kate-travers.com/dev-ops-crash-course-day-three/)
+- [Ops Crash Course: Day Four](http://blog.kate-travers.com/dev-ops-crash-course-day-four/)
+- [Ops Crash Course: Day Five](http://blog.kate-travers.com/dev-ops-crash-course-day-five/)
