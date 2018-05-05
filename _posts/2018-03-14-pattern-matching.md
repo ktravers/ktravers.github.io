@@ -9,7 +9,7 @@ Think back to the last time someone tried to sell you on some shiny, new tech. M
 
 As programmers, we hear these pitches all the time, so it takes something truly compelling to win us over.
 
-For me with Elixir, that thing was [pattern matching](https://elixir-lang.org/getting-started/pattern-matching.html). It's a core paradigm of the language and a great entry point for exploring all the things that make Elixir such an awesome, powerful, and fun language to develop in.
+For me with Elixir, that thing was [pattern matching](https://elixir-lang.org/getting-started/pattern-matching.html). It's a core paradigm of the language and an excellent entry point for exploring all the things that make Elixir such an awesome, powerful, and fun language to develop in.
 
 So let's break down what it is and why it's so great.
 
@@ -189,7 +189,7 @@ Let's take a look at some practical real world applications.
 
 We'll start with a problem that's probably familiar to most web developers: displaying public-facing user “display names” based on user-inputted data.
 
-This was something I worked on recently in the [Learn.co](https://learn.co) codebase. On our site, we like to encourage an active, friendly sense of community, so we display user's names (built from information volunteered by the user) in lots of places across the site, including the [Ask a Question chat feature](http://help.learn.co/ask-a-question/where-can-i-ask-a-question-about-a-lesson).
+This was something I worked on recently in the [Learn.co](https://learn.co) codebase. On our site, we like to encourage an active, friendly sense of community, so we display users' names (built from information volunteered by the user) in lots of places across the site, including the [Ask a Question chat feature](http://help.learn.co/ask-a-question/where-can-i-ask-a-question-about-a-lesson).
 
 ![Learn.co Ask a Question]({{ site.baseurl }}/images/posts/learn-co-aaq.png "Learn.co Ask a Question")
 
