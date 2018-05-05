@@ -68,5 +68,6 @@ Our custom JWT strategy (`JWTAuth`):
   - integrated into our Rack Middleware
   - flip on using env variables
   - lives in front of Warden (may get moved further down the chain)
+  - Error config in its own yaml config file `jwt_auth.yml`
 
-If you wanna play around with it, we have an example `.jwt_auth_inject.yaml` file you can use to test settings.
+If you wanna play around with it, we have an example `.jwt_auth_inject.yml` file you can use to test settings.
