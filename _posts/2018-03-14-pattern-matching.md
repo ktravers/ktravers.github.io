@@ -5,7 +5,7 @@ title: Pattern Matching in Elixir
 
 ![Pattern Matching Hearts Elixir]({{ site.baseurl }}/images/posts/pattern-matching-heart-elixir.png "Pattern Matching Hearts Elixir")
 
-At the [Flatiron School](https://flatironschool.com), our mission to to help people learn how to code. That means that as a member of the engineering team, my work reminds me almost every day of that important, universal truth: learning new stuff is hard.
+At the [Flatiron School](https://flatironschool.com), our mission is to help people learn how to code. That means that as a member of the engineering team, my work reminds me almost every day of that important, universal truth: learning new stuff is hard.
 
 Take learning to play a musical instrument, for example, like guitar. When you start, you have these lofty aspirations. You wanna be the next David Bowie. But when you’re first starting out, that dream is so, so far away. It takes a ton of hard work to get there, and it’s easy to get discouraged. Without some early wins, you might give up.
 
@@ -289,7 +289,7 @@ Your next thought might be to try adding more higher-specificity clauses to the 
 
 ```elixir
 defmodule Account do
-  # Nil checks
+  # Unwieldy nil checks
   def display_name(%{first: nil, last: nil, username: nil}), do: display_name(%{})
   def display_name(%{first: nil, last: nil, username: username}) do
     display_name(%{username: username})
@@ -325,7 +325,7 @@ end
 
 Elixir function declarations support [guard clauses](https://hexdocs.pm/elixir/master/guards.html), which are a handy tool for augmenting pattern matching with more complex checks. Guard clauses are a nice way to match against more complex patterns without adding too much clutter to your functions. Only a [handful of expressions](https://hexdocs.pm/elixir/master/guards.html#list-of-allowed-expressions) are supported, and they're meant to be short and sweet.
 
-In the code block above, we've added `not is_nil()` guards to our first two clauses. Thanks to guard clauses, just adding a couple extra characters was all we needed to protect against nils.
+In the code block above, we've added `not is_nil()` guards to our first two clauses. Thanks to guard clauses, just adding a couple extra characters was all we needed to protect against nil values.
 
 
 #### Custom Guard Clauses
@@ -354,9 +354,9 @@ defmodule Account do
 end
 ```
 
-You might be asking yourself, is now when we finally give up on this pattern matching thing and just add some logic inside the body of the first function clause? Surprise (not surprised) - the answer is no. We haven't exhausted Elixir's pattern matching toolbox yet.
+You might be asking yourself, is now when we finally give up on this pattern matching thing and just add some logic inside the body of the first function clause? Surprise (not surprised) - the answer is NO. We haven't exhausted Elixir's pattern matching toolbox yet.
 
-In addition to the predefined guard clause expressions, Elixir also supports writing [custom guard clauses](https://hexdocs.pm/elixir/master/guards.html#defining-custom-guard-expressions). Now "custom" doesn't mean you can throw any function in there; custom guard clauses still have to built from the limited list of allowed expressions. But they're still super handy for keeping things DRY and simple.
+In addition to predefined guard clause expressions, Elixir also supports [custom guard clauses](https://hexdocs.pm/elixir/master/guards.html#defining-custom-guard-expressions). Now "custom" doesn't mean you can throw any function in there; custom guard clauses still have to built from the limited list of allowed expressions. But they're still super handy for keeping things DRY and simple.
 
 You can create custom guards with macros, but the docs recommend defining them with `defguard` or `defguardp` because those perform "additional compile-time checks" (which sounds good to me).
 
@@ -405,12 +405,13 @@ Thanks to the power of pattern matching and multi-clause functions, we now have 
 
 ```elixir
 defmodule Account do
-  def display_name(%{first: nil, last: nil, username: nil})
-  def display_name(%{first: nil, last: nil, username: username})
-  def display_name(%{first: first, username: nil}) when first =~ "@"
-  def display_name(%{first: first, username: username}) when first =~ "@"
-  def display_name(%{first: first, last: last})
-  def display_name(%{username: username})
+  import Account.Guards, only: [is_private: 2]
+
+  # function heads only
+
+  def display_name(%{first: first, last: last, email: email}) when is_private(first, email)
+  def display_name(%{first: first, last: last}) when not is_nil(first)
+  def display_name(%{username: username}) when not is_nil(username)
   def display_name(_)
 end
 ```
@@ -432,6 +433,10 @@ Now that's impressive.
 ![That Does Impress Me Much]({{ site.baseurl }}/images/posts/impress.gif "That Does Impress Me Much")
 
 Any questions? Leave them in the comments below. Thanks for reading!
+
+Want to work on a team that builds [cool stuff](http://blog.flatironschool.com/built-learn-ide-browser/) in Elixir? [My team is hiring!](http://flatironschool.com/careers)
+
+And for examples of more cool stuff our team has built recently, check out our newly launched [Data Science Bootcamp Prep course](https://flatironschool.com/programs/free-data-science-bootcamp-prep/?utm_campaign=Sponsored_Content&utm_source=Dev.to&utm_medium=DSBCP), featuring an Elixir-backed [Jupyter notebook](https://jupyter.org/) integration.
 
 ### Resources
 
