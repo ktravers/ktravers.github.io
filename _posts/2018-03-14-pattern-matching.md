@@ -5,11 +5,17 @@ title: Pattern Matching in Elixir
 
 ![Pattern Matching Hearts Elixir]({{ site.baseurl }}/images/posts/pattern-matching-heart-elixir.png "Pattern Matching Hearts Elixir")
 
-Think back to the last time someone tried to sell you on some shiny, new tech. Maybe it was (yet another) Javascript framework. Maybe it was non-relational databases. Or maybe it was this cool new functional programming language everyone's talking about, [Elixir](https://elixir-lang.org/).
+At the [Flatiron School](https://flatironschool.com), our mission to to help people learn how to code. That means that as a member of the engineering team, my work reminds me almost every day of that important, universal truth: learning new stuff is hard.
 
-As programmers, we hear these pitches all the time, so it takes something truly compelling to win us over.
+Take learning to play a musical instrument, for example, like guitar. When you start, you have these lofty aspirations. You wanna be the next David Bowie. But when you’re first starting out, that dream is so, so far away. It takes a ton of hard work to get there, and it’s easy to get discouraged. Without some early wins, you might give up.
 
-For me with Elixir, that thing was [pattern matching](https://elixir-lang.org/getting-started/pattern-matching.html). It's a core paradigm of the language and an excellent entry point for exploring all the things that make Elixir such an awesome, powerful, and fun language to develop in.
+You need to learn that one cool riff that gets you hooked, where you don’t wanna put the guitar down, because now you’re in it.
+
+It’s kinda the same thing with [Elixir](https://elixir-lang.org/).
+
+Lots of folks are excited about the language because of all the great things you get from using it - concurrency, fault tolerance, scalability - the hype list goes on and on.  But none of these are things you can enjoy right away. You pretty much have to build and ship an entire app to production before you really start seeing any of this good stuff.
+
+You need a quick win to keep you going, you need that cool riff. And for me, that cool riff was pattern matching.
 
 So let's break down what it is and why it's so great.
 
@@ -151,23 +157,23 @@ iex(3)> {:ok, message} = {:error, "womp womp"}
 #=> ** (MatchError) no match of right hand side value: {:error, "womp womp"}
 ```
 
-One common pattern you'll see in Elixir is functions returning tuples where the first element is an [atom](https://elixir-lang.org/getting-started/basic-types.html#atoms) that signals status, like `:ok` or `:error`, and the second element is a [string](https://elixir-lang.org/getting-started/basic-types.html#strings) message.
+One common pattern you'll see in Elixir is functions returning tuples where the first element is an [atom](https://elixir-lang.org/getting-started/basic-types.html#atoms) that signals status, like `:ok` or `:error`, and the second element is a [string](https://elixir-lang.org/getting-started/basic-types.html#strings) message. It's leveraged in many core libraries, including [File.read/1](https://hexdocs.pm/elixir/File.html#read/1), [Base.encode64/2](https://hexdocs.pm/elixir/Base.html#encode64/2) (and other encode + decode functions), [Enumerable.count/1](https://hexdocs.pm/elixir/Enumerable.html#count/1), etc.
+
 
 #### `_` Underscore Variable
 
 ```elixir
-iex(1)> {_, message} = {:ok, "success"}
+iex(1)> { _, message } = {:ok, "success"}
 iex(2)> message
 #=> "success"
-iex(3)> {_, message} = {:error, "bummer"}
+iex(3)> { _status, message } = {:error, "boom"}
 iex(4)> message
-#=> "bummer"
-iex(5)> [ head | _ ] = [1,2,3,4]
-iex(6)> head
-#=> 1
+#=> "boom"
 ```
 
 For times when you want to pattern match but don't care about capturing any values, you can use the `_` underscore variable. This special reserved variable matches everything; it's a perfect catch-all.
+
+You can use it alone or as a named variable, like `_ignore`, which is a little more meaningful to folks reading your code.
 
 ```elixir
 iex(1)> {_, message} = {:ok, "success"}
@@ -277,7 +283,9 @@ Multi-clause functions allow us to break our conditional logic into the smallest
 
 But you might have noticed our Elixir example here has a bit of an unfair advantage. Most of the added complexity in the Ruby and Javascript examples came from handling `nil` cases, and we're not checking for those at all in the Elixir example - yet.
 
-You might be tempted to throw a `case` statement into the first `display_name/1` function clause (more on function `name/arity` syntax [here](https://elixirschool.com/en/lessons/basics/functions/#function-naming-and-arity)). You'll want to resist, though, because `case` statements are not The Elixir Way™. Before reaching for `case`, try adding more clauses with higher specificity instead:
+You might be tempted to throw a `case` statement into the first `display_name/1` function clause (more on function `name/arity` syntax [here](https://elixirschool.com/en/lessons/basics/functions/#function-naming-and-arity)). You'll want to resist, though, because `case` statements are not The Elixir Way™.
+
+Your next thought might be to try adding more higher-specificity clauses to the top of the file:
 
 ```elixir
 defmodule Account do
@@ -295,55 +303,101 @@ defmodule Account do
 end
 ```
 
-Remember, clause order matters. We'll want to add our nil check clauses to the top of the module, so they'll match first. We can leverage some recursive goodness here, too, by calling `display_name/1` from inside `display_name/1`, passing it arguments we know it'll match on as expected.
+However, as you can see, this can get unwieldy fast. Today, we're checking for nils in three fields, but what if requirements change? Given the possible permutations of all the possible fields on User we need to check against, you could end up with a super long, bloated module.
+
+What to do instead? Elixir has our back here, too: [guard clauses](https://hexdocs.pm/elixir/master/guards.html) to the rescue.
 
 #### Guard Clauses
 
+```elixir
+defmodule Account do
+  def display_name(%{first: first, last: last}) when not is_nil(first) do
+    String.trim("#{first} #{last}")
+  end
+
+  def display_name(%{username: username}) when not is_nil(username) do
+    "#{username}"
+  end
+
+  def display_name(_), do: "New User"
+end
+```
+
+Elixir function declarations support [guard clauses](https://hexdocs.pm/elixir/master/guards.html), which are a handy tool for augmenting pattern matching with more complex checks. Guard clauses are a nice way to match against more complex patterns without adding too much clutter to your functions. Only a [handful of expressions](https://hexdocs.pm/elixir/master/guards.html#list-of-allowed-expressions) are supported, and they're meant to be short and sweet.
+
+In the code block above, we've added `not is_nil()` guards to our first two clauses. Thanks to guard clauses, just adding a couple extra characters was all we needed to protect against nils.
+
+
+#### Custom Guard Clauses
+
 Let's throw one more curveball into the mix. There's another case we need to guard against with display names, and that's where a user has given us their full name, but it contains [personal identifying information (PII)](https://en.wikipedia.org/wiki/Personally_identifiable_information).
 
-This situation actually happens not infrequently on Learn.co. For some reason on our public, free [Bootcamp Prep course sign up page](https://learn.co/sign_up), users often enter their email in the full name field.
+This situation actually used to happen not infrequently on Learn.co. For some reason on our public, free [Bootcamp Prep course sign up page](https://learn.co/sign_up), users would often enter their email in the full name field.
 
 ![Learn.co Bootcamp Prep course sign up form]({{ site.baseurl }}/images/posts/learn-co-sign-up-annotated.png "Learn.co Bootcamp Prep course sign up form")
 
-Clearly, we need to change something about this UI. But in the meantime, we can protect against displaying PII via some more complex pattern matching techniques.
+Clearly, we needed to change something about this UI (and add more validations on user input, but that's a separate blog post). However, since the bad data exists, we need to protect against it, and we can do so via some more complex pattern matching techniques.
 
 So far, our `display_name/1` function clauses look like this:
 
 ```elixir
 defmodule Account do
-  # Nil checks
-  def display_name(%{first: nil, last: nil, username: nil}), do: display_name(%{})
-  def display_name(%{first: nil, last: nil, username: username}) do
-    display_name(%{username: username})
-  end
-  def display_name(%{first: nil, last: nil}), do: display_name(%{})
-
-  # Happy paths
-  def display_name(%{first: first, last: last}), do: do_trim("#{first} #{last}")
-  def display_name(%{username: username}), do: "#{username}"
-  def display_name(_), do: “New User”
-end
-```
-
-Let's expand our arsenal a bit by adding two more function clauses that guard against PII in a user's first name:
-
-```elixir
-defmodule Account do
-  #...(Nil checks)
-
-  def display_name(%{first: first, username: nil}) when first =~ "@" do
-    "<<Redacted>>"
+  def display_name(%{first: first, last: last}) when not is_nil(first) do
+    String.trim("#{first} #{last}")
   end
 
-  def display_name(%{first: first, username: username}) when first =~ "@" do
+  def display_name(%{username: username}) when not is_nil(username) do
     "#{username}"
   end
 
-  #... (Happy paths)
+  def display_name(_), do: "New User"
 end
 ```
 
-Elixir function declarations support [guard clauses](https://hexdocs.pm/elixir/master/guards.html), which is what the `when first =~ "@"` is in the examples above. Guard clauses are a nice way to match against more complex patterns without adding too much clutter to your functions. Only a handful of expressions are supported, and they're meant to be short and sweet.
+You might be asking yourself, is now when we finally give up on this pattern matching thing and just add some logic inside the body of the first function clause? Surprise (not surprised) - the answer is no. We haven't exhausted Elixir's pattern matching toolbox yet.
+
+In addition to the predefined guard clause expressions, Elixir also supports writing [custom guard clauses](https://hexdocs.pm/elixir/master/guards.html#defining-custom-guard-expressions). Now "custom" doesn't mean you can throw any function in there; custom guard clauses still have to built from the limited list of allowed expressions. But they're still super handy for keeping things DRY and simple.
+
+You can create custom guards with macros, but the docs recommend defining them with `defguard` or `defguardp` because those perform "additional compile-time checks" (which sounds good to me).
+
+```elixir
+# Not recommend: macros
+defmodule Account.Guards do
+  defmacro is_private(first_name, email) do
+    quote do
+      not(is_nil(unquote(first_name))) and
+      not(unquote(email) == unquote(first_name))
+    end
+  end
+end
+
+# Recommended: defguard
+defmodule Account.Guards do
+  defguard is_private(first_name, email) when not(is_nil(first_name)) and not(email == first_name)
+end
+```
+
+Now we can add one more function clause to the top of our module to satisfy our PII requirement.
+
+```elixir
+defmodule Account do
+  import Account.Guards, only: [is_private: 2]
+
+  def display_name(%{first: first, last: last, email: email}) when is_private(first, email) do
+    “<<Redacted>>”
+  end
+
+  def display_name(%{first: first, last: last}) when not is_nil(first) do
+    String.trim("#{first} #{last}")
+  end
+
+  def display_name(%{username: username}) when not is_nil(username) do
+    "#{username}"
+  end
+
+  def display_name(_), do: "New User"
+end
+```
 
 #### Wrap Up
 
@@ -369,7 +423,9 @@ Take pattern matching on multi-clause functions. By supporting this, Elixir nudg
 
 Likewise, by declaring the pattern you want to match against, you're sending a clear signal about what inputs you expect to receive. Your code becomes more self-documenting by default.
 
-All-in-all, Elixir encourages you to write code that’s 1) declarative 2) self-documenting and 3) well scoped. It’s helping you become a stronger programmer.
+Plus, since pattern matching is ubiqutious in the language, once you master this concept, you're set up to master it all. It's the perfect jumping off point for exploring all the other amazing things in Elixir built around this core concept, like [GenServers](https://elixir-lang.org/getting-started/mix-otp/genserver.html), [plug](https://elixirschool.com/en/lessons/specifics/plug/)... the list goes on and on.
+
+All-in-all, Elixir encourages you to write code that’s 1) declarative 2) self-documenting and 3) well scoped. It’s helping you become a stronger programmer, and it's setting you up to become a true rockstar Elixir developer.
 
 Now that's impressive.
 
