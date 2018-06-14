@@ -55,6 +55,22 @@ Model domain in our software
   - Not just a tool for engineers
   - Use company-wide ubiquitous language (talk to product, stakeholders)
 
+### Gotchas
+
+- Domains are NOT project namespaces
+- Domains should map to business departments (in general)
+- Watch out for early abstraction
+- Different names for the same things
+- vs. Same name for different things
+- Rails autoloading
+
+## Takeaways
+
+- DDD-lite is one tool in our codebase
+- Meant to make our code easier to reason about
+- AIBAM? ("Am I building a microservice?")
+- If yes, WWIDIIWBAM? ("What would I do if I were building a microservice?")
+
 
 ## Resources
 
