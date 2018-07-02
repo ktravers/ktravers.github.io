@@ -9,7 +9,7 @@ Below, I'll be sharing my (completely unbiased 😉) perspective on how to work 
 
 ### Developers: They're Just Like Us... or are they?
 
-So why is this talk necessary? Are developers really so different from your average co-worker?
+So why is this discussion necessary? Are developers really so different from your average co-worker?
 
 **Yes.** Yes, we absolutely are.
 
@@ -251,7 +251,7 @@ _a) Not a lot of people are signing up for the new service. Do you know how we c
 
 _b) Not a lot of people are signing up for the new service. Do you know how we can fix it? Yes? That’s great. How long would something like that take to build? (then potentially) That’s too long, is there a simpler or interim solution we could use?_
 
-**How could the other party respond to invite a better answer?** _I can try my best, but I’ve never had to do that before and I don’t have any idea how long it will take or whether it will be effective._
+**How should the developer respond?** _That sounds urgent and important. Let’s get this on my manager’s radar (then walk them over to your manager if necessary)_
 
 
 #### Conversation 3: Engineer to CEO
