@@ -119,7 +119,7 @@ These terms loosely refer to what part of the codebase the engineer spends most 
 - Frontend handles UI/UX (User Interface, User Experience).
 - Fullstack can do a little bit of everything.
 
-Keep in mind the divisions between these categories are fluid / fuzzy. Few engineers are purely one or the other. Most work across multiple parts of the stack, mostly be necessity.
+Keep in mind the divisions between these categories are fluid / fuzzy. Few engineers are purely one or the other. Most work across multiple parts of the stack, mostly by necessity.
 
 Read more on the differences [here](http://blog.udacity.com/2014/12/front-end-vs-back-end-vs-full-stack-web-developers.html).
 
@@ -209,7 +209,7 @@ Cliff Gilley describes this problem very well:
 
 ### Exercises
 
-Let's practice what we've learned so far. All examples are credit [Spencer Rogers](https://github.com/spencer1248), one of our top engineers at [Flatiron School](https://flatironschool.com/careers/).
+Let's practice what we've learned so far. All examples are credit [Spencer Rogers](https://github.com/spencer1248), one of our senior engineers at [Flatiron School](https://flatironschool.com/careers/).
 
 #### Conversation 1: Project Manager to Engineer
 
