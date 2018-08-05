@@ -4,9 +4,9 @@ title: About
 permalink: /about/
 ---
 
-Kate Travers is a Brooklyn-based fullstack web developer, specializing in Rails, React, and Elixir applications. A graduate of the [Flatiron School](https://flatironschool.com), Kate currently spends her days building [Learn.co](https://learn.co), the online learning platform that powers FIS. Before changing careers to ship code, she spent 5+ years shipping fine art for the world's finest museums, galleries, and private collectors.
+Kate Travers is a Brooklyn-based web developer, specializing in Rails, React, and Phoenix applications. A graduate of the [Flatiron School](https://flatironschool.com), Kate currently spends her days building [Learn.co](https://learn.co), the online learning platform that powers FIS. Before changing careers to ship code, she spent 5+ years shipping fine art for the world's finest museums, galleries, and private collectors.
 
-Outside work, Kate is an active volunteer, tutor and mentor through Flatiron School, as well as backup quarterback for the three-time-defending champions of the Brooklyn co-ed touch football league.
+Outside work, Kate is an active volunteer, tutor and mentor through Flatiron School, as well as backup quarterback for the four-time-defending champions of the Brooklyn co-ed touch football league.
 
 ### Contact Info:
 
