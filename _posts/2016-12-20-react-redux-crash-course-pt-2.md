@@ -9,7 +9,7 @@ title: React and Redux Crash Course with Steven Nunez PART DEUX
 
 ### Goals:
 
-1. Build on what we learned [last week](http://blog.kate-travers.com/react-redux-crash-course/)
+1. Build on what we learned [last week]({% post_url 2016-12-13-react-redux-crash-course %}/)
 2. Set up some tests
 
 ### Exercise: Hacking on Our Chat App

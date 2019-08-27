@@ -3,8 +3,7 @@ layout: post
 title: Dev Ops Crash Course - Day Four
 ---
 
-Notes from [day one](http://blog.kate-travers.com/dev-ops-crash-course-day-one/), [day two](http://blog.kate-travers.com/dev-ops-crash-course-day-two/), [day three](http://blog.kate-travers.com/dev-ops-crash-course-day-three/), and [day five](http://blog.kate-travers.com/dev-ops-crash-course-day-five/).
-
+Notes from [day one]({% post_url 2017-03-20-dev-ops-crash-course-day-one %}), [day two]({% post_url 2017-03-21-dev-ops-crash-course-day-two %}), [day three]({% post_url 2017-03-22-dev-ops-crash-course-day-three %}), and [day five]({% post_url 2017-03-24-dev-ops-crash-course-day-five %}).
 
 ## Learn IDE
 
@@ -59,7 +58,7 @@ Gluster mounts onto `/archive/user_files` directory.
 
 In the user's home directory in the container, we're mounting directory from host machine (similar to network drive mounted on your local computer). Things get written to hard disk while using it, but only in mounted directory. See [union file system](https://en.wikipedia.org/wiki/Aufs) and [UnionFS](https://en.wikipedia.org/wiki/OverlayFS).
 
-We use [Rocket](https://github.com/coreos/rkt) instead of [Docker](https://www.docker.com/). Why?  
+We use [Rocket](https://github.com/coreos/rkt) instead of [Docker](https://www.docker.com/). Why?
   - Docker slow closing down
   - Docker uses daemon to run all container creation commands through, and it doesn't handle heavy load well
   - When under heavy load, it'll tell you container started, but it's actually NOT
@@ -86,7 +85,7 @@ Bash scripts used by Rocket. Hijacks setup scripts. Tells it to install in conta
 
 Take out `acbuild --debug run -- /bin/bash -l -c "easy_install tzupdate nose nose-json"`? For python, which we don't use.
 
-`create_user` script:  
+`create_user` script:
   - when container gets spun up, pass in a variable so we can create user account for the actual connected user.
   - `chown`s permissions
 
@@ -147,7 +146,7 @@ Upgrade ships to server w/ relup file that contains set of instructions for runn
 
 Ideally, we want to do upgrade (hot swap) whenever possible.
 
-Today:  
+Today:
   1. Build release and deploy to QA
   2. Run upgrade on QA
   3. Run upgrade on prod
@@ -156,7 +155,7 @@ Deploy config in `.deliver` directory.
 
 For upgrade to work, version names need to be sequential.
 
-From master:  
+From master:
   1. Check version: `mix edeliver version qa`
   2. Build release: `mix edeliver build release`
   3. Deploy release to QA: `mix edeliver deploy release to qa` then enter version (or run `mix edeliver deploy release to qa --version=x`)

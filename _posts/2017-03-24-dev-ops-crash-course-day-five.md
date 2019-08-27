@@ -3,7 +3,7 @@ layout: post
 title: Dev Ops Crash Course - Day Five
 ---
 
-Notes from [day one](http://blog.kate-travers.com/dev-ops-crash-course-day-one/), [day two](http://blog.kate-travers.com/dev-ops-crash-course-day-two/), [day three](http://blog.kate-travers.com/dev-ops-crash-course-day-three/) and [day four](http://blog.kate-travers.com/dev-ops-crash-course-day-three/).
+Notes from [day one]({% post_url 2017-03-20-dev-ops-crash-course-day-one %}), [day two]({% post_url 2017-03-21-dev-ops-crash-course-day-two %}), [day three]({% post_url 2017-03-22-dev-ops-crash-course-day-three %}), and [day four]({% post_url 2017-03-23-dev-ops-crash-course-day-four %}).
 
 ## Chef Chat
 
@@ -52,7 +52,7 @@ When using community cookbooks, probably want to wrap rather than fork. After a 
 
 Plus it's hard to use a community cookbook if you don't understand server setup to begin with, so worth it to gain knowledge by writing your own.
 
-Another good exercise: set up servers by hand (like we did on [day one](http://blog.kate-travers.com/dev-ops-crash-course-day-one/)).
+Another good exercise: set up servers by hand (like we did on [day one]({% post_url 2017-03-20-dev-ops-crash-course-day-one %}).
 
 ### Testing cookbooks
 
