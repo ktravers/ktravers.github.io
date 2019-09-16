@@ -3,7 +3,7 @@ layout: post
 title: Adventures in DNS Configuration
 ---
 
-###Or How I Stopped Worrying, and Learned to Love [GitHub Support](https://github.com/contact)
+### Or How I Stopped Worrying, and Learned to Love [GitHub Support](https://github.com/contact)
 
 One of the main tenants of the [The Flatiron School](http://flatironschool.com) is "Always be a beginner,"* which has been pretty easy for me to embrace so far, since I am the noobiest of coding noobs right now. Pretty much every day, I'm reminded of my beginner-dom, even in realms I thought I'd more or less mastered.
 
@@ -38,7 +38,7 @@ In one email, Steven! had saved the day. A quick visit to my actual DNS provider
 One email, one lesson from day one at Flatiron - all these first steps, these _beginnings_, are proving to be the most powerful. I'm hoping that's a lesson that'll stay with me 'til the end.
 
 
-##So what have we learned from this episode?
+## So what have we learned from this episode?
 
 + **DNS Registrar != DNS Provider**. If you bought your domain from one company (like domain.com) and your hosting from another company (like studentwebhosting.com), then your DNS Provider is the company providing _hosting._
 

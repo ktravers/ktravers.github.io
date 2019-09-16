@@ -37,13 +37,13 @@ upstream  git@github.com:flatiron-school-ironboard/ruby-007-lectures-and-videos.
 upstream  git@github.com:flatiron-school-ironboard/ruby-007-lectures-and-videos.git (push)
 ```
 
-Ok, we've got our upstream repo configured. Now to get the notes. 
+Ok, we've got our upstream repo configured. Now to get the notes.
 
 1) First be sure to add and commit any local changes using `git add .` then `git commit -m "message"`. If you push your commit, BE SURE TO PUSH TO ORIGIN using `git push origin [branch]`. **DO NOT PUSH TO UPSTREAM.** If you push to upstream, it's all over, pal.
 
 ![Corgi Death Star gif]({{ site.baseurl }}/images/posts/corgi.gif "Corgi Death Star gif")
 
-2) Pull down new lecture material using `git pull upstream [branch]`. You'll see something like the dialogue below, noting updates and merges. Note: you might need to manually merge any changes that couldn't be auto-merged. 
+2) Pull down new lecture material using `git pull upstream [branch]`. You'll see something like the dialogue below, noting updates and merges. Note: you might need to manually merge any changes that couldn't be auto-merged.
 
 ```bash
 $ git pull upstream master

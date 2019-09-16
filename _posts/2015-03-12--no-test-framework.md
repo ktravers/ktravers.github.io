@@ -8,7 +8,7 @@ title: --no-test-framework
 
 Why? Without the `--no-test-framework` flag, Rails `generate` will do the following:   
 
-a) overwrite any existing tests that you, your colleagues, or your instructors have already written for that particular object    
+a) overwrite any existing tests that you, your colleagues, or your instructors have already written for that particular object
 
 b) generate unnecessary / unwanted tests (see [Thoughtbot's helpful post on diminishing test coverage returns](https://robots.thoughtbot.com/unit-and-functional-tests-are-as-useful-as-100-code)).   
 

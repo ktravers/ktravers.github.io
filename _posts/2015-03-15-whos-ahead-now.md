@@ -3,7 +3,7 @@ layout: post
 title: Who's Ahead Now?
 ---
 
-After week one of learning Rails, I was eager to test out my new skills on a new side project. I wanted to build something fairly simple, that would utilize skills I felt comfortable with - JSON parsing, ERB, simple search and routing - while also pushing me into uncharted territory, like deploying on [Heroku](https://www.heroku.com). I spent the afternoon brainstorming, circling around some sort of app that would answer a single simple question (like [Is It Raining?](http://isitraining.in/New-York), one of my fave [single serving sites](http://kottke.org/08/02/single-serving-sites)). I had a couple good ideas, but my partner came up with the best one: is Hillary winning? 
+After week one of learning Rails, I was eager to test out my new skills on a new side project. I wanted to build something fairly simple, that would utilize skills I felt comfortable with - JSON parsing, ERB, simple search and routing - while also pushing me into uncharted territory, like deploying on [Heroku](https://www.heroku.com). I spent the afternoon brainstorming, circling around some sort of app that would answer a single simple question (like [Is It Raining?](http://isitraining.in/New-York), one of my fave [single serving sites](http://kottke.org/08/02/single-serving-sites)). I had a couple good ideas, but my partner came up with the best one: is Hillary winning?
 
 Now obviously a website that just says "aw yass" every time it renders doesn't have much utility. So I decided to expand the concept a bit and build a site that yields the current frontrunners for each party in the current presidential race. A quick [rubygems](https://rubygems.org) search pointed me to [HuffPost's Pollster API](http://elections.huffingtonpost.com/pollster/api), which is really nicely maintained. Armed with data and a plan, I started building.
 
@@ -33,7 +33,7 @@ The bulk of the logic is in the `Search` model. I applied a lot of the same meth
 class Search
 
   BASE_URL = "http://elections.huffingtonpost.com/pollster/api"
-  
+
   def get_url(party)
     "#{BASE_URL}/charts/2016-national-#{party}-primary"
     #=> http://elections.huffingtonpost.com/pollster/2016-national-democratic-primary.json
@@ -55,7 +55,7 @@ The `SearchController` is equally simple. It creates four variables to pass the 
 ```ruby
 class SearchController < ApplicationController
 
-  def index 
+  def index
     #=> params = {"utf8"=>"✓", "commit"=>"democratic"}
     if params[:commit]
       @party = params[:commit]
@@ -73,7 +73,7 @@ class SearchController < ApplicationController
 end
 ```
 
-The views all hinge on a single user action: clicking the Democrat or Republican image on the `welcome#index` page. I learned a new trick here; these images are actually FORMS. Oh yeah, you can do that in Rails. You just use `f.submit "value", :type => :image`, then specify the `image_path`. 
+The views all hinge on a single user action: clicking the Democrat or Republican image on the `welcome#index` page. I learned a new trick here; these images are actually FORMS. Oh yeah, you can do that in Rails. You just use `f.submit "value", :type => :image`, then specify the `image_path`.
 
 ```html
 <!-- welcome#index -->
@@ -87,7 +87,7 @@ The views all hinge on a single user action: clicking the Democrat or Republican
 
 Unlike a standard link, clicking the form/image now sends that `"commit" => "value"` as a param to the target page, where I can use it to do all kinds of fun conditional displays. The `search#show` view is set up so that most details of the page, everything from the actual content to the background color, is all determined by that `commit param`.
 
-```
+```html
 <!-- search#show -->
 
 <%= <body id="gop"> if @party == "gop" %>
@@ -109,7 +109,7 @@ Unlike a standard link, clicking the form/image now sends that `"commit" => "val
         <% end %>
       </table>
     </div>
-  
+
     <%= link_to "Detailed polling results", @url %>
 ```
 

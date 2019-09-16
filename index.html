@@ -10,9 +10,9 @@ layout: default
         Published {{ post.date | date: "%A, %B %d, %Y" }}
       </div>
       <div class="entry">
-        {{ post.content | truncatewords:200}}
+        {{ post.content | truncatewords:100}}
       </div>
-      <a href="{{ site.baseurl }}{{ post.url }}" class="read-more">Read More</a>
+      <a href="{{ site.baseurl }}{{ post.url }}" class="read-more">Read More &rarr;</a>
     </article>
     <hr>
   {% endfor %}

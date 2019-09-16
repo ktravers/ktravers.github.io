@@ -60,7 +60,7 @@ json.each do |park|
 end
 ```
 
-###<a id="update-schema"></a>Step 1: Update schema
+### <a id="update-schema"></a>Step 1: Update schema
 
 We noticed above that there's a relationship between Park `#activity` and Game `#game_category`, so first thing is to extract this connection into its own model and associated join table.
 
@@ -68,7 +68,7 @@ Run two commands from the terminal:
  1. `rails g migration CreateActivities name:string`  
  2. `rails g migration CreateActivityParks park_id:integer activity_id:integer`  
 
-###<a id="update-seeds"></a>Step 2: Update seeds file
+### <a id="update-seeds"></a>Step 2: Update seeds file
 
 Activities and ActivityParks are derived from the Park #facility attribute, so we can efficiently create and persist instances of all three models on the fly in our seeds file. Given the limited number of unique activities/facilities, I used a simple switch statement on JSON `park['type']` data.
 
@@ -108,7 +108,7 @@ json.each do |park|
 end
 ```
 
-###<a id="update-associations"></a>Step 3: Add ActiveRecord associations
+### <a id="update-associations"></a>Step 3: Add ActiveRecord associations
 
 The updated model associations are fairly straight-forward.
 
@@ -145,7 +145,7 @@ Our migrations, associations, and seeds file are all properly updated, so now's 
 
 [ ![Parkster schema after]({{ site.baseurl }}/images/posts/schema-after.png "Parkster schema after") ](https://github.com/voormedia/rails-erd "Generated with rails-erd gem")
 
-###<a id="update-form"></a>Step 4: Update form partial
+### <a id="update-form"></a>Step 4: Update form partial
 
 At this point, it was easiest for me to remove SimpleForm and use the built-in ActiveView form_for helper instead. The first select menu should use the [`collection_select`](http://api.rubyonrails.org/classes/ActionView/Helpers/FormOptionsHelper.html#method-i-collection_select) FormOptionsHelper:
 
@@ -187,8 +187,7 @@ This menu should list each Park by name, grouped by associated Activity, and sen
 </div>
 ```
 
-
-###<a id="add-jquery"></a>Final Step: Add jQuery
+### <a id="add-jquery"></a>Final Step: Add jQuery
 
 On document load, we want to add a listener to the first select menu, which `form_for` has given the helpful id of `#game_game_category`. If that menu's value changes (e.g. if a user makes a selection), it'll trigger a function that grabs the selected option's value and passes it to the second select menu, `#game_park_id`, as a filter, so the menu's `optgroup` automatically filters to show just the Parks associated with the user's selection.
 
@@ -219,10 +218,10 @@ I made a conscious decision to leave the "Other" Activity category available to 
 That's the full refactor. Your select menus are now working in tandem, filtering on change like a truly dynamic duo. Hope it was helpful - let me know in the comments below!
 
 
-#### More helpful resources:  
+#### More helpful resources:
+
 1. [Railscasts ep. 88: Dynamic Select Menus (Revised)](http://railscasts.com/episodes/88-dynamic-select-menus-revised)  
 2. [Rails documentation: `grouped_collection_select`](http://api.rubyonrails.org/classes/ActionView/Helpers/FormOptionsHelper.html#method-i-grouped_collection_select)  
 3. [Pull Monkey blog - Dynamic Select Boxes in Rails 3](http://pullmonkey.com/2012/08/11/dynamic-select-boxes-ruby-on-rails-3/)  
 4. [Kernel Garden blog - Dynamic Select Boxes in Rails 4](https://kernelgarden.wordpress.com/2014/02/26/dynamic-select-boxes-in-rails-4/)  
 5. [False Positives blog - Building Cascading Drop Down Selection List for Rails with JQuery/Ajax](http://www.falsepositives.com/index.php/2010/05/28/building-a-casscading-drop-down-selection-list-for-ruby-on-rails-with-jquery-ajax/)  
-
