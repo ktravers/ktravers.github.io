@@ -3,9 +3,9 @@ layout: post
 title: "TIL How to Select Merge with Ecto.Query"
 ---
 
-Working with Elixir and Ecto, I've run into scenarios where I needed to retrieve data from a table plus maybe a field or two from an unassociated table. In the past, whenever this happened, I'd usually spin up something I wasn't totally satisfied with -- maybe updating the schema(s), breaking it up into multiple queries, or building a multi-select statement if I was feeling fancy.
+Here's the scenario: you're working with Elixir and Ecto, and you need to retrieve data from a table plus maybe a field or two from an unassociated table. In the past, whenever I ran into this, I'd spin up something I wasn't totally satisfied with - maybe updating the schema(s), breaking it up into multiple queries, or building a multi-select statement if I was feeling fancy.
 
-Happily, today I learned there's a better way. You can accomplish that same end result in a single query expression with `Ecto.Query#select_merge/3`.
+Happily, today I learned there's a better way. You can accomplish the same end result in a single query expression with `Ecto.Query#select_merge/3`.
 
 Let's run through an example to see it in action.
 
@@ -13,10 +13,7 @@ Let's run through an example to see it in action.
 
 Say you work at a school with an admissions department, and you've been tasked with displaying an event log showing all the events related to a given admission, organized into three columns: 1) date, 2) action taken, and 3) who the action was taken by.
 
-| Date     | Action           | Taken By         |
-|----------|------------------|------------------|
-| 8/1/2019 | Student Admitted | Albus Dumbledore |
-
+![Event log table](https://miro.medium.com/max/2668/1*71xPk-6eU5-GAXn9ImMjqw.png)
 
 To start with, we have an `AdmissionEvent` schema that looks like this:
 
@@ -27,37 +24,38 @@ defmodule Registrar.Tracking.AdmissionEvent do
   schema "admission_events" do
     field(:action, :string)
     field(:admission_id, :integer)
-    field(:admitter_uuid, :uuid)
+    field(:admitter_uuid, Ecto.UUID)
     field(:occurred_at, :naive_datetime)
   end
 end
 ```
 
-...and a User schema that looks like this:
+…and a `User` schema that looks like this:
 
 ```elixir
 defmodule Registrar.User do
   use Ecto.Schema
 
   schema "users" do
-    field(:uuid, :uuid)
+    field(:uuid, Ecto.UUID)
     field(:full_name, :string)
   end
 end
 ```
 
-The problem here is the admitter's full name lives on `User`, which isn't currently associated with `AdmissionEvent`. So if we did a straight-forward select query, we'd end up with the admission events we need to populate the table, but not the admitters' full names.
+The problem here is the admitter's full name lives on the `users` table, which currently isn't associated with the `admissions_events` table. So if we did a straight-forward select query, we'd end up with the admission events we need to populate the table, but not the admitters' full names.
 
 ```elixir
 defmodule Registrar.Tracking.AdmissionEvent do
   use Ecto.Schema
   import Ecto.Query, only: [from: 2]
+
   alias Registrar.Tracking.AdmissionEvent
 
   schema "admission_events" do
     field(:action, :string)
     field(:admission_id, :integer)
-    field(:admitter_uuid, :uuid)
+    field(:admitter_uuid, Ecto.UUID)
     field(:occurred_at, :naive_datetime)
   end
 
@@ -70,9 +68,9 @@ defmodule Registrar.Tracking.AdmissionEvent do
 end
 ```
 
-```
-# Taking our query function for a spin...
+Taking our query function for a spin in console:
 
+```
 iex(1)> admission = Repo.get(Admission, 1)
 iex(2)> AdmissionEvent.for_admission(admission) |> Repo.all()
 [
@@ -87,25 +85,27 @@ iex(2)> AdmissionEvent.for_admission(admission) |> Repo.all()
 ]
 ```
 
-So, how do we want to go about getting the full name? We've got lots of options to choose from, but for this post, we'll compare two: one folks might reach for first (adding an association and preloading the data) and one we'll hopefully reach for more often moving forward (`Ecto.Query#select_merge/3`).
+![Event log missing name](https://miro.medium.com/max/2400/0*K1SakwybU7UPsrEn)
 
-## Option 1: Add an Association and Preload the Data
+So, how do we want to go about getting the full name? We've got lots of options to choose from, but for this post, we'll compare two: one folks might reach for first (adding an association and preloading data) and one we'll hopefully reach for more often moving forward (select merge).
 
-If we associate User and AdmissionEvent, then we can preload the associated User record and read the full name directly from there.
+## Option 1: Add an Association and Preload the Data
+
+If we associate the `users` and `admissions_events` tables, then we can preload the associated `User` struct and read the full name from it.
 
 ```elixir
 defmodule Registrar.Tracking.AdmissionEvent do
   use Ecto.Schema
   import Ecto.Query, only: [from: 2]
+
   alias Registrar.Tracking.AdmissionEvent
   alias Registrar.User
 
   schema "admission_events" do
     field(:action, :string)
     field(:admission_id, :integer)
-    field(:admitter_uuid, :uuid)
+    field(:admitter_uuid, Ecto.UUID)
     field(:occurred_at, :naive_datetime)
-
     # New association
     belongs_to(:admitter, User, foreign_key: :uuid)
   end
@@ -113,21 +113,21 @@ end
 
 defmodule Registrar.User do
   use Ecto.Schema
+
   alias Registrar.Tracking.AdmissionEvent
 
   schema "users" do
-    field(:uuid, :uuid)
+    field(:uuid, Ecto.UUID)
     field(:full_name, :string)
-
     # New association
     has_many(:admission_events, AdmissionEvent)
   end
 end
 ```
 
-```
-# Trying out our new association...
+Trying out our new association in the console:
 
+```
 iex(1)> admission = Repo.get(Admission, 1)
 iex(2)> events = AdmissionEvent.for_admission(admission) |> Repo.all() |> Repo.preload(:admitter)
 [
@@ -151,9 +151,9 @@ iex(4)> event.admitter.name
 "Albus Dumbledore"
 ```
 
-This approach gets the job done, but it's a little heavy. We only need the admitter's full name, so why retrieve an entire `User` struct? You can also see how this pattern could lead to a super cluttered User schema. Right now it has many `admission_events`, but soon it could have many `application_events`, `interview_events`, `billing_events`, etc.
+This approach gets the job done, but it's a little heavy. We only need the admitter's full name, so why retrieve an entire User struct? You can also see how this pattern could lead to a super cluttered `User` schema. Right now it has many admission_events, but soon it could have many `application_events`, `interview_events`, `billing_events`, etc.
 
-## Option 2: ✨ Select Merge ✨
+## Option 2: ✨ Select Merge ✨
 
 `Ecto.Query#select_merge/3` gives us an option that's much more succinct and precise. Check out this slickness:
 
@@ -161,13 +161,14 @@ This approach gets the job done, but it's a little heavy. We only need the admit
 defmodule Registrar.Tracking.AdmissionEvent do
   use Ecto.Schema
   import Ecto.Query, only: [from: 2]
+
   alias Registrar.User
   alias Registrar.Tracking.AdmissionEvent
 
   schema "admission_events" do
     field(:action, :string)
     field(:admission_id, :integer)
-    field(:admitter_uuid, :uuid)
+    field(:admitter_uuid, Ecto.UUID)
     field(:occurred_at, :naive_datetime)
 
     ###### STEP ONE #######
@@ -185,7 +186,7 @@ defmodule Registrar.Tracking.AdmissionEvent do
       #  Join on User  #
       ##################
       join: u in User,
-      on: r.admitter_uuid == u.uuid,
+      on: ae.admitter_uuid == u.uuid,
 
       ############ STEP THREE #############
       #  Select Merge into Virtual Field  #
@@ -196,9 +197,9 @@ defmodule Registrar.Tracking.AdmissionEvent do
 end
 ```
 
-```
-# Trying out select merge...
+Trying out select merge in the console:
 
+```
 iex(1)> admission = Repo.get(Admission, 1)
 iex(2)> AdmissionEvent.for_admission(admission) |> Repo.all()
 [
@@ -218,13 +219,15 @@ iex(4)> event.admitter_name
 
 By adding a virtual field and populating it with `select_merge`, we end up with a much lighter-weight solution. We get exactly the data we need without adding any new associations, keeping our schemas decoupled. Plus we have a pattern to follow that's a little more extensible moving forward, should we need to introduce event logs for different types of events.
 
+![Event log table with full name](https://miro.medium.com/max/3200/0*zImY0s5zkUkGdkgT)
+
 ## Summary
 
 `Ecto.Query#select_merge/3` allows us to populate a virtual field directly within a select query, giving us all kinds of flexibility when it comes to designing schemas and composing queries.
 
-10/10 Would compose again
+10/10 Would compose again.
 
 ## Resources
 
-- [Docs](https://hexdocs.pm/ecto/Ecto.Query.html#select_merge/3)
-- [Source code](https://github.com/elixir-ecto/ecto/blob/master/lib/ecto/query.ex#L1168-L1209)
+* [Ecto.Query#select_merge/3 docs](https://hexdocs.pm/ecto/Ecto.Query.html#select_merge/3)
+* [Ecto.Query#select_merge/3 source code](https://github.com/elixir-ecto/ecto/blob/master/lib/ecto/query.ex#L1168-L1209)
