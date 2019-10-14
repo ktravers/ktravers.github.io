@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Code Talk - Refactoring Retriable Actions
+tags: ['code reading', 'rabbitmq']
 ---
 
 A Story About Asynchronous Actions, Dynamic Workers and Queues, and RabbitMQ.

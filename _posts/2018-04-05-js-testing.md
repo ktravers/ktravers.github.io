@@ -1,6 +1,7 @@
 ---
 layout: post
 title: JS Testing with Jest and React
+tags: ['code reading', 'javascript', 'testing']
 ---
 
 A code reading by [@gj](https://github.com/gj)

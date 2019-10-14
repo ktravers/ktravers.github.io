@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Rendering from a Model with ActionView::Base.new => WAT?
+tags: ['rails', 'ruby', 'project']
 ---
 
 I'm a firm believer in the "make it work" philosophy - solve problems first, then refactor. That said, my team may have gotten a little too creative making our [last project](http://www.approvablefeast.com/) work. Just take a look at this gnarly method we cooked up:
@@ -20,7 +21,7 @@ class Recipe < ActiveRecord::Base
 end
 ```
 
-Yep. We instantiated a new instance of ActionView::Base in a model. And used it to render a view outside a controller. [WAT?!](https://www.destroyallsoftware.com/talks/wat)
+Yep. We instantiated a new instance of `ActionView::Base` in a model. And used it to render a view outside a controller. [WAT?!](https://www.destroyallsoftware.com/talks/wat)
 
 Before I go any further, let's take care of the necessaries:  
 - Yes, we know what we did was wrong.  
@@ -54,7 +55,7 @@ Turns out with a little hackery, you can render a view from a model. Let's follo
 
 ☠ Start in the menu partial, where [`collection_check_boxes`](http://api.rubyonrails.org/classes/ActionView/Helpers/FormOptionsHelper.html#method-i-collection_check_boxes) `:recipe_card` argument calls the Recipe model's method `#recipe_card`.
 
-```html
+```erb
 <!-- menu partial -->
 <%= form_for @dinner.menu, method: "PATCH", remote: true do |f|%>
   <div id="appetizers">
@@ -85,7 +86,7 @@ end
 
 ☠ Nothing strange happening in the recipe partial. We have access to an instance of Recipe, thanks to the locals we passed in, so the partial serves up the recipe's image, `short_name`, and link, blissfully unaware of the oddness that's allowing it to do so.
 
-```html
+```erb
 <!-- recipe partial -->
 <div class="recipe-card-partial">
   <div class="recipe-card-partial-image">
@@ -131,6 +132,7 @@ We're not the only rogues who've tried to pull this caper. I've linked to a few 
 Thanks for reading, and feel free to add feedback / corrections in the comments below!
 
 #### More resources:
+
 1. [Alvin Liang](https://github.com/aliang) => [Render from model in Rails 3](https://gist.github.com/aliang/1022384)  
 2. [render_anywhere gem](https://github.com/yappbox/render_anywhere) from [Luke Melia](https://github.com/lukemelia) of [YappLabs](https://www.yapp.us/)  
 3. [The Devel! blog](http://blog.choonkeat.com/) => [Rails: Calling render() outside your Controllers](http://blog.choonkeat.com/weblog/2006/08/rails-calling-r.html)

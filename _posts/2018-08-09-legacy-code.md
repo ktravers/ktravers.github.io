@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Living with Legacy Javascript - Event Proxies, App Seams, and Chunking Rewrites
+tags: ['code reading', 'javascript']
 ---
 
 Sneak peek of [@talum](https://github.com/talum)'s upcoming talk at [EmpireJS 2018](https://2018.empirejs.org/schedule.html).

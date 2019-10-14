@@ -1,15 +1,16 @@
 ---
 layout: post
-title: Using Github for Lecture Notes
+title: Using GitHub for Lecture Notes
+tags: ['github', 'flatiron school', 'git']
 ---
 
-Flatiron School has a great system for sharing lecture notes: a dedicated Github repo. I forked the repo during week one, thinking I'd pull down the files to my local, take notes on the notes (Inception-style _meta-noting_), then push back up to my forked repo. No sweat.
+Flatiron School has a great system for sharing lecture notes: a dedicated GitHub repo. I forked the repo during week one, thinking I'd pull down the files to my local, take notes on the notes (Inception-style _meta-noting_), then push back up to my forked repo. No sweat.
 
 But then comes the scary part for us git-n00bs - getting updates. I felt real comfortable pushing to / pulling from my own repositories. But to get the next days' lecture material, I was gonna have to add my instructor's repo as a remote. Yikes. Now that's a scary connection to make. Any mistakes, and I'm screwing up the lecture docs for Avi, who might have to redo them, and my classmates, who need this material asap for labs + projects. I needed to handle this delicate operation with extreme care.
 
 ![Indiana Jones Raiders of the Lost Ark animated gif]({{ site.baseurl }}/images/posts/raiders.gif "Indiana Jones Raiders of the Lost Ark animated gif")
 
-As I now do in all these types of situations, I went straight to Github support. Here's the solution, specific to our Flatiron repo.
+As I now do in all these types of situations, I went straight to GitHub help docs. Here's the solution, specific to our Flatiron repo.
 
 1) Open Terminal and `cd` to whatever folder you want to use for lecture notes storage.
 

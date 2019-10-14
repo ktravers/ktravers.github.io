@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Ops Roadmap for Learn.co
+tags: ['code reading', 'devops']
 ---
 
 Notes from Flatiron School engineering team's code reading on future ops work.

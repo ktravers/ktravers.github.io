@@ -1,6 +1,7 @@
 ---
 layout: post
 title: How My Bash Color Settings Broke edeliver
+tags: ['bash', 'elixir', 'deployment']
 ---
 
 Yep, you read that right. My bash color settings broke [edeliver](https://github.com/edeliver/edeliver), the tool my team uses to deploy our Elixir apps.

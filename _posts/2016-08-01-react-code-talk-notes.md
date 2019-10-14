@@ -1,6 +1,7 @@
 ---
 layout: post
 title: React Code Talk Notes
+tags: ['code reading', 'javascript', 'react']
 ---
 
 Notes from Flatiron School eng team's intro to React code talk.

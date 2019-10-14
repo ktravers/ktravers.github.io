@@ -1,6 +1,7 @@
 ---
 layout: post
 title: How to Work with Developers
+tags: ['talk']
 ---
 
 Software developers, have you ever felt misunderstood by your non-developer teammates? It happens to most of us, which is why I wrote this post to help clear up some of the most common misunderstandings, miscommunications, and missed opportunities. Feel free to pass it along to anyone who’d love to have an easier time working with developers.
@@ -76,7 +77,7 @@ During a sprint, engineering work is broken down into stories (which you may als
 
 Tasks are typically assigned to an individual developer.
 
-At Flatiron School, we like to manage our project queues using Github Projects (read more [here](https://help.github.com/articles/about-project-boards/) and [here](https://github.com/blog/2272-introducing-projects-for-organizations)).
+At Flatiron School, we like to manage our project queues using GitHub Projects (read more [here](https://help.github.com/articles/about-project-boards/) and [here](https://github.com/blog/2272-introducing-projects-for-organizations)).
 
 #### The Stack
 
@@ -144,7 +145,7 @@ Read more on the [HandsConnect blog](https://www.handsonconnect.org/blog/2016/8/
 
 ![shipit Squirrel]({{ site.baseurl }}/images/posts/shipit.jpeg "shipit Squirrel")
 
-This little cutie started as an inside joke at [Github](https://github.com), but its adorableness quickly permeated the industry. When your code has been approved to ship, your teammates tag it with the :shipit: squirrel, the universal mascot of pushing code.
+This little cutie started as an inside joke at [GitHub](https://github.com), but its adorableness quickly permeated the industry. When your code has been approved to ship, your teammates tag it with the :shipit: squirrel, the universal mascot of pushing code.
 
 So if you notice your engineering team sharing a bunch of squirrel pictures, don’t worry - they haven’t lost their minds. They’re just excited to push some new code to your users.
 

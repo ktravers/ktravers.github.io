@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Code Talk Notes - Librato and Ironbroker
+tags: ['code reading', 'monitoring', 'observability']
 ---
 
 ### Librato Update

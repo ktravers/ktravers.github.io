@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "TIL How to Select Merge with Ecto.Query"
+tags: ['elixir']
 ---
 
 Here's the scenario: you're working with Elixir and Ecto, and you need to retrieve data from a table plus maybe a field or two from an unassociated table. In the past, whenever I ran into this, I'd spin up something I wasn't totally satisfied with - maybe updating the schema(s), breaking it up into multiple queries, or building a multi-select statement if I was feeling fancy.

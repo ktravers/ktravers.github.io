@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Refash Your Bash - Bash Prompt Customization
+tags: ['bash']
 ---
 
 When I was just starting out learning to code, it quickly became clear I'd be spending _a lot_ of time in Terminal. Never one to skimp on workspace feng shui - just ask my old art world colleagues - I set about post haste to fine tune the CRUD out of my bash profile, starting with the bash prompt.

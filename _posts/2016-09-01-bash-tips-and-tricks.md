@@ -1,6 +1,7 @@
 ---
 layout: post
 title: BASH Tips and Tricks
+tags: ['code reading', 'bash']
 ---
 
 All tips courtesy [@devinburnette](https://github.com/devinburnette)

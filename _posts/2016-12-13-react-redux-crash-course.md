@@ -1,6 +1,7 @@
 ---
 layout: post
 title: React and Redux Crash Course with Steven Nunez
+tags: ['code reading', 'javascript', 'react', 'redux']
 ---
 
 A crash course in React and Redux from [Steven Nunez](https://github.com/StevenNunez), Lead Instructor/Developer at Flatiron School (part 1).

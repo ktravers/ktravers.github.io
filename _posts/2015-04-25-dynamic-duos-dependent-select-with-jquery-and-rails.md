@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Dynamic Duos - Dependent Select Menus with JQuery and Rails
+tags: ['rails', 'ruby', 'jquery']
 ---
 
 The first time I tried to apply "dynamic selection" within a Rails form - where selecting an option in one select field dynamically updates the menu options in a second select field, I had a surprisingly hard time with it. I'd watched the [Railscast](http://railscasts.com/episodes/88-dynamic-select-menus-revised) and [read](http://pullmonkey.com/2012/08/11/dynamic-select-boxes-ruby-on-rails-3/) [multiple](https://kernelgarden.wordpress.com/2014/02/26/dynamic-select-boxes-in-rails-4/) [tutorials](http://www.falsepositives.com/index.php/2010/05/28/building-a-casscading-drop-down-selection-list-for-ruby-on-rails-with-jquery-ajax/), but just couldn't crack the code.

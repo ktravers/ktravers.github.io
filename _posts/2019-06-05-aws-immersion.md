@@ -1,6 +1,7 @@
 ---
 layout: post
 title: AWS Immersion Day
+tags: ['aws', 'devops']
 ---
 
 Notes from Flatiron School engineering team's training day with AWS.

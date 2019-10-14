@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Code Reading - Learn.co Shared React Form Library
+tags: ['code reading', 'javascript', 'react']
 ---
 
 Notes from code reading on Flatiron School eng team's shared React from library by [Seiji Naganuma](https://github.com/snags88).

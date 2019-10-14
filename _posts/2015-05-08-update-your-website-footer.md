@@ -1,11 +1,12 @@
 ---
 layout: post
 title: It's `document.write(new Date().getFullYear());` - Update Your Footer
+tags: ['javascript']
 ---
 
 As I was updating some content on my [personal website](http://www.kate-travers.com) today, I noticed the copyright date in the footer still read "2014". Yeah, it's May. Go me.
 
-Sadly, I believe future-me from 2016 would probably make this same mistake, so to help myself out, I did a quick google search for "How to auto update year website", which yielded this extremely helpful site: [UpdateYourFooter.com](http://updateyourfooter.com/). It offers Javascript and PHP solutions, with JS being the easier option for my needs. 
+Sadly, I believe future-me from 2016 would probably make this same mistake, so to help myself out, I did a quick google search for "How to auto update year website", which yielded this extremely helpful site: [UpdateYourFooter.com](http://updateyourfooter.com/). It offers Javascript and PHP solutions, with JS being the easier option for my needs.
 
 Just add the following wherever you want the year displayed:
 

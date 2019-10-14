@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Dev Ops Crash Course - Day Five
+tags: ['code reading', 'devops', 'chef']
 ---
 
 Notes from [day one]({% post_url 2017-03-20-dev-ops-crash-course-day-one %}), [day two]({% post_url 2017-03-21-dev-ops-crash-course-day-two %}), [day three]({% post_url 2017-03-22-dev-ops-crash-course-day-three %}), and [day four]({% post_url 2017-03-23-dev-ops-crash-course-day-four %}).
@@ -30,7 +31,7 @@ Notes from [day one]({% post_url 2017-03-20-dev-ops-crash-course-day-one %}), [d
 ### Alternatives to Chef?
 
 - Server image
-- Shared shell script on Github
+- Shared shell script on GitHub
 - [Ansible](https://www.ansible.com/)
 - [Puppet](https://puppet.com/)
 

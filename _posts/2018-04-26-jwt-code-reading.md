@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Code Reading - JWT
+tags: ['code reading', 'jwt', 'authentication']
 ---
 
 A code reading by [@spencer1248](https://github.com/spencer1248)

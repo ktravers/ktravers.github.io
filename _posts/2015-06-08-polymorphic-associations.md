@@ -1,11 +1,12 @@
 ---
 layout: post
 title: AcademyAwardable Polymorphic Associations
+tags: ['rails', 'ruby']
 ---
 
 If you ever find yourself in a Rails-situation where you need one model to belong to multiple other models, consider using an [ActiveRecord polymorphic association](http://api.rubyonrails.org/classes/ActiveRecord/Associations/ClassMethods.html#module-ActiveRecord::Associations::ClassMethods-label-Polymorphic+Associations). Don't let the multisyllabic name fool you; [polymorphic associations](http://guides.rubyonrails.org/association_basics.html#polymorphic-associations) aren't as complex to build as they might seem. You can do it.
 
-![Meryl Streep Can Do It]({{ site.baseurl }}/images/posts/meryl.jpg "Meryl Streep Can Do It") 
+![Meryl Streep Can Do It]({{ site.baseurl }}/images/posts/meryl.jpg "Meryl Streep Can Do It")
 
 Let's consider a completely relatable and engaging example: [The Academy Awards](http://oscar.go.com/). Maybe you're building an Oscar ballot app for a [family member](http://www.indiewire.com/author/ben-travers) who's particularly obsessed with this time-honored, hallowed awards show. Your app at minimum would need to contain Actor, Movie, Director, and Vote models (plus all those [technical award categories](http://www.oscars.org/sci-tech), but we're going to ignore them for now - just like the Academy). We'll need some savvy schema design to keep things simple and DRY.
 
@@ -52,7 +53,7 @@ class CreateVotes < ActiveRecord::Migration
       t.string   :voteable_type
       t.timestamps null: false
     end
- 
+
     add_index :votes, :voteable_id
   end
 end
@@ -96,9 +97,9 @@ end
 
 Thanks to our polymorphic `belongs_to: :voteable` declaration, we now have access to all kinds of fun methods on our models. We can call `@actor.votes`, `@movie.votes` and `@director.votes`, as expected. To retrieve a Vote object's parent, we can call `@vote.voteable`, which returns its corresponding `Actor`, `Movie`, or `Director`. Throw a User class in there - plus some simple routes, controllers, and views - and we have the makings of a pretty functional Oscar ballot app - - - but that's the topic for another (future) post. In the meantime, bravo. You've built an award-worthy polymorphic association.
 
-![Meryl Streep Loves It]({{ site.baseurl }}/images/posts/meryl.gif "Meryl Streep Loves It") 
+![Meryl Streep Loves It]({{ site.baseurl }}/images/posts/meryl.gif "Meryl Streep Loves It")
 
-## Summary (tldr) <a href="#tldr"></a> 
+## Summary (tldr) <a href="#tldr"></a>
 
 ### 1. Do you have one model that `belongs_to` many other models?
 - Does this one model only exist in relation to the other models?   

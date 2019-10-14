@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Best Ways for Beginners To Contribute to Open Source
+tags: ['open source']
 ---
 
 When I first started out learning to code, the idea of contributing to an open source project was really intimidating. I got that advice from everyone - "Contribute to open source! It's so easy! Employers love it!" - but I was still hesistant. I'd only been writing Ruby for a couple months; how was I going to contribute anything useful to someone else's project?
@@ -23,7 +24,7 @@ Take Flatiron School CTO Avi Flombaum's [first open source commit](https://githu
 
 Start with something familiar. If you're learning Rails, check out the repo for a gem you've been working with, like [factory_girl](https://github.com/thoughtbot/factory_girl) or [formtastic](https://github.com/justinfrench/formtastic/), or another Rails-based project you're using, like [rubygems](http://guides.rubygems.org/contributing/). You'll be more invested in improving the project and be able to start from a baseline working knowledge of its intended functionality.
 
-That said, you can always explore new available projects on Github. I always like checking their [Trending page](https://github.com/trending) for the current hotness, and I actually found the source for my first open source commit through their community [Explore feature](https://github.com/explore). I was leisurely searching for Ruby-based 'cat' projects (like you do), which led me to [catsay](https://github.com/audy/catsay), a brilliant riff on the [cowsay gem](https://github.com/johnnyt/cowsay). [One commit later](https://github.com/audy/catsay/commit/2049ebb3d550bd8836d726a1e4c0100b65c536dd) and I was an open source contributor. It can really be as simple as that.
+That said, you can always explore new available projects on GitHub. I always like checking their [Trending page](https://github.com/trending) for the current hotness, and I actually found the source for my first open source commit through their community [Explore feature](https://github.com/explore). I was leisurely searching for Ruby-based 'cat' projects (like you do), which led me to [catsay](https://github.com/audy/catsay), a brilliant riff on the [cowsay gem](https://github.com/johnnyt/cowsay). [One commit later](https://github.com/audy/catsay/commit/2049ebb3d550bd8836d726a1e4c0100b65c536dd) and I was an open source contributor. It can really be as simple as that.
 
 ## Best ways to contribute
 
@@ -117,7 +118,7 @@ When you're ready to open your pull request, be sure to cover the following:
 Most importantly, be patient. It might take a while for your contribution to be reviewed, but don't let that stress you out. Stay positive, keep contributing, and be proud of your new open source contributor chops.
 
 More resources:  
-1. [Github contributing guidelines](https://guides.github.com/activities/contributing-to-open-source/)  
-2. [Github guide to finding open source projects](https://help.github.com/articles/where-can-i-find-open-source-projects-to-work-on/)  
+1. [GitHub contributing guidelines](https://guides.github.com/activities/contributing-to-open-source/)  
+2. [GitHub guide to finding open source projects](https://help.github.com/articles/where-can-i-find-open-source-projects-to-work-on/)  
 3. [Learn.co contributing guidelines](https://github.com/learn-co-curriculum/hello-world-ruby/blob/master/CONTRIBUTING.md)  
 4. [Rails documentation guidelines](http://guides.rubyonrails.org/api_documentation_guidelines.html)

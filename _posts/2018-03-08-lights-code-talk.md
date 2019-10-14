@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Code Talk - How the Test Lights Work on Learn.co
+tags: ['code reading']
 ---
 
 ## aka The Little Submission That Could

@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Who's Ahead Now?
+tags: ['project', 'rails', 'ruby']
 ---
 
 After week one of learning Rails, I was eager to test out my new skills on a new side project. I wanted to build something fairly simple, that would utilize skills I felt comfortable with - JSON parsing, ERB, simple search and routing - while also pushing me into uncharted territory, like deploying on [Heroku](https://www.heroku.com). I spent the afternoon brainstorming, circling around some sort of app that would answer a single simple question (like [Is It Raining?](http://isitraining.in/New-York), one of my fave [single serving sites](http://kottke.org/08/02/single-serving-sites)). I had a couple good ideas, but my partner came up with the best one: is Hillary winning?

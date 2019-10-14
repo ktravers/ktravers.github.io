@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Phil Sturgeon - A No-Nonsense GraphQL and REST Comparison
+tags: ['code reading', 'graphql']
 ---
 
 Notes from Phil Sturgeon's code talk at Flatiron School, 3/15/2018.

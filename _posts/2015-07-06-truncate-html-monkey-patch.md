@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Monkey Patching truncate_html
+tags: ['ruby']
 ---
 
 The [`truncate_html` gem](https://github.com/hgmnz/truncate_html) is a really useful tool for clipping off a string of html at a designated point. It has some nice [customizeable config options](https://github.com/hgmnz/truncate_html#example), and best of all, zero third party dependencies. Per its docs, it even does the unthinkable:
