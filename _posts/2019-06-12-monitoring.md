@@ -3,6 +3,8 @@ layout: post
 title: Modern Monitoring and Observability with Thoughtful Chaos Experiments by Datadog and Gremlin (webinar)
 ---
 
+Notes from "Chaos engineering" webinar with Datadog and Gremlin.
+
 Presenters:
 
 - Ana Medina

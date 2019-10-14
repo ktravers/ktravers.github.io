@@ -3,6 +3,8 @@ layout: post
 title: AWS Immersion Day
 ---
 
+Notes from Flatiron School engineering team's training day with AWS.
+
 ## Serverless Transformation
 
 ### AWS Serverless Foundations (Deep dive into Lambda and API Gateway)

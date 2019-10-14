@@ -3,6 +3,8 @@ layout: post
 title: React Code Talk Notes
 ---
 
+Notes from Flatiron School eng team's intro to React code talk.
+
 ## Overview
 
 - library that renders data to the DOM

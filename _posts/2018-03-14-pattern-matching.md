@@ -3,8 +3,6 @@ layout: post
 title: Pattern Matching in Elixir
 ---
 
-![Pattern Matching Hearts Elixir]({{ site.baseurl }}/images/posts/pattern-matching-heart-elixir.png "Pattern Matching Hearts Elixir")
-
 At the [Flatiron School](https://flatironschool.com), our mission is to help people learn how to code. That means that as a member of the engineering team, my work reminds me almost every day of that important, universal truth: learning new stuff is hard.
 
 Take learning to play a musical instrument, for example, like guitar. When you start, you have these lofty aspirations. You wanna be the next David Bowie. But when you’re first starting out, that dream is so, so far away. It takes a ton of hard work to get there, and it’s easy to get discouraged. Without some early wins, you might give up.

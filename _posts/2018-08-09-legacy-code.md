@@ -5,7 +5,6 @@ title: Living with Legacy Javascript - Event Proxies, App Seams, and Chunking Re
 
 Sneak peek of [@talum](https://github.com/talum)'s upcoming talk at [EmpireJS 2018](https://2018.empirejs.org/schedule.html).
 
-
 ### Legacy Code
 
 Learn.co is a really big platform. So many features.

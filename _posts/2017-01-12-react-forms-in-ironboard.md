@@ -3,7 +3,7 @@ layout: post
 title: Code Reading - Learn.co Shared React Form Library
 ---
 
-Presenter: [Seiji](https://github.com/snags88)
+Notes from code reading on Flatiron School eng team's shared React from library by [Seiji Naganuma](https://github.com/snags88).
 
 ## Problem
 

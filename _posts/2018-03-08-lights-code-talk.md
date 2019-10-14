@@ -9,7 +9,6 @@ by [@talum](https://github.com/talum)
 
 Submissions take a long, multi-step journey from [`learn-co` gem](https://github.com/learn-co/learn-co) to Learn.co.
 
-
 ### Step 1: [`learn-co` gem](https://github.com/learn-co/learn-co)
 
 Collection of open source gems (one parent gem with buncha child gems)
@@ -23,7 +22,6 @@ Focus for this talk is [`learn-test`](https://github.com/learn-co/learn-test)
     - user info
     - repo info
     - test success/failure info
-
 
 ### Step 2: Ironbroker V2
 

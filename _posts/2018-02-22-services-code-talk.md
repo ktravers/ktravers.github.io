@@ -3,7 +3,7 @@ layout: post
 title: Code Talk - Refactoring Retriable Actions
 ---
 
-## A Story About Asynchronous Actions, Dynamic Workers and Queues, and RabbitMQ
+A Story About Asynchronous Actions, Dynamic Workers and Queues, and RabbitMQ.
 
 To standardize running asynchronous services, we've created a number of "Base" objects:  
   - `AsyncBaseService`, just introduced (inherits from BaseService)

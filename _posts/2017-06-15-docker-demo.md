@@ -3,6 +3,8 @@ layout: post
 title: Code Reading - Learn ❤️ Docker
 ---
 
+Notes from Flatiron School engineering team's code reading on using Docker with our core codebase.
+
 ### Prereqs:
 
   - Watch this [Youtube playlist](https://www.youtube.com/playlist?list=PLbG4OyfwIxjEe5Y3hQCiQjYnSgRH051iJ) (~90 min)

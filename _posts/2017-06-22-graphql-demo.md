@@ -3,6 +3,8 @@ layout: post
 title: Code Reading - Learn ❤️ GraphQL
 ---
 
+Notes from Flatiron School engineering team's code reading on using GraphQL with our core codebase.
+
 ## What is [GraphQL](http://graphql.org/)?
 
 - "Graph Query Language"

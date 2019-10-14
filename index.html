@@ -10,7 +10,7 @@ layout: default
         Published {{ post.date | date: "%A, %B %d, %Y" }}
       </div>
       <div class="entry">
-        {{ post.content | truncatewords:100}}
+        {{ post.excerpt }}
       </div>
       <a href="{{ site.baseurl }}{{ post.url }}" class="read-more">Read More &rarr;</a>
     </article>

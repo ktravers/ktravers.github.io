@@ -3,6 +3,8 @@ layout: post
 title: Ops Roadmap for Learn.co
 ---
 
+Notes from Flatiron School engineering team's code reading on future ops work.
+
 ### Outline
 
 1. Review current setup
