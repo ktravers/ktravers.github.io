@@ -4,9 +4,9 @@ Website for web developer [Kate Travers](http://www.kate-travers.com).
 
 ## Local Development
 
-1. Clone down repo
-2. Install Jekyll and plug-ins: `gem install github-pages`. This mirrors the plug-ins used by GitHub Pages on your local machine including Jekyll, Sass, etc.
-3. Start local server and watch for markup/sass changes: `jekyll serve`
+1. Clone down repo and `cd ktravers.github.io`
+2. Install Jekyll and plug-ins: `gem install jekyll bundler`. This mirrors the plug-ins used by GitHub Pages on your local machine including Jekyll, Sass, etc.
+3. Start local server and watch for markup/sass changes: `bundle exec jekyll serve`
 4. View locally at `localhost:4000`
 
 ## Questions?

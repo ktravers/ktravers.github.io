@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Modern Monitoring and Observability with Thoughtful Chaos Experiments by Datadog and Gremlin (webinar)
-tags: ['training', 'monitoring', 'observability']
+tags: [training, monitoring, observability]
 ---
 
 Notes from "Chaos engineering" webinar with Datadog and Gremlin.

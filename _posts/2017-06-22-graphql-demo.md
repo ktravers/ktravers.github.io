@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Code Reading - Learn ❤️ GraphQL
-tags: ['code reading', 'graphql']
+tags: [code reading, graphql]
 ---
 
 Notes from Flatiron School engineering team's code reading on using GraphQL with our core codebase.

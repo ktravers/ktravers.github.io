@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Code Talk - Networking
-tags: ['code reading']
+tags: [code reading]
 ---
 
 Low level talk about how information moves across the internet.

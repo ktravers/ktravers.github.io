@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Adventures in DNS Configuration
-tags: ['github', 'dns', 'flatiron school']
+tags: [github, dns, flatiron school]
 ---
 
 One of the main tenants of the [The Flatiron School](http://flatironschool.com) is "Always be a beginner,"* which has been pretty easy for me to embrace so far, since I am the noobiest of coding noobs right now. Pretty much every day, I'm reminded of my beginner-dom, even in realms I thought I'd more or less mastered.

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: AcademyAwardable Polymorphic Associations
-tags: ['rails', 'ruby']
+tags: [rails, ruby]
 ---
 
 If you ever find yourself in a Rails-situation where you need one model to belong to multiple other models, consider using an [ActiveRecord polymorphic association](http://api.rubyonrails.org/classes/ActiveRecord/Associations/ClassMethods.html#module-ActiveRecord::Associations::ClassMethods-label-Polymorphic+Associations). Don't let the multisyllabic name fool you; [polymorphic associations](http://guides.rubyonrails.org/association_basics.html#polymorphic-associations) aren't as complex to build as they might seem. You can do it.

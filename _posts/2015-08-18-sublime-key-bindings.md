@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Sublime Text Key Bindings
-tags: ['sublime text', 'recommendations']
+tags: [sublime text, recommendations]
 ---
 
 Keyboard shortcuts are a programmer's best friend, and Sublime Text lets you write your own. I use these five below on a daily basis, and you're going to want to, too. Here's the setup:

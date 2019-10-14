@@ -1,7 +1,7 @@
 ---
 layout: post
 title: JS Testing with Jest and React
-tags: ['code reading', 'javascript', 'testing']
+tags: [code reading, javascript, testing]
 ---
 
 A code reading by [@gj](https://github.com/gj)
@@ -28,6 +28,5 @@ Hopes and dreams: [Jest](https://facebook.github.io/jest/) makes test writing fu
 ### Suggestions
 
 1. Enzyme's `shallow` over `mount` for rendering components
-
 
 WIP... more to follow after next week's code reading.

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: How Object-Oriented Design Saved Our CSS (and Site Performance)
-tags: ['css', 'talk']
+tags: [css, talk]
 ---
 
 Back in January 2016, our CSS was easily the messiest part of the [Learn.co](https://learn.co) codebase… something that probably sounds familiar to many other web developers out there. Last spring, we budgeted time and resources to overhaul it. I led that project. Here's what we learned.

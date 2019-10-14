@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Code Reading - How Write To Project Specs
-tags: ['code reading']
+tags: [code reading]
 ---
 
 Learnings from @bobjnadler's time at Siemens & Cyrus.

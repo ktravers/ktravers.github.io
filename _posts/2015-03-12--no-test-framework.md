@@ -1,7 +1,7 @@
 ---
 layout: post
 title: --no-test-framework
-tags: ['rails', 'ruby', 'flatiron school']
+tags: [rails, ruby, flatiron school]
 ---
 
 ### Note to self:

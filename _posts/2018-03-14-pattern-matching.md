@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Pattern Matching in Elixir
-tags: ['talk', 'elixir']
+tags: [talk, elixir]
 ---
 
 At the [Flatiron School](https://flatironschool.com), our mission is to help people learn how to code. That means that as a member of the engineering team, my work reminds me almost every day of that important, universal truth: learning new stuff is hard.

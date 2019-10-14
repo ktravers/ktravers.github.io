@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Code Reading - Capistrano
-tags: ['code reading', 'capistrano', 'deployment']
+tags: [code reading, capistrano, deployment]
 ---
 
 A fascinating glimpse into [Spencer's](https://github.com/spencer1248) server config process.

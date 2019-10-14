@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Code Talk Notes - Promises and Asynchronous Code
-tags: ['code reading', 'javascript']
+tags: [code reading, javascript]
 ---
 
 ![Callback Hell]({{ site.baseurl }}/images/posts/callback-hell.jpg "Callback Hell")

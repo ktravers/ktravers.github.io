@@ -1,7 +1,7 @@
 ---
 layout: post
 title: How to Run Ecto Migrations on Production
-tags: ['elixir', 'ecto']
+tags: [elixir, ecto]
 ---
 
 You'd think the answer to this question would be a simple Google search away. Unfortunately, that wasn't the case for me this afternoon, working on a Phoenix project with a newly-added Ecto backend. In an effort to save others (and let's be honest, future me) the same frustration, here's the most straight-forward solutions I found.

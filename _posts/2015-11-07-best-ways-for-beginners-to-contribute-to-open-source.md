@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Best Ways for Beginners To Contribute to Open Source
-tags: ['open source']
+tags: [open source]
 ---
 
 When I first started out learning to code, the idea of contributing to an open source project was really intimidating. I got that advice from everyone - "Contribute to open source! It's so easy! Employers love it!" - but I was still hesistant. I'd only been writing Ruby for a couple months; how was I going to contribute anything useful to someone else's project?

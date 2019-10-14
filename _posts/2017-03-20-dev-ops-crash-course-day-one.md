@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Dev Ops Crash Course - Day One
-tags: ['code reading', 'devops', 'dns']
+tags: [code reading, devops, dns]
 ---
 
 Notes from [day two]({% post_url 2017-03-21-dev-ops-crash-course-day-two %}), [day three]({% post_url 2017-03-22-dev-ops-crash-course-day-three %}), [day four]({% post_url 2017-03-23-dev-ops-crash-course-day-four %}), and [day five]({% post_url 2017-03-24-dev-ops-crash-course-day-five %}).

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Sublime Linter Rubocop Reboot
-tags: ['sublime text', 'rubocop']
+tags: [sublime text, rubocop]
 ---
 
 This week's [Ruby Weekly](http://rubyweekly.com/issues/242) had a nice post from Matt Brictson on ["Setting up Sublime Text 3 for Rails Development"](https://mattbrictson.com/sublime-text-3-recommendations?utm_source=rubyweekly&utm_medium=email#packages). It reminded me to finally install the [SublimeLinter-rubocop package](https://packagecontrol.io/packages/SublimeLinter-rubocop). This package syncs your linter up with [rubocop](https://github.com/bbatsov/rubocop), highlighting "bad code" as you type (according to the community [Ruby Style Guide](https://github.com/bbatsov/ruby-style-guide)). Great addition, right?

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Code Talk Notes - Javascript Testing and Analytics
-tags: ['code reading', 'javascript', 'testing']
+tags: [code reading, javascript, testing]
 ---
 
 ## Javascript Test Updates

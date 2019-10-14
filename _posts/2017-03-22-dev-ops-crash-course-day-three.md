@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Dev Ops Crash Course - Day Three
-tags: ['code reading', 'monitoring', 'nagios']
+tags: [code reading, monitoring, nagios]
 ---
 
 Notes from [day one]({% post_url 2017-03-20-dev-ops-crash-course-day-one %}), [day two]({% post_url 2017-03-21-dev-ops-crash-course-day-two %}), [day four]({% post_url 2017-03-23-dev-ops-crash-course-day-four %}), and [day five]({% post_url 2017-03-24-dev-ops-crash-course-day-five %}).

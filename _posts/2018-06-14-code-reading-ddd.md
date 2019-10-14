@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Code Reading - Learn ❤️ Domain Driven Design
-tags: ['code reading']
+tags: [code reading]
 ---
 
 Challenge: introducing DDD in a legacy codebase

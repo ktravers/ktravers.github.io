@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Get Fuzzy with LEVENSHTEIN
-tags: ['postgres', 'sql']
+tags: [postgres, sql]
 ---
 
 Discovered a super handy Postgres extension tonight: [`fuzzystrmatch`](https://www.postgresql.org/docs/9.4/static/fuzzystrmatch.html). This lil cutie is a real godsend when dealing with potentially crummy user input, such as, oh say, for a Rails project where you're requiring your less-than-tech-savvy relatives and future inlaws to input their email address in order to access your wedding website. Note: said website is badass, built-from-scratch, and [open source](https://github.com/ktravers/beatrix-kiddo).

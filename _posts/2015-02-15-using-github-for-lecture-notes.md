@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Using GitHub for Lecture Notes
-tags: ['github', 'flatiron school', 'git']
+tags: [github, flatiron school, git]
 ---
 
 Flatiron School has a great system for sharing lecture notes: a dedicated GitHub repo. I forked the repo during week one, thinking I'd pull down the files to my local, take notes on the notes (Inception-style _meta-noting_), then push back up to my forked repo. No sweat.

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: How to Work with Developers
-tags: ['talk']
+tags: [talk]
 ---
 
 Software developers, have you ever felt misunderstood by your non-developer teammates? It happens to most of us, which is why I wrote this post to help clear up some of the most common misunderstandings, miscommunications, and missed opportunities. Feel free to pass it along to anyone who’d love to have an easier time working with developers.

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Remote True is Magic
-tags: ['rails', 'ruby', 'project']
+tags: [rails, ruby, project]
 ---
 
 I had a really fun time this weekend building a [small side project](http://www.amiruby.com/) with [Sophie DeBenedetto](https://github.com/SophieDeBenedetto), [Jeremy Sklarsky](https://github.com/jeremysklarsky), and [Rachel Nackman](https://github.com/rnackman). We learned a lot of very cool things that you can do with Rails + jQuery, but the coolest was easily `remote: true`. This one little option is crazy powerful. Case in point: by adding `remote: true` to our `Search` form, our `searches.js` file went from this:

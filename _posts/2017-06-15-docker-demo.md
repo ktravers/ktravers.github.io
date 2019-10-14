@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Code Reading - Learn ❤️ Docker
-tags: ['code reading', 'docker']
+tags: [code reading, docker]
 ---
 
 Notes from Flatiron School engineering team's code reading on using Docker with our core codebase.

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: It's `document.write(new Date().getFullYear());` - Update Your Footer
-tags: ['javascript']
+tags: [javascript]
 ---
 
 As I was updating some content on my [personal website](http://www.kate-travers.com) today, I noticed the copyright date in the footer still read "2014". Yeah, it's May. Go me.
