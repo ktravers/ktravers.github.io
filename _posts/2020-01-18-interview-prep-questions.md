@@ -17,7 +17,7 @@ Below are both lists. I hope they're as helpful for you as they were for me.
 
 ### Opportunities
 
-**What does this team need and how can you help them?**
+_What does this team need and how can you help them?_
 
 1. What is the story for this team in the coming year?
 
@@ -36,7 +36,7 @@ Below are both lists. I hope they're as helpful for you as they were for me.
 
 ### Process
 
-**Just as important as _what_ the team works on is _how_ the team works.**
+_Just as important as what the team works on is how the team works._
 
 1. Can you walk me through your team's development process, from planning to shipping?
 
@@ -55,7 +55,7 @@ Below are both lists. I hope they're as helpful for you as they were for me.
 
 ### Communication
 
-**Suss out how this team communicates. Does it match well with your style?**
+_Suss out how this team communicates. Does it match well with your style?_
 
 1. Talk about about how you accept/deliver feedback to/from team members.
 
@@ -68,7 +68,7 @@ Below are both lists. I hope they're as helpful for you as they were for me.
 
 ### Team Logistics
 
-**Fact check your understanding of the team's composition.**
+_Fact check your understanding of the team's composition._
 
 1. How much specialization in roles?
 
@@ -81,7 +81,7 @@ Below are both lists. I hope they're as helpful for you as they were for me.
 
 ### Company
 
-**Don't miss the opportunity to get an inside perspective on the company itself.**
+_Don't miss the opportunity to get an inside perspective on the company itself._
 
 1. What do you like about COMPANY in comparison to other companies you've worked at?
 
@@ -94,7 +94,7 @@ Below are both lists. I hope they're as helpful for you as they were for me.
 
 ### Company
 
-**Show them you've done your research.**
+_Show them you've done your research._
 
 1. Why COMPANY?
 
@@ -111,7 +111,7 @@ Below are both lists. I hope they're as helpful for you as they were for me.
 
 ### Fit
 
-**Find out if this role matches up with what you're looking for.**
+_Find out if this role matches up with what you're looking for._
 
 1. Why do you want to leave your current job?
 
@@ -130,7 +130,7 @@ Below are both lists. I hope they're as helpful for you as they were for me.
 
 ### Communication
 
-**Reflect on your communication style.**
+_Reflect on your communication style._
 
 1. Talk about about how you collaborate with people of different backgrounds.
 
@@ -146,7 +146,7 @@ Have you ever had to "sell" an idea to your coworkers or group? How did you do i
 
 ### Dealing with conflict
 
-**How do you handle tough situations?**
+_How do you handle tough situations?_
 
 1. Give an example of when you had to work with someone who was difficult to get along with. How did you handle interactions with that person?
 
@@ -173,7 +173,7 @@ Have you ever had to "sell" an idea to your coworkers or group? How did you do i
 
 ## Dealing with change
 
-**Change is scary. How do you handle it?**
+_Change is scary. How do you handle it?_
 
 1. Can you share an experience where a project dramatically shifted directions at the last minute? What did you do?
 
@@ -194,7 +194,7 @@ Have you ever had to "sell" an idea to your coworkers or group? How did you do i
 
 ### Learning / Growth
 
-**Learning new things is one of the most important skills for an engineer. How do you like to learn?**
+_Learning new things is one of the most important skills for an engineer. How do you like to learn?_
 
 1. What are some things you want to learn more about?
 
@@ -211,7 +211,7 @@ Have you ever had to "sell" an idea to your coworkers or group? How did you do i
 
 ### Feedback
 
-**An important subclass of communication.**
+_An important subclass of communication._
 
 1. What's one critical piece of feedback you've received that was really difficult to hear? Why was it difficult and what did you do with that information? What did you learn about yourself?
 
@@ -226,7 +226,7 @@ Have you ever had to "sell" an idea to your coworkers or group? How did you do i
 
 ### Planning / Time Management
 
-**Time: one of the two hardest things in programming (behind naming).**
+_Time: one of the two hardest things in programming (behind naming)._
 
 1. Imagine you are starting a new project (pick a sample project related to the role) - take me through your initial planning process?
 
@@ -251,7 +251,7 @@ Have you ever had to "sell" an idea to your coworkers or group? How did you do i
 
 ### Leadership
 
-**What kind of leader are you? What kind of leader do you want to work with?**
+_What kind of leader are you? What kind of leader do you want to work with?_
 
 1. Give an example of a time when you felt you led by example. What did you do and how did others react?
 
@@ -262,7 +262,7 @@ Have you ever had to "sell" an idea to your coworkers or group? How did you do i
 
 ### Accomplishments
 
-**Go ahead, get your brag on.**
+_Go ahead, get your brag on._
 
 1. Talk about about a time when you built an app (web, mobile, etc). What inspired the idea? What determined what features you built and didn't build?
 
@@ -275,7 +275,7 @@ Have you ever had to "sell" an idea to your coworkers or group? How did you do i
 
 ### Expertise
 
-**Demonstrate your smarts.**
+_Demonstrate your smarts._
 
 1. Give two scenarios where you would and wouldn't use <language>.
 
@@ -290,7 +290,7 @@ Have you ever had to "sell" an idea to your coworkers or group? How did you do i
 
 ### Non-work life
 
-**Don't forget about sharing a little bit about you, as a person.**
+_Don't forget about sharing a little bit about you, as a person._
 
 1. What does work/life balance look like in your life?
 
