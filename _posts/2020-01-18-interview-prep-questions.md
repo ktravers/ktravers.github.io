@@ -4,11 +4,13 @@ title: Interview Prep Questions
 tags: [interviews]
 ---
 
-New decade, new job. At the end of last year, I started looking for a new job, something I hadn't done in almost five years. I'd been very involved with my teams hiring process, helping design our technical interviews and running dozens of interviews for product team candidates at every level and role, so I thought was ready to be on the other side of the table.
+New decade, new job. At the end of last year, I started looking for a new job, something I hadn't done in almost five years. I'd been very involved with my company's hiring process, helping design our technical interviews and running dozens of interviews for engineering and product team candidates at every level and role, so I thought was ready to be on the other side of the table.
 
-Welp, to no one's surprise, turns out I was super rusty. After floundering through my first two behavioral interviews, I realized I couldn't go into these things cold. I needed to put some work in.
+Welp, to no one's surprise, turns out I was super rusty. After floundering through my first couple behavioral interviews, I realized I couldn't go into these things cold. I needed to put some work in.
 
-To prep, I put together two lists of questions: one for my interviewer, and one for me. I wrote out short answers to all the "Questions for me" in advance, and kept these lists in front of me to reference as needed during interviews.
+To prep, I put together two lists of questions -- one for my interviewer and one for me -- and kept both lists in front of me to reference as needed during interviews. I wrote out short answers to all the "Questions for you" in advance, prepping a couple different anecdotes for each, so I could choose one in the moment best suited for the role/team. I also made of a copy of the "Questions for them" for each company and took notes on their answers during the interview. Keeping track of all the different responses (and boy, did I get a variety) not only made it easier to compare and contrast these opportunities later, but also provide direct, specific feedback afterwards, including thank you notes ✨
+
+I ended up putting more work into these questions than more purely technical prep (memorizing algorithms, etc), but it unquestionably paid off. Having this Q&A at the ready enabled me to get the information I needed from each interviewer and actually have a lively, fun conversation while doing so (minus all the long, awkward pauses and filler phrases like "Oh, what a good question, let me think about that..." I was using before properly prepping 🤦‍♀️). By the time I had a couple offers in hand, it was easy to compare notes and say yes to the right team.
 
 Below are both lists. I hope they're as helpful for you as they were for me.
 
@@ -277,7 +279,9 @@ _Go ahead, get your brag on._
 
 _Demonstrate your smarts._
 
-1. Give two scenarios where you would and wouldn't use <language>.
+1. Give two scenarios where you would and wouldn't use LANGUAGE (ex. Ruby, Elixir, Go, etc).
+
+1. Give two scenarios where you would and wouldn't use FRAMEWORK (ex. React, Node, etc).
 
 1. Talk about about a recent project and what you(r team) could have done better.
 
