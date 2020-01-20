@@ -8,7 +8,7 @@ New decade, new job. At the end of last year, I started looking for a new job, s
 
 Welp, to no one's surprise, turns out I was super rusty. After floundering through my first couple behavioral interviews, I realized I couldn't go into these things cold. I needed to put some work in.
 
-To prep, I put together two lists of questions -- one for my interviewer and one for me -- and kept both lists in front of me to reference as needed during interviews. I wrote out short answers to all the "Questions for you" in advance, prepping a couple different anecdotes for each, so I could choose one in the moment best suited for the role/team. I also made of a copy of the "Questions for them" for each company and took notes on their answers during the interview. Keeping track of all the different responses (and boy, did I get a variety) not only made it easier to compare and contrast these opportunities later, but also provide direct, specific feedback afterwards, including thank you notes ✨
+To prep, I put together two lists of questions -- [one for my interviewer](#questions-for-them) and [one for me](#questions-for-you) -- and kept both lists in front of me to reference as needed during interviews. I wrote out short answers to all the "Questions for you" in advance, prepping a couple different anecdotes for each, so I could choose one in the moment best suited for the role/team. I also made of a copy of the "Questions for them" for each company and took notes on their answers during the interview. Keeping track of all the different responses not only made it easier to compare and contrast these opportunities later, but also provide direct, specific feedback afterwards, including thank you notes ✨
 
 I ended up putting more work into these questions than more purely technical prep (memorizing algorithms, etc), but it unquestionably paid off. Having this Q&A at the ready enabled me to get the information I needed from each interviewer and actually have a lively, fun conversation while doing so (minus all the long, awkward pauses and filler phrases like "Oh, what a good question, let me think about that..." I was using before properly prepping 🤦‍♀️). By the time I had a couple offers in hand, it was easy to compare notes and say yes to the right team.
 
@@ -21,7 +21,7 @@ Below are both lists. I hope they're as helpful for you as they were for me.
 
 _What does this team need and how can you help them?_
 
-1. What is the story for this team in the coming year?
+1. What's the story for this team in the coming year?
 
 1. Building - how much is maintenance vs new features?
 
@@ -57,7 +57,7 @@ _Just as important as what the team works on is how the team works._
 
 ### Communication
 
-_Suss out how this team communicates. Does it match well with your style?_
+_Suss out how this team communicates. Does it match your style?_
 
 1. Talk about about how you accept/deliver feedback to/from team members.
 
@@ -70,7 +70,7 @@ _Suss out how this team communicates. Does it match well with your style?_
 
 ### Team Logistics
 
-_Fact check your understanding of the team's composition._
+_Fact check your understanding of the team's structure._
 
 1. How much specialization in roles?
 
@@ -92,7 +92,7 @@ _Don't miss the opportunity to get an inside perspective on the company itself._
 1. How does the engineering culture differ from the overall company culture?
 
 
-## QUESTIONS FOR YOU (THE CANDIDATE)
+## QUESTIONS FOR YOU
 
 ### Company
 
@@ -132,7 +132,7 @@ _Find out if this role matches up with what you're looking for._
 
 ### Communication
 
-_Reflect on your communication style._
+_Arguably the most important skills for every role._
 
 1. Talk about about how you collaborate with people of different backgrounds.
 
