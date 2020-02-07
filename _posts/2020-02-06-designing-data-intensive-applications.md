@@ -13,7 +13,7 @@ I'm reading ["Designing Data-Intensive Applications: The Big Ideas Behind Reliab
   - Compute intensive if CPU cycles "are the bottleneck"
   - This book focuses on data intensive
 
-## Part I. Foundations of Data Systems
+## Part 1: Foundations of Data Systems
 
 ### Ch 1: Reliable, Scalable, and Maintainable Applications
 
@@ -89,3 +89,30 @@ I'm reading ["Designing Data-Intensive Applications: The Big Ideas Behind Reliab
 - Celebrities as lever for scaling:
   - "What do you do when Beyonce joins your app?"
   - Twitter example: used to have a dedicated server for Justin Beiber
+
+
+### Ch 2: Data Models and Query Languages
+
+### Ch 3: Storage and Retrieval
+
+### Ch 4: Encoding and Evolution
+
+## Part 2: Distributed Data
+
+### Ch 5: Replication
+
+### Ch 6: Partitioning
+
+### Ch 7: Transactions
+
+### Ch 8: The Trouble with Distributed Systems
+
+### Ch 9: Consistency and Consensus
+
+## Part 3: Derived Data
+
+### Ch 10: Batch Processing
+
+### Ch 11: Stream Processing
+
+### Ch 12: The Future of Data Systems
