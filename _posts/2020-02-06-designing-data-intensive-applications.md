@@ -4,7 +4,7 @@ title: Notes on Designing Data-Intensive Applications
 tags: [book report]
 ---
 
-I'm reading "Designing Data-Intensive Applications: The Big Ideas Behind Reliable, Scalable, and Maintainable Systems" by Martin Kleppmann as part of a technical book club at work. We'll be covering a new chapter each week for the next ~12 weeks. Here's my notes on each chapter.
+I'm reading ["Designing Data-Intensive Applications: The Big Ideas Behind Reliable, Scalable, and Maintainable Systems" by Martin Kleppmann](https://learning.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/) as part of a technical book club at work. We'll be covering a new chapter each week for the next ~12 weeks. Here's my notes on each chapter.
 
 ## Intro: Foundations of Data Systems
 
@@ -65,11 +65,27 @@ I'm reading "Designing Data-Intensive Applications: The Big Ideas Behind Reliabl
   - Measuring, monitoring, and analyzing system behavior in production
   - Enable quick recovery (also mentioned in Google SRE book)
 
-
 #### Questions
 
 - What is a RAID configuration? (from section about hardware faults)
-- What are "key load parameters" for GitHub? Repos? Forks? Contributors?
 - Definitions of the ops team's responsibilities seemed very broad.
   - Preserve organizational knowledge?
   - Keeping software and platforms up to date?
+- What are "key load parameters" for GitHub? Repos? Forks? Contributors?
+  - "Whale" organizations like Shopify
+  - Subscribers to repository
+  - Contributors to repository
+  - Fan out for notifications (size of community)
+  - Actions that kick off a bunch of other git-heavy operations
+  - Actions subscribing to every event (can overload Redis or webhook consumers)
+    - Helped by moving away from RPC to message queues
+    - Thinking of moving to eventing system (immutable event log)
+- Does GitHub have a chaos team? YES
+
+#### Team discussion:
+
+- Logging is a forensic tool
+- Tracing example: append request id to each new request in chain
+- Celebrities as lever for scaling:
+  - "What do you do when Beyonce joins your app?"
+  - Twitter example: used to have a dedicated server for Justin Beiber
