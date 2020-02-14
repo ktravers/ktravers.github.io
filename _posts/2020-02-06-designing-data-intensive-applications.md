@@ -120,13 +120,15 @@ I'm reading ["Designing Data-Intensive Applications: The Big Ideas Behind Reliab
   - "Query optimizer" automatically decides how to execute query so developer doesn't have to (easier for developer, harder for machine)
   - Better for joins
   - Better for many-to-one and many-to-many relationships
-  - "Schema-on-write"
+  - "Schema-on-write": enforced on write
 - "Document model"
   - Better schema flexibility
   - Better performance due to locality
+    - Only applies if you need large parts of the document at the same time
+    - Wasteful if you only need small part of the document
   - Mirrors data structures used by application code (sometimes)
   - Don't enforce a schema on the data
-  - "Schema-on-read"
+  - "Schema-on-read": inferred on read
 - Choose the datastore that makes your application code the simplest
 
 #### Questions
@@ -136,6 +138,26 @@ I'm reading ["Designing Data-Intensive Applications: The Big Ideas Behind Reliab
 - Has anyone worked with a "polyglot persistence" model? What did you like? What did you not like?
 
 #### Team discussion
+
+- Interesting that key value stores weren't included
+  - Maybe because there's not really a query language for it?
+  - Maybe later in the book?
+- Also didn't include time series stuff, other querying things
+- Interesting: no XML databases. Never took off? Money got behind other things?
+- MongoDB
+  - Single threaded
+  - Used to lock the entire database. Now locks just the document
+- CSS as a query language
+- Data logging
+- What would building an event sourcing layer on top of Atonomic be like?
+- We're kind of unique because we built our service on top of Git, essentially, so not really abstracting anything in our data layer
+- Have we ever wanted to use Elasticsearch for denormalized background search?
+  - Related to stream processing, secondary indexes
+  - Problem of eventual consistency... have to be ok with some lag / inconsistencies
+- Can we SOLVE EVERYTHING with change data capture?
+- How does data residency affect Elasticsearch? (ex. countries, Enterprise)
+- We've pushed MySQL really far... are we looking into alternatives, especially for data residency?
+
 
 ### Ch 3: Storage and Retrieval
 

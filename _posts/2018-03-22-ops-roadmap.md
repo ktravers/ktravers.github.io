@@ -31,7 +31,7 @@ Notes from Flatiron School engineering team's code reading on future ops work.
 - Self-hosted services:
   - Postgres
   - Redis
-  - Elastisearch
+  - Elasticsearch
   - Memcached
   - Pushstream
 - Our virtual servers are on private network in DO region
