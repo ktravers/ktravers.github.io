@@ -82,7 +82,7 @@ I'm reading ["Designing Data-Intensive Applications: The Big Ideas Behind Reliab
     - Thinking of moving to eventing system (immutable event log)
 - Does GitHub have a chaos team? YES
 
-#### Team discussion:
+#### Team discussion
 
 - Logging is a forensic tool
 - Tracing example: append request id to each new request in chain
@@ -93,26 +93,110 @@ I'm reading ["Designing Data-Intensive Applications: The Big Ideas Behind Reliab
 
 ### Ch 2: Data Models and Query Languages
 
+- "Polyglot persistence": using both relational and non-relational datastores
+- If application language is object-oriented and datastore is relational, then you have to have a "translation layer" ("impedance mismatch")
+- I never would have considered storing a resume in a JSON field...but this chapter says JSON representation is "quite appropriate" for self-contained documents
+  - Reduces the impedenace mismatch between the application code and storage layer
+  - "Lack of schema" is often cited as an advantage
+  - Multiple tables means multiple queries or lots of joins, vs one query for JSON
+  - One-to-many relationships from user profile to resume sections imply a tree structure in the data; JSON makes tree structure explicit
+- Can't wait to argue about normalization and denormalization in Part III!
+- "Hierarchical model": old model from 1970s very similar to JSON model used by document dbs today
+  - Works well for one-to-many
+  - Not well for many-to-many
+  - Doesn't support joins
+- Other models: "Relational model" and "Network model"
+- "Network model"
+  - Generalization of the hierarchical model
+  - Record can have multiple parents
+  - Used pointers ("Access path") instead of foreign keys
+    - Kinda like traversing a linked list
+    - Query by moving a cursor through the db, iterating over records and following access paths
+    - Application code had to keep track of paths/relationships along the way
+    - Tough, bc it's like navigating around an n-dimensional data space
+  - Query code was complex, inflexible
+- "Relational model"
+  - Easy to read and write; don't have to worry about records relationships or access paths
+  - "Query optimizer" automatically decides how to execute query so developer doesn't have to (easier for developer, harder for machine)
+  - Better for joins
+  - Better for many-to-one and many-to-many relationships
+  - "Schema-on-write"
+- "Document model"
+  - Better schema flexibility
+  - Better performance due to locality
+  - Mirrors data structures used by application code (sometimes)
+  - Don't enforce a schema on the data
+  - "Schema-on-read"
+- Choose the datastore that makes your application code the simplest
+
+#### Questions
+
+- What are examples of "specialized query operations" not well supported by relational model?
+- Does anyone have examples when a relational schema has been "too restrictive"? How would a non-relational datastore be an improvement?
+- Has anyone worked with a "polyglot persistence" model? What did you like? What did you not like?
+
+#### Team discussion
+
 ### Ch 3: Storage and Retrieval
 
+#### Questions
+
+#### Team discussion
+
 ### Ch 4: Encoding and Evolution
+
+#### Questions
+
+#### Team discussion
 
 ## Part 2: Distributed Data
 
 ### Ch 5: Replication
 
+#### Questions
+
+#### Team discussion
+
 ### Ch 6: Partitioning
+
+#### Questions
+
+#### Team discussion
 
 ### Ch 7: Transactions
 
+#### Questions
+
+#### Team discussion
+
 ### Ch 8: The Trouble with Distributed Systems
 
+#### Questions
+
+#### Team discussion
+
 ### Ch 9: Consistency and Consensus
+
+#### Questions
+
+#### Team discussion
 
 ## Part 3: Derived Data
 
 ### Ch 10: Batch Processing
 
+#### Questions
+
+#### Team discussion
+
 ### Ch 11: Stream Processing
 
+#### Questions
+
+#### Team discussion
+
 ### Ch 12: The Future of Data Systems
+
+#### Questions
+
+#### Team discussion
