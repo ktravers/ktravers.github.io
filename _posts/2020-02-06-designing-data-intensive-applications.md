@@ -115,27 +115,84 @@ I'm reading ["Designing Data-Intensive Applications: The Big Ideas Behind Reliab
     - Application code had to keep track of paths/relationships along the way
     - Tough, bc it's like navigating around an n-dimensional data space
   - Query code was complex, inflexible
-- "Relational model"
+- RELATIONAL MODEL
   - Easy to read and write; don't have to worry about records relationships or access paths
   - "Query optimizer" automatically decides how to execute query so developer doesn't have to (easier for developer, harder for machine)
   - Better for joins
   - Better for many-to-one and many-to-many relationships
   - "Schema-on-write": enforced on write
-- "Document model"
+  - Appropriate for simple cases of many-to-many relationships
+- DOCUMENT MODEL
   - Better schema flexibility
   - Better performance due to locality
     - Only applies if you need large parts of the document at the same time
     - Wasteful if you only need small part of the document
+  - Appropriate if application has mostly one-to-many relationships or no relationships between records
   - Mirrors data structures used by application code (sometimes)
   - Don't enforce a schema on the data
   - "Schema-on-read": inferred on read
+  - Can't make direct references to nested items
+  - On update, rewrite the entire document (hard to update just one part)
+  - NoSQL system accidentally reinventing SQL:
+    - RethinkDB supports relational-like joins in its query language
+    - MongoDB resolve document references w/ a client-side join
+    - MongoDB has support for declarative query language "aggregation pipeline"
+- GRAPH MODEL
+  - Two kinds of objects: vertices (nodes, entities) and edges (relationships, arcs)
+  - Kinda like two relational tables, one for vertices & one for edges
+  - Good for evolvability
+  - Good for use case where anything is potentially related to everything
+  - Examples:
+    - Social graphs
+    - Web graph
+    - Road or rail networks
+  - Well known algorithms:
+    - Shortest path between two points in a network/grid
+    - PageRank
+  - Used by Facebook
+  - Property graph model
+    - Neo4j, Titan, InfiniteGraph
+    - Vertex has unique identifier, outgoing edges, incoming edges, collection of key-value pair properties
+    - Edge has unique identifier, edge start ("tail"), edge end ("head"), label, collection of key-value pair properties
+  - Triple store model
+    - Datomic, AllegroGraph
+    - Independent of semantic web, but often mentioned together
+- Query languages
+  - Declarative
+    - Give the computer the what, not the how
+    - More concise
+    - Hides implementation details of the db engine, so easier to optimize without having to change any queries
+    - Examples: SQL, CSS, XSL
+    - Better for parallel execution
+  - Imperative
+    - Tell the computer what and how
+    - Most programming languages are imperative
+    - Examples: IMS, CODASYL
+  - MapReduce
+    - Must be pure functions (no additional db queries, no side effects)
+
+#### Conclusions
+
 - Choose the datastore that makes your application code the simplest
+- "A hybrid of the relational and document models is a good route for databases to take in the future"
+
+#### Research
+
+- Multi-table index cluster tables
+- Column family concept in Bigtable data model
+- Distributed query execution (MapReduce, SQL)
+- Possible to use JavaScript with some SQL dbs?! https://blog.heroku.com/javascript_in_your_postgres
+- Recursive common table expressions
 
 #### Questions
 
 - What are examples of "specialized query operations" not well supported by relational model?
 - Does anyone have examples when a relational schema has been "too restrictive"? How would a non-relational datastore be an improvement?
 - Has anyone worked with a "polyglot persistence" model? What did you like? What did you not like?
+- Has anyone chosen to use the document model and then discovered that was a bad choice? Why did you chose it? What didn't work for your use case?
+  - Good case: http://www.sarahmei.com/blog/2013/11/11/why-you-should-never-use-mongodb/
+- What is the Google Spanner database?
+- SPARQL: the perfect triple store query language for GitHub!
 
 #### Team discussion
 
@@ -149,7 +206,7 @@ I'm reading ["Designing Data-Intensive Applications: The Big Ideas Behind Reliab
   - Used to lock the entire database. Now locks just the document
 - CSS as a query language
 - Data logging
-- What would building an event sourcing layer on top of Atonomic be like?
+- What would building an event sourcing layer on top of Datomic be like?
 - We're kind of unique because we built our service on top of Git, essentially, so not really abstracting anything in our data layer
 - Have we ever wanted to use Elasticsearch for denormalized background search?
   - Related to stream processing, secondary indexes
@@ -161,7 +218,87 @@ I'm reading ["Designing Data-Intensive Applications: The Big Ideas Behind Reliab
 
 ### Ch 3: Storage and Retrieval
 
+- Optimized for transactional workloads vs analytics
+- World's simplest db: key value store
+- Note: "log" here means an "append-only sequence of records"
+- Index speeds up reads, slows down writes
+- Hash Tables
+  - "Tombstone": special deletion record
+  - Append-only > overwriting
+    - "Appending and segment merging are sequential write operations, which are generally much faster than random writes"
+    - Simpler concurrency and crash recovery
+  - Used by Riak, Bitcask
+- SSTables
+  - "Sorted string table"
+  - Like key value store, but sorted by key
+  - Writes now occur in order
+  - Can use mergesort algorithm to merge segnments
+  - Can jump to offsets since you know the order; don't need to scan through all keys
+  - Use red-black trees or AVL trees to _insert keys in any order and read them back in sorted order_ (!!)
+  - Used by LevelDB and RocksDB
+  - Introduced in Google's Bigtable paper
+  - LSM-Tree
+    - "Log Structured Merge Tree"
+    - Keep a cascade of SSTables that are merged in the background
+    - Used by Lucene (used by Elasticsearch and Solr)
+    - Use "Bloom filter" to approximate contents of a set; can tell you if a key doesn't exist in a DB (HOW?)
+    - Pros:
+      - Faster for writes
+      - Lower "write amplification"
+      - Can be compressed better (smaller files on disk than B-trees)
+    - Cons:
+      - Slow when looking up keys that don't exist
+      - Compaction can interfere with read/write performance
+      - Need monitoring to catch degraded performance
+- B-Trees
+  - Most common indexing structure
+  - Standard index implementation in almost all relational databases
+  - Many non-relational dbs use them too
+  - Key value pairs sorted by key => efficient lookups and range queries
+  - Break db down into blocks or pages, read or write one page at a time
+    - Mirrors underlying hardware (disks are also arranged in fixed size blocks)
+  - "Branching factor": number of references to child pages
+    - Amount of space required to store page refs and range boundaries
+  - Write operation overwrites page on disk (unlike LSM trees which append, then compact, never modify in place)
+  - Overwriting is risky, so also use a write-ahead log, which is an append-only file
+    - Helps recover from crashes
+    - But now you're always doing two writes: one to WAL, one to page
+    - "Write amplificiation"
+      - SSDs can only overwrite blocks a limited number of times before wearing out
+      - Eats up disk bandwidth
+  - Also requires latches (lightweight locks) for concurrency control
+  - Alternatives:
+    - Copy-on-write (used by LMDB db)
+    - Abbreviate keys
+    - Attempt to keep leaf pages in sequential order (kinda tough)
+    - Additional pointers to sibling pages
+  - Pros:
+    - Faster for reads
+    - More predictable query times
+  - Cons:
+    - Higher write amplification
+    - Unused disk space due to fragmentation, so larger file size on disk
+- "Clustered index": storing all row data w/i index
+  - speeds up reads
+  - adds overhead on writes
+- "Nonclustered index": storing references to data w/i index
+  - avoids duplicating data
+- "Covering index": stores some of row data w/i index
+  - speeds up reads
+  - adds overhead on writes
+- "Concatenated index": combines several fields into one key
+  - query several columns at once
+  - good for geospatial data
+  - good for search filter combinations
+- Online transaction processing (OLTP) vs Online analytic processing (OLAP)
+  - Better to have separate dbs for each, as they're very different access patterns
+  - Separate data warehouse for analytics queries
+
 #### Questions
+
+- How do Bloom Filters work?
+- Appreciate discussion of hardware specific concerns (example: magnetic hard drives perform sequential writes faster, so better to use an LSM tree)
+- Need to review last sections on column and cube storage
 
 #### Team discussion
 
