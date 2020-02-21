@@ -44,7 +44,7 @@ I'm reading ["Designing Data-Intensive Applications: The Big Ideas Behind Reliab
 - Building blocks of data intensive applications
   - Databases: store
   - Caches: remember expensive operations for faster reads
-  - Search indexes
+  - Search indices
   - Stream processing (sending messages between processes for async handling)
   - Batch processing
 - Hard to choose tools for the above
@@ -209,7 +209,7 @@ I'm reading ["Designing Data-Intensive Applications: The Big Ideas Behind Reliab
 - What would building an event sourcing layer on top of Datomic be like?
 - We're kind of unique because we built our service on top of Git, essentially, so not really abstracting anything in our data layer
 - Have we ever wanted to use Elasticsearch for denormalized background search?
-  - Related to stream processing, secondary indexes
+  - Related to stream processing, secondary indices
   - Problem of eventual consistency... have to be ok with some lag / inconsistencies
 - Can we SOLVE EVERYTHING with change data capture?
 - How does data residency affect Elasticsearch? (ex. countries, Enterprise)
@@ -296,11 +296,40 @@ I'm reading ["Designing Data-Intensive Applications: The Big Ideas Behind Reliab
 
 #### Questions
 
-- How do Bloom Filters work?
+- How do Bloom Filters work? See https://en.wikipedia.org/wiki/Bloom_filter
 - Appreciate discussion of hardware specific concerns (example: magnetic hard drives perform sequential writes faster, so better to use an LSM tree)
 - Need to review last sections on column and cube storage
 
 #### Team discussion
+
+- Talked about enforcing efficient queries in the application code itself
+  - Company had less trust in its devs' ability to write efficient queries
+- Disk access is cached in memory
+- Recommendation: give half the RAM to Elasticsearch, give the rest to file system cache to speed things up
+- BTree: not a binary tree
+- Search indices are essentially LSM trees
+- Still only 4 disk hops in 256 terrabyte drive (thanks to page sizes)
+- Bloom filters
+  - Basically Cassandra
+  - Weird data structure, kinda like a set
+  - Ask "have you seen this key before?"
+    - Sometimes it lies to you
+    - But so fast, we don't mind
+    - Only lies in one direction
+      - If it says "no", you're golden
+      - A "yes" is only probaby true (might wanna search for it anyway)
+  - In-memory
+  - Much smaller than an actual set
+- Ink and Switch Lab
+  - Conflict free collaboration with shared data
+  - Immutable logs you can rebuild data structures from
+- Multi-dimensional indices!
+- Geospatial databases do a lot of different things than dbs discussed in this chapter. Hard to handle > 20 indexes.
+- Search is a one dimensional index
+  - You can trick it into thinking it's 2D: https://en.wikipedia.org/wiki/Hilbert_curve
+  - "Space filling curves"
+- Lucene talk about GIS geospatial stuff
+  - Overload those concepts for search
 
 ### Ch 4: Encoding and Evolution
 
