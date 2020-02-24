@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Living with Legacy Javascript - Event Proxies, App Seams, and Chunking Rewrites
+title: Living with Legacy JavaScript - Event Proxies, App Seams, and Chunking Rewrites
 tags: [code reading, javascript]
 ---
 

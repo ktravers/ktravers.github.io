@@ -91,7 +91,7 @@ def create
 end
 ```
 
-Now that we're using `remote: true`, we don't want to render a view; we want to execute a jQuery function of our choosing. So we replace the `render` command and with `respond_to` instructions for each format we want our controller to serve. Here, our controller can serve html AND Javascript responses to the ajax success function.
+Now that we're using `remote: true`, we don't want to render a view; we want to execute a jQuery function of our choosing. So we replace the `render` command and with `respond_to` instructions for each format we want our controller to serve. Here, our controller can serve html AND JavaScript responses to the ajax success function.
 
 ### Step 3: Add `create.js.erb` file
 
@@ -111,7 +111,7 @@ Check out the code in action here: [www.amiruby.com](http://www.amiruby.com/)
 
 ### More resources:
 1. [Railscasts #136 - jQuery & Ajax](http://railscasts.com/episodes/136-jquery-ajax-revised)  
-2. [Railscasts #205 - Unobtrusive Javascript](http://railscasts.com/episodes/205-unobtrusive-javascript)  
+2. [Railscasts #205 - Unobtrusive JavaScript](http://railscasts.com/episodes/205-unobtrusive-javascript)  
 3. [Alfajango - Rails Remote Links and Forms](http://www.alfajango.com/blog/rails-3-remote-links-and-forms/)  
 4. [CodeBeerStartups - Ajaxify your Site With Remote True](http://www.codebeerstartups.com/2012/12/ajaxify-your-site-with-remote-true)  
 5. [(Flatiron alum) Koren Leslie Cohen - Remote True in Rails Forms](http://www.korenlc.com/remote-true-in-rails-forms/)

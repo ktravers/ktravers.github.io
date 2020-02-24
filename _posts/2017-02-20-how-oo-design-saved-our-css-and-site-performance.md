@@ -201,7 +201,7 @@ After you’ve built the frame, add text and media elements to fill out the card
 
 But what about our JAVASCRIPT?
 
-This project required us to rewrite all of our CSS and markup, which means we had to rewrite our Javascript selectors, too. We relied on semantic BEM syntax here as well, adopting the following syntax for any Javascript selector element: descriptor prefixed with `.js--`. For example, `.js--toggle`.
+This project required us to rewrite all of our CSS and markup, which means we had to rewrite our JavaScript selectors, too. We relied on semantic BEM syntax here as well, adopting the following syntax for any JavaScript selector element: descriptor prefixed with `.js--`. For example, `.js--toggle`.
 
 This was also a good opportunity to decouple our JS and CSS. Moving forward, `.js--` classes have no styles attached to them. They’re reserved for JS selectors only.
 
@@ -222,7 +222,7 @@ In all, the process took about two and half months, with three dedicated devs at
 
 This project wasn’t without its challenges.
 
-The primary beast we faced was **scope creep**. Originally, this project was prototyped for three user-facing views. It grew to cover ALL user-facing views. And since we had to rewrite our JS selectors anyway, we ended up refactoring most of our Javascript alongside our markup and CSS. Letting things expand like this easily added another few weeks to the project.
+The primary beast we faced was **scope creep**. Originally, this project was prototyped for three user-facing views. It grew to cover ALL user-facing views. And since we had to rewrite our JS selectors anyway, we ended up refactoring most of our JavaScript alongside our markup and CSS. Letting things expand like this easily added another few weeks to the project.
 
 After scope creep, the second biggest challenge we faced was something I'll call **neophobia - fear of change**. Change is scary, and some people on our team were very comfortable doing things the old way (maybe too comfortable). Some folks were also pretty wary of CSS in general, and those deep-seeded biases were hard to overcome. But I’m happy to say once everyone started actually using the system, they were completely won over.
 

@@ -209,9 +209,9 @@ To address this problem, our product team developed the following requirements:
 
 How could we represent these conditions in code?
 
-#### Javascript Example
+#### JavaScript Example
 
-Writing that function in [Javascript](https://developer.mozilla.org/en-US/docs/Web/JavaScript) might look something like this:&#42;
+Writing that function in [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript) might look something like this:&#42;
 
 ```javascript
 export const displayName = (user) => {
@@ -231,7 +231,7 @@ export const displayName = (user) => {
 
 &#42; I realize these examples are somewhat contrived, but bear with me. They're for illustrative purposes, not code review.
 
-There's a lot of things that make this function pretty hard to grok in one glance. First off, there's Javascript's punctuation-heavy syntax, which can be a little rough on the eyes if you've been away from it for a little while. All the nested conditionals add complexity, too, as well as mental overload. Then additionally, we're also doing some nil checking (via `length`) and throwing in some string sanitation for good measure. All-in-all, not super readable.
+There's a lot of things that make this function pretty hard to grok in one glance. First off, there's JavaScript's punctuation-heavy syntax, which can be a little rough on the eyes if you've been away from it for a little while. All the nested conditionals add complexity, too, as well as mental overload. Then additionally, we're also doing some nil checking (via `length`) and throwing in some string sanitation for good measure. All-in-all, not super readable.
 
 #### Ruby Example
 
@@ -280,7 +280,7 @@ Multi-clause functions allow us to break our conditional logic into the smallest
 
 #### Handling the Un-Happy Path
 
-But you might have noticed our Elixir example here has a bit of an unfair advantage. Most of the added complexity in the Ruby and Javascript examples came from handling `nil` cases, and we're not checking for those at all in the Elixir example - yet.
+But you might have noticed our Elixir example here has a bit of an unfair advantage. Most of the added complexity in the Ruby and JavaScript examples came from handling `nil` cases, and we're not checking for those at all in the Elixir example - yet.
 
 You might be tempted to throw a `case` statement into the first `display_name/1` function clause (more on function `name/arity` syntax [here](https://elixirschool.com/en/lessons/basics/functions/#function-naming-and-arity)). You'll want to resist, though, because `case` statements are not The Elixir Way™.
 

@@ -1,10 +1,10 @@
 ---
 layout: post
-title: Code Talk Notes - Javascript Testing and Analytics
+title: Code Talk Notes - JavaScript Testing and Analytics
 tags: [code reading, javascript, testing]
 ---
 
-## Javascript Test Updates
+## JavaScript Test Updates
 
 jsdom: npm module  
 - load into node environment  
