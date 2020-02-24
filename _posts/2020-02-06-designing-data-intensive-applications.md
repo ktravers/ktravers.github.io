@@ -181,7 +181,7 @@ I'm reading ["Designing Data-Intensive Applications: The Big Ideas Behind Reliab
 - Multi-table index cluster tables
 - Column family concept in Bigtable data model
 - Distributed query execution (MapReduce, SQL)
-- Possible to use JavaScript with some SQL dbs?! https://blog.heroku.com/javascript_in_your_postgres
+- Possible to use JavaScript with some SQL dbs?! https://blog.heroku.com/JavaScript_in_your_postgres
 - Recursive common table expressions
 
 #### Questions
@@ -320,9 +320,10 @@ I'm reading ["Designing Data-Intensive Applications: The Big Ideas Behind Reliab
       - A "yes" is only probaby true (might wanna search for it anyway)
   - In-memory
   - Much smaller than an actual set
-- Ink and Switch Lab
+- [Ink and Switch Lab](https://www.inkandswitch.com/local-first.html)
   - Conflict free collaboration with shared data
   - Immutable logs you can rebuild data structures from
+  - Author Martin Kleppmann is a member!
 - Multi-dimensional indices!
 - Geospatial databases do a lot of different things than dbs discussed in this chapter. Hard to handle > 20 indexes.
 - Search is a one dimensional index
@@ -333,9 +334,133 @@ I'm reading ["Designing Data-Intensive Applications: The Big Ideas Behind Reliab
 
 ### Ch 4: Encoding and Evolution
 
+- Forward compatibility harder than backward compatibility
+- Programs typically represent data two ways:
+  1. In memory
+    - Objects, structs, lists, etc
+    - Optimized for efficient updates by CPU usually using pointers
+  2. Sequence of bytes
+    - Necessary to write data to file or send over network
+- Translation from memory to bytes: ENCODING aka "serialization", "marshalling"
+- Bytes to memory: DECODING aka "parsing", "deserialization", "unmarshalling"
+- Most languages have built in support for encoding in-memory objects into bytes (ex. Ruby: `Marshal`, Python: `pickle`) BUT don't use it
+  - Can't really be reused w/ another language
+  - Often don't handle data versioning
+  - Often inefficient
+- Textual data formats
+  - JSON: subset of JavaScript
+  - Ambigous number encoding (string vs float vs integer, etc)
+  - JSON and XML don't support binary strings
+  - Binary JSON encodings not much smaller than the JSON itself
+- Binary encodings based on schemas
+  - Thrift and Protocol Buffers
+    - Require schema
+    - Code generation tool that creates objects/classes from schema
+    - Code generation:
+      - Efficient in-memory structures
+      - Allows type checking, IDE autocompletion
+      - HOWEVER kinda pointless for dynamically-typed language like Ruby or JavaScript, because there's no compile-time type checker
+    - Encoded record is the "concatenation of its encoded fields"
+    - Fields identified by field tags, not field names (kinda like aliases)
+      - Field tag == number
+      - Easy to change field names
+      - Helps make code backwards and forward compatible
+    - 1) Thrift
+      - Facebook
+      - Two different formats: BinaryProtocol and CompactProtocol
+      - Supports nested lists
+    - 2) ProtoBuf
+      - Google
+      - Most size-efficient
+      - Doesn't have a list or array datatype. Uses `repeated` marker instead
+  - Avro
+    - Uses schema, two schema languages
+      - Avro IDL: human readable
+      - Another one based on JSON: machine readable
+    - More compact than Thrift or ProtoBuf
+    - No field tags
+    - Friendlier to dynamically-generated schemas
+    - On write, uses "writer's schema" (schema version currently known to app)
+    - On read, uses "reader's schema" (schema application code relies on)
+    - Writer's schema and the reader's schema can be different as long as they're compatible. Avro knows how to resolve differences on read
+    - Writer's schema version number included in every db record
+    - Db stores list of writer's schema versions
+    - Optional code generation (for statically typed languages)
+    - Used by Linkedin's document db
+- Forefathers of binary data encoding:
+  - ASN.1
+    - Schema definition language still used to encode SSL certs
+    - Complex, poorly documented
+  - Database drivers that decode responses from db's network protocol into in-memory data structures
+- Binary encodings based on schemas > textual data formats
+  - More compact
+  - Schema provides documentation
+  - Support backwards/forwards compatibility and type checks
+- Dataflow Modes
+  - Via databases
+    - Write process encodes, read process decodes
+    - Need to maintain forward compatibility to avoid data loss
+  - Via service calls (REST, SOAP, and RPC)
+    - "Microservices architecture" is same as "service-oriented architecture" (SOA)
+    - Clients submit and query data from service
+    - Requests expect a response as quickly as possible
+    - Servers updated first, clients second, so requests need to be backwards compatible and responses need to be forward compatible
+    - HTTP or web services: REST, SOAP
+    - REST
+      - Not a protocol
+      - Design philosophy based on HTTP principles
+      - Emphasizes simple data formats
+      - OpenAPI: definition format, aka Swagger, used for documentation
+      - Better for experimentation and debugging (thanks to `curl`)
+    - SOAP
+      - XML-based protocol for network requests
+      - Used over HTTP, but aims to be independent from HTTP
+      - Avoids most HTTP features
+      - Uses "Web Services Description Language" (WSDL)
+      - WSDL enables code generation, so client can access service using local classes and method calls
+      - Useful for statically typed languages, less so dynamically typed langues
+      - Not very human readable, so relies heavily on tools, IDEs
+    - RPC (remote procedure call)
+      - Created in 1970s
+      - Tries to make network request look the same as calling a function or method (an abstraction known as "location transparency")
+      - Fundamentally flawed (!!)
+        - Because a local function call is predictable, but network request is unpredictable (speaking generally)
+        - Local function call always returns something, but network request response might be lost completely
+        - Hard to pass complex objects via network request, because you have to encode everything into bytes first
+        - If client and service are implemented in different languages, RPC framework has to translate, which can get gnarly
+      - Conclusion: don't bother trying to hide that you're making a network request (or as the book says, RPC is pointless)
+  - Via async message passing
+    - Somewhere in-between RPC and databases (what does this mean?)
+      - Request delivered to process with low latency
+      - Request isn't sent via direct network connection; goes via message broker that temporarily stores the message
+    - Message brokers are super helpful
+      - Acts as buffer
+      - Can be used for redelivery
+      - Prevents messages from being lost
+      - Sits in front of service, so hides IP address, port, etc
+      - 1 message can go to multiple recipients
+      - Decouples sender from recipient
+    - Sender normally doesn't expect to receive a reply to its messages (asynchronous, fire and forget, one-way data flow)
+    - Actor model: actor has local state, communicates by sending and receiving messages
+
 #### Questions
 
+- Any examples of decoding as a source of security problems (ex. remote code execution)?
+  - From footnotes:
+    - https://foxglovesecurity.com/2015/11/06/what-do-weblogic-websphere-jboss-jenkins-opennms-and-your-application-have-in-common-this-vulnerability/
+    - http://cwe.mitre.org/data/definitions/502.html
+    - https://www.kalzumeus.com/2013/01/31/what-the-rails-security-issue-means-for-your-startup/
+- Avro has some interesting design decisions:
+  - Doesn't allow NULL as a default value; instead you have to use a `union type` and specify expected "not null type".
+  - Also uses `union type` instead of markers like "optional" or "required"
+- Is everything message passing? Ex. concept of "storing something in the database as sending a message to your future self"
+- What do we know about Distributed Component Object Model (DCOM)?
+  - Microsoft's tech for making network requests
+  - Based on RPC
+
 #### Team discussion
+
+
 
 ## Part 2: Distributed Data
 
