@@ -460,13 +460,170 @@ I'm reading ["Designing Data-Intensive Applications: The Big Ideas Behind Reliab
 
 #### Team discussion
 
-
+Erlang rules!
 
 ## Part 2: Distributed Data
 
+- Why distribute?
+  - Scalability
+  - Fault tolerance
+  - High availability
+  - Low latency
+- "Shared memory/disk architecture"
+  - Cost grows linearly
+  - Limited fault tolerance
+- "Shared nothing architecture"
+  - Horizontal scaling / "scaling out"
+  - Network of nodes
+  - Each node uses resources (CPUs, RAM, disks) independently
+  - Adds complexity
+  - Limits expressiveness of data models
+  - Requires extra caution/consideration from developer
+
 ### Ch 5: Replication
 
+- This chapter assumes dataset is small enough for a single machine (no partitioning, that's for next chapter)
+- Increases availability
+- Improves performance (read throughput)
+- Reduce latency (keep data geographically close to users)
+- What is a replica? A node that stores a copy of the db
+- Three popular approaches:
+  - Single leader
+  - Multi-leader
+  - Leaderless
+- Leader based replication
+  - "active/passive"
+  - Most common solution
+  - Leader(s) + followers (aka replicas, secondaries, hot standbys)
+  - Writes are only accepted on the leader
+  - Client can read from leader or followers
+  - Used in dbs and message brokers (Kafka, RabbitMQ)
+  - Synchronous replication
+    - "Guaranteed" followers are up to date with leader
+    - Writes are blocked waiting for "ok" from followers
+    - "Semi-synchronous": impractical for all followers to be synchronous (usually just one)
+  - Asynchronous replication
+    - If leader fails, any writes that haven't been replicated are lost
+    - Write is not guaranteed to be durable (!!)
+    - Higher performance, but lower durability
+  - Consistency vs consensus (several nodes agree on a value)
+  - How do you add a new follower?
+    - Lock db (causes downtime)
+    - No downtime:
+      - Copy data snapshot ot new node
+      - Node requests all changes since snapshot from leader
+      - Node processes the backlog, then it's caught up
+  - Similar process for follower recovering from crash (catch up from changelog)
+  - Failover: choose a new leader, reconfigure hierarchy
+    - How do nodes decide on a new leader? (consensus)
+    - Does new leader have all the writes?
+    - What happens if old leader comes back up?
+    - More than one node thinks it's the leader ("split brain")
+    - What's the right timeout? (When do you kill the leader?)
+  - Statement based replication
+    - Leader logs every write ("statement")
+    - Dicey because of nondeterministic functions (ex. `NOW()` has different values on different nodes), statements must be executed in same order, other side effects
+  - Write Ahead Log Shipping (WAL)
+    - Append-only sequence of bytes containing all writes
+    - Use this same log to build replicas
+    - Used in PostgreSQL and Oracle
+    - Because data is described at the byte level, this method is closely tied to storage format (and db version)
+    - Upgrades could require downtime
+  - Logical (row-based) log replication
+    - Decoupled from storage engine internals
+    - "Change data capture": Contains data column data for affected row
+    - Backward compatible
+    - Parseable by external applications (ex. data warehouse)
+  - Replication happens at db eleve, but can use triggers and stored procedures to run from application layer
+    - Greater overhead
+    - More prone to bugs
+  - "Read-scaling architecture": distribute read requests across many followers
+    - Good for workloads w/ few writes
+    - Kinda have to use async replication (all nodes would be blocked otherwise)
+  - Replication lag complications:
+    - "Read after write" consistency
+      - aka "read your writes" consistency
+      - User can submit data, reload page, see what they just submitted
+      - Read current user data from leader, everything else from followers
+      - "cross-device read-after-write" consistency: when user accesses your service from multiple devices
+    - Monotonic reads
+      - User will not read older data than previously read data
+      - Could always have user read from same replica, but then what if it fails?
+    - Consistent prefix reads
+      - Prevent "time traveling" into the future
+      - Anyone reading writes will read them in the same order they happened
+      - Big problem in partitioned/sharded dbs
+  - Multi-leader Replication
+    - aka "active/active" replication
+    - More than one node can accept writes
+    - Still forward writes to other nodes
+    - Better perceived performance
+    - Tolerates network problems better
+    - Problem: resolving write conflicts
+    - When does this config make sense?
+      - Multi-datacenter operation
+        - Replicas in several datacenters
+        - Ex. have a leader in each datacenter
+      - Offline operation
+        - Local database is the leader, writes to other leader whenever it's online (async replication)
+        - Device is its own "datacenter"
+      - Collaborative editing (Google Docs)
+        - Concurrently edit single document
+        - Local replica, changes applied async to server
+        - Need to handle write conflict resolution in real time
+      - Mostly should be avoided if possible: "As multi-leader replication is a somewhat retrofitted feature in many databases, there are often subtle configuration pitfalls and surprising interactions with other database features. For example, autoincrementing keys, triggers, and integrity constraints can be problematic."
+    - Write Conflict Resolution
+      - Sync vs async conflict detection
+      - Try to avoid it (how is this even possible??)
+      - Single leader applies writes in sequential order
+      - Order is less clear w/ multi-leader
+      - Last Write Wins
+        - Compare, pick latest, throw away the other writes
+        - Popular option
+        - Prone to data loss
+        - "achieves...eventual convergence, but at the cost of durability"
+      - Merge values (?!)
+        - This doesn't make any sense to me
+      - Record conflict in its own data structure that preserves all the data
+      - Write application code that resolves conflict somehow
+        - Resolve on write
+        - Resolve on read
+        - CRDTs
+        - MPDSs (mergeable persistent data structures)
+        - Operational transformation
+    - Replication Topologies
+      - Communication paths to propogate writes to all nodes
+      - Circular
+      - Star
+      - All to all
+- Leaderless replication
+  - Used by Amazon's Dynamo, Riak, Cassandra, Voldemort
+  - Reads and writes sent to several replicas
+    - Use version numbers to determine which value is newest
+    - "Quorum" reads and writes
+    - Quorums are not necessarily majorities
+  - Sometimes use coordinator node to send writes to replicas
+    - Coordinator doesn't enforce ordering of writes (?!)
+  - Failover doesn't exist
+  - Eventual consistency:
+    - Read repair
+      - Client can detect stale responses, so write back newest response to any replicas with stale values
+      - Only performed when value is read by the application, so stuff that's rarely read might be out of date
+    - Anti-entropy process
+      - Background process that checks for differences and fixes
+  - Good for use cases that require high availability and low latency and can tolerate stale reads
+- Monitoring
+  - Leader-based replication: db usually has metrics for lag you can hook into
+  - Leaderless: monitoring is more difficult
+
 #### Questions
+
+- Microsoft Azure Storage uses chain replication
+- Yikes, GitHub incident when out of date follower was promoted to leader: https://github.blog/2012-09-14-github-availability-this-week/
+- What is this "Mr. Poons" / "Mrs. Cake" reference from?
+- What are ways to avoid conflict resolution w/ multi-leader?
+- I thought Google Docs used CRDTs? I guess not. I guess it uses operational transformation.
+- Counterintuitive: "For defining concurrency, exact time doesn't matter: we simply call two operations concurrent if they are both unaware of each other, regardless of the physical time at which they occurred."
 
 #### Team discussion
 
