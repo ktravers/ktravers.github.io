@@ -629,9 +629,143 @@ Erlang rules!
 
 ### Ch 6: Partitioning
 
+When your dataset or query load reaches a certain size, one way to maintain performance at scale is to partition your data across multiple nodes. This chapter gives us an overview of partitioning large datasets, including how to evenly distribute data and query load, properly route queries, and rebalance as you scale your cluster up/down.
+
+Thinking back to the previous chapter, it's common to use partitioning and replication together, where you'll store copies of each partition on multiple, separate nodes. That way you'll maintain fault tolerance as you scale.
+
+#### Partitioning of Key-Value Data
+
+The goal of partitioning is to distribute the data and query load evenly across nodes. When unsuccessful, we end up with skewed partitioning, where a disproportionately high load is routed to one or more hot spots. We want to avoid skew, because then we miss out on all the performance benefits of partitioning (but still get all the headaches of a distributed system).
+
+So how do we avoid skewed distribution and hot spots? The chapter describes two different approaches: key ranging and hashing.
+
+##### Partitioning by Range
+
+The book gave a good "real world" example of a set of encyclopedias. Each book is a partition, keys are sorted in order, and the ranges of keys can vary from book to book (for example: you may need two books to cover A-B of the encyclopedia, but only one book to cover T-Z). Partition boundaries can be set manually or automatically (more on that in the rebalancing section).
+
+Pros:  
+- Efficient lookups (provided you know the boundaries of each range + location of partition), especially range scans for related records
+
+Cons:  
+- Higher risk of skew and hot spots (example: if your data is sorted by timestamp and you're writing in real time, the partition holding most current data is overloaded)
+- Need to take this into account when choosing key name
+
+Tech that uses partitioning by range:  
+- Bigtable (Google)
+- HBase (open source Bigtable)
+- RethinkDB
+- MongoDB (< v2.4)
+
+##### Partitioning by Hashing
+
+Another option that's better at avoiding skew + hot spots is to partition by hash function instead. The hash function doesn't have to be strong; it just has to be consistent. For example, MD5 is good enough for MongoDB, whereas the book recommends avoiding some programming languages' built-in hash functions, since they might not have strong consistency guarantees. They give the example of Java and Ruby's built-in functions which can return a different hash value for the same key (not good for mapping data to a partition & being able to retrieve it later by key). Each partition is assigned a range of hashes, then keys are distributed evenly.
+
+Pros:  
+- More even distribution
+- Less risk of skew, hot spots
+
+Cons:  
+- Range queries are less efficient, because related records are no longer going to be located near one another.
+- Still susceptible to edge case-y hot spots where one key is overloaded with reads/writes (the Bieber problem)
+
+#### Partitioning and Secondary Indexes
+
+Secondary indexes are the "bread and butter" of relational databases, says this book, but unfortunately they introduce some additional complexity when it comes to partitioning, as you'll need to partition your indexes as well as your data. The chapter covers two main approaches: document-based partitioning and term-based partitioning.
+
+##### Partitioning Secondary Indexes by Document
+
+In this approach, each partition maintains its own secondary index that only includes records in that partition. It's also known as a local index.
+
+Widely used:  
+- MongoDB
+- Riak
+- Cassandra
+- Elasticsearch
+- Solrcloud
+- VoltDB
+
+Pros:  
+- Isolation (don't need to worry about what's stored in other partitions)
+- Simpler writes (write to one partition, update one index only on that same partition)
+
+Cons:  
+- Scatter/gather approach
+- More expensive queries (need to query all partitions then combine the results)
+- Prone to tail latency amplification (on your latency graph, higher peaks at the extremes)
+
+##### Partitioning Secondary Indexes by Term
+
+Instead of maintaining local indexes on each partition, you can use a global index partitioned by term (or more likely, a hash of the term, for more even distribution).
+
+Pros:  
+- Reads are more efficient (no scatter/gather)
+
+Cons:  
+- Writes are slower (now writes can affect multiple partitions, depending what terms are updated)
+- Asynchronous updates, so index may be out of date
+
+#### Rebalancing Partitions
+
+As your dataset evolves, you'll probably want to adjust capacity by adding or removing nodes from your cluster. This requires you to rearrange where data is stored and requests are routed, aka rebalancing.
+
+Goals:  
+- Query and data load should be evenly distributed across partitions and nodes
+- Database can still accept reads and writes during rebalancing (note: seems challenging)
+- Minimize amount of data moved / requests re-routed
+
+##### Fixed Number of Partitions
+
+The chapter is very adamant about not partitioning based on hash mod N, because if keys are hashed based on a fixed number of nodes, then the number of nodes changes, the keys all have to be rehashed and moved, leading to excessive (and expensive) rebalancing. Instead, you could use a fixed number of partitions to start, making sure you have more partitions than nodes. Assign multiple partitions to each node, then adjust as needed when you add/remove nodes. This allows you to move partitions instead of reassigning keys.
+
+The number of partitions is usually fixed up front when the database is originally set up and usually doesn't change. The chapter says it's difficult to choose the right number unless you have a fixed size dataset that isn't going to change.
+
+Tech that uses this approach:  
+- Riak
+- Elasticsearch
+- Couchbase
+- Voldemort
+
+##### Dynamic Partitioning
+
+With dynamic partitioning, you set a max size for your partitions, then when they exceed that max, they're split into two new partitions (with data evenly divided between them). You can also do the converse and set a minimum, which will merge partitions that get too small. This approach is a better fit for key range-partitioned databases.
+
+Tech that uses this approach:  
+- HBase
+- RethinkDB
+- MongoDB
+- Vitess
+- Partitioning Proportionally to Nodes
+
+With both dynamic and fixed partitioning, the number of partitions is unrelated to the number of nodes. Alternatively, you could a third approach and set a fixed number of partitions per node. The partitions grow as the dataset grows, so you add new nodes to reduce partition size. When a new node is added, it randomly selects a fixed number of existing partitions to split and migrate.
+
+Tech that uses this approach:  
+- Cassandra
+- Ketama
+
+#### Operations: Automatic or Manual Rebalancing
+
+The book recommends including some sort of manual intervention, even if it's a just a human signing off on an automatically generated plan. Less convenient, but fewer surprises.
+
+#### Request Routing
+
+Service discovery: how do we know which node to talk to?
+
+Three high level approaches:  
+- Smart nodes: Allow clients to connect to any node (via load balancer), then nodes ping each other until eventually the right one responds, passing the reply back down the line to the client
+  - Example: `gossip protocol` used by Cassandra and Riak
+- Smart router: Use a "partition-aware" load balance. Requests are sent to a router first that knows where to forward each request.
+- Smart client: Clients are aware of which partitions are assigned to which nodes and can ping the correct node directly.
+
+Recommendation: use a coordination service like ZooKeeper. ZooKeeper acts as a registry, keeping track of which range is assigned to which partition, which partition is assigned to which node, and node IP address.
+
 #### Questions
 
-#### Team discussion
+- What partitioning approaches do we use at GitHub?
+- How do tools like Vitess help us with data partitioning?
+  - Uses scatter/gather for queries
+  - Locks writes during resharding, but allows reads (?)
+- Has anyone worked with a system that used automatic rebalancing? Any horror stories?
+- Does GitHub have any "Justin Bieber"-esque accounts that we need to make special data allowances for?
 
 ### Ch 7: Transactions
 
