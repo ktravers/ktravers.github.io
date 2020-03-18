@@ -29,10 +29,6 @@ I'm reading ["Building Git" by James Coglan](https://shop.jcoglan.com/building-g
 
 - What are some of the most confusing parts of the Git interface?
 
-### Discussion notes
-
-
-
 ## Chapter 2: Getting to know .git
 
 - Contents of a `.git` repository
