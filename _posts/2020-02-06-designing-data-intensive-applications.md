@@ -769,6 +769,25 @@ Recommendation: use a coordination service like ZooKeeper. ZooKeeper acts as a r
 
 ### Ch 7: Transactions
 
+- Potential failures that transactions can protect against:
+  - Database software or hardware failure in the middle of a write
+  - Application crashes midway through series of operations
+  - Network failures that cutoff application from database or one db node from another
+  - Multiple clients writing to db at same time (overwriting each other)
+  - Client reads partially updated data
+  - Race conditions w/ weird bugs
+- Transations
+  - Group multiple reads and writes into one operation that rolls back everything if any step fails (all succeed or all fail)
+  - Tradeoffs: sacrifice performance for guarantees
+  - Still using same style introduced in 1975 by IBM System R (the first SQL db!)
+- NoSQL dbs mostly abandoned transactions
+- Two urban legands:
+  - "transactions are the antithesis of scalability"
+  - "transactions are an essential requirement for serious apps with valuable data"
+- ACID: Atomicity, Consistency, Isolation, and Durability
+- BASE: Basically Available, Soft state, and Eventual consistency
+  - aka "Not ACID"
+
 #### Questions
 
 #### Team discussion
