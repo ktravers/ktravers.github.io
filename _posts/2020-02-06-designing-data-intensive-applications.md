@@ -785,12 +785,65 @@ Recommendation: use a coordination service like ZooKeeper. ZooKeeper acts as a r
   - "transactions are the antithesis of scalability"
   - "transactions are an essential requirement for serious apps with valuable data"
 - ACID: Atomicity, Consistency, Isolation, and Durability
+  - Atomic transaction can be rolled back, safely retried
+  - Consistency: application-specific notion of db in "good state"
+    - Database can't guarantee "good state"; that's on the application
+    - "the letter C doesn't really belong in ACID"
+  - Isolation == serializability (academically)
+    - Actual serializable isolation impacts performance
+    - Oracle uses "snapshot isolation" (weaker guarantee but better perf)
+    - Locks on records
+  - Durability
+    - Write to nonvolatile storage and write-ahead log
+    - Replication
 - BASE: Basically Available, Soft state, and Eventual consistency
   - aka "Not ACID"
+- "Nothing that fundamentally prevents transactions in a distributed database", but it can be difficult or no-so-performant
+- "Best effort" db: DB doesn't undo things on error
+  - Example: Datastores with leaderless replication
+- ActiveRecord doesn't retry on abort, which the book says is lame, because aborts are supposed to enable safe retries
+- Weak isolation / concurrency bugs have caused lots of problems
+  - Stolen bitcoin
+    - https://bitcointalk.org/index.php?topic=499580
+    - https://www.reddit.com/r/Bitcoin/comments/1wtbiu/how_i_stole_roughly_100_btc_from_an_exchange_and/
+  - Financial audits
+    - http://www.vldb.org/conf/2007/papers/industrial/p1263-jorwekar.pdf
+  - Customer data corruption
+    - https://www.michaelmelanson.net/transactions-the-limits-of-isolation/
+- Read Committed Transaction Isolation
+  - No dirty reads (only see data that's been committed)
+  - No dirty writes (only overwrite data that's been committed)
+  - Default for Oracle, PostgreSQL, SQL Server, MemSQL
+  - Implemented via row level locks
+    - Write locks are practical
+    - Read locks not so much
+  - Allows aborts
+  - Vulnerable to "read skew", aka timing anomaly, aka nonrepeatable read
+    - Bad for backups
+    - Bad for long running analytics or integrity checks
+- Combine read committed with "snapshot isolation" to prevent read skews
+  - "Each transaction reads from a consistent snapshot of the database"
+  - Supported by PostgreSQL, MySQL, InnoDB, Oracle, SQL Server
+  - Implemented with write locks
+  - No locks on reads
+  - "Readers never block writers, and writers never block readers"
+  - Maintains multiple versions of an object (multi-version concurrency control (MVCC))
+  
+
+
 
 #### Questions
 
+- What does durability mean for projects like the Arctic Code Vault? Especially given all the potential faults/risks/flaws mentioned in this chapter.
+- What doesn't ActiveRecord retry aborted transactions?
+  - Not all operations are idempotent
+  - Avoid overload (if you're not using exponential backoff)
+  - Put the responsiblity on the developer to decide when to retry
+
+
 #### Team discussion
+
+
 
 ### Ch 8: The Trouble with Distributed Systems
 
