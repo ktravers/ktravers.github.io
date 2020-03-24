@@ -822,15 +822,44 @@ Recommendation: use a coordination service like ZooKeeper. ZooKeeper acts as a r
     - Bad for backups
     - Bad for long running analytics or integrity checks
 - Combine read committed with "snapshot isolation" to prevent read skews
+- Snapshot isolation
   - "Each transaction reads from a consistent snapshot of the database"
   - Supported by PostgreSQL, MySQL, InnoDB, Oracle, SQL Server
   - Implemented with write locks
   - No locks on reads
   - "Readers never block writers, and writers never block readers"
   - Maintains multiple versions of an object (multi-version concurrency control (MVCC))
-  
-
-
+  - Long running transaction uses same snapshot for a lonnng time
+  - Referred to as "repeatable read" by SQL dbs because SQL doesn't support proper snapshot isolation. But due to naming confusion, "repeatable read" can mean different things too.
+- Handling concurrent writes (clobbering)
+  - Atomic write operations
+  - Explicit locking
+  - Auto-detect lost updates, then abort and retry
+  - Compare-and-set (assumes single source of truth for data)
+  - Conflict resolution
+- Write Skew
+  - Race condition
+  - Pattern: Select query checks requirement, then application decides how to proceed, then writes... which changes results of the original check.
+  - Examples
+    - Booking a conference room
+    - Multiplayer game (two players try to move to the same square)
+    - Shared concurrent document editing
+    - Claiming a username
+    - Double-spending (going over your limit
+- Serializable isolation
+  - Strongest guarantees
+  - Avoid concurrency by removing concurrency altogether and executing transactions serially
+  - Limited to use cases where the active dataset can fit in memory
+- Two-phase locking
+  - Reads and writes block both reads and writes
+  - Locks can be in shared mode or exclusive mode
+    - Use shared mode for reads
+    - Use exclusive mode for writes
+  - Poor performance
+- Serializable snapshot isolation (SSI)
+  - Promising new approach
+  - Optimistic concurrency control
+    - No blocking; just abort on commit if necessary
 
 #### Questions
 
@@ -839,15 +868,15 @@ Recommendation: use a coordination service like ZooKeeper. ZooKeeper acts as a r
   - Not all operations are idempotent
   - Avoid overload (if you're not using exponential backoff)
   - Put the responsiblity on the developer to decide when to retry
-
-
-#### Team discussion
-
-
+- Why is it so hard to achieve ubiquitous terminology? "Nobody really knows what repeatable read means"
 
 ### Ch 8: The Trouble with Distributed Systems
 
+
+
 #### Questions
+
+- Add'l reading: Kyle Kingsbury, Carly Rae Jepsen and the Perils of Network Partitions (2013)
 
 #### Team discussion
 
