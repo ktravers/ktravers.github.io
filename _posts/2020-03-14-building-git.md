@@ -108,9 +108,38 @@ I'm reading ["Building Git" by James Coglan](https://shop.jcoglan.com/building-g
 
 ## Chapter 3: The first commit
 
+OH boy we building stuff.
+
+What we will build:  
+- Just enough code to store a valid Git commit.
+
+What we won't build (yet):  
+- Subdirectories
+- Executable fiels
+- Symlinks
+- `add` command
+- index
+- Command line argument processing
+- Named branches
+
+Only 3 items in `.git` are essential:  
+- `objects` directory
+- `refs` directory
+- `HEAD` file (symref to file in `refs`)
+  - Note: valid to just contain a commit id
+
+- Helpful to know where those low level Ruby error names come from (ex. `Errno::EACCES`)
+- Book throws some shade at Ruby: "[Ruby's filesytem interfaces File, Dir, Pathname, FileUtils design] is a little haphazard, and there is not a clear separation between methods for manipulating paths and methods for reading and writing files..."
+
 ### Questions
 
+- What's another example where you'd receive relative information from a user then want to convert it to an absolute value before further processing?
+  - Time (convert to UTC)
+- Why didn't we TDD this first part?
+- Did anyone else run into issues w/ piping `cat ../COMMIT_EDITMSG` to a commit message?
+
 ### Discussion notes
+
 
 ## Chapter 4: Making history
 

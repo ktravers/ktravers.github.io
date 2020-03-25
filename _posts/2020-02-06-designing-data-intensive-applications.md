@@ -873,7 +873,6 @@ Recommendation: use a coordination service like ZooKeeper. ZooKeeper acts as a r
 ### Ch 8: The Trouble with Distributed Systems
 
 
-
 #### Questions
 
 - Add'l reading: Kyle Kingsbury, Carly Rae Jepsen and the Perils of Network Partitions (2013)
