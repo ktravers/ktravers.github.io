@@ -872,10 +872,14 @@ Recommendation: use a coordination service like ZooKeeper. ZooKeeper acts as a r
 
 ### Ch 8: The Trouble with Distributed Systems
 
+- Buckle up: "the last few chapters have... been too optimistic"
+
 
 #### Questions
 
 - Add'l reading: Kyle Kingsbury, Carly Rae Jepsen and the Perils of Network Partitions (2013)
+- Anything that can go wrong, will go wrong. Anyone willing to share past horror stories?
+- 
 
 #### Team discussion
 

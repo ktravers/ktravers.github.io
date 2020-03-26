@@ -130,6 +130,7 @@ Only 3 items in `.git` are essential:
 
 - Helpful to know where those low level Ruby error names come from (ex. `Errno::EACCES`)
 - Book throws some shade at Ruby: "[Ruby's filesytem interfaces File, Dir, Pathname, FileUtils design] is a little haphazard, and there is not a clear separation between methods for manipulating paths and methods for reading and writing files..."
+  - Why is it designed this way?
 
 ### Questions
 
@@ -140,6 +141,9 @@ Only 3 items in `.git` are essential:
 
 ### Discussion notes
 
+- Why are we skipping symrefs? Are they difficult to implement?
+  - https://git-scm.com/docs/git-symbolic-ref
+- Should I write this in Elixir instead? Then I can't cheat.
 
 ## Chapter 4: Making history
 
