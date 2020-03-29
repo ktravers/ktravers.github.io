@@ -873,15 +873,142 @@ Recommendation: use a coordination service like ZooKeeper. ZooKeeper acts as a r
 ### Ch 8: The Trouble with Distributed Systems
 
 - Buckle up: "the last few chapters have... been too optimistic"
-
+- :cool-cry: "This chapter is a thoroughly pessimistic and depressing overview of things that may go wrong in a distributed system"
+  - Examples:
+    - Network partitions
+    - Power distribution unit failures
+    - Switch failures
+    - Accidental power cycles
+    - Data center backbone failures
+    - Data center power failures
+    - Humans (truck crashing into HVAC anecdote)
+    - Sharks (literal sharks)
+- Software on a single computer shouldn't be flaky
+  - Same result every time you run a program ("deterministic")
+  - Hardware problem is a total system failure; not partial
+  - Fully functional or fully broken; never in between
+  - Obscures / avoids messiness
+- Networks are flaky
+  - Nondeterministic (no guarantee you'll get the same results every time)
+  - Prone to partial failures (unlike single computer)
+  - Try to build a reliable higher-level system from unreliable lower-level parts (example: TCP transport layer on top of IP)
+  - Shared-nothing has become dominate approach for building web services
+    - "Cheap"
+    - Can use cloud computing
+    - High reliablity through redundant data centers
+  - So many ways for network requests to fail
+    - Request is lost
+    - Request is waiting in a queue
+    - Remote node failed
+    - Remote node temporarily stopped responding (may resume in future)
+    - Request was processed but response was lost
+    - Request was processed but response was delayed
+  - "We have been building computer networks for decades--one might hope that by now we would have figured out how to make them reliable. However, it seems that we have not yet succeeded." A+ SNARK.
+  - TIL: "...just because a network link works in one direction doesn't guarantee it's also working in the opposite direction."
+  - User Datagram Protocol (UDP): a connectionless protocol that works like TCP but assumes that error-checking and recovery services are not required ([source](https://www.privateinternetaccess.com/blog/tcp-vs-udp-understanding-the-difference/))
+  - Phone network vs Internet network
+    - Phone connection
+      - Synchronous circuit for every call w/ guaranteed amt of bandwidth
+      - Fixed data per frame (16 bits every 250 microseconds)
+      - No queueing, so we know the maxiumum latency (aka "bounded delay")
+    - TCP connection
+      - Not a circuit
+      - Bandwidth isn't fixed; connection uses whatever's available
+      - Variable-sized data
+      - Unknown latency due to queues, buffering
+      - Optimized for "bursty traffic"
+- Unreliable Clocks
+  - Examples
+    - A day may not have exactly 86,400 seconds
+    - Time-of-day clocks may move backward in time
+    - Time on one node may be quite different from the time on another node
+  - Monotonic clock
+    - Guaranteed to always move forward
+    - Can't be used for durations
+    - Don't need to be synced
+  - "Time-of-day clock"
+    - Can reset backwards
+    - Synced with Network Time Protocol (NTP)
+  - "Smearing": fixing drift from leap seconds
+  - "Confidence interval"
+    - Account for drift, latency
+    - Most systems obscure the uncertainty (method names seem precise)
+  - Concurrency problems
+    - Last Write Wins (LWW):
+      - Writes can disappear
+      - Can't resolve if writes are truly concurrent
+      - Machine's time of day clock might be incorrect
+      - Use "logical clocks" instead for ordering events
+    - Snapshot isolation
+      - Hard to generate global monotonically increasing transaction id shared across partitions/nodes
+        - Becomes a bottleneck
+      - Use timestamps instead? As long as you're ok with uncertainty and use confidence intervals
+  - Determining leader
+    - Leader holds lease that expires; has to renew
+    - Timing is tricky; hard to know if lease has expired
+  - Tools that don't translate to distributed systems:
+    - Mutexes
+    - Semaphores
+    - Atomic counters
+    - Lock-free data structures
+    - Blocking queues
+  - Hard real-time systems:
+    - Aircraft
+    - Robots
+    - Cars
+    - Objects interacting with physical world in general
+  - Oh that pesky garbage collector
+    - Treat GC pauses like brief planned outages of a node
+    - Let other nodes handle requests from clients while one node is collecting its garbage
+- Truth defined by the majority (example: network quorum)
+  - One node alone isn't trustworthy
+  - Group consensus is more trustworthy than single node
+  - Use fencing tokens as protection against leader who won't step down
+- "Byzantine fault tolerance": operate correctly even if nodes are malfunctioning, not obeying, or under attack by haxx0rs
+  - Examples:
+    - Aerospace computers protected against radiation
+      - Reminds me of bit flipping / bit squatting: http://dinaburg.org/bitsquatting.html
+    - Blockchains
+- Safety vs liveness
+  - Safety: nothing bad happens
+  - Liveness: something good eventually happens
 
 #### Questions
 
-- Add'l reading: Kyle Kingsbury, Carly Rae Jepsen and the Perils of Network Partitions (2013)
-- Anything that can go wrong, will go wrong. Anyone willing to share past horror stories?
-- 
+- Did anyone else think the previous chapters were too optimistic? Or just less pessimistic than this chapter? (IMO the author's pessimism / realism has been pretty consistent)
+- Can anyone top the "hypoglycemic driver smashing his Ford pickup truck into a DC's HVAC system" horror story?
+- What is a "Clos topology"? (referenced in section about large datacenter networks near [footnote #9](http://conferences.sigcomm.org/sigcomm/2015/pdf/papers/p183.pdf))
+  - P.S. Footnote #9 is a paper titled "Jupiter Rising: A Decade of Clos Topologies...", a paper that was published the same year [Jupiter Ascending](https://www.imdb.com/title/tt1617661/) premiered. These scientists may know Clos topologies, but they have no respect for the Wachowskis.
+- Does anyone have a preferred framework or language that makes working with distributed systems easier? Erlang/Elixir both come to mind
+  - https://medium.com/flatiron-labs/intro-to-distributed-elixir-e8a259bcc8f6
+  - https://elixirschool.com/en/lessons/advanced/otp-distribution/
+- What is a quartz crystal oscillator? (device powering the clock on network machine)
+- Lot of footnotes in this chapter. Are there any folks recommend reading or found particularly interesting?
+  - Kyle Kingsbury, Carly Rae Jepsen and the Perils of Network Partitions @ RICON2013 [(link to video)](https://youtu.be/vFDjTd9G6Xo)
+  - "Notes on Distributed Systems for Young Bloods" [working link](https://web.archive.org/web/20200220095659/https://www.somethingsimilar.com/2013/01/14/notes-on-distributed-systems-for-young-bloods/)
 
 #### Team discussion
+
+- How on earth does geographic partitioning even work? How can these flaky networks stay in sync?
+  - Think about an open source repo in Asia, with contributors from all over the world
+  - Need to nominate a primary "write" machine (one writer per region)
+    - Running a multi-master doesn't increase reliability
+  - So your primary user record is in US datacenter, but replicated in EU datacenters for performance, etc
+  - Vitess has data homing
+- Spanner: time ranges give more guantees, less performance
+- Logbook project
+  - Conceptually a success?
+  - Still active?
+  - Difficulty deploying to Enterprise server
+- gRPC: bi-directional streaming (heartbeat)
+- Elixir
+  - Supervisor similar to mySQL Orchestrator (or Zookeeper?)
+  - Riak (distributed, decentralized data storage system) built on Erlang https://github.com/basho/riak
+- Orchestrator failover outage: https://github.blog/2018-10-30-oct21-post-incident-analysis/
+- 500 mile email: http://web.mit.edu/jemorris/humor/500-miles
+- @look's [Brief History of Timekeeping](http://luke.francl.org/talks/timekeeping/)
+- "Stick with boring technology": GitHub and Etsy philosophy
+- ["12 Signs You're Working in a Feature Factory"](https://amplitude.com/blog/12-signs-youre-working-in-a-feature-factory-3-years-later)
 
 ### Ch 9: Consistency and Consensus
 
