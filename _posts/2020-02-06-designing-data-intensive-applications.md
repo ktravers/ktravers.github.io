@@ -1012,6 +1012,8 @@ Recommendation: use a coordination service like ZooKeeper. ZooKeeper acts as a r
 
 ### Ch 9: Consistency and Consensus
 
+
+
 #### Questions
 
 #### Team discussion

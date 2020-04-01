@@ -151,7 +151,22 @@ Only 3 items in `.git` are essential:
 
 ## Chapter 4: Making history
 
+Goal: put the commits in order
+
+More efficient to use parent > child than timestamps. Also avoids time conflicts.
+
+Updating `.git/HEAD`  
+- Need to avoid dirty reads / writes
+- Need to at least appear to be atomic
+
 ### Questions
+
+- How strong is the guarantee that this Lockfile gets us?
+  - Only as good as how we check for it
+    - Good approach: system level calls (machine can't lie to itself)
+    - Bad approach: put the check at the application level; now you're at the mercy of race conditions between instances
+  - What are other bad approaches you could take?
+
 
 ### Discussion notes
 
