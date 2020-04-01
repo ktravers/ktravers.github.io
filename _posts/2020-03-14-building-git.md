@@ -159,6 +159,8 @@ Updating `.git/HEAD`
 - Need to avoid dirty reads / writes
 - Need to at least appear to be atomic
 
+Lockfile only used for HEAD (for now). Used for refs in the future?
+
 ### Questions
 
 - How strong is the guarantee that this Lockfile gets us?
@@ -166,7 +168,9 @@ Updating `.git/HEAD`
     - Good approach: system level calls (machine can't lie to itself)
     - Bad approach: put the check at the application level; now you're at the mercy of race conditions between instances
   - What are other bad approaches you could take?
-
+- Why was this chapter so short? Why isolate these points in their own chapter?
+- Where did this concept of a Lockfile originate? Something Linus thought up, or insired by something else?
+- How much of a performance hit are we getting from implementing Lockfile?
 
 ### Discussion notes
 

@@ -1012,6 +1012,15 @@ Recommendation: use a coordination service like ZooKeeper. ZooKeeper acts as a r
 
 ### Ch 9: Consistency and Consensus
 
+- "Eventual consistency" =~ "convergence"
+- Transaction isolation is for avoiding race conditions due to concurrency
+- Distributed consistency is for coordinating state of replica, fighting delays and faults
+- Linearizability
+  - aka "atomic consistency", "strong consistency", "immeiate consistency", "external consistency"
+  - Strong consistency model
+  - Illusion of only one replica
+  - All clients get same view of the data
+
 
 
 #### Questions
