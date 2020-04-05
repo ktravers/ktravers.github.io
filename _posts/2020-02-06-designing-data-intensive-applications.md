@@ -1020,16 +1020,86 @@ Recommendation: use a coordination service like ZooKeeper. ZooKeeper acts as a r
   - Strong consistency model
   - Illusion of only one replica
   - All clients get same view of the data
-
-
+  - Example use cases:
+    - Uniqueness constraints: username, email
+    - Prevent over-selling items in stock, over-booking seats on flight
+    - Resizing images
+    - RAM on a CPU is NOT linearizable (threaded)
+  - How can haz?
+    - Single leader replication
+      - Potentially linearizable (not if it uses snapshot isolation)
+    - Consensus algorithms
+      - Linearizable!
+      - Because they prevent split brain and stale replicas
+      - Used by ZooKeeper and etcd
+    - Multi-leader replication
+      - Not linearizable
+      - No single source of truth
+      - Can produce conflicting writes on multiple nodes w/ delayed asynchronous replication
+    - Leaderless replication
+      - Probably not linearizable?
+      - Depends on configuration of quorum and how you define strong consistency
+      - LWW => NOT linearizable
+      - Sloppy quorums => NOT linearizable
+  - You can make a quorum linearizable by making reader do read repair synchronously and writer must read latest state of quorum before writes
+  - Tradeoffs
+    - Stronger guarantees
+    - Slower performance
+    - Lower availability
+  - CAP theorum
+    - Consistency, availability, partition tolerance
+    - "Consistent or Available when Partitioned"
+- Causal consistency
+  - Ordering preserves causality
+  - "Causal consistency is the strongest possible consistency model that does not slow down due to network delays"
+  - Linearizability is stronger than causal consistency
+  - Linearizability implies causality
+  - Implement with a logical clock? Imperfect
+  - Implement with Lamport Timestamps
+- Total order broadcast
+  - Total order consistency + consensus across multiple nodes
+  - Needed for state machine replication
+- When is consensus important?
+  - Electing a leader
+  - Atomic commits
+- "FLP result": no algorithm can always reach consensus if there is a risk that a node may crash
+  - Important in theory
+  - Doesn't apply in practice
+- Consensus algorithms
+  - Requirements:
+    - Uniform agreement (no two nodes decide differently)
+    - Integrity (no node decides twice)
+    - Validity (if decide on value, then value was proposed by a node)
+    - Termination (every node that doesn't crash gets to decide)
+  - Two phase commit (2PC)
+    - Popular, but not good
+  - Three phase commit (3PC)
+    - Nonblocking atomic commits
+    - Cannot guarantee atomicity
+  - Viewstamped replication
+  - Paxos
+  - Raft
+  - Zab (ZooKeeper)
 
 #### Questions
 
-#### Team discussion
+- Do we ever have to manually review and commit/roll back db transactions? For example, after an incident.
 
 ## Part 3: Derived Data
 
+- Systems that store and process data:
+  - Systems of record
+    - Source of truth
+  - Derived data systems
+    - Transforming or processing data from another system
+    - Example: cache
+    - Redundant by definition
+    - Helpful for performance
+    - Denormalized
+
 ### Ch 10: Batch Processing
+
+
 
 #### Questions
 
