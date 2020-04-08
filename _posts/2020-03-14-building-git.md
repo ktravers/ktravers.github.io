@@ -172,11 +172,17 @@ Lockfile only used for HEAD (for now). Used for refs in the future?
 - Where did this concept of a Lockfile originate? Something Linus thought up, or insired by something else?
 - How much of a performance hit are we getting from implementing Lockfile?
 
-### Discussion notes
-
 ## Chapter 5: Growing trees
 
+Time to run some executables.
+
 ### Questions
+
+- Why are we storing things in octals? (and by "things", I mean file modes). More compact than a string, sure.
+- ["Sticky bits"](https://en.wikipedia.org/wiki/Sticky_bit)... who named this?
+- Need to research Merkle trees. Behind Git and Bitcoin. Blockchain in general or just Bitcoin?
+- Did anyone implement the unideal Workspace refactors? Learn anything interesting?
+- Why isn't `lockfile.rb` organized under `database` directory?
 
 ### Discussion notes
 

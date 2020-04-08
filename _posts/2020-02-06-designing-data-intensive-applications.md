@@ -1099,6 +1099,41 @@ Recommendation: use a coordination service like ZooKeeper. ZooKeeper acts as a r
 
 ### Ch 10: Batch Processing
 
+- Algorithm introduced in 2004, but actually a very old form of computing
+  - Very similar to old card-sorting machines from 1940s/50s
+- Unix `sort`: "arguably a better sorting implementation than most programming languages have in their standard libraries"
+- Functional programming w/ Unix tools:
+  - Immutable inputs
+  - Pipelines
+  - No side effects
+- Clever: "HDFS [(Hadoop Distributed File System)] conceptually creates one big filesystem that can use the space on the disks of all machines running the daemon."
+- "Hadoop is somewhat like a distributed version of Unix, where HDFS is the filesystem and MapReduce is a quirky implementation of a Unix process"
+- MapReduce
+  - Programming framework
+    - Read input files, break up into records
+    - Call mapper function to extract key + value from each record
+    - Sort by key
+    - Call reducer function on sorted key-value pairs
+  - Two callback functions: mapper + reducer
+  - Mapper sends "message" to reducer
+  - Like Unix tools, but distributed
+    - Blunt, brute-force, effective
+    - Comparable to a single Unix process
+    - Reads files as input, writes files as output
+    - Shared nothing principle
+    - Can be chained together in workflows
+- Putting the computation near the data
+  - Don't have to copy the input file over the network
+  - Reduces network load
+  - Increases locality (?)
+- Use cases
+  - Google originally used MapReduce to build search engine indices
+    - Still a good use case
+    - Used in Lucene/Solr (Elasticsearch?)
+  - Classification
+  - Recommendation systems
+  - Performance improvement:
+    - "Build a brand-new database _inside the batch job_ and write it as files to the job's output directory in the distributed filesystem"
 
 
 #### Questions
