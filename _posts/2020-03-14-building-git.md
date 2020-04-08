@@ -181,8 +181,10 @@ Time to run some executables.
 - Why are we storing things in octals? (and by "things", I mean file modes). More compact than a string, sure.
 - ["Sticky bits"](https://en.wikipedia.org/wiki/Sticky_bit)... who named this?
 - Need to research Merkle trees. Behind Git and Bitcoin. Blockchain in general or just Bitcoin?
+  - Answer: Blockchain.
 - Did anyone implement the unideal Workspace refactors? Learn anything interesting?
 - Why isn't `lockfile.rb` organized under `database` directory?
+- Why is `author.rb` organized under `database` directory?
 
 ### Discussion notes
 
