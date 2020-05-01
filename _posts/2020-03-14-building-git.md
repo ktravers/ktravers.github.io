@@ -186,11 +186,13 @@ Time to run some executables.
 - Why isn't `lockfile.rb` organized under `database` directory?
 - Why is `author.rb` organized under `database` directory?
 
-### Discussion notes
-
 ## Chapter 6: The index
 
+- The `add` command and index. Why pair these two? How does one relate to the other? Answer: `add` adds files to the "index" aka staging area.
+
 ### Questions
+
+- Naming: why "index" instead of staging area? How is "index" an index in the traditional sense?
 
 ### Discussion notes
 
