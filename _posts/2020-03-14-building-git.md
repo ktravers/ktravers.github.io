@@ -219,7 +219,22 @@ Time to run some executables.
 
 ## Chapter 8: First-class commands
 
+- Progress check: we have `init`, `add` and `commit`
+- Time to abstract!
+- Abstraction + decoupling from global objects/system calls will also make this more testable
+- Repository:
+  - Interface for getting Database, Index, Refs, and Workspace
+  - Knows filesystem locations
+  - Use memoization for consistency (not performance, in this case) because some of the objects are stateful (Index)
+- DRY is not eliminating literal duplication. It's about removing opportunity for maintainer to introduce inconsistency (change an implicit agreement that's not enforced)
+- Hooray! `Command` classes!
+
 ### Questions
+
+- What are other things we could test at this point?
+  - Example: added files are written to the database (because we can't read from the database yet... is that true?)
+  - Error paths in `add` command
+- What assumptions made by the code aren't expressed in the test suite?
 
 ### Discussion notes
 
