@@ -117,9 +117,63 @@ Now that we know what "good" software development performance looks like, we can
 
 ### Chapter 3 - Measuring and Changing Culture
 
+- Many different definitions of culture:
+  - National (what country you belong to)
+  - Organizational
+    - Basic assumptions
+      - Formed over time based on visible interactions
+      - More implicit, hard to articulate
+    - Values
+      - Collective values and norms
+      - Easily articulated, discussed, debated
+      - Lens through which to view and interpret interactions
+    - Artifacts
+      - Written statements
+      - Heroes
+      - Rituals
+- Westrum's typology
+  - Three types:
+    - 1. Pathological
+      - Power-oriented
+      - Focused on individual
+      - Low cooperation
+      - Messengers punished
+      - Failure punished
+      - Driven by fear, threats
+      - Information is hoarded, withheld, or distorted for political gain
+    - 2. Bureaucratic
+      - Rule-oriented
+      - Focused on teams/departments
+      - Modest cooperation
+      - Messengers ignored
+      - Failure "leads to justice" (?)
+      - Competitive, lots of fences between departments
+    - 3. Generative
+      - Performance-oriented
+      - Focused on company mission, goals
+      - High cooperation
+      - Messengers trained
+      - Failure leads to questions, learning
+  - Type predicts information flow
+  - Good info flow is critical to safe + effective operations
+  - What is good information?
+    - Answers questions the receive needs answered
+    - Timely
+    - Presented in a way that the receiver can use it
+  - Better information -> better decision making
+  - Also easier to reverse decisions that don't work out (very important)
+  - Research shows Westrum's theory predicts safety outcomes, software delivery, and organizational performance
+
 #### Questions
 
+- So... what is culture?
+  - Culture is the assumptions, values, and rituals of a company
+  - Culture predicts info flow, and info flow predicts decision making, and decision making predicts success
+
 #### Discussion
+
+- Appreciate the Likert scale survey w/ questions based on Westrum's model.
+- Advice: start by changing behavior, not how people think
 
 ### Chapter 4 - Technical Practices
 
