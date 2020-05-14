@@ -189,6 +189,7 @@ Time to run some executables.
 ## Chapter 6: The index
 
 - The `add` command and index. Why pair these two? How does one relate to the other? Answer: `add` adds files to the "index" aka staging area.
+- [`SortedSet`](https://ruby-doc.org/stdlib-2.6.3/libdoc/set/rdoc/SortedSet.html): this seems like an object I should be using more often
 
 ### Questions
 
@@ -196,11 +197,25 @@ Time to run some executables.
 
 ### Discussion notes
 
+- Typo at the end of the chapter: `OrderedSet` instead of `SortedSet`
+
 ## Chapter 7: Incremental change
+
+- Necessary improvements
+  - Right now, our index overwrites itself. We need to be able to make incremental changes and nto lose everything
+  - Commit command doesn't read from the index. It still reads from the working tree
+- We initialize a new index every time we call `add`... seems like that needs to change.
+- But WAIT, we can rely on our Lockfile
+- Oh NOW we start a test suite. Better late than never, I suppose.
 
 ### Questions
 
+- I don't understand why we're using Index#clear... we initialize a new Index instance everytime we call `add`, so shouldn't we already have a fresh state?
+- Why wait until now to start testing? This was the first time we tried to break the system, but surely we could have broken it much sooner (in ways we'd want to protect against with tests). Or was this the "right time" to introduce tests?
+
 ### Discussion notes
+
+- Typo on page 89: "wil signal whether..."
 
 ## Chapter 8: First-class commands
 
