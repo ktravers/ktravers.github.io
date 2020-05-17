@@ -23,7 +23,6 @@ Here's my notes on each chapter.
 
 - The book mentions that a "change approval board" isn't an indicator of success, so is it an indicator of something else? A warning sign / red flag?
 
-
 ### Chapter 2 - Measuring Performance
 
 TLDR: This chapter covers the four measures of delivery performance derived by the authors from their survey results:
@@ -112,9 +111,6 @@ Now that we know what "good" software development performance looks like, we can
   - How does Insights measure tempo and stability? Are we using the same measures discussed in this chapter? Any alternative or additional measures?
   - Have any of the performance measures discussed in this chapter proven difficult to capture or convey?
 
-#### Discussion
-
-
 ### Chapter 3 - Measuring and Changing Culture
 
 - Many different definitions of culture:
@@ -177,9 +173,66 @@ Now that we know what "good" software development performance looks like, we can
 
 ### Chapter 4 - Technical Practices
 
+- Discussing XP vs Scrum
+  - Will we touch on embedding stakeholders in project team?
+- Research shows technical practices are just as important as management and team practices
+- Discovered that continuous delivery practices have an effect on team burnout and deployment pain
+- Five key principles of Continuous Delivery:
+  1. **Build quality in**
+    - Eliminate need for "inspection" aka QA testing?
+  2. **Work in small batches**
+    - Shorter feedback cycles
+    - Aim to make cost of pushing out individual changes low
+  3. **Use computers for repetitive tasks, people for solving tough problems**, aka automate as much of the mundane stuff as possible
+    - Free up people for higher order + higher value problem solving
+  4. **Relentlessly pursue continuous improvement**
+    - Don't be satisfied; always work to improve
+    - Improvement is part of everyone's daily work
+  5. **Everyone is responsible**
+    - Shared risk, shared responsibility, shared reward
+    - It's management's responsibility to make the state of system-level outcomes transparent in order to set goals and measure progress
+- Foundations of / pre-requisites for continuous delivery:
+  - **Comprehensive configuration management**
+    - "It should be possible to provision our environments and build, test, and deploy our software in a fully automated fashion purely from information stored in version control"
+  - **Continuous integration**
+    - Changes are merged frequently
+    - Every change triggers a build process tha tincludes running unit tests
+    - Failures are fixed immediately
+  - **Continuous testing**
+    - Automated unit and acceptance tests run against every commit
+    - Fast feedback
+    - Devs should be able to run all tests locally
+    - Work is not "done" until tests are written and passing
+- Security should be in process rather than downstream
+  - What does this mean concretely in practice?
+- Good question: research shows CD increases developer happiness, etc., but does it increase quality? Yes.
+  - Lower levels of unplanned work (!!)
+  - Lower levels of rework (!!)
+- Version control
+  - "...keeping system and application configuration in version control was more highly correlated with software delivery performance than keeping application code in version control". Good news for HashiCorp.
+- High quality tests:
+  - High confidence application works when tests pass
+  - High confidence test failures indicate an actual defect
+  - How to deal with low quality tests:
+    - Separate quarantine suite that is run independently
+    - "just delete them" <3
+  - On QA:
+    - "having automated tests primarily created and maintained either by QA or an outsourced party is not correlated with IT performance"
+
 #### Questions
 
+- What is "comprehensive configuration management"? (mentioned in first paragraph in context of "Continuous Delivery", Humble and Farley 2010)
+- By "building quality in" to continuous delivery, does that eliminate or decrease the need for quality assurance testing?
+  - PHEW: "None of this means that we should be getting rid of testers."
+- What are examples of bringing security in process with software delivery?
+  - "infosec personnel provided feedback at every step of the software delivery lifecycle, from design through demos to helping with test automation"
+- New Work vs. Unplanned Work graphs also show high performers having less time in meetings than low performers. Will that be discussed further later?
+- Is the "GitHub Flow" workflow mentioned here out of date? Do we still stand by it? (Note: `https://guides.github.com/introduction/flow/` says it was "Last updated Nov 30, 2017")
+
+
 #### Discussion
+
+- Excellent, actionable advice: "If you want to improve your culture, implementing CD practices will help"
 
 ### Chapter 5 - Architecture
 
