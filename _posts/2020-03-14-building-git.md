@@ -236,11 +236,16 @@ Time to run some executables.
   - Error paths in `add` command
 - What assumptions made by the code aren't expressed in the test suite?
 
-### Discussion notes
-
 ## Chapter 9: Status report
 
+- Using TDD to implement `git status --porcelain`. Why didn't we use TDD from the start? Because "[t]he add and commit commands...are fairly straightforward tools whose code we execute frequently while developing the codebase. We wrote tests for the edge cases but by-and-large if these commands were not working we would quickly notice. In contrast, a
+command like status needs to deal with lots of possible combinations of states, not all of which we'll just bump into in the normal course of our work."
+- Remember: only write as much code as you need to make the tests pass. Cleanup later. Bad code that makes the tests pass can also inspire additional tests.
+- Next up: finally reading objects out of the `.git/objects` database
+
 ### Questions
+
+- What was the difference between `Index#load` and `Index#load_for_update` again?
 
 ### Discussion notes
 
