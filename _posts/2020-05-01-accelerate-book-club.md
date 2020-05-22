@@ -229,10 +229,15 @@ Now that we know what "good" software development performance looks like, we can
 - New Work vs. Unplanned Work graphs also show high performers having less time in meetings than low performers. Will that be discussed further later?
 - Is the "GitHub Flow" workflow mentioned here out of date? Do we still stand by it? (Note: `https://guides.github.com/introduction/flow/` says it was "Last updated Nov 30, 2017")
 
-
 #### Discussion
 
 - Excellent, actionable advice: "If you want to improve your culture, implementing CD practices will help"
+- What does "building quality in from the beginning" mean? Concrete examples?
+  - Discuss and address security, observability, performance up front.
+  - Include security in design process, automation for security in development, demos, etc.
+  - Include these "quality" checks at key touch points: ideation, planning, development, demo'ing, testing
+- "Grandmas are always right" :)
+- "Exploratory testing", not QA testing. Exploratory testing is very different mindset from typical developer testing. And if you don't have QA people doing exploratory testing, then your customers end up doing the "testing".
 
 ### Chapter 5 - Architecture
 
