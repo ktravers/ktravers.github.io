@@ -60,7 +60,7 @@ I'm reading ["Building Git" by James Coglan](https://shop.jcoglan.com/building-g
   - "root commit": commit with no parents
   - `.git/index` is in binary
   - `.git/logs` are text files
-  - `git show` command: prints out info about the HEAD commit
+  - `git show` command: prints out info about the `HEAD` commit
   - `git cat-file -p <oid>` command: show an object from Git database
   - Trees
     - tree id: hex value built from file contents, so same regardless of timestamp, committer, etc
@@ -147,7 +147,7 @@ Only 3 items in `.git` are essential:
 
 - Why are we skipping symrefs? Are they difficult to implement?
   - https://git-scm.com/docs/git-symbolic-ref
-- Should I write this in Elixir instead? Then I can't cheat.
+- Should I write this in Elixir instead? Then I can't cheat. Update: see my awkwardly named [JitEx](https://github.com/ktravers/jitex) project.
 
 ## Chapter 4: Making history
 
@@ -155,11 +155,11 @@ Goal: put the commits in order
 
 More efficient to use parent > child than timestamps. Also avoids time conflicts.
 
-Updating `.git/HEAD`  
+Updating `.git/HEAD`:  
 - Need to avoid dirty reads / writes
 - Need to at least appear to be atomic
 
-Lockfile only used for HEAD (for now). Used for refs in the future?
+Lockfile only used for `HEAD` (for now). Used for refs in the future?
 
 ### Questions
 
@@ -245,15 +245,36 @@ command like status needs to deal with lots of possible combinations of states, 
 
 ### Questions
 
-- What was the difference between `Index#load` and `Index#load_for_update` again?
+- What was the difference between `Index#load` and `Index#load_for_update` again? Answer: locks.
 
-### Discussion notes
+### Discussion
+
+- Many of the cited sources are from Wikipedia. Is that cool these days? Why not link to a non-Wiki source?
 
 ## Chapter 10: The next commit
 
+- Previously on Building Git: we got most of the way through a fully functioning `git status` command.
+- But still need to be able to display difference between last commit and current index
+- To do so, we need to be able to:
+  - Read the complete tree associated with `HEAD` commit
+  - aka get the blob id for every item in the `HEAD` commit tree
+  - Then compare to entries in index and detect differences
+- Step 1: script that prints all the files in `HEAD` commit
+- Finally, we'll be able to read from the db (`.git/objects`)
+- Oh boy, escape codes. I'm well familiar with those from this post: [How My Bash Color Settings Broke edeliver](https://kate-travers.com/debugging-edeliver/)
+
+
 ### Questions
 
+- Why do we need the blob ids to detect differences? I feel like I'm missing something fundamental about how this all works. Answer: oh yeah, because the `oid` changes when there's a change to the blob.
+- Why haven't I used Ruby StringScanner before? Seems like a helpful library.
+- Are the "detect changes" methods order dependent? What happens if we change that order?
+
+
 ### Discussion notes
+
+- Building objects from parsed strings always makes me nervous, but I guess in this case it's fine, because the format is so strictly enforced.
+- Separate Tree objects for Index and Database. Good for duck typing, hiding "write" methods from Index. Any potential for confusion/unexpected breakages?
 
 ## Chapter 11: The Myers diff algorithm
 
@@ -268,6 +289,7 @@ command like status needs to deal with lots of possible combinations of states, 
 ### Discussion notes
 
 ## Part II: Branching and merging
+
 ## Chapter 13: Branching out
 
 ### Questions
