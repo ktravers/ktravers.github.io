@@ -262,7 +262,7 @@ command like status needs to deal with lots of possible combinations of states, 
 - Step 1: script that prints all the files in `HEAD` commit
 - Finally, we'll be able to read from the db (`.git/objects`)
 - Oh boy, escape codes. I'm well familiar with those from this post: [How My Bash Color Settings Broke edeliver](https://kate-travers.com/debugging-edeliver/)
-
+- End of TDD? Huh.
 
 ### Questions
 
@@ -270,11 +270,12 @@ command like status needs to deal with lots of possible combinations of states, 
 - Why haven't I used Ruby StringScanner before? Seems like a helpful library.
 - Are the "detect changes" methods order dependent? What happens if we change that order?
 
-
 ### Discussion notes
 
 - Building objects from parsed strings always makes me nervous, but I guess in this case it's fine, because the format is so strictly enforced.
 - Separate Tree objects for Index and Database. Good for duck typing, hiding "write" methods from Index. Any potential for confusion/unexpected breakages?
+- Does Ruby have an OrderedHash? Answer: nope, Rails: https://api.rubyonrails.org/v3.2/classes/ActiveSupport/OrderedHash.html
+- Should I be using more Structs in my Ruby code? Reaching for classes too soon?
 
 ## Chapter 11: The Myers diff algorithm
 
