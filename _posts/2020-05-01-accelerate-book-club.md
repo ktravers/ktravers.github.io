@@ -241,9 +241,66 @@ Now that we know what "good" software development performance looks like, we can
 
 ### Chapter 5 - Architecture
 
+- Architecture can be a "significant barrier to increasing...tempo and stability". Oh, don't I know it.
+- Good to know that "high performance is possible" if everything is loosely coupled (both teams and architecture)
+- Research on types of systems
+  - Types of systems:
+    - Greenfield (unreleased)
+    - Engagement (used directly by end users)
+    - Record (storing business-critical info, high data consistency and integrity)
+    - Custom 3rd-party software
+    - Custom in-house software
+    - Off-the-shelf 3rd-party software
+    - Embedded software on hardware device
+    - Software with user-installed component (including mobile apps)
+    - Non-mainframe software on 3rd-party servers
+    - Non-mainframe software on on-prem servers
+    - Mainframe software
+  - Learnings
+    - Low performers:
+      - Custom 3rd-party software
+      - Mainframe systems
+    - Otherwise no significant correlation between performance and type of system
+      - Expected packaged software, systems of record, embedded systems to perform worse, but wasn't the case
+      - Expected engagement, greenfield systems to perform better, but no
+    - High performing architectural characteristics:
+      - Testability: Tests do not require integrated environment
+      - Deployability: Application can be deployed independently of apps/services it depends on
+      - Architecture and teams are loosely coupled:
+        - Large scale changes can be made to the design of the system without permission of someone outside the team
+        - Large scale changes can be made to the design of the system without creating work for other teams
+        - Work can be completed with out collaborating w/ people outside team
+        - Deploy and release on demand
+        - Test on demand w/o an integrated test environment
+        - Deploy during regular business hours without downtime
+      - Build security into work
+        - "information security teams make preapproved, easy-to-consume libraries, packages, toolchains, and processes available for developers and IT operations to use in their work"
+  - Conclusions:
+    - Focus on architectural characteristics, not implementation details
+    - Better to bring critical stuff in-house
+    - Delivery teams need to be cross-functional
+    - Focus on outcomes, not tools
+  - Examples:
+    - Bounded contexts and APIs for decoupling
+    - Test doubles and virtualization for testing in isolation
+
+> "Unfortunately, in real life, many so-called service-oriented architectures don't permit testing and deploying services independently of each other, and thus will not enable teams to achieve higher performance."
+
+- What we should be aiming for (nbd)
+  - Goal-oriented generative culture
+  - Modular architecture
+  - Engineering practices that enable continuous delivery
+  - Effective leadership
+
+
 #### Questions
 
+- In what ways does our architecture mirror the communication structures of our organization? (Conway's Law)
+- Let teams choose their own tools... ok, but what happens when you choose the wrong tool?
+
 #### Discussion
+
+- See Conway's Law discussion on breaking up our monolith
 
 ### Chapter 6 - Integrating Infosec into the Delivery Lifecycle
 

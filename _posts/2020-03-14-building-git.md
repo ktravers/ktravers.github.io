@@ -279,9 +279,30 @@ command like status needs to deal with lots of possible combinations of states, 
 
 ## Chapter 11: The Myers diff algorithm
 
+- What we're missing:
+  - See what lines we've changed from last commit
+  - See commit log
+  - Create and merge branches
+- High level diff summary
+  - Display smallest number of edits possible
+    - Easier to read
+    - Less likely to produce conflicts
+  - Deletions followed by insertions (minimize interleaving)
+  - Align with code structure (example of where the `end` shows up when adding a new ruby method)
+- Myers algorithm is fast and greedy
+  - Prefers deletions over insertions
+  - Consumes as many lines that are the same before making a chnage (avoids the "wrong `end`" problem)
+  - "SES": shortest edit script
+    - Can be modeled as a graph search
+
 ### Questions
 
+- We need tests for this. More than anything else. Something to confirm we're returning the diff we expect.
+
 ### Discussion notes
+
+- More Git resources: [Oh Shit Git](https://ohshitgit.com) zine by Katie Sylor-Miller and Julia Evans
+- [Xgit](https://xgit.io/): Git actually implemented in Elixir (with helpful blog posts about the process)
 
 ## Chapter 12: Spot the difference
 
