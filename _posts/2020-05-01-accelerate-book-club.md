@@ -304,9 +304,35 @@ Now that we know what "good" software development performance looks like, we can
 
 ### Chapter 6 - Integrating Infosec into the Delivery Lifecycle
 
+- Yikes: "1 infosec person per 10 infrastructure people per 100 developers in large companies"
+- Why build security into development?
+  - Improves delivery performance
+  - Improves security quality
+- How to "shift left" on security:
+  - Conduct security review for all major features
+    - But don't slow down development process
+    - Don't make infosec a bottleneck
+  - Integrate security into entire development lifecycle
+    - Infosec experts should involved from design to shipping to retro
+  - Make it easy to involve infosec
+    - Provide easy-to-consume docs, tools, process and training
+    - Give devs the ability to handle security themselves
+- FISMA compliance
+  - 18F built cloud.gov to help teams follow the NIST Risk Management Framework (required by FISMA)
+  - "Systems hosted on cloud.gov can go from dev complete to live in weeks, not months"
+- Naming is hard
+  - "DevSecOps"
+  - "Rugged DevOps"
+    - From Rugged Manifesto:
+      - "I recognize that my code will be used in ways I cannot anticipate, in ways it was not designed, and for longer than it was ever intended."
+
 #### Questions
 
+- Rugged Manifesto poses some very profound questions. Does this get taught in schools? Bootcamps?
+
 #### Discussion
+
+- TODO: familiarize myself with [OWASP Top Ten](https://owasp.org/www-project-top-ten/)
 
 ### Chapter 7 - Management Practices for Software
 
