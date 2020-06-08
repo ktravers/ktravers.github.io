@@ -336,15 +336,34 @@ Now that we know what "good" software development performance looks like, we can
 
 ### Chapter 7 - Management Practices for Software
 
-#### Questions
-
-#### Discussion
+- Lean management practices
+  - Adopted from Toyota
+  - 1. Limit work in progress
+    - Use limits to improve processes and increase throughput
+    - Limits should make obstacles more visible
+  - 2. Visual Management
+    - Monitoring
+    - Dashboards with key quality and productivity metrics are available to everyone at the company
+    - Align operational goals with key metrics
+    - Meant to enable communication
+  - 3. Feedback from production
+    - Data-driven decision making
+    - Use data from monitoring tools to make business decisions
+  - 4. Lightweight change approvals
+    - Teams with no or peer review only had highest performance
+    - Approval boards or approval for high risk changes only not correlated with better performance
+    - External approvals bad in every category, worse than having no change approval process at all (!!)
 
 ### Chapter 8 - Product Development
 
-#### Questions
+- Lean methodology says to perform user research frequently, from the beginning of the product lifecycle
 
-#### Discussion
+#### Questions (Ch 7 & 8)
+
+- So instead of trying to improve code review process (RAB), we should be focusing on improving our deploy process + pipeline instead?
+- Is it possible to catch something like a bad db config via testing or pipeline? Or to put it another way, can we automate ourselves into safety from catastrophic failures?
+
+#### Discussion (Ch 7 & 8)
 
 ### Chapter 9 - Making Work Sustainable
 
