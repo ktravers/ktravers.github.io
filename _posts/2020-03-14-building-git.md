@@ -306,9 +306,11 @@ command like status needs to deal with lots of possible combinations of states, 
 
 ## Chapter 12: Spot the difference
 
-### Questions
+- More refactoring lessons
 
 ### Discussion notes
+
+- Covered side project that applies these learnings to parsing GEDCOM files ("Genealogical Data Communications")
 
 ## Part II: Branching and merging
 

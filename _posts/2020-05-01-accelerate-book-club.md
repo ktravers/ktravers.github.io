@@ -362,12 +362,36 @@ Now that we know what "good" software development performance looks like, we can
 
 - So instead of trying to improve code review process (RAB), we should be focusing on improving our deploy process + pipeline instead?
 - Is it possible to catch something like a bad db config via testing or pipeline? Or to put it another way, can we automate ourselves into safety from catastrophic failures?
-
-#### Discussion (Ch 7 & 8)
+- How does something like Wall-E fit into this research?
 
 ### Chapter 9 - Making Work Sustainable
 
+- "Research shows that stressful jobs can be as bad for physical health as secondhand smoke and obesity" (!!)
+- Symptoms:
+  - Cynicism
+  - Indifference
+  - Exhaustion
+- Some overlap with BICEPS theory
+  - Belonging: Lack of community, belonging -> stress -> burnout
+  - Choice: Not enough autonomy, choice can lead to stress -> burnout
+  - Equality: Lack of fairness, compensation -> stress -> burnout
+- Value mismatch, interesting
+- Five correlating factors:
+  - Org culture
+    - "Strong feelings of burnout are found in organizations with a pathological, power-oriented culture"
+  - Deployment pain
+  - Effectiveness of leaders
+    - "limiting work in process and eliminating roadblocks"
+  - Org investment in learning, skilling up
+  - Org performance
+    - "creating space for employees to do new, creative, value-add work during the work week"
+- Org aligning on values can counteract burnout
+  - Values mismatch can be between org and employee OR what org says vs. what org does
+
 #### Questions
+
+- Masloch found that "most organizations try to fix the person and ignore the work environment, even though her research shows that fixing the environment has a higher likelihood of success". What can GitHub learn from Masloch's research?
+- The chapter really emphasized the importance of values alignment. What can GitHub learn here?
 
 #### Discussion
 
