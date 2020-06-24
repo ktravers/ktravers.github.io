@@ -316,13 +316,28 @@ command like status needs to deal with lots of possible combinations of states, 
 
 ## Chapter 13: Branching out
 
-### Questions
+- Didn't take notes while reading :(
 
 ### Discussion notes
 
+- Nothing too surprising in this chapter
+
 ## Chapter 14: Migrating between trees
 
+- Right now, we can create branches that are just pointers to a commit. Not super useful
+- Checkout command
+  - Apply changes to the repo so that workspace, index, and HEAD are restored to state at the commit the branch points to
+  - First time Jit makes changes to the workspace and index on behalf of the user (not via explicit command)
+  - We want to be efficient when switching from tree to tree (commit to commit). Only change the files we need to, so will need to calc the diff
+  - Throw error if there's a conflict
+- Migration: used to plan changes. Smart.
+- "Inspector"?
+
 ### Questions
+
+- Branch that's just a pointer to a commit: is that basically a Tag?
+- "Git does not preserve all untracked changes": is this surprising?
+- "In Jit’s case, the code for checkout does still exist somewhere inside .git/objects, and it might be a fun exercise to try and retrieve it without using the command itself. But, I’ll leave that for you". Did you figure this one out?
 
 ### Discussion notes
 
