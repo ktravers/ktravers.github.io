@@ -332,20 +332,42 @@ command like status needs to deal with lots of possible combinations of states, 
   - Throw error if there's a conflict
 - Migration: used to plan changes. Smart.
 - "Inspector"?
+- I know the perils of self-hosting all too well.
 
 ### Questions
 
 - Branch that's just a pointer to a commit: is that basically a Tag?
 - "Git does not preserve all untracked changes": is this surprising?
-- "In Jit’s case, the code for checkout does still exist somewhere inside .git/objects, and it might be a fun exercise to try and retrieve it without using the command itself. But, I’ll leave that for you". Did you figure this one out?
+- "In Jit's case, the code for checkout does still exist somewhere inside .git/objects, and it might be a fun exercise to try and retrieve it without using the command itself. But, I'll leave that for you". Did you figure this one out?
 
 ### Discussion notes
+
+Maybe next week we can pair on retrieving "lost" code.
 
 ## Chapter 15: Switching branches
 
+Current state of things:
+
+> When we run `checkout bar`, we copy the contents of `.git/refs/heads/bar` into
+`.git/HEAD`, and we don't store any representation of `bar` being the current branch.
+
+- Branch pointers need to follow the HEAD of the branch, otherwise we'll "lose" commits
+- Why were we copying contents again? Why didn't we implement a "pointer" from the beginning?
+- In Git, "`HEAD` is strictly a reference to the branch pointer `bar`, rather than a reference directly to commit B."
+- "detached `HEAD`": when HEAD points to a commit instead of a symref
+  - Described as "detached" beacuse any commits will move HEAD but not the branch pointer
+- TIL: deleting a branch only deletes its pointer in `.git/refs/heads`, not its commits
+- TIL about Ruby's `OptionParser` for parsing command line options. So helpful!
+
 ### Questions
 
+- Is there a one-line command for turning detached HEAD into a properly tracked branch? `git branch qux && git checkout qux`. Wait, duh: `git checkout -b qux`
+- Why wait until now to introduce `OptionParser`? String parsing is fun and all, but kinda seems like something we could have skipped.
+
 ### Discussion notes
+
+- Have you looked through `git` source code? https://github.com/git/git
+- We solved last week's challenge! Look in `.git/refs/heads/master`, it has the latest sha.
 
 ## Chapter 16: Reviewing history
 
