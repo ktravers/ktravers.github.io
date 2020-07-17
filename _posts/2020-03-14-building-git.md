@@ -368,14 +368,52 @@ Current state of things:
 
 - Have you looked through `git` source code? https://github.com/git/git
 - We solved last week's challenge! Look in `.git/refs/heads/master`, it has the latest sha.
+- Fun exercise: build your own Ruby option parser. We built one for EU vs US date formatting!
+
+```
+require 'optparse'
+require 'date'
+
+# DateTime formatter
+#
+# Supports flags for US vs Euro date format
+#
+# Usage:
+#
+# --us
+# => outputs date formatted MM/DD/YYYY
+#
+# --intl
+# => outputs date formatted DD/MM/YYYY
+
+options = {}
+
+OptionParser.new do |opts|
+  opts.banner = "So you've asked for help with this parser..."
+
+  opts.on("--us", "--usa", "optional help text") do
+    options[:format] = "%m/%d/%Y"
+  end
+
+  opts.on("--intl", "--eu", "--euro", "optional help text") do
+    options[:format] = "%d/%m/%Y"
+  end
+end.parse!
+
+p DateTime.now.strftime(options[:format])
+```
 
 ## Chapter 16: Reviewing history
+
+TODO: re-read this chapter.
 
 ### Questions
 
 ### Discussion notes
 
 ## Chapter 17: Basic merging
+
+Note: read with an eye for some sort of pairing exercise based on the chapter content.
 
 ### Questions
 
