@@ -409,15 +409,27 @@ TODO: re-read this chapter.
 
 ### Questions
 
+What happened at the end of this chapter? I was fine until the last few pages, then completely lost.
+
 ### Discussion notes
+
+Logging. Turns out to be more complicated than I expected.
 
 ## Chapter 17: Basic merging
 
 Note: read with an eye for some sort of pairing exercise based on the chapter content.
 
+- Git branches are just pointers, so what actually happens when you merge?
+- Simplest case: merging single commits
+  - Merge commit has two parents
+  - Finds "best common ancestor" aka "merge base"
+
 ### Questions
 
 ### Discussion notes
+
+- These example file names and contents could be better.
+- "Virtual commits" - let's step through what's happening there.
 
 ## Chapter 18: When merges fail
 
