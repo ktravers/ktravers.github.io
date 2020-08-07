@@ -423,6 +423,7 @@ Note: read with an eye for some sort of pairing exercise based on the chapter co
 - Simplest case: merging single commits
   - Merge commit has two parents
   - Finds "best common ancestor" aka "merge base"
+  - Does the diff starting from best common ancestor
 
 ### Questions
 
@@ -433,15 +434,77 @@ Note: read with an eye for some sort of pairing exercise based on the chapter co
 
 ## Chapter 18: When merges fail
 
+- Typo? "focussed"
+- Merges are "trivial" when changes don't overlap
+- Right now, `Command::Merge` class has a monolithic `run` method. Time to extract some stuff out
+  - Start by separating the inputs of the merge from its execution
+    - Inputs:
+      - Names and ids of the branch heads
+      - Ids of the best common ancestors
+    - Execution:
+      - Changes to the index and workspace
+  - Create `Merge::Inputs` object
+  - Create `Merge::Bases` to find BCA
+  - Create `Merge::Resolve` object that applies changes
+- What if the incoming commit is an ancestor of the current HEAD?
+  - aka "Null Merge"
+  - Happens when commit is already reachable from current HEAD, aka has already when merged
+  - Confirm by checking if BCA == incoming commit
+- What is the incoming commit is a descendent of current HEAD?
+  - aka "Fast Forward Merge"
+  - Happens when BCA is equal to current HEAD
+  - No changes on HEAD that aren't already reachable from incoming commit
+  - Just update HEAD to incoming commit, since they already share existing history
+  - Nuance: use `--no-ff` option to construct a new merge commit instead of fast forwarding
+  - Confirm by checking if base oid == left oid (which in this case is the HEAD oid)
+- How does git know it's in a merge conflict state? `.git/index` non-zero stages for entries
+  - The index should never contain both zero- and non-zero-staged entries for the same path
+  - So it's important to key entries in the index by path AND stage
+- If your changes do not commute, then git flags as a conflict and forces the user to fix manually, rather than guess
+  - Changes to different files commute (can be applied in any order)
+  - Changes to same file often doesn't commit (order matters, so needs to be fixed manually to prevent data loss)
+- Types of conflict:
+  - "add/add": base does not contain path, and branches add an entry at the same path with different contents
+  - "content": base contains path, and branches both modify same path
+  - "modify/delete": base contains path, and one branch modifies and one branch deletes path
+
 ### Questions
 
+- What's a commit "name"? How is it different from the oid?
+  - Answer: it's a "revision" string (but now I'm not sure what that is)
+- In what scenario would you want to use `--no-ff`?
+- "...you might be wondering why we don't just use the Merge::Resolve class which effectively does the same tree-diff and migration work. The answer is that, in order to handle merge conflicts, that class is about to get a lot more complicated."
+  - Why not go down that path then show the refactoring work?
+  - Sometimes the author does this; sometimes he doesn't. Interested in how he decides.
+  - In this case, seems like an example of avoiding the wrong abstraction (or DRYing code up too soon). "Just because two things happen to look the same, doesn’t mean they really represent the same concept. In this case, by saying precisely that we just want to check out the merged commit and nothing more, we avoid opting in to any new behaviour the Resolve class might gain that we don’t want. Having small building blocks is an important step in avoiding reusing code beyond its intended scope"
+- I wish `merge3` had more of a descriptive name. Maybe `validate_three_way_merge` or something like that.
+
+
 ### Discussion notes
+
+- Bitshifting...something I rarely do in Ruby.
+- I think I'd understand this better if we were TDDing it. More tedious, but it'd help it sink in.
+
 
 ## Chapter 19: Conflict resolution
 
+- Mostly logging?
+- "Combined diff" shows diffs from stages 2 AND 3
+
+
 ### Questions
 
+- The `on_process(&block)` for logging messages seems overly complicated.
+- Why separate hashes for `CONFLICT_LONG_STATUS` and `CONFLICT_SHORT_STATUS`? Same keys for both...
+
 ### Discussion notes
+
+- Cool diff flags:
+  - `git diff -cc`: See combined diff
+  - Specify stage
+    - `git diff --base` / `-1` (base)
+    - `git diff --ours` / `-2` (left aka HEAD)
+    - `git diff --theirs` / `-3` (right, incoming commit)
 
 ## Chapter 20: Merging inside files
 
@@ -474,6 +537,7 @@ Note: read with an eye for some sort of pairing exercise based on the chapter co
 ### Discussion notes
 
 ## Part III: Distribution
+
 ## Chapter 25: Configuration
 
 ### Questions
