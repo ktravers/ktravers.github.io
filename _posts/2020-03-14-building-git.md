@@ -476,7 +476,7 @@ Note: read with an eye for some sort of pairing exercise based on the chapter co
 - "...you might be wondering why we don't just use the Merge::Resolve class which effectively does the same tree-diff and migration work. The answer is that, in order to handle merge conflicts, that class is about to get a lot more complicated."
   - Why not go down that path then show the refactoring work?
   - Sometimes the author does this; sometimes he doesn't. Interested in how he decides.
-  - In this case, seems like an example of avoiding the wrong abstraction (or DRYing code up too soon). "Just because two things happen to look the same, doesn’t mean they really represent the same concept. In this case, by saying precisely that we just want to check out the merged commit and nothing more, we avoid opting in to any new behaviour the Resolve class might gain that we don’t want. Having small building blocks is an important step in avoiding reusing code beyond its intended scope"
+  - In this case, seems like an example of avoiding the wrong abstraction (or DRYing code up too soon). "Just because two things happen to look the same, doesn't mean they really represent the same concept. In this case, by saying precisely that we just want to check out the merged commit and nothing more, we avoid opting in to any new behaviour the Resolve class might gain that we don't want. Having small building blocks is an important step in avoiding reusing code beyond its intended scope"
 - I wish `merge3` had more of a descriptive name. Maybe `validate_three_way_merge` or something like that.
 
 
@@ -520,11 +520,16 @@ Note: read with an eye for some sort of pairing exercise based on the chapter co
 
 ## Chapter 22: Editing messages
 
+- I don’t use the `git rm` command. Maybe I should start...
+- Reuse and resist commit message commands are cool
+
 ### Questions
 
 ### Discussion notes
 
 ## Chapter 23: Cherry-picking
+
+
 
 ### Questions
 
