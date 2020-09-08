@@ -413,25 +413,17 @@ Now that we know what "good" software development performance looks like, we can
 
 #### Questions
 
-#### Discussion
-
 ### Chapter 13 - Introduction to Psychometrics
 
 #### Questions
-
-#### Discussion
 
 ### Chapter 14 - Why Use a Survey
 
 #### Questions
 
-#### Discussion
-
 ### Chapter 15 - The Data for the Project
 
 #### Questions
-
-#### Discussion
 
 ## Part Three: Transformation
 
@@ -440,3 +432,5 @@ Now that we know what "good" software development performance looks like, we can
 #### Questions
 
 #### Discussion
+
+We covered all of Part Two in a single discussion session.
