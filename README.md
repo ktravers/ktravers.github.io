@@ -1,6 +1,6 @@
-# www.kate-travers.com
+# kate-travers.com
 
-Website for web developer [Kate Travers](http://www.kate-travers.com).
+Website for web developer [Kate Travers](http://kate-travers.com).
 
 ## Local Development
 
@@ -8,10 +8,6 @@ Website for web developer [Kate Travers](http://www.kate-travers.com).
 2. Install Jekyll and plug-ins: `gem install jekyll bundler`. This mirrors the plug-ins used by GitHub Pages on your local machine including Jekyll, Sass, etc.
 3. Start local server and watch for markup/sass changes: `bundle exec jekyll serve`
 4. View locally at `localhost:4000`
-
-## Questions?
-
-[Contact me](mailto:kate.travers@flatironschool.com) or open a pull request.
 
 ## Credits
 

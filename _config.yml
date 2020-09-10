@@ -28,6 +28,8 @@ google_analytics: UA-17583145-6
 # Used for Sitemap.xml and your RSS feed
 url: http://kate-travers.com
 
+permalink: /posts/:slug:output_ext
+
 # If you're hosting your site at a Project repository on GitHub pages (http://yourusername.github.io/repository-name)
 # and NOT your User repository (http://yourusername.github.io) then add in the baseurl here, like this: "/repository-name"
 baseurl: ""
