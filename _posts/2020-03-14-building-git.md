@@ -523,21 +523,36 @@ Note: read with an eye for some sort of pairing exercise based on the chapter co
 - I don’t use the `git rm` command. Maybe I should start...
 - Reuse and resist commit message commands are cool
 
-### Questions
-
-### Discussion notes
-
 ## Chapter 23: Cherry-picking
 
+Oof, better read this chapter again.
 
+- Didn't realize `.git/sequencer` was a thing. Very cool!
 
 ### Questions
+
+- Not sure about re-using `RevList`. Why didn't we create a cherry pick specific object, like we did with `Merge::CherryPick`? Or at least a subclass?
 
 ### Discussion notes
 
 ## Chapter 24: Reshaping history
 
+- `git commit --amend` uses `cherry-pick`? 🤯
+- Two very important things to remember:
+  - "although it may only appear that we've modified commit B, we have in fact generated a whole new history that diverges from the parent of B."
+  - "The original history still exists, but may no longer have any refs pointing at it."
+- Reordering commits == cherry-pick 1 commit, then cherry-pick range 🤯🤯
+- Clever; use branching to mimic `stash`ing commits
+
+Me, realizing everything is a `cherry-pick`:
+
+![Spiderman mind blown GIF](https://media.giphy.com/media/11qAyKz9AbFEYM/giphy.gif)
+
+
 ### Questions
+
+- Is everything that changes history a `cherry-pick` and/or `reset`?
+- Does git have any commands that explictly reference `sequence`? Seems to be an important bit of plumbing, but not really referenced.
 
 ### Discussion notes
 
@@ -545,7 +560,13 @@ Note: read with an eye for some sort of pairing exercise based on the chapter co
 
 ## Chapter 25: Configuration
 
+- Can't be avoided!
+- Choosing CST ("concrete syntax tree") over AST ("abstract syntax tree") to preserve whitespace, comments, etc
+
 ### Questions
+
+- Why would we be tempted to avoid configuration stuff? We're already handling a bunch of "annoying parsing problems", etc. Seems like adding config will probably make our lives easier.
+- There's gotta be easier ways to parse this config file
 
 ### Discussion notes
 
