@@ -8,9 +8,9 @@ New decade, new job. At the end of last year, I started looking for a new job, s
 
 Welp, to no one's surprise, turns out I was super rusty. After floundering through my first couple behavioral interviews, I realized I couldn't go into these things cold. I needed to put some work in.
 
-To prep, I put together two lists of questions -- [one for my interviewer](#questions-for-them) and [one for me](#questions-for-you) -- and kept both lists in front of me to reference as needed during interviews. I wrote out short answers to all the "Questions for you" in advance, prepping a couple different anecdotes for each, so I could choose one in the moment best suited for the role/team. I also made of a copy of the "Questions for them" for each company and took notes on their answers during the interview. Keeping track of all the different responses not only made it easier to compare and contrast these opportunities later, but also provide direct, specific feedback afterwards, including thank you notes ✨
+To prep, I put together two lists of questions -- [one for my interviewer](#questions-for-them) and [one for me](#questions-for-you) -- and kept both lists in front of me to reference as needed during interviews. I wrote out short answers to all the "Questions for you" in advance, prepping a couple different examples for each, so I could choose one in the moment best suited for the role/team. I also made of a copy of the "Questions for them" for each company and took notes on their answers during the interview. Keeping track of all the different responses not only made it easier to compare and contrast these opportunities later, but also provide direct, specific feedback afterwards, including thank you notes ✨
 
-I ended up putting more work into these questions than more purely technical prep (memorizing algorithms, etc), but it unquestionably paid off. Having this Q&A at the ready enabled me to get the information I needed from each interviewer and actually have a lively, fun conversation while doing so (minus all the long, awkward pauses and filler phrases like "Oh, what a good question, let me think about that..." I was using before properly prepping 🤦‍♀️). By the time I had a couple offers in hand, it was easy to compare notes and say yes to the right team.
+I ended up putting more work into these questions than more purely technical prep (memorizing algorithms, etc), but it unquestionably paid off. Having this Q&A at the ready enabled me to get the information I needed from each interviewer and actually have a lively, fun conversation while doing so. By the time I had a couple offers in hand, it was easy to compare notes and say yes to the right team.
 
 Below are both lists. I hope they're as helpful for you as they were for me.
 
@@ -38,11 +38,11 @@ _What does this team need and how can you help them?_
 
 ### Process
 
-_Just as important as what the team works on is how the team works._
+_How the team works is just as important as what the team works on._
 
 1. Can you walk me through your team's development process, from planning to shipping?
 
-1. During your team on the team, what processes have you seen break down? How have you adjusted?
+1. During your time on the team, what processes have you seen break down? How have you adjusted?
 
 1. What does your onboarding process look like?
 
@@ -130,9 +130,7 @@ _Find out if this role matches up with what you're looking for._
 1. Talk about about a time in the last week/month/year when you've been satisfied, energized, and productive at work. What were you doing?
 
 
-### Communication
-
-_Arguably the most important skills for every role._
+### Communication and Feedback
 
 1. Talk about about how you collaborate with people of different backgrounds.
 
@@ -142,13 +140,20 @@ _Arguably the most important skills for every role._
 
 1. Describe a situation where you needed to persuade someone to see things your way. What steps did you take? What were the results?
 
-1. Talk about about the toughest decision you had to make in the last six months.
-Have you ever had to "sell" an idea to your coworkers or group? How did you do it? What were the results?
+1. Have you ever had to "sell" an idea to your coworkers or group? How did you do it? What were the results?
+
+1. What's one critical piece of feedback you've received that was really difficult to hear? Why was it difficult and what did you do with that information? What did you learn about yourself?
+
+1. What is some constructive criticism that you got at your current job, and how have you tried to address it?
+
+1. What say do you think devs have in team processes versus the manager? How might you bring about change for policies you disagree with?
+
+1. How do you raise issues when you observe them?
+
+1. When was the last time you asked for direct feedback from a superior? Why?
 
 
 ### Dealing with conflict
-
-_How do you handle tough situations?_
 
 1. Give an example of when you had to work with someone who was difficult to get along with. How did you handle interactions with that person?
 
@@ -170,12 +175,10 @@ _How do you handle tough situations?_
 
 1. Describe a time when you felt stressed or overwhelmed. How did you handle it?
 
-1. Describe a people process challenge.
+1. What's the the toughest decision you had to make in the last six months?
 
 
 ## Dealing with change
-
-_Change is scary. How do you handle it?_
 
 1. Can you share an experience where a project dramatically shifted directions at the last minute? What did you do?
 
@@ -194,7 +197,7 @@ _Change is scary. How do you handle it?_
 1. Recall a time when you were assigned a task outside of your job description. How did you handle the situation? What was the outcome?
 
 
-### Learning / Growth
+### Learning and Growth
 
 _Learning new things is one of the most important skills for an engineer. How do you like to learn?_
 
@@ -211,22 +214,7 @@ _Learning new things is one of the most important skills for an engineer. How do
 1. What do you do in your job that's not in your job description? How did you identify those opportunities?
 
 
-### Feedback
-
-_An important subclass of communication._
-
-1. What's one critical piece of feedback you've received that was really difficult to hear? Why was it difficult and what did you do with that information? What did you learn about yourself?
-
-1. What is some constructive criticism that you got at your current job, and how have you tried to address it?
-
-1. What say do you think devs have in team processes versus the manager? How might you bring about change for policies you disagree with?
-
-1. How do you raise issues when you observe them?
-
-1. When was the last time you asked for direct feedback from a superior? Why?
-
-
-### Planning / Time Management
+### Planning and Time Management
 
 _Time: one of the two hardest things in programming (behind naming)._
 
