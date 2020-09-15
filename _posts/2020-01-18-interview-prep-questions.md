@@ -8,9 +8,9 @@ New decade, new job. At the end of last year, I started looking for a new job, s
 
 Welp, to no one's surprise, turns out I was super rusty. After floundering through my first couple behavioral interviews, I realized I couldn't go into these things cold. I needed to put some work in.
 
-To prep, I put together two lists of questions -- [one for my interviewer](#questions-for-them) and [one for me](#questions-for-you) -- and kept both lists in front of me to reference as needed during interviews. I wrote out short answers to all the "Questions for you" in advance, prepping a couple different examples for each, so I could choose one in the moment best suited for the role/team. I also made of a copy of the "Questions for them" for each company and took notes on their answers during the interview. Keeping track of all the different responses not only made it easier to compare and contrast these opportunities later, but also provide direct, specific feedback afterwards, including thank you notes ✨
+To prep, I put together two lists of questions (compiled from these excellent [resources](#sources)) -- [one for my interviewer](#questions-for-them) and [one for me](#questions-for-you) -- and kept both lists in front of me to reference as needed during interviews. I wrote out short answers to all the "Questions for you" in advance, prepping a couple different examples for each, so I could choose one in the moment best suited for the role/team. I also made of a copy of the "Questions for them" for each company and took notes on their answers during the interview. Keeping track of all the different responses not only made it easier to compare and contrast these opportunities later, but also provide direct, specific feedback afterwards, including thank you notes ✨
 
-I ended up putting more work into these questions than more purely technical prep (memorizing algorithms, etc), but it unquestionably paid off. Having this Q&A at the ready enabled me to get the information I needed from each interviewer and actually have a lively, fun conversation while doing so. By the time I had a couple offers in hand, it was easy to compare notes and say yes to the right team.
+I ended up putting more work into these questions than more purely technical prep (memorizing algorithms, etc), which might surprise you, but it unquestionably paid off. Having this Q&A at the ready enabled me to get the information I needed from each interviewer and have a lively, fun conversation while doing so. By the time I had a couple offers in hand, it was easy to compare notes and say yes to the right team.
 
 Below are both lists. I hope they're as helpful for you as they were for me.
 
@@ -19,7 +19,7 @@ Below are both lists. I hope they're as helpful for you as they were for me.
 
 ### Opportunities
 
-_What does this team need and how can you help them?_
+_What does this team need, and how can you help them?_
 
 1. What's the story for this team in the coming year?
 
@@ -132,6 +132,8 @@ _Find out if this role matches up with what you're looking for._
 
 ### Communication and Feedback
 
+_Here's your chance to tell (and show) what you'd be like to work with as a teammate._
+
 1. Talk about about how you collaborate with people of different backgrounds.
 
 1. Talk about about your code review process and how you accept/deliver feedback to/from team members.
@@ -155,6 +157,8 @@ _Find out if this role matches up with what you're looking for._
 
 ### Dealing with conflict
 
+_Demonstrate how you've learned from mistakes and adversity._
+
 1. Give an example of when you had to work with someone who was difficult to get along with. How did you handle interactions with that person?
 
 1. Talk about about a time when you were frustrated at work and how you dealt with it.
@@ -169,16 +173,16 @@ _Find out if this role matches up with what you're looking for._
 
 1. Talk about about a time you had a disagreement with a coworker. How did you resolve it?
 
-1. How much do you stick to your guns / stay flexible if your manager doesn't agree?
+1. How much do you stick to your guns vs. stay flexible if your manager doesn't agree?
 
 1. Talk about about a time when you had to admit you were wrong. What did you learn?
 
 1. Describe a time when you felt stressed or overwhelmed. How did you handle it?
 
-1. What's the the toughest decision you had to make in the last six months?
-
 
 ## Dealing with change
+
+_Starting a new role is a big change in-and-of itself. How do you get up to speed?_
 
 1. Can you share an experience where a project dramatically shifted directions at the last minute? What did you do?
 
@@ -199,7 +203,7 @@ _Find out if this role matches up with what you're looking for._
 
 ### Learning and Growth
 
-_Learning new things is one of the most important skills for an engineer. How do you like to learn?_
+_Hiring managers are looking for people who are curious and excited to learn new things._
 
 1. What are some things you want to learn more about?
 
@@ -248,6 +252,8 @@ _What kind of leader are you? What kind of leader do you want to work with?_
 1. Describe the best partner or supervisor with whom you've worked. What part of their managing style appealed to you?
 
 1. Recall a time when your manager was unavailable when a problem arose. How did you handle the situation? With whom did you consult?
+
+1. What's the the toughest decision you had to make in the last six months?
 
 
 ### Accomplishments
