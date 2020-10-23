@@ -576,7 +576,13 @@ Me, realizing everything is a `cherry-pick`:
 
 ### Discussion notes
 
+Need to review parts about refspecs.
+
 ## Chapter 27: The network protocol
+
+- Punting on HTTP, viva SSH
+- "While it's running, `git-upload-pack` acts as a server that the client, the fetch command, can talk to."
+- Elixir would be more efficient for streaming all this pack data
 
 ### Questions
 
@@ -596,6 +602,10 @@ Me, realizing everything is a `cherry-pick`:
 
 ## Chapter 30: Delta compression
 
+- "Myers algorithm performs well on line-oriented text files"
+- XDelta algorithm for binary files
+- No native Ruby support for XDelta algorithm, we're implementing it ourselves
+
 ### Questions
 
 ### Discussion notes
@@ -604,9 +614,11 @@ Me, realizing everything is a `cherry-pick`:
 
 ### Questions
 
+- What commands did he run to get that nice tree with al lthe files for each commit? And the nice neat lists for commit, type, size and path? `git ls-tree HEAD -r -l` gets you the list, but still not sure about that nicely formatted tree.
+
 ### Discussion notes
 
-## Chapter 32: Packs in the database
+## Chapter 32: Packs in the database -- START HERE
 
 ### Questions
 
