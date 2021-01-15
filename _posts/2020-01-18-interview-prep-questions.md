@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Interview Prep Questions
-tags: [interviews]
+tags: [interviews, career]
 ---
 
 New decade, new job. At the end of last year, I started looking for a new job, something I hadn't done in almost five years. I'd been very involved with my company's hiring process, helping design our technical interviews and running dozens of interviews for engineering and product team candidates at every level and role, so I thought was ready to be on the other side of the table.
