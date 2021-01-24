@@ -19,27 +19,19 @@ _"A List Apart explores the design, development, and meaning of web content, wit
 
 #### 2. [Increment](https://increment.com/about/#newsletter) from [Stripe](https://stripe.com/)
 
-_"Increment is a print and digital magazine about how teams build and operate software systems at scale."_ A glossy newsletter that's also available in [print form](https://store.increment.com/). Impeccably crafted in every sense, it offers monthly issues organized around a single them, like "APIs" or "Open Source", with contributions from some of the biggest names in the industry.
-
-[Example](https://increment.com/security/)
+_"Increment is a print and digital magazine about how teams build and operate software systems at scale."_ A glossy newsletter that's also available in [print form](https://store.increment.com/). Impeccably crafted in every sense, it offers monthly issues organized around a single them, like "APIs" or "Open Source", with contributions from some of the biggest names in the industry. [[Example issue](https://increment.com/security/)]
 
 #### 3. [Pointer.io](http://www.pointer.io/) from [Suraj Kapoor](http://www.pointer.io/about-me/)
 
-_"Pointer is a reading club for developers. It's a window into what other current and future CTOs are reading and thinking about. Super high quality engineering-related content, not just trendy topics or link bait."_ So incredibly well-curated, I end up reading or saving almost every link in every issue. If I could only subscribe to one tech newsletter, it'd be this one, no joke.
-
-[Example](http://www.pointer.io/archives/a734ed7df3/)
+_"Pointer is a reading club for developers. It's a window into what other current and future CTOs are reading and thinking about. Super high quality engineering-related content, not just trendy topics or link bait."_ So incredibly well-curated, I end up reading or saving almost every link in every issue. If I could only subscribe to one tech newsletter, it'd be this one, no joke. [[Example issue](http://www.pointer.io/archives/a734ed7df3/)]
 
 #### 4. [Assaf's Weekend Reading](https://assaf.substack.com/) from [Assaf Arkin](https://assaf.substack.com/about)
 
-_"Once a week, in your inbox, the top links about software design and development, people and management, culture and technology. A mix of insightful and funny. Goes great with coffee. ☕️"_ This one I usually read right away, start to finish, as soon as it lands in my inbox. It's an absolute delight, as promised. I also enjoy that it includes spicy and/or hilarious tweets from the non-obnoxious part of tech Twitter.
-
-[Example](https://assaf.substack.com/p/weekend-reading-battery-down-to-90)
+_"Once a week, in your inbox, the top links about software design and development, people and management, culture and technology. A mix of insightful and funny. Goes great with coffee. ☕️"_ This one I usually read right away, start to finish, as soon as it lands in my inbox. It's an absolute delight, as promised. I also enjoy that it includes spicy and/or hilarious tweets from the non-obnoxious part of tech Twitter. [[Example issue](https://assaf.substack.com/p/weekend-reading-battery-down-to-90)]
 
 #### 5. [SIGAVDI](https://avdi.codes/sigavdi/) from [Avdi Grimm](https://avdi.codes/)
 
-_"...handpicked links to interesting articles, talks, or resources; an update on what I've published lately; and some reflections at the intersection of software and life."_ Avdi Grimm's semi-regular newsletter. A nice glimpse into his personal reading/viewing/listening lists, along with some delicious food pics.
-
-[Example](https://avdi.codes/sigavdi-86-fancy-ramen-edition/)
+_"...handpicked links to interesting articles, talks, or resources; an update on what I've published lately; and some reflections at the intersection of software and life."_ Avdi Grimm's semi-regular newsletter. A nice glimpse into his personal reading/viewing/listening lists, along with some delicious food pics. [[Example issue](https://avdi.codes/sigavdi-86-fancy-ramen-edition/)]
 
 #### 6. [LeadDev Originals](https://leaddev.com/#block-subscriptionblock) from [LeadDev](https://leaddev.com/about-leaddev)
 
@@ -50,13 +42,9 @@ _"Weekly words and voices on engineering leadership...[with] the latest advice a
 
 #### 1. [Diversify Tech](https://www.diversifytech.co/join/) from [Veni Kunche](https://twitter.com/venikunche)
 
-_"Diversify Tech connects underrepresented people in tech to jobs scholarships, events, speaking opportunities and more."_ A fantastic resource for job seekers from underrepresented groups. Includes weekly resources and job alerts.
+_"Diversify Tech connects underrepresented people in tech to jobs scholarships, events, speaking opportunities and more."_ A fantastic resource for job seekers from underrepresented groups. Includes weekly resources and job alerts. [[Example issue](https://us2.campaign-archive.com/?u=12f105953ac73ecedfa0b5604&id=ce654312a1)]
 
-[Example](https://us2.campaign-archive.com/?u=12f105953ac73ecedfa0b5604&id=ce654312a1)
-
-And for companies, founders, recruiters and allies, don't miss the weekly Business and Ally edition, with articles on diversity and inclusion from diverse voices, candidates from underrepresented groups who are looking for jobs, and opportunities to learn and advocate for diversity in tech.
-
-[Example](https://mailchi.mp/diversifytech/business-ally-edition-35)
+And for companies, founders, recruiters and allies, don't miss the weekly Business and Ally edition, with articles on diversity and inclusion from diverse voices, candidates from underrepresented groups who are looking for jobs, and opportunities to learn and advocate for diversity in tech. [[Example issue](https://mailchi.mp/diversifytech/business-ally-edition-35)]
 
 #### 2. [Break In](https://www.break-in.tech/#preFooter) from [Sophie DeBenedetto](http://sophiedebenedetto.nyc/)
 
@@ -64,66 +52,46 @@ _"...bi-weekly newsletter designed to help you break in to the tech world."_ Whe
 
 #### 3. [Technically Speaking](https://tinyletter.com/techspeak) from [Chiu-Ki Chan and Cate Huston](https://twitter.com/techspeakdigest)
 
-_"Technically Speaking delivers call for proposals (CFPs), speaking tips, and inspirational videos straight to your inbox."_ No longer active, but the [archives](https://tinyletter.com/techspeak/archive) are worth diving into if you're a current or aspiring technical speaker.
-
-[Example](https://tinyletter.com/techspeak/letters/technically-speaking-august-15-2017)
+_"Technically Speaking delivers call for proposals (CFPs), speaking tips, and inspirational videos straight to your inbox."_ No longer active, but the [archives](https://tinyletter.com/techspeak/archive) are worth diving into if you're a current or aspiring technical speaker. [[Example issue](https://tinyletter.com/techspeak/letters/technically-speaking-august-15-2017)]
 
 
 ### _Language-specific_
 
 #### 1. [Ruby Weekly](https://rubyweekly.com/) from [Peter Cooper](https://twitter.com/peterc), [Glenn Goodrich](https://twitter.com/ruprict), and [Cooperpress](https://cooperpress.com/)
 
-_"A free, once–weekly e-mail round-up of Ruby news and articles."_ A must-subscribe for any Ruby developer. Includes job postings.
-
-[Example](https://rubyweekly.com/issues/517)
+_"A free, once–weekly e-mail round-up of Ruby news and articles."_ A must-subscribe for any Ruby developer. Includes job postings. [[Example issue](https://rubyweekly.com/issues/517)]
 
 #### 2. [Elixir Weekly](https://elixirweekly.net/) from [@elixirstatus](http://elixirstatus.com/)
 
-_"Elixir Community News, one email every Thursday."_ Modeled after Ruby Weekly. Includes a mix of blog posts, podcast episodes, and project updates.
-
-[Example](https://elixirweekly.net/#latest-issue)
+_"Elixir Community News, one email every Thursday."_ Modeled after Ruby Weekly. Includes a mix of blog posts, podcast episodes, and project updates. [[Example issue](https://elixirweekly.net/#latest-issue)]
 
 #### 3. [Elixir Radar](https://elixir-radar.com/) from [Hugo Baraúna](https://medium.com/@hugobarauna)
 
-_"Weekly Elixir Newsletter. Keep updated with what's happening in the Elixir community."_ Includes content, news, events, and job postings.
-
-[Example](https://sendy.elixir-radar.com/w/1H5Ub0cFo5UBnaWX89207fDg/J8921cxQ4jeEDmbVKDWh02aw/Yh90xZuZQffMRAs5Pbpppw)
+_"Weekly Elixir Newsletter. Keep updated with what's happening in the Elixir community."_ Includes content, news, events, and job postings. [[Example issue](https://sendy.elixir-radar.com/w/1H5Ub0cFo5UBnaWX89207fDg/J8921cxQ4jeEDmbVKDWh02aw/Yh90xZuZQffMRAs5Pbpppw)]
 
 #### 4. [CSS Weekly](https://css-weekly.com/) from [Zoran Jambor](https://twitter.com/ZoranJambor)
 
-_"Weekly e-mail roundup of css articles, tutorials, experiments and tools"_
-
-[Example](https://css-weekly.com/issue-425/)
+_"Weekly e-mail roundup of css articles, tutorials, experiments and tools"_ [[Example issue](https://css-weekly.com/issue-425/)]
 
 #### 5. [CSS Layout News](https://csslayout.news/) from [Rachel Andrew](https://rachelandrew.co.uk/)
 
-_"A weekly collection of tutorials, news and information on all things CSS Layout."_
-
-[Example](https://csslayout.news/issues/266#start)
+_"A weekly collection of tutorials, news and information on all things CSS Layout."_ [[Example issue](https://csslayout.news/issues/266#start)]
 
 
 ### _Stack-specific_
 
 #### 1. [Codrops Collective Newsletter](https://tympanus.net/codrops/newsletter/) from [Codrops](https://tympanus.net/codrops/about/)
 
-_"Collective features the latest news and resources from the web design & web development community."_ One of the first tech newsletters I subscribed to and still one of my faves. Consistently high quality, where every link is interesting. Almost exclusively front-end focused.
-
-[Example](https://tympanus.net/codrops/collective/collective-621/)
+_"Collective features the latest news and resources from the web design & web development community."_ One of the first tech newsletters I subscribed to and still one of my faves. Consistently high quality, where every link is interesting. Almost exclusively front-end focused. [[Example issue](https://tympanus.net/codrops/collective/collective-621/)]
 
 #### 2. [This Week in Web Design & Development Newsletter](https://css-tricks.com/newsletters/) from CSS-Tricks
 
-_"The most interesting and relevant news and information published [this] week both on CSS-Tricks and off."_ Don't let the name of the publisher fool you; they cover all things front-end, not just CSS.
-
-[Example](https://css-tricks.com/newsletter/215-the-gaps-in-the-web-platform/)
+_"The most interesting and relevant news and information published [this] week both on CSS-Tricks and off."_ Don't let the name of the publisher fool you; they cover all things front-end, not just CSS. [[Example issue](https://css-tricks.com/newsletter/215-the-gaps-in-the-web-platform/)]
 
 #### 3. [Codepen Spark](https://codepen.io/spark/) from [Codepen](https://codepen.io)
 
-Round-up of the week's coolest Pens (HTML, CSS, and JS demos from the community). Always super impressive.
-
-[Example](https://codepen.io/spark/197)
+Round-up of the week's coolest Pens (HTML, CSS, and JS demos from the community). Always super impressive. [[Example issue](https://codepen.io/spark/197)]
 
 #### 4. [UI Animation Newsletter](https://uianimationnewsletter.com/) from [Val Head](http://twitter.com/vlh)
 
-_"Keep up-to-date on the best web animation, motion design, and UX resources on the web! Subscribe for a weekly collection of curated tutorials and articles -- plus advice on how to make web animation work for you."_ I subscribed to this newsletter while working on a UI animation feature, thinking I'd unsubscribe when it shipped. But that was almost 3 years ago at this point 😄
-
-[Example](https://us2.campaign-archive.com/?u=6fbaddc8c1fce7588d1a35cb2&id=75f49463d6)
+_"Keep up-to-date on the best web animation, motion design, and UX resources on the web! Subscribe for a weekly collection of curated tutorials and articles -- plus advice on how to make web animation work for you."_ I subscribed to this newsletter while working on a UI animation feature, thinking I'd unsubscribe when it shipped. But that was almost 3 years ago at this point 😄 [[Example issue](https://us2.campaign-archive.com/?u=6fbaddc8c1fce7588d1a35cb2&id=75f49463d6)]
