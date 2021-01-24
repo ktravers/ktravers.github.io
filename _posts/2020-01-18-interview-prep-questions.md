@@ -73,7 +73,7 @@ _How does this team like to communicate? Does it match your style?_
 
 1. How do you raise issues when you observe them?
 
-ℹ️ There's a lot you can (and should) cover in this area, so check out the ["Communication and Feedback"](#communication-and-feedback) and ["Dealing with Conflict"](#dealing-with-conflict) sections below for more questions that apply to both interviewer and interviewee.
+There's a lot you can (and should) cover in this area, so check out the ["Communication and Feedback"](#-communication-and-feedback) and ["Dealing with Conflict"](#-dealing-with-conflict) sections below for more questions that apply to both interviewer and interviewee.
 
 
 ### 🤹‍♀️ Team Logistics
@@ -141,7 +141,7 @@ _See if their expectations stack up to yours._
 
 1. What are the three things that are most important to you in a job?
 
-1. What is the role you tend to fill when in a team? (Workhorse/Execution, Leader, Morale, Communicator, Builder, etc. - don't lead, let use own descriptors)
+1. What's the role you tend to fill when in a team? ("Workhorse", "Leader", "Morale booster", "Coordinator", "Specialist", etc.)
 
 1. Talk about about a time in the last week/month/year when you've been satisfied, energized, and productive at work. What were you doing?
 
@@ -164,7 +164,7 @@ _Here's your chance to tell (and show) what you'd be like to work with as a team
 
 1. What's one critical piece of feedback you've received that was really difficult to hear? Why was it difficult and what did you do with that information? What did you learn about yourself?
 
-1. What is some constructive criticism that you got at your current job, and how have you tried to address it?
+1. What's some constructive criticism that you got at your current job, and how have you tried to address it?
 
 1. When was the last time you asked for direct feedback from a superior? Why?
 
