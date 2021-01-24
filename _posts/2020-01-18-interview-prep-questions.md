@@ -1,18 +1,18 @@
 ---
 layout: post
-title: Interview Prep Questions
+title: Interview Prep Questions for Developers
 tags: [interviews, career]
 ---
 
-New decade, new job. At the end of last year, I started looking for a new job, something I hadn't done in almost five years. I'd been very involved with my company's hiring process, helping design our technical interviews and running dozens of interviews for engineering and product team candidates at every level and role, so I thought was ready to be on the other side of the table.
+At the end of 2019, I started looking for a new software engineering job, something I hadn't done in almost five years. I'd been very involved with my previous company's hiring process, helping design our interview process and running dozens of interviews for engineering and product team candidates at every level and role, so I thought was ready to be on the other side of the table.
 
-Welp, to no one's surprise, turns out I was super rusty. After floundering through my first couple behavioral interviews, I realized I couldn't go into these things cold. I needed to put some work in.
+Welp, surprise surprise, turns out I was super rusty. After floundering through my first couple behavioral interviews, I realized I couldn't go into these things cold. I needed to put some work in.
 
-To prep, I put together two lists of questions (compiled from these excellent [resources](#sources)) -- [one for my interviewer](#questions-for-them) and [one for me](#questions-for-you) -- and kept both lists in front of me to reference as needed during interviews. I wrote out short answers to all the "Questions for you" in advance, prepping a couple different examples for each, so I could choose one in the moment best suited for the role/team. I also made of a copy of the "Questions for them" for each company and took notes on their answers during the interview. Keeping track of all the different responses not only made it easier to compare and contrast these opportunities later, but also provide direct, specific feedback afterwards, including thank you notes ✨
+To prep, I put together two lists of questions (compiled from these excellent [resources](#sources)) -- [ones for me to ask the interviewer](#questions-for-them) and [ones I'd expect to have to answer myself](#questions-for-you) -- and kept both lists in front of me to reference as needed during interviews. I wrote out short answers to all the "Questions for you" in advance, prepping a couple different examples for each, so I could choose one in the moment best suited for the role/team. I also made of a copy of the "Questions for them" for each company and took notes on their answers during the interview. Keeping track of all the different responses made it easier to compare and contrast these opportunities later, but also provide direct, specific feedback afterwards, including thank you notes ✨
 
-I ended up putting more work into these questions than more purely technical prep (memorizing algorithms, etc), which might surprise you, but it unquestionably paid off. Having this Q&A at the ready enabled me to get the information I needed from each interviewer and have a lively, fun conversation while doing so. By the time I had a couple offers in hand, it was easy to compare notes and say yes to the right team.
+I ended up putting more work into these questions than more purely technical prep (memorizing algorithms, etc). That might surprise you, but it unquestionably paid off. Having this Q&A at the ready enabled me to get the information I needed from each interviewer and have a fun conversation while doing so. And when it came time to make a decision, it was easy to compare notes and say yes to the right team.
 
-Below are both lists. I hope they're as helpful for you as they were for me.
+Below are both lists. You'll notice that these questions aren't specific to any particular role, stack, or level. Rather, they're intended to be broadly applicable for anyone interviewing for a role on an engineering team -- at least give you a good starting point that you can refine and adapt to your specific situation. I hope they're as helpful for you as they were for me.
 
 
 ## QUESTIONS FOR THEM
@@ -23,17 +23,17 @@ _What does this team need, and how can you help them?_
 
 1. What's the story for this team in the coming year?
 
-1. Building - how much is maintenance vs new features?
+1. How much of the team's workload is maintenance vs. building new features?
 
 1. What are you working on now that you're most excited about?
 
 1. What's broken right now that you want to fix?
 
-1. What separates someone who does good work in this role from someone who does great work in this role?
+1. What separates someone who does _good_ work from someone who does _great_ work in this role?
 
 1. What are some of the skills you've learned on the job so far?
 
-1. What are the tasks I would do on a usual day?
+1. What kinds of tasks would I do on a "usual" day?
 
 
 ### Process
@@ -46,50 +46,68 @@ _How the team works is just as important as what the team works on._
 
 1. What does your onboarding process look like?
 
-1. Does your team have a standard dev environment? Does everyone use it?
-
-1. How quickly can you setup a new test environment for the product? (mins / hours / days)
+1. Does your team have a standard development environment? Does everyone use it?
 
 1. What's your team's approach to pair programming?
 
 1. What does your deployment process look like?
 
+1. How quickly can you set up a new test environment for the product? (mins / hours / days)
+
 
 ### Communication
 
-_Suss out how this team communicates. Does it match your style?_
+_How does this team like to communicate? Does it match your style?_
 
-1. Talk about about how you accept/deliver feedback to/from team members.
+1. How does your team deliver and handle feedback? Is there a formal process, ad hoc, both, neither?
 
 1. How are differences of opinions resolved?
 
-1. What tools do you use for remote teammates?
+1. What kinds of tools and processes do you use to support remote/asynchronous work?
+
+1. Who takes notes during meetings?
 
 1. Who maintains documentation?
+
+1. How much input/influence do developers have in team processes vs. the manager?
+
+1. How do you raise issues when you observe them?
+
+ℹ️ There's a lot you can (and should) cover in this area, so check out the ["Communication and Feedback"](#communication-and-feedback) and ["Dealing with Conflict"](#dealing-with-conflict) sections below for more questions that apply to both interviewer and interviewee.
 
 
 ### Team Logistics
 
 _Fact check your understanding of the team's structure._
 
-1. How much specialization in roles?
+1. How much specialization is there in roles?
 
 1. What's the junior/senior balance of the team?
 
-1. Talk about your manager.
+1. Tell me about your manager.
 
-1. What's the composition of a project team? Are there stakeholders embedded? Dedicated product/design people? Dedicated QA engineers?
+1. Does the team include dedicated product managers, designers, or QA engineers?
+
+1. Who are your primary stakeholders? How often do you interact with them?
+
+1. How much of the support burden falls on engineers vs. QA team vs. support team vs. the end user?
+
+1. Do you have an on-call rotation? (If yes) Who's on it and how is it managed?
 
 
 ### Company
 
 _Don't miss the opportunity to get an inside perspective on the company itself._
 
-1. What do you like about COMPANY in comparison to other companies you've worked at?
-
-1. What are some of the biggest challenges facing COMPANY right now? // What problems are you trying to solve right now?
+1. What do you like about COMPANY compared to other companies you've worked at?
 
 1. How does the engineering culture differ from the overall company culture?
+
+1. What are some of the biggest challenges facing COMPANY right now?
+
+1. Are there known problems that COMPANY is trying to solve right now?
+
+1. What problems would COMPANY be foolish not to fix in the next year?
 
 
 ## QUESTIONS FOR YOU
@@ -113,11 +131,9 @@ _Show them you've done your research._
 
 ### Fit
 
-_Find out if this role matches up with what you're looking for._
+_See if their expectations stack up to yours._
 
 1. Why do you want to leave your current job?
-
-1. What would motivate you to make a move from your current role?
 
 1. What are you looking for in your next role?
 
@@ -134,9 +150,11 @@ _Find out if this role matches up with what you're looking for._
 
 _Here's your chance to tell (and show) what you'd be like to work with as a teammate._
 
-1. Talk about about how you collaborate with people of different backgrounds.
+1. Talk about about how you collaborate with people who have a different background than you.
 
-1. Talk about about your code review process and how you accept/deliver feedback to/from team members.
+1. Talk about about your code review process.
+
+1. Talk about how you accept/deliver feedback to/from team members.
 
 1. Talk about about a time when you were communicating with someone and they did not understand you. What did you do?
 
@@ -148,20 +166,14 @@ _Here's your chance to tell (and show) what you'd be like to work with as a team
 
 1. What is some constructive criticism that you got at your current job, and how have you tried to address it?
 
-1. What say do you think devs have in team processes versus the manager? How might you bring about change for policies you disagree with?
-
-1. How do you raise issues when you observe them?
-
 1. When was the last time you asked for direct feedback from a superior? Why?
 
 
-### Dealing with conflict
+### Dealing with Conflict
 
-_Demonstrate how you've learned from mistakes and adversity._
+_These questions can be some of the most revealing -- for you and them. Stay alert for red flags._
 
 1. Give an example of when you had to work with someone who was difficult to get along with. How did you handle interactions with that person?
-
-1. Talk about about a time when you were frustrated at work and how you dealt with it.
 
 1. Everybody has off days. How do you handle those?
 
@@ -171,18 +183,14 @@ _Demonstrate how you've learned from mistakes and adversity._
 
 1. What do you do when you don't see eye-to-eye with a team member? How do you move forward with a project?
 
-1. Talk about about a time you had a disagreement with a coworker. How did you resolve it?
-
-1. How much do you stick to your guns vs. stay flexible if your manager doesn't agree?
-
 1. Talk about about a time when you had to admit you were wrong. What did you learn?
 
 1. Describe a time when you felt stressed or overwhelmed. How did you handle it?
 
 
-## Dealing with change
+## Dealing with Change
 
-_Starting a new role is a big change in-and-of itself. How do you get up to speed?_
+_Same as above, these questions can tell you as much about the company as the candidate. Be ready with clarifying follow-up questions._
 
 1. Can you share an experience where a project dramatically shifted directions at the last minute? What did you do?
 
@@ -192,35 +200,33 @@ _Starting a new role is a big change in-and-of itself. How do you get up to spee
 
 1. Talk about about a time when you had to adjust to a colleague's working style in order to complete a project or achieve your objectives.
 
-1. Describe a skill you had to acquire on-the-job to accomplish something you needed to do?
-
 1. Describe a situation in which you embraced a new system, process, technology, or idea at work that was a major departure from the old way of doing things.
-
-1. Talk about about a time when you were asked to do something you had never done before. How did you react? What did you learn?
 
 1. Recall a time when you were assigned a task outside of your job description. How did you handle the situation? What was the outcome?
 
 
 ### Learning and Growth
 
-_Hiring managers are looking for people who are curious and excited to learn new things._
+_How much learning and growth is expected as part of this role, and does it line up with what you're looking for?_
 
 1. What are some things you want to learn more about?
 
 1. What do you read to stay up-to-date?
 
-1. What are some professional development areas that you're interested in?
-
 1. What was the best new thing you learned in the last year?
+
+1. What do you do in your job that's not in your job description? How did you identify those opportunities?
 
 1. Describe a time when you volunteered to expand your knowledge at work, as opposed to being directed to do so.
 
-1. What do you do in your job that's not in your job description? How did you identify those opportunities?
+1. Describe a skill you had to acquire on-the-job to accomplish something you needed to do.
+
+1. Talk about about a time when you were asked to do something you had never done before. How did you react? What did you learn?
 
 
 ### Planning and Time Management
 
-_Time: one of the two hardest things in programming (behind naming)._
+_How do you get stuff done?_
 
 1. Imagine you are starting a new project (pick a sample project related to the role) - take me through your initial planning process?
 
@@ -238,9 +244,7 @@ _Time: one of the two hardest things in programming (behind naming)._
 
 1. How does your workflow change when you have a generous deadline vs. a tight deadline?
 
-1. How do you balance getting your work done versus being available to help teammates or chip in on team tasks like bug reports or out of process tasks that pop-up?
-
-1. What are some tools/skills you use to work with your team & manage priorities?
+1. How do you balance getting your work done vs. being available to help teammates or chip in on team tasks like bug reports or out of process tasks that pop-up?
 
 
 ### Leadership
@@ -258,15 +262,15 @@ _What kind of leader are you? What kind of leader do you want to work with?_
 
 ### Accomplishments
 
-_Go ahead, get your brag on._
-
-1. Talk about about a time when you built an app (web, mobile, etc). What inspired the idea? What determined what features you built and didn't build?
+_Go ahead, brag a bit._
 
 1. Discuss a project or two that you're very proud of.
 
 1. What's the biggest career goal you've ever achieved?
 
 1. Talk about about one of your favorite experiences working with a team and your contribution.
+
+1. Talk about about a project you were primarily/solely responsible for shipping end-to-end (from ideation to launch). What inspired the idea? What determined what features you built and didn't build?
 
 
 ### Expertise
@@ -283,20 +287,20 @@ _Demonstrate your smarts._
 
 1. What are some of your favorite tools to work with? What are the tools you're most comfortable with? Which aren't you comfortable with?
 
-1. What are some strategies you use to navigate ambiguity in the workplace? e.g. strategy, job responsibilities/roles
+1. What are some strategies you use to navigate ambiguity in the workplace? (e.g. feature requirements, management decisions, etc)
 
 
 ### Non-work life
 
 _Don't forget about sharing a little bit about you, as a person._
 
-1. What does work/life balance look like in your life?
+1. What does work/life balance look like for you?
 
 1. What do you do for fun?
 
 1. What's the most interesting thing about you that's not on your resume?
 
-1. What's the biggest misconception your coworkers have about you and why do they think that?
+1. What's the biggest misconception your co-workers have about you and why do they think that?
 
 
 ## Sources
