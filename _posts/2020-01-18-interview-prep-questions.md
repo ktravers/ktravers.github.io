@@ -12,12 +12,12 @@ To prep, I put together two lists of questions (compiled from these excellent [r
 
 I ended up putting more work into these questions than more purely technical prep (memorizing algorithms, etc). That might surprise you, but it unquestionably paid off. Having this Q&A at the ready enabled me to get the information I needed from each interviewer and have a fun conversation while doing so. And when it came time to make a decision, it was easy to compare notes and say yes to the right team.
 
-Below are both lists. You'll notice that these questions aren't specific to any particular role, stack, or level. Rather, they're intended to be broadly applicable for anyone interviewing for a role on an engineering team -- at least give you a good starting point that you can refine and adapt to your specific situation. I hope they're as helpful for you as they were for me.
+You'll notice the questions below aren't specific to any particular role, stack, or level. Rather, they're intended to be broadly applicable for anyone interviewing for a role on an engineering team -- at least give you a good starting point that you can refine and adapt to your specific situation. I hope they're as helpful for you as they were for me.
 
 
 ## QUESTIONS FOR THEM
 
-### Opportunities
+### 🎯 Opportunities
 
 _What does this team need, and how can you help them?_
 
@@ -36,7 +36,7 @@ _What does this team need, and how can you help them?_
 1. What kinds of tasks would I do on a "usual" day?
 
 
-### Process
+### 🚀 Process
 
 _How the team works is just as important as what the team works on._
 
@@ -55,7 +55,7 @@ _How the team works is just as important as what the team works on._
 1. How quickly can you set up a new test environment for the product? (mins / hours / days)
 
 
-### Communication
+### 📣 Communication
 
 _How does this team like to communicate? Does it match your style?_
 
@@ -76,7 +76,7 @@ _How does this team like to communicate? Does it match your style?_
 ℹ️ There's a lot you can (and should) cover in this area, so check out the ["Communication and Feedback"](#communication-and-feedback) and ["Dealing with Conflict"](#dealing-with-conflict) sections below for more questions that apply to both interviewer and interviewee.
 
 
-### Team Logistics
+### 🤹‍♀️ Team Logistics
 
 _Fact check your understanding of the team's structure._
 
@@ -95,7 +95,7 @@ _Fact check your understanding of the team's structure._
 1. Do you have an on-call rotation? (If yes) Who's on it and how is it managed?
 
 
-### Company
+### 🏢 Company
 
 _Don't miss the opportunity to get an inside perspective on the company itself._
 
@@ -112,7 +112,7 @@ _Don't miss the opportunity to get an inside perspective on the company itself._
 
 ## QUESTIONS FOR YOU
 
-### Company
+### 🏢 Company
 
 _Show them you've done your research._
 
@@ -129,7 +129,7 @@ _Show them you've done your research._
 1. If you come in, what will your first order of business be?
 
 
-### Fit
+### 🎯 Team/Role Fit
 
 _See if their expectations stack up to yours._
 
@@ -146,7 +146,7 @@ _See if their expectations stack up to yours._
 1. Talk about about a time in the last week/month/year when you've been satisfied, energized, and productive at work. What were you doing?
 
 
-### Communication and Feedback
+### 📣 Communication and Feedback
 
 _Here's your chance to tell (and show) what you'd be like to work with as a teammate._
 
@@ -169,7 +169,7 @@ _Here's your chance to tell (and show) what you'd be like to work with as a team
 1. When was the last time you asked for direct feedback from a superior? Why?
 
 
-### Dealing with Conflict
+### 🙅‍♀️ Dealing with Conflict
 
 _These questions can be some of the most revealing -- for you and them. Stay alert for red flags._
 
@@ -188,7 +188,7 @@ _These questions can be some of the most revealing -- for you and them. Stay ale
 1. Describe a time when you felt stressed or overwhelmed. How did you handle it?
 
 
-## Dealing with Change
+## 🆕 Dealing with Change
 
 _Same as above, these questions can tell you as much about the company as the candidate. Be ready with clarifying follow-up questions._
 
@@ -205,7 +205,7 @@ _Same as above, these questions can tell you as much about the company as the ca
 1. Recall a time when you were assigned a task outside of your job description. How did you handle the situation? What was the outcome?
 
 
-### Learning and Growth
+### 📚 Learning and Growth
 
 _How much learning and growth is expected as part of this role, and does it line up with what you're looking for?_
 
@@ -224,7 +224,7 @@ _How much learning and growth is expected as part of this role, and does it line
 1. Talk about about a time when you were asked to do something you had never done before. How did you react? What did you learn?
 
 
-### Planning and Time Management
+### ⏰ Planning and Time Management
 
 _How do you get stuff done?_
 
@@ -247,7 +247,7 @@ _How do you get stuff done?_
 1. How do you balance getting your work done vs. being available to help teammates or chip in on team tasks like bug reports or out of process tasks that pop-up?
 
 
-### Leadership
+### 🦸‍♀️Leadership
 
 _What kind of leader are you? What kind of leader do you want to work with?_
 
@@ -260,7 +260,7 @@ _What kind of leader are you? What kind of leader do you want to work with?_
 1. What's the the toughest decision you had to make in the last six months?
 
 
-### Accomplishments
+### 🏆 Accomplishments
 
 _Go ahead, brag a bit._
 
@@ -273,7 +273,7 @@ _Go ahead, brag a bit._
 1. Talk about about a project you were primarily/solely responsible for shipping end-to-end (from ideation to launch). What inspired the idea? What determined what features you built and didn't build?
 
 
-### Expertise
+### 👩‍💻 Expertise
 
 _Demonstrate your smarts._
 
@@ -290,7 +290,7 @@ _Demonstrate your smarts._
 1. What are some strategies you use to navigate ambiguity in the workplace? (e.g. feature requirements, management decisions, etc)
 
 
-### Non-work life
+### 🏄‍♀️ Non-work life
 
 _Don't forget about sharing a little bit about you, as a person._
 
