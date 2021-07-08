@@ -4,7 +4,7 @@ title: Recommended Tech Newsletters
 tags: [newsletters, recommendations]
 ---
 
-One of my preferred strategies for staying up to date in tech is newsletters. Call me old school, but I love a good email newsletter. A curated list of recommended blog posts, talks, and career opportunties delivered directly to my inbox? Yes please, much appreciated. I'm subscribed to a ton of them, and I've found them immensely helpful for staying on top of things.
+One of my preferred strategies for staying up to date in tech is newsletters. Call me old school, but I love a good email newsletter. A curated list of recommended blog posts, talks, and career opportunities delivered directly to my inbox? Yes please, much appreciated. I'm subscribed to a ton of them, and I've found them immensely helpful for staying on top of things.
 
 Which isn't to say I read all of them right away (c'mon, I wish I had that kind of time). Most I'll just skim, maybe save a few links to read later, then archive away. Others I archive instantly, leveraging inbox filters to make sure everything's sorted and tagged for easy retrieval later. The result is my own automated archive of helpful resources, stored safely away in my inbox. When I'm researching something new or looking for inspiration, it's the first place I look.
 
