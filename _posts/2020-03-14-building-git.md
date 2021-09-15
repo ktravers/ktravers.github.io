@@ -87,6 +87,7 @@ I'm reading ["Building Git" by James Coglan](https://shop.jcoglan.com/building-g
   - Git stores commits as series of headers followed by commit message
 - How does Git calculate the filename for each object?
   - Uses SHA-1 hash of uncompressed file content
+  - Effectively UUIDs
   - 2005: theoretical attack against SHA-1 "proven"
   - 2006: started discussing moving to SHA-256
   - 2017: Google announced an attack on SHA-1
@@ -107,6 +108,18 @@ I'm reading ["Building Git" by James Coglan](https://shop.jcoglan.com/building-g
 ### Discussion notes
 
 - More on SHA-1 vs SHA-256: https://lwn.net/Articles/811068/
+- Tags and git repo validity
+  - "Valid" from the standpoint of which tool?
+  - Git fails pretty gracefully, as opposed to GitRPC library
+- No tests, strange for a technical tutorial book?
+  - Do we need them?
+  - Would it be detrimental to learning? More effective to dive into Git and plain ol' Ruby right away, as opposed to setting up a testing framework (time intensive, possibly distracting from core concepts)
+  - Book's philosophy is learning through doing
+  - Tests would have made the book less flexible, harder to maintain, more like a "build your own production-ready Git competitor"
+- Coding along in another language?
+  - Python is a good choice
+  - JS puts you at risk of ending up in callback hell
+  - Some of us tried Elixir, some Rust, but ended up spending more time learning about the language itself instead of Git. Distracts from the content of the book itself.
 
 ## Part I: Storing Changes
 
