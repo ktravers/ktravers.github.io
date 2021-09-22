@@ -164,15 +164,18 @@ Only 3 items in `.git` are essential:
 
 ## Chapter 4: Making history
 
-Goal: put the commits in order
-
-More efficient to use parent > child than timestamps. Also avoids time conflicts.
-
-Updating `.git/HEAD`:  
-- Need to avoid dirty reads / writes
-- Need to at least appear to be atomic
-
-Lockfile only used for `HEAD` (for now). Used for refs in the future?
+- Goal: put the commits in order
+  - Create "causal" relationship between commits, not just temporal
+  - More efficient to use parent oid field than timestamps (aka the "parent chain").
+    - Git db isn't indexed, so very slow to query especially in projects with lots of commits
+    - Adding in remotes gets tricky too, because then you're loading and sorting commits from the source and remote
+    - Plus there's the whole system time thing, where distributed committers most likely won't have synchronized clocks
+    - Think of timestamps as just more metadata
+- Speaking of efficiency: "[Git] only creates new blobs when files have their content changed. Files with the same content will point to the same blob, even when those files appear in many trees across many commits."
+- Updating `.git/HEAD`:  
+  - Need to avoid dirty reads / writes
+  - Need to at least appear to be atomic
+  - Lockfile only used for `HEAD` (for now). Will we use it for refs in the future?
 
 ### Questions
 
@@ -181,21 +184,23 @@ Lockfile only used for `HEAD` (for now). Used for refs in the future?
     - Good approach: system level calls (machine can't lie to itself)
     - Bad approach: put the check at the application level; now you're at the mercy of race conditions between instances
   - What are other bad approaches you could take?
-- Why was this chapter so short? Why isolate these points in their own chapter?
 - Where did this concept of a Lockfile originate? Something Linus thought up, or insired by something else?
 - How much of a performance hit are we getting from implementing Lockfile?
 
 ## Chapter 5: Growing trees
 
-Time to run some executables.
+- Time to run some executables.
+- An interesting but dangerous shell option: `export RUBYOPT="--disable gems"` (skips Ruby gems on path lookups)
 
 ### Questions
 
 - Why are we storing things in octals? (and by "things", I mean file modes). More compact than a string, sure.
+  - Author says it's "easier to read"... for computers, maybe?
 - ["Sticky bits"](https://en.wikipedia.org/wiki/Sticky_bit)... who named this?
-- Need to research Merkle trees. Behind Git and Bitcoin. Blockchain in general or just Bitcoin?
-  - Answer: Blockchain.
-- Did anyone implement the unideal Workspace refactors? Learn anything interesting?
+- Need to research Merkle trees. Behind Git and blockchain.
+- Can someone explain the `Z*` bit in the tree entry format? "use Z* in the format string to serialise
+this combined field followed by a null byte."
+- Did anyone implement the unideal Workspace refactors? (bottom of page 70) Learn anything interesting?
 - Why isn't `lockfile.rb` organized under `database` directory?
 - Why is `author.rb` organized under `database` directory?
 
