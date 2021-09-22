@@ -166,16 +166,20 @@ Only 3 items in `.git` are essential:
 
 - Goal: put the commits in order
   - Create "causal" relationship between commits, not just temporal
-  - More efficient to use parent oid field than timestamps (aka the "parent chain").
+  - More efficient to use parent oid field than timestamps (aka the "parent chain", aka a linked list).
     - Git db isn't indexed, so very slow to query especially in projects with lots of commits
     - Adding in remotes gets tricky too, because then you're loading and sorting commits from the source and remote
     - Plus there's the whole system time thing, where distributed committers most likely won't have synchronized clocks
     - Think of timestamps as just more metadata
+    - Think of it as a series of patches
 - Speaking of efficiency: "[Git] only creates new blobs when files have their content changed. Files with the same content will point to the same blob, even when those files appear in many trees across many commits."
 - Updating `.git/HEAD`:  
   - Need to avoid dirty reads / writes
   - Need to at least appear to be atomic
   - Lockfile only used for `HEAD` (for now). Will we use it for refs in the future?
+- Interesting comparing this hash-based relationship/object building versus something like SVN (Subversion) that uses numerical ids. Cool, clever, and elegant that Git builds the id as a hash of the entire commit contents, including the parent id. Seems less error prone as well (confirmed by SVN users in the club)
+- Staff engineer convo: git actually does have indices it uses for git rev-list and git log? AND the whole linked list structure is an abstraction, and it actually does sort by timestamp!! We might get to this in later chapters.
+
 
 ### Questions
 
@@ -184,18 +188,36 @@ Only 3 items in `.git` are essential:
     - Good approach: system level calls (machine can't lie to itself)
     - Bad approach: put the check at the application level; now you're at the mercy of race conditions between instances
   - What are other bad approaches you could take?
+  - Plus locking is optional! There's a flag you can pass to skip locks. So how necessary is the lockfile?
 - Where did this concept of a Lockfile originate? Something Linus thought up, or insired by something else?
 - How much of a performance hit are we getting from implementing Lockfile?
+
+### Bookclub discussion prompts
+
+1. How are commits linked? Why is this better/more performant? (Why not sort by timestamps?)
+1. In distributed systems, we often need to think about race conditions. How does Git handle the potential for multiple processes to write to the same HEAD file?
+1. Compare/contrast: what happens when a file is changed in a commit? what happens when a file is unchanged in a commit? (w/r/t git database and trees)
 
 ## Chapter 5: Growing trees
 
 - Time to run some executables.
 - An interesting but dangerous shell option: `export RUBYOPT="--disable gems"` (skips Ruby gems on path lookups)
+- Both Git and blockchain use merkle trees, in that they're trees made out of a hash of their own contents. Change one node, and it changes everything. Sign the entire history with each addition.
+  - Git doesn't expend energy on proof of work, though, like blockchain does
+- From friend of the author
+  - Author likes to avoid concatenating strings (one of his bugbears)
+  - Uses value objects as a thin but helpful wrapper (safer, more ergonomic)
+  - Avoid passing around primitives, like strings
+  - Difficult, since Ruby does have lots of helpful methods on its primitives (Array, String, Hash), so tempting to lean on those
+- Order that you iterate over keys in a hash is the order in which those keys have been added to the hash
+  - Is that dependable?
+  - See https://ruby-doc.org/core-2.5.1/Hash.html ("Hashes enumerate their values in the order that the corresponding keys were inserted.")
 
 ### Questions
 
 - Why are we storing things in octals? (and by "things", I mean file modes). More compact than a string, sure.
   - Author says it's "easier to read"... for computers, maybe?
+  - Also kind of inefficient? Storing as binary is more space efficient, since the non-ASCII encoded type is only 1 bit. Doesn't matter too much, because of zlib compression, but still.
 - ["Sticky bits"](https://en.wikipedia.org/wiki/Sticky_bit)... who named this?
 - Need to research Merkle trees. Behind Git and blockchain.
 - Can someone explain the `Z*` bit in the tree entry format? "use Z* in the format string to serialise
@@ -203,6 +225,14 @@ this combined field followed by a null byte."
 - Did anyone implement the unideal Workspace refactors? (bottom of page 70) Learn anything interesting?
 - Why isn't `lockfile.rb` organized under `database` directory?
 - Why is `author.rb` organized under `database` directory?
+
+### Bookclub discussion prompts
+
+1. What's cool about Merkle trees?
+1. Why must git's tree objects have their entries be sorted?
+1. What do you think about the author's approach?
+1. What do you think about the structure of our code so far? What would you change if anything?
+1. Any stories to share about git snafus or race condition conundrums?
 
 ## Chapter 6: The index
 
