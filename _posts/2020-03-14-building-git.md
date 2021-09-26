@@ -236,16 +236,56 @@ this combined field followed by a null byte."
 
 ## Chapter 6: The index
 
+- Time to address performance concerns (reading and hashing every file in a project on every commit is wasteful, for `git status`, `git diff`, and `git commit`)
 - The `add` command and index. Why pair these two? How does one relate to the other? Answer: `add` adds files to the "index" aka staging area.
 - [`SortedSet`](https://ruby-doc.org/stdlib-2.6.3/libdoc/set/rdoc/SortedSet.html): this seems like an object I should be using more often
+- States:
+  - "untracked file": not in index and not in latest commit
+  - "changes to be committed": in index with blob id that differs from blob id in latest commit, aka "staged"
+  = "changes not staged for commit": in index with metadata and blob id that differ from what's in index and latest commit, aka "unstaged"
+- Index file format:
+    ```
+    A 12-byte header consisting of
+      - 4-byte signature. The signature is { 'D', 'I', 'R', 'C' } (stands for "dircache")
+      - 4-byte version number. The current supported versions are 2, 3 and 4.
+      - 32-bit number of index entries.
+    ```
+- Call ``stat()` on index entry, see ten 4-byte numbers:
+    ```
+    32-bit ctime seconds, the last time a file's metadata changed
+    32-bit ctime nanosecond fractions
+    32-bit mtime seconds, the last time a file's data changed
+    32-bit mtime nanosecond fractions
+    32-bit dev, id of the hardware device file lives on
+    32-bit ino, number of the inode storing file attributes
+    32-bit mode
+    32-bit uid, file user id
+    32-bit gid, file group id
+    32-bit file size
+    ```
+- Calling `git add` on file adds it to `.git/objects` and `.git/index`
+- Helpful command: `git ls-files --stage`. Lists all files in the index with file mode, object id, and stage status
+- Writing some code:
+  - `Index::Entry` class separate from `Entry`.
+    - Pro: Classes are cheap, so might as well make a new one, since they're different enough in functionality
+    - Con: Naming confusion
+  - Index stores file modes as numbers, not text. Trees store file modes as text. Why?
 
 ### Questions
 
 - Naming: why "index" instead of staging area? How is "index" an index in the traditional sense?
+- Why does the index store file modes as numbers, versus trees that store them as text?
+- Can someone explain the index path length scanning stuff on page 79-80 to me like I'm 5 years old? Excerpt: "The path length is stored to make parsing easier: rather than scanning forward byte-by-byte until it finds a null byte, the parser can read the length and jump forward that many bytes in one go."
+
+### Bookclub discussion prompts
+
+1. In what ways does our new `git index` behave like an index? In what ways is it more like a "staging area"?
+2. Is the git `add` command something that's "nice to have" or absolutely necessary?
 
 ### Discussion notes
 
-- Typo at the end of the chapter: `OrderedSet` instead of `SortedSet`
+- Typo on p 81: "There must be at *lease* one null" ("lease" instead of "least")
+- Typo on p 86: `OrderedSet` instead of `SortedSet`
 
 ## Chapter 7: Incremental change
 
@@ -260,6 +300,10 @@ this combined field followed by a null byte."
 
 - I don't understand why we're using Index#clear... we initialize a new Index instance everytime we call `add`, so shouldn't we already have a fresh state?
 - Why wait until now to start testing? This was the first time we tried to break the system, but surely we could have broken it much sooner (in ways we'd want to protect against with tests). Or was this the "right time" to introduce tests?
+
+### Bookclub discussion prompts
+
+1.
 
 ### Discussion notes
 
