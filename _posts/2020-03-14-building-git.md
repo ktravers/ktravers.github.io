@@ -270,6 +270,8 @@ this combined field followed by a null byte."
     - Pro: Classes are cheap, so might as well make a new one, since they're different enough in functionality
     - Con: Naming confusion
   - Index stores file modes as numbers, not text. Trees store file modes as text. Why?
+- Typo on p 81: "There must be at *lease* one null" ("lease" instead of "least")
+- Typo on p 86: `OrderedSet` instead of `SortedSet`
 
 ### Questions
 
@@ -281,33 +283,54 @@ this combined field followed by a null byte."
 
 1. In what ways does our new `git index` behave like an index? In what ways is it more like a "staging area"?
 2. Is the git `add` command something that's "nice to have" or absolutely necessary?
+3. Is the git `add` command useful on its own without an index?
+4. Did anyone spot any potential problems with our index implementation? Any edge cases we aren't accounting for?
 
 ### Discussion notes
 
-- Typo on p 81: "There must be at *lease* one null" ("lease" instead of "least")
-- Typo on p 86: `OrderedSet` instead of `SortedSet`
+- tbd
 
 ## Chapter 7: Incremental change
 
-- Necessary improvements
-  - Right now, our index overwrites itself. We need to be able to make incremental changes and nto lose everything
-  - Commit command doesn't read from the index. It still reads from the working tree
+- Index isn't really useful on its own
+  - Need to use it to compose commits. Commit command doesn't read from the index. It still reads from the working tree.
+  - Need to update it incrementally. Right now, our index overwrites itself. We need to be able to make incremental changes and not lose everything.
 - We initialize a new index every time we call `add`... seems like that needs to change.
-- But WAIT, we can rely on our Lockfile
-- Oh NOW we start a test suite. Better late than never, I suppose.
+- But WAIT, we can rely on our Lockfile. Nice!
+- Really like having a proper `Index::Checksum` class for the checksum behavior.
+- We were able to simplify our Tree code by moving sorting logic into Index.
+- Edge case: delete file, add directory with the same name. Now our index is borked:
+    ```
+    $ rm alice.txt
+    $ mkdir alice.txt
+    $ touch alice.txt/nested.txt
+    $ jit add .
+    $ git ls-files
+    alice.txt
+    alice.txt/nested.txt
+    bob.txt
+    ```
+- Turns out our index implementation was too naive.
+- So NOW we start a test suite. Better late than never?
+- Typo on page 89: "wil signal whether..."
+- Interesting edge case on p107-108: "I’m not entirely sure why Git adds this object to the database with no references in .git/index or .git/refs pointing to it"
 
 ### Questions
 
-- I don't understand why we're using Index#clear... we initialize a new Index instance everytime we call `add`, so shouldn't we already have a fresh state?
+- I don't understand why we're using `Index#clear`... we initialize a new `Index` instance everytime we call `add`, so shouldn't we already have a fresh state?
 - Why wait until now to start testing? This was the first time we tried to break the system, but surely we could have broken it much sooner (in ways we'd want to protect against with tests). Or was this the "right time" to introduce tests?
 
 ### Bookclub discussion prompts
 
-1.
+1. We're using the pessimistic locking strategy for updating our index lockfile. What other locking strategies (if any) could work here?
+2. Why was this chapter the time to introduce tests?
+3. What other edge cases could we write tests for at this point? So far we've implemented `git init`, `git commit`, and `git add`.
+4. Does anyone know why the behavior described on p107-108 is in place? Specifically, when you try to `add` an unreadable file, "Git adds this object to the database with no references in .git/index or .git/refs pointing to it".
+5. Does anyone know why the lockfile conflict error message is "curiously...misleading"? (see p109) The author speculates that "this message was once true in some version of Git, but at some point the behaviour was changed and this message was not updated", but curious if anyone has more insight.
 
 ### Discussion notes
 
-- Typo on page 89: "wil signal whether..."
+- tbd
 
 ## Chapter 8: First-class commands
 
