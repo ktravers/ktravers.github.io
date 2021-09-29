@@ -288,7 +288,7 @@ this combined field followed by a null byte."
 
 ### Discussion notes
 
-- tbd
+- This chapter was very helpful for getting a sense of staging area in a physical/spatial sense. As an "area" separate from the git object data store.
 
 ## Chapter 7: Incremental change
 
@@ -327,10 +327,15 @@ this combined field followed by a null byte."
 3. What other edge cases could we write tests for at this point? So far we've implemented `git init`, `git commit`, and `git add`.
 4. Does anyone know why the behavior described on p107-108 is in place? Specifically, when you try to `add` an unreadable file, "Git adds this object to the database with no references in .git/index or .git/refs pointing to it".
 5. Does anyone know why the lockfile conflict error message is "curiously...misleading"? (see p109) The author speculates that "this message was once true in some version of Git, but at some point the behaviour was changed and this message was not updated", but curious if anyone has more insight.
+    - Source: https://github.com/git/git/blob/ddb1055343948e0d0bc81f8d20245f1ada6430a0/lockfile.c#L149-L162
 
 ### Discussion notes
 
-- tbd
+- How similar is Git to Bitkeeper (the old Linux version control)? 
+- Multiple datastores -- often helpful! Runs counter to the dogmatic advice of having a "single source of truth". But it's implemented well here and clearly helps us.
+- Another "counter intuitive" thing: using exceptions as flow control. Not always the best design, but here, these are truly exceptional, so seems very useful.
+- ActiveSupport has an atomic write operation that works the same way as this lockfile approach!
+- Unreachable objects (regular refs, tracking refs, etc) *can* cause problems. We've seen some issues at scale with repos with excessive/pathological number of unreachable refs
 
 ## Chapter 8: First-class commands
 
