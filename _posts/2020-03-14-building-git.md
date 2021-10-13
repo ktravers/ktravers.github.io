@@ -347,6 +347,7 @@ this combined field followed by a null byte."
   - Knows filesystem locations
   - Use memoization for consistency (not performance, in this case) because some of the objects are stateful (Index)
 - DRY is not eliminating literal duplication. It's about removing opportunity for maintainer to introduce inconsistency (change an implicit agreement that's not enforced)
+  - Memoization for consistency > performance
 - Hooray! `Command` classes!
 
 ### Questions
@@ -355,6 +356,25 @@ this combined field followed by a null byte."
   - Example: added files are written to the database (because we can't read from the database yet... is that true?)
   - Error paths in `add` command
 - What assumptions made by the code aren't expressed in the test suite?
+- What did you think of the refactor? Would you have done anything differently?
+- Did the eventual structure of the code benefit from writing it in one "undifferentiated lump" and then refactoring?
+- How 'bout that `throw`/``catch`, huh?
+- Anything you don't like about the refactored code?
+  - Locking code is a little spread out. Could we use a block or something similar instead?
+- Can we think of alternative names for "Repository"?
+  - Lump
+  - "Code mausoleum" 😄
+  - 
+
+
+### Discussion
+
+- There's a git implementation in awk! https://github.com/djanderson/aho
+- Interesting to redefine `exit` in a Ruby class
+- VERY interesting to redefine `puts`
+  - Reminds book clubber of an early Ruby Tapas episode about `bare` words
+  - 
+
 
 ## Chapter 9: Status report
 
@@ -366,10 +386,24 @@ command like status needs to deal with lots of possible combinations of states, 
 ### Questions
 
 - What was the difference between `Index#load` and `Index#load_for_update` again? Answer: locks.
+- Was using TDD in this chapter beneficial to the code (or the books narrative) compared to the approach in previous chapters?
+- Did anything surprise you about how status was implemented?
+- Let's talk about strace!
+- Index updates from running git status?!
 
 ### Discussion
 
 - Many of the cited sources are from Wikipedia. Is that cool these days? Why not link to a non-Wiki source?
+- Pyramid of tests: https://corgibytes.com/images/Pyramid-of-Tests.jpg
+- Look into Gary Bernhardt's testing something something imperative shell
+  - Test the core super thoroughly
+  - Test the boundaries between services/dependencies super thoroughly
+  - Don't worry too much about full end-to-end integration tests. Focus on the core and boundaries.
+- Dave Thomas approach
+  - TDD during development
+  - Then throw it all away. Just keep the acceptance tests
+  - Otherwise test suite turns into concrete, slows you down
+
 
 ## Chapter 10: The next commit
 
