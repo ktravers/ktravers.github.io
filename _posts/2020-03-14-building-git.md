@@ -403,6 +403,13 @@ command like status needs to deal with lots of possible combinations of states, 
   - TDD during development
   - Then throw it all away. Just keep the acceptance tests
   - Otherwise test suite turns into concrete, slows you down
+- More testing resources
+  - https://www.youtube.com/watch?v=URSWYvyc42M
+  - https://www.destroyallsoftware.com/screencasts/catalog/functional-core-imperative-shell
+  - https://www.destroyallsoftware.com/talks/boundaries
+  - https://gist.github.com/jah2488/869de7482f668857d8f2c95ae8ef8ad2 (coin changer kata)
+  - https://github.com/garora/TDD-Katas/tree/master/src
+  - https://arlobelshee.com/what-makes-a-good-test-suite/corey-haines/
 
 
 ## Chapter 10: The next commit
