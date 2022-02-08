@@ -503,7 +503,17 @@ command like status needs to deal with lots of possible combinations of states, 
 
 ### Discussion notes
 
-Maybe next week we can pair on retrieving "lost" code.
+- Maybe next week we can pair on retrieving "lost" code. Spoiler: we did!
+- Would have been nice to have included an example of git clobbering your changes on `git checkout`
+- Suggestion: use `git switch` instead, it has options for how to handle changes
+- Changing expectations around "auto-save"
+  - Didn't used to be expected
+  - Now it's basically required, from a UX/product perspective
+- Lots of error handling code: truism or code spell?
+  - We think truism
+  - Elixir makes this easy and concise, nice when a language helps you out like that
+- 
+
 
 ## Chapter 15: Switching branches
 
