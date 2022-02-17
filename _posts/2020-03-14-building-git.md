@@ -512,7 +512,6 @@ command like status needs to deal with lots of possible combinations of states, 
 - Lots of error handling code: truism or code spell?
   - We think truism
   - Elixir makes this easy and concise, nice when a language helps you out like that
-- 
 
 
 ## Chapter 15: Switching branches
@@ -532,7 +531,7 @@ Current state of things:
 
 ### Questions
 
-- Is there a one-line command for turning detached HEAD into a properly tracked branch? `git branch qux && git checkout qux`. Wait, duh: `git checkout -b qux`
+- Is there a one-line command for turning detached `HEAD` into a properly tracked branch? `git branch qux && git checkout qux`. Wait, duh: `git checkout -b qux`
 - Why wait until now to introduce `OptionParser`? String parsing is fun and all, but kinda seems like something we could have skipped.
 
 ### Discussion notes
@@ -574,6 +573,13 @@ end.parse!
 p DateTime.now.strftime(options[:format])
 ```
 
+- Symrefs can point to other symrefs, which can point to other symrefs, etc. Does Git ever use that in practice? Should it? Should we?!
+- The difference between `git branch qux` (make a branch, but don't update `HEAD`) and `git checkout -b qux` (make a branch & update HEAD) in a detached `HEAD`. The Git CLI sure is a mess sometimes!
+- The `SymRef` & `Ref` classes that start out as single-field Structs to wrap around Strings was a cool concept
+- Naming things is hard! `@current_oid` is the … previous OID?
+- `File.join("refs", "heads", something)` seems to show up in a lot of places – should this knowledge of building paths be centralised somewhere?
+
+
 ## Chapter 16: Reviewing history
 
 TODO: re-read this chapter.
@@ -585,6 +591,7 @@ What happened at the end of this chapter? I was fine until the last few pages, t
 ### Discussion notes
 
 Logging. Turns out to be more complicated than I expected.
+
 
 ## Chapter 17: Basic merging
 
