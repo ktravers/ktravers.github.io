@@ -651,6 +651,9 @@ Note: read with an eye for some sort of pairing exercise based on the chapter co
 - What's a commit "name"? How is it different from the oid?
   - Answer: it's a "revision" string (but now I'm not sure what that is)
 - In what scenario would you want to use `--no-ff`?
+  - You still want the change reflected in the commit history
+  - Makes it easier to revert change, since you have a merge commit you can revert
+  - Personal preference
 - "...you might be wondering why we don't just use the Merge::Resolve class which effectively does the same tree-diff and migration work. The answer is that, in order to handle merge conflicts, that class is about to get a lot more complicated."
   - Why not go down that path then show the refactoring work?
   - Sometimes the author does this; sometimes he doesn't. Interested in how he decides.
@@ -662,6 +665,15 @@ Note: read with an eye for some sort of pairing exercise based on the chapter co
 
 - Bitshifting...something I rarely do in Ruby.
 - I think I'd understand this better if we were TDDing it. More tedious, but it'd help it sink in.
+- From @talum:
+  - What do we like/dislike about refactoring to `Merge::Inputs`? [Commit](https://github.com/jcoglan/jit/commit/c9c3ea9714d6f24007cdb0f26258e6f09ea49407)
+  - Truly did not appreciate what fast-forward merges were before this chapter. Are there times when y'all don't like a `fast-forward` merge? Why or why not?
+  - There was a nice quote here: "Just because two things happen to look the same, doesn't mean they really represent the same concept." It reminded me of Sandi Metz's take on finding the right abstractions. Any elaborations? How do you know when you've found the right abstraction? When do you think it's OK to duplicate code?
+  - We returned to hexdump land and inspected some stage flags. Stage 0 means the file is clean, any non-zero number means there are conflicts.
+  - The end sections about detecting conflicts got VERY wordy, not so much a question as a comment. [commit](https://github.com/jcoglan/jit/commit/fe3702f7d6b929af0612da7597a395178920ab33)
+  - The conflict detection is part of `Merge::Resolve` and the author alludes to the fact this expansion is coming. Is this a good place for the detection?
+  - When there is a conflict, we're [currently merging both blobs together with the header/separators](https://github.com/jcoglan/jit/commit/fe3702f7d6b929af0612da7597a395178920ab33#) and not doing anything more sophisticated.  Wonder when we'll get to that!
+  - Was there anything else you would changed in the implementation?
 
 
 ## Chapter 19: Conflict resolution
