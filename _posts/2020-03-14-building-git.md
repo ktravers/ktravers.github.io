@@ -313,7 +313,7 @@ this combined field followed by a null byte."
 - Turns out our index implementation was too naive.
 - So NOW we start a test suite. Better late than never?
 - Typo on page 89: "wil signal whether..."
-- Interesting edge case on p107-108: "I’m not entirely sure why Git adds this object to the database with no references in .git/index or .git/refs pointing to it"
+- Interesting edge case on p107-108: "I'm not entirely sure why Git adds this object to the database with no references in .git/index or .git/refs pointing to it"
 
 ### Questions
 
@@ -681,7 +681,6 @@ Note: read with an eye for some sort of pairing exercise based on the chapter co
 - Mostly logging?
 - "Combined diff" shows diffs from stages 2 AND 3
 
-
 ### Questions
 
 - The `on_process(&block)` for logging messages seems overly complicated.
@@ -702,6 +701,30 @@ Note: read with an eye for some sort of pairing exercise based on the chapter co
 
 ### Discussion notes
 
+From @aharpole:
+
+- It's not possible to just look at line numbers to figure out the correct merge
+- `diff3` algorithm aims to solve this
+- `diff3` tries to create blocks of things that changed, while also keeping around the unchanged chunks even when they aren't on their original lines
+- `Diff3` merges work with our existing Diff object that emits sets of Edit objects
+- We produce match sets, which are a hash that maps a line number on the original to its matching line in the compared file
+- `<part where my mind kind of glazed over as the looping/parsing algorithm got discussed>`
+- `Diff3` is sensitive to the underlying diff algorithm! A different diff algorithm might lead to a different merge outcome.
+- The diff format is different when describing a diff with multiple parents, it's the cc format (I couldn't find what the cc stands for, but I think one of them means "combined")
+- Process of building the combined diff from a left and right diff: shift off deletions from the a diff into the combined diff with `nil` in second column, shift off changes in both a and b diff in pairs, and put deletions from the right diff into the combined list with a `nil` in the first column, then take the edits with a b line that can be paired up and add those to the combined diff.
+- Combined diffs similarly get combined into hunks just like regular diffs
+- Adjusting the diff generating code to work with multiple parents is an instance of a common modification pattern we find ourselves running into when programming: moving from a situation where we always have a single "thing" to having one or more of those things at a time.
+
+Group discussion:
+
+- Someone tried to produce an incorrect sorting algorithm, then actually [made a correct one](https://cs.paperswithcode.com/paper/is-this-the-simplest-and-most-surprising)
+- When the chapter pointed out diff3 is a Unix utility, thought we were just going to shell out to some Unix command, not implement it ourselves.
+- Merging is not a solved problem! Or at least, we haven't "perfected" it yet
+- What about stacked diffs? Commit is the unit of work, not the Pull Request.
+  - https://jg.gg/2018/09/29/stacked-diffs-versus-pull-requests/
+- ["Language aware merging"](http://www.cs.kent.edu/~jmaletic/cs63902/Papers/Hunt02.pdf)
+- 
+
 ## Chapter 21: Correcting mistakes
 
 ### Questions
@@ -710,7 +733,7 @@ Note: read with an eye for some sort of pairing exercise based on the chapter co
 
 ## Chapter 22: Editing messages
 
-- I don’t use the `git rm` command. Maybe I should start...
+- I don't use the `git rm` command. Maybe I should start...
 - Reuse and resist commit message commands are cool
 
 ## Chapter 23: Cherry-picking
