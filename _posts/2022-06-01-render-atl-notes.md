@@ -29,7 +29,7 @@ Process + tools => better experience
 1. **What** is the problem?
   - Reproduce bug
   - Understand expected behavior ("what does working look like?")
-  - Define problem 
+  - Define problem
 2. **Why** is it broken?
   - Multiple hypotheses: the more hypothesis, the better
   - Collaborate early (phone a friend)
@@ -96,3 +96,78 @@ Pro tip: use beta React docs
 
 - "TipTapEditor" --> great component name
 - Comments in side panel, not inline. Both narrating recording and code review
+
+
+### Web Components Workshop
+
+Sponsored by Vonage
+
+ft. live transcription (!!)
+
+lol @ https://arewebcomponentsathingyet.com/
+
+Examples:
+- video element
+- audio element
+- details element
+- input (same element, so many flavors)
+- [model-viewer](modelviewer.dev)
+- AR/VR tic tac toe (with Vonage + WC): https://xoxr.games/
+- dwane-made
+  - pulls in reusable code for each project
+  - ex. "about", "contact", etc.
+- dwane-timer
+  - eventually can be replaced by temporal timer
+- See more:
+  - mdn/web-components-examples
+  - web-components.org
+
+What are they?
+- Custom elements
+  - kebab case, no single words
+  - class object
+  - extends, if any
+- Shadow DOM
+  - encapsulation
+  - "contain the gross" - [Paul Lewis](https://www.youtube.com/watch?v=plt-iH_47GE)
+  - remaps events (i.e. custom events)
+- HTML templates
+  - `<template>`
+- Can be styled with CSS, same as anything else.
+  - Helpful to leverage CSS variables
+  - `::part` pseudoclass
+
+Demo: https://codepen.io/conshus/pen/NWPzwGO
+
+Built-in functions:
+- `connectedCallback` - fires when added to DOM
+- `attributeChangedCallback` - fires when observed attribute(s) change
+- `disconnectedCallback` - fires when removed from DOM
+- operate on Shadow DOM, not document
+
+More examples  
+- webcomponents.dev
+  - Play around with components in the browser
+  - Push to GitHub/Lab optionally
+  - Lots of starter templates
+- open-wc.org
+  - best practices
+  - CLI tool that allows you to scaffold WCs
+
+#### Build
+
+`<vc-keypad>` WC
+- scaffolded via [open-wc](https://open-wc.org) and [Lit](https://lit.dev)
+- [Try it out](https://webcomponents.dev/edit/NlZFNRKfCK2EdBYbfHmU/src/index.js?p=stories)
+- NPM: @wcd/conshus.vc-keypad-workshop
+- Installed in [starter project](https://stackblitz.com/edit/vc-keypad-vanilla)
+
+WC + React  
+- React doesn't play super nice with WCs ([explainer](https://custom-elements-everywhere.com/#react))
+- custom-elements-everywhere.com --> "caniuse" for WCs
+- Experimental branch has [full support](https://custom-elements-everywhere.com/#react-experimental) (!!)
+
+Example with React  
+- https://stackblitz.com/edit/vc-keypad-react-start?file=src%2FApp.js
+- https://developer.vonage.com/blog/2020/10/07/using-web-components-in-a-react-application-dr
+
