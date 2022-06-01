@@ -62,9 +62,37 @@ Activity: https://hot.opensauced.pizza/ (by @bdougie 🎉)
 - Built with React
 - React DevTools also has a performance profiler
 
-Replay.io demo
+Replay.io demo  
 - Replay is a browser, fork of Firefox
+- Nextjs app (frontend)
+- Replay protocol (backend) ([examples](https://github.com/replayio/protocol-examples))
 - Record session or automated tests
 - Code heat maps
 - replay.io/examples
 - Drop in replacement for automated tests
+- Practice with Replay:
+  - replayable.dev
+  - replay.io/examples
+
+#### Experience
+
+"The best debugging tool is knowing something well" - Jenn Creighton (@gurlcode), "Debugging async JS"
+
+Practice  
+- Reinforce process
+- Recognize patterns
+
+Patterns  
+- Component (re)rendering
+  - Rendering before data is there
+  - Check useEffects
+- State and hooks
+  - Competing sources of truth (local vs global data store)
+  - Race conditions (event loop shenanigans)
+
+Pro tip: use beta React docs
+
+#### Random observations
+
+- "TipTapEditor" --> great component name
+- Comments in side panel, not inline. Both narrating recording and code review
