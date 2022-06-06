@@ -1,7 +1,7 @@
 # RenderATL conference
 
-June 1-3, 2022
-renderatl.com
+June 1-4, 2022
+[renderatl.com](https://www.renderatl.com/schedule)
 
 ## Day 1
 
@@ -171,3 +171,65 @@ Example with React
 - https://stackblitz.com/edit/vc-keypad-react-start?file=src%2FApp.js
 - https://developer.vonage.com/blog/2020/10/07/using-web-components-in-a-react-application-dr
 
+## Day 2
+
+### Bria Sullivan, "Making Fun: Building Your First Mobile Game On The Side"
+
+- Goal: launch in 3 months
+- Used Firebase analytics
+- Advice: don't do it all yourself, know your expertise (ex. use fivvr for design assets)
+
+### Angie Jones, "Refactoring the Web"
+
+- Web was meant to be decentralized
+  - No central authority originally
+  - No identity layer (oops)
+- Currently
+  - Auth via fb, google, so no agency
+  - You do not own your own data
+- Future: what if identity was native?
+  - Self owned ids
+  - Based on Open standards
+- Proposal
+  - New layer for the web
+  - 1. DIDs : [decentralized identifiers](https://www.w3.org/TR/did-core/)
+    - Identity stored on the blockchain
+    - Specifically, only DID string stored on blockchain
+  - 2. Verifiable credentials
+  - 3. Decentralized web nodes
+    - Personal data stores
+    - Decouple data from apps we use
+    - Nodes are not on the blockchain, stored locally
+    - Similar to progressive web apps (PWAs)
+
+### Scott Hanselman, "Beyond Mentorship - Storytelling And Sponsorship"
+
+- Do you have 20 yrs experience, or the same year, 20 times? (i.e. are you learning? or "asleep"?)
+- Privilege doesn't run out. You can give it away without losing any
+- Sponsors create luck (where luck === opportunity + being prepared)
+- Advice: don't answer emails/DMs. Write it somewhere public and shareable, then share that link with the person(s) who inspired it. That way you reach more people.
+
+### Pariss Athena, "Beauty Meets Web3"
+
+- Examples
+  - Olay: simulator that ages you 20 years (then suggests products)
+  - [Opte printed makeup](https://opte.com/)
+  - E-makeup, aka filters
+  - Valde beauty NFTs
+  - MetaOptimist NFT contest by Clinique
+
+### Danny Thompson, "Error Boundaries Save You From Crashes! Here's How To Use It!"
+
+- Create trust through better customer facing error messages
+- Error boundary components catch error anywhere in child tree and handle it gracefully
+- Wrap individually (one option)
+- Does not catch a whole bunch of kinds of errors. Not a catch all
+
+### Kent C. Dodds, "Bringing Back Progressive Enhancement"
+
+- Remix is built as a browser emulator
+- Works with JS disabled
+- Progressive enhancement is not new, coined in 2003
+- You don't need Relay or Apollo when using Remix
+- Replace your state management code with Remix
+- Form submissions are navigation
