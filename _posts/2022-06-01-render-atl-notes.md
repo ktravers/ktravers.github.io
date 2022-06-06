@@ -12,7 +12,7 @@ June 1-4, 2022
 ## Debugging React Applications workshop
 
 Cecelia Martinez  
-- Did bootcamp in Atlanta (which one?)
+- Did bootcamp in Atlanta (Georgia Tech)
 - Used to be at Cypress
 - Now at Replay.io
 - GitHub Star
