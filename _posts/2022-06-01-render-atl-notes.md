@@ -1,11 +1,9 @@
-# RenderATL conference
-
-June 1-4, 2022
+June 1-4, 2022  
 [renderatl.com](https://www.renderatl.com/schedule)
 
-## Day 1
+# Day 1
 
-### Debugging React Applications workshop
+## Debugging React Applications workshop
 
 Cecelia Martinez  
 - Did bootcamp in Atlanta (which one?)
@@ -22,7 +20,7 @@ Common approach: "debugging dartboard"
 
 Process + tools => better experience
 
-#### Process
+### Process
 
 3 step process:
 
@@ -41,7 +39,7 @@ Process + tools => better experience
 
 Find a process that works for you.
 
-#### Tools
+### Tools
 
 How you execute your process
 
@@ -74,7 +72,7 @@ Replay.io demo
   - replayable.dev
   - replay.io/examples
 
-#### Experience
+### Experience
 
 "The best debugging tool is knowing something well" - Jenn Creighton (@gurlcode), "Debugging async JS"
 
@@ -92,7 +90,7 @@ Patterns
 
 Pro tip: use beta React docs
 
-#### Random observations
+### Random observations
 
 - "TipTapEditor" --> great component name
 - Comments in side panel, not inline. Both narrating recording and code review
@@ -154,7 +152,7 @@ More examples
   - best practices
   - CLI tool that allows you to scaffold WCs
 
-#### Build
+### Build
 
 `<vc-keypad>` WC
 - scaffolded via [open-wc](https://open-wc.org) and [Lit](https://lit.dev)
