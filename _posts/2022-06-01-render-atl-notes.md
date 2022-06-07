@@ -7,9 +7,9 @@ tags: [react, conference]
 June 1-4, 2022  
 [renderatl.com](https://www.renderatl.com/schedule)
 
-# Day 1
+# 📆 Day 1
 
-## Debugging React Applications workshop
+## Cecelia Martinez, "Debugging React Applications! Presented By Replay"
 
 Cecelia Martinez  
 - Did bootcamp in Atlanta (Georgia Tech)
@@ -18,11 +18,11 @@ Cecelia Martinez
 - GitHub Star
 - @ceceliacreates
 
-Slides: slides.com/ceceliamartinez/debugging-react-apps-workshop
+[Slides](slides.com/ceceliamartinez/debugging-react-apps-workshop)
 
 Common approach: "debugging dartboard"  
 - Classics: console.log, debuggers, etc.
-- Random
+- Applied at random, not systematically
 
 Process + tools => better experience
 
@@ -102,31 +102,33 @@ Pro tip: use beta React docs
 - Comments in side panel, not inline. Both narrating recording and code review
 
 
-### Web Components Workshop
+## Dwane Hemmings, "Web Components Are Awesome! Presented By Vonage"
 
 Sponsored by Vonage
 
 ft. live transcription (!!)
 
-lol @ https://arewebcomponentsathingyet.com/
+lol @ [https://arewebcomponentsathingyet.com/](https://arewebcomponentsathingyet.com/)
 
-Examples:
+[Slides](https://myworkshops.live/workshop/?id=renderatl-2022) (pw: outkast)
+
+Examples:  
 - video element
 - audio element
 - details element
 - input (same element, so many flavors)
 - [model-viewer](modelviewer.dev)
-- AR/VR tic tac toe (with Vonage + WC): https://xoxr.games/
+- AR/VR tic tac toe (with Vonage + WC): [https://xoxr.games/](https://xoxr.games/)
 - dwane-made
   - pulls in reusable code for each project
   - ex. "about", "contact", etc.
 - dwane-timer
   - eventually can be replaced by temporal timer
 - See more:
-  - mdn/web-components-examples
-  - web-components.org
+  - [mdn/web-components-examples](https://github.com/mdn/web-components-examples)
+  - [web-components.org](https://web-components.org)
 
-What are they?
+What are they?  
 - Custom elements
   - kebab case, no single words
   - class object
@@ -141,29 +143,29 @@ What are they?
   - Helpful to leverage CSS variables
   - `::part` pseudoclass
 
-Demo: https://codepen.io/conshus/pen/NWPzwGO
+[Demo](https://codepen.io/conshus/pen/NWPzwGO)
 
-Built-in functions:
+Built-in functions:  
 - `connectedCallback` - fires when added to DOM
 - `attributeChangedCallback` - fires when observed attribute(s) change
 - `disconnectedCallback` - fires when removed from DOM
 - operate on Shadow DOM, not document
 
-More examples  
-- webcomponents.dev
+More examples:  
+- [webcomponents.dev](https://webcomponents.dev/)
   - Play around with components in the browser
   - Push to GitHub/Lab optionally
   - Lots of starter templates
-- open-wc.org
-  - best practices
+- [open-wc.org](https://open-wc.org/)
+  - Best practices
   - CLI tool that allows you to scaffold WCs
 
 ### Build
 
-`<vc-keypad>` WC
+`<vc-keypad>` WC  
 - scaffolded via [open-wc](https://open-wc.org) and [Lit](https://lit.dev)
 - [Try it out](https://webcomponents.dev/edit/NlZFNRKfCK2EdBYbfHmU/src/index.js?p=stories)
-- NPM: @wcd/conshus.vc-keypad-workshop
+- NPM: [@wcd/conshus.vc-keypad-workshop](https://www.npmjs.com/package/@wcd/conshus.vc-keypad-workshop)
 - Installed in [starter project](https://stackblitz.com/edit/vc-keypad-vanilla)
 
 WC + React  
@@ -172,18 +174,18 @@ WC + React
 - Experimental branch has [full support](https://custom-elements-everywhere.com/#react-experimental) (!!)
 
 Example with React  
-- https://stackblitz.com/edit/vc-keypad-react-start?file=src%2FApp.js
-- https://developer.vonage.com/blog/2020/10/07/using-web-components-in-a-react-application-dr
+- [Stackblitz](https://stackblitz.com/edit/vc-keypad-react-start?file=src%2FApp.js)
+- [Blog post](https://developer.vonage.com/blog/2020/10/07/using-web-components-in-a-react-application-dr)
 
-## Day 2
+# 📆 Day 2
 
-### Bria Sullivan, "Making Fun: Building Your First Mobile Game On The Side"
+## Bria Sullivan, "Making Fun: Building Your First Mobile Game On The Side"
 
 - Goal: launch in 3 months
 - Used Firebase analytics
 - Advice: don't do it all yourself, know your expertise (ex. use fivvr for design assets)
 
-### Angie Jones, "Refactoring the Web"
+## Angie Jones, "Refactoring the Web"
 
 - Web was meant to be decentralized
   - No central authority originally
@@ -196,24 +198,41 @@ Example with React
   - Based on Open standards
 - Proposal
   - New layer for the web
-  - 1. DIDs : [decentralized identifiers](https://www.w3.org/TR/did-core/)
+  - 1) DIDs : [decentralized identifiers](https://www.w3.org/TR/did-core/)
     - Identity stored on the blockchain
     - Specifically, only DID string stored on blockchain
-  - 2. Verifiable credentials
-  - 3. Decentralized web nodes
+  - 2) Verifiable credentials
+  - 3) Decentralized web nodes
     - Personal data stores
     - Decouple data from apps we use
     - Nodes are not on the blockchain, stored locally
     - Similar to progressive web apps (PWAs)
 
-### Scott Hanselman, "Beyond Mentorship - Storytelling And Sponsorship"
+## Scott Hanselman, "Beyond Mentorship - Storytelling And Sponsorship"
 
 - Do you have 20 yrs experience, or the same year, 20 times? (i.e. are you learning? or "asleep"?)
 - Privilege doesn't run out. You can give it away without losing any
 - Sponsors create luck (where luck === opportunity + being prepared)
 - Advice: don't answer emails/DMs. Write it somewhere public and shareable, then share that link with the person(s) who inspired it. That way you reach more people.
 
-### Pariss Athena, "Beauty Meets Web3"
+## Brian Douglas, "Where To Start With Open Source"
+
+- [bdougie.live](https://bdougie.live/)
+- "it's not about who you know, it's about who knows you." ([tweet](https://twitter.com/bdougieYO/status/1532355817277628418?s=20&t=Qvjkva8JNcAPp1w5s31p0w))
+- Great way to contribute: triage issues
+  - Add steps to reproduce
+  - Confirm whether you can reproduce
+  - Learn what makes a "good" error report / feature request
+- Contributions are more than just "green squares"
+  - [opensauced.pizza](https://opensauced.pizza/) has metrics like contributor churn
+- Look for projects you're interested in
+  - Help them check off the essentials (contributing guidelines, docs, "hello world" tutorials)
+  - Clear PR descriptions, should always link to associated issue
+  - Help maintainers get to know and trust you
+    - Don't disappear
+    - Be reachable, responsive
+
+## Pariss Athena, "Beauty Meets Web3"
 
 - Examples
   - Olay: simulator that ages you 20 years (then suggests products)
@@ -222,16 +241,17 @@ Example with React
   - Valde beauty NFTs
   - MetaOptimist NFT contest by Clinique
 
-### Danny Thompson, "Error Boundaries Save You From Crashes! Here's How To Use It!"
+## Danny Thompson, "Error Boundaries Save You From Crashes! Here's How To Use It!"
 
+- [Official docs](https://reactjs.org/docs/error-boundaries.html)
 - Create trust through better customer facing error messages
 - Error boundary components catch error anywhere in child tree and handle it gracefully
 - Wrap individually (one option)
 - Does not catch a whole bunch of kinds of errors. Not a catch all
 
-### Kent C. Dodds, "Bringing Back Progressive Enhancement"
+## Kent C. Dodds, "Bringing Back Progressive Enhancement"
 
-- Remix is built as a browser emulator
+- [Remix](https://remix.run/) is built as a browser emulator
 - Works with JS disabled
 - Progressive enhancement is not new, coined in 2003
 - You don't need Relay or Apollo when using Remix
