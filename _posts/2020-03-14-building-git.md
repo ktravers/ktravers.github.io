@@ -723,18 +723,55 @@ Group discussion:
 - What about stacked diffs? Commit is the unit of work, not the Pull Request.
   - https://jg.gg/2018/09/29/stacked-diffs-versus-pull-requests/
 - ["Language aware merging"](http://www.cs.kent.edu/~jmaletic/cs63902/Papers/Hunt02.pdf)
-- 
 
 ## Chapter 21: Correcting mistakes
 
 ### Questions
 
+
 ### Discussion notes
+
+From @talum:
+
+This chapter's all about correcting mistakes: removing files form the index, resetting the index, discarding commits, and aborting a merge.
+
+- A nicety about `git` is that is tries really hard to prevent data loss. So there are a lot of confirmations when you want to `rm` a file.
+- There are also a lot of options. `--cached` `--forced` for people who wanna skip safety
+- The reset command resets by inserting tree entries from head commit into the index. Walking the tree to find entries...kinda neat too.
+- Notably, the author has a complaint for maybe the first time!? The tricky parsing problem.
+> This is a bad state of affairs: we cannot tell from the syntax of the command itself whether the word "readme" denotes the name of a file, or the name of a branch or other kind of commit identifier, and that means Git has to guess.
+- Many ways of discarding commits: `soft`, `mixed`, `hard` . A "false economy" to try to make `hard` reuse the logic for `mixed`
+- Real cool that aborting the merge reuses the reset hard logic.
+- The fact that reset keeps a reference to the previous head commit in `.git/ORIG_HEAD` is quite nice too.
 
 ## Chapter 22: Editing messages
 
+- Currently we can use `reset` to:
+  - Drop commits from current branch and redo them
+  - Squash multiple commits into single commit
+- Not perfect, though, because you "keep all the tree content, but reset throws away the commit messages", which means we can't edit old messages yet
+- Step 1: make setting the message easier. Time to add support for `--message` and `--file` options to `git commit` and `git merge`
+- Step 2: show the original message for editing before making the commit
+  - Method that prompts user for input via their editor
+  - Set initial text seen in editor
+  - Initial text will have helper comments that get stripped out
+  - Separate `.git/MERGE_MSG` and `.git/COMMIT_EDITMSG` files - I like the choice not to try to re-use/share a single file.
+  - Reminder: when we amend or change commits, we're not mutating anything (not possible). Instead, "we're adding new commits and changing what the refs point to"
+- Step 3: add support for `git commit --amend`
+  - First tool we've added for modifying project history
+- Step 4: add support for distinct commit author vs commit committer
+  - New `committer` attribute
+  - `Commit#time` is now the committer time (preserve correct sort order after amends, etc.)
+
+### Discussion notes
+
+- Author's advice: design programs from the outside in, that way you discover what you actually need
+- [`Shellwords.shellsplit`](https://ruby-doc.org/stdlib-2.5.1/libdoc/shellwords/rdoc/Shellwords.html#method-c-shellsplit) is new to me
+- `system` method is super helpful:
+    > "`system` does all this for us: it blocks until the child process exits. It also makes the child process use the same standard output/error streams as the Ruby process, so if you run a terminal-based editor like Vim7 or Emacs8, the editor will appear in your terminal and Ruby will wait until you quit it."
 - I don't use the `git rm` command. Maybe I should start...
-- Reuse and resist commit message commands are cool
+- `--reedit-message` and `--reuse-message` commit message flags are cool, but I find myself always defaulting to `git commit --amend`
+
 
 ## Chapter 23: Cherry-picking
 
