@@ -731,15 +731,22 @@ Group discussion:
 
 ### Discussion notes
 
+- I don't use the `git rm` command. Maybe I should start...
+- TIL `ORIG_HEAD`
+
 From @talum:
 
 This chapter's all about correcting mistakes: removing files form the index, resetting the index, discarding commits, and aborting a merge.
 
 - A nicety about `git` is that is tries really hard to prevent data loss. So there are a lot of confirmations when you want to `rm` a file.
 - There are also a lot of options. `--cached` `--forced` for people who wanna skip safety
-- The reset command resets by inserting tree entries from head commit into the index. Walking the tree to find entries...kinda neat too.
+- The `reset` command resets by inserting tree entries from head commit into the index. Walking the tree to find entries...kinda neat too.
 - Notably, the author has a complaint for maybe the first time!? The tricky parsing problem.
 > This is a bad state of affairs: we cannot tell from the syntax of the command itself whether the word "readme" denotes the name of a file, or the name of a branch or other kind of commit identifier, and that means Git has to guess.
+  - A sharp edge that hasn't been fixed over time
+  - Hard to change at this point
+  - Counterpoint: is it user-friendly? Probably introduced to prevent user from having to think too hard.
+  - API "robustness" principle: "conservative in what you do, liberal in what you accept from others"
 - Many ways of discarding commits: `soft`, `mixed`, `hard` . A "false economy" to try to make `hard` reuse the logic for `mixed`
 - Real cool that aborting the merge reuses the reset hard logic.
 - The fact that reset keeps a reference to the previous head commit in `.git/ORIG_HEAD` is quite nice too.
@@ -763,14 +770,23 @@ This chapter's all about correcting mistakes: removing files form the index, res
   - New `committer` attribute
   - `Commit#time` is now the committer time (preserve correct sort order after amends, etc.)
 
+### Questions
+
+- Is a git commit message template a thing? Like, within git?
+- How can we make it easy for people to have good commit message hygiene? "Good commit culture" on a team
+- What is a "good" commit? Is that something universal we can actually define?
+  - Probably varies per project
+  - Different teams have different norms
+  - Somewhat related: push protections
+
 ### Discussion notes
 
 - Author's advice: design programs from the outside in, that way you discover what you actually need
 - [`Shellwords.shellsplit`](https://ruby-doc.org/stdlib-2.5.1/libdoc/shellwords/rdoc/Shellwords.html#method-c-shellsplit) is new to me
 - `system` method is super helpful:
     > "`system` does all this for us: it blocks until the child process exits. It also makes the child process use the same standard output/error streams as the Ruby process, so if you run a terminal-based editor like Vim7 or Emacs8, the editor will appear in your terminal and Ruby will wait until you quit it."
-- I don't use the `git rm` command. Maybe I should start...
 - `--reedit-message` and `--reuse-message` commit message flags are cool, but I find myself always defaulting to `git commit --amend`
+- Leaky abstraction: nothing's getting "amended", because these objects are immutable. Terminology sort of obscures what's happening under the hood.
 
 
 ## Chapter 23: Cherry-picking
