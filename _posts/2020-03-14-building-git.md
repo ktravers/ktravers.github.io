@@ -803,16 +803,21 @@ Oof, better read this chapter again.
 
 ## Chapter 24: Reshaping history
 
-- `git commit --amend` uses `cherry-pick`? 🤯
+- `git commit --amend` uses `cherry-pick`? 🤯 Not really, according to [the docs](https://git-scm.com/docs/git-commit#Documentation/git-commit.txt---amend) it's closer to `reset`.
+    > It is a rough equivalent for:
+    >
+    > ```
+    > $ git reset --soft HEAD^
+    > $ ... do something else to come up with the right tree ...
+    > $ git commit -c ORIG_HEAD
+    > ```
 - Two very important things to remember:
   - "although it may only appear that we've modified commit B, we have in fact generated a whole new history that diverges from the parent of B."
   - "The original history still exists, but may no longer have any refs pointing at it."
 - Reordering commits == cherry-pick 1 commit, then cherry-pick range 🤯🤯
 - Clever; use branching to mimic `stash`ing commits
-
-Me, realizing everything is a `cherry-pick`:
-
-![Spiderman mind blown GIF](https://media.giphy.com/media/11qAyKz9AbFEYM/giphy.gif)
+- Difference between `quit` and `abort`
+- "Crash-only software"
 
 
 ### Questions
@@ -821,6 +826,17 @@ Me, realizing everything is a `cherry-pick`:
 - Does git have any commands that explictly reference `sequence`? Seems to be an important bit of plumbing, but not really referenced.
 
 ### Discussion notes
+
+From @aharpole:
+
+- I loved this chapter because cherry-picking always felt super conceptually simple to me (take this diff and plop it into HEAD), but knowing that Git doesn't store branches as stacks of diffs, but instead as pointers to trees, I knew it would work super differently!
+- I was surprised but not that surprised to find out that it uses a merge, but how it uses a merge is :exploding_head:
+- Anyone else struggle with this conceptually a little? In particular, the idea of performing a merge between C and E with D as the base, even though we actually don't want D at all, but this still results in a merge that applies E cleanly to C without D's changes (see pp 455-456).
+- I like that we started with the single commit that dealt with how we conceptually deal with cherry-picks, then moved onto cherry-picking multiple commits.
+- You can pick a series of individual commits, or ranges; it's pretty flexible!
+- This idea of committing a series of commits feels like it'll prove really useful for rebases, especially some of the new primitives like the sequencer files
+- Never heard the term "crash-only software" but I have seen the pattern before and I agree it's a really good pattern.
+- TIL that you can both abort a cherry-commit, which cleanly reverts, but you can also quit a cherry commit, which stops the cherry pick but keeps the working tree as-is
 
 ## Part III: Distribution
 
