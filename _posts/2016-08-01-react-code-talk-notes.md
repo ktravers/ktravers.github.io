@@ -82,7 +82,6 @@ var React = require('react')
 
 document.addEventListener('DOMContentLoaded', function () {
   ReactDom.render(<AppComponent text={'hello world 2'}/>, document.getElementById('js-main'));
-  // You can pass html by using `dangerouslySetInnerHTML={{__html:'<div>stuff<div>'}}`
 });
 
 // javascripts/code-reading/app.jsx
