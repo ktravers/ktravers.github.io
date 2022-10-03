@@ -862,11 +862,48 @@ Need to review parts about refspecs.
 
 ## Chapter 27: The network protocol
 
-- Punting on HTTP, viva SSH
-- "While it's running, `git-upload-pack` acts as a server that the client, the fetch command, can talk to."
+- `fetch` so far:
+  - Gets list of refs and values from remote
+  - Uses refspecs to decide which ones to download
+  - "Just knows" what objects to copy form remote to local
+- How does the data transfer happen?
+  - e.g. how does `fetch` connect to a remote computer and communicate with remote repo?
+- Git supports multiple protocols
+  - SSH
+    - Available on most machines out of the box
+    - Encrypted adn authenticated connection
+  - HTTP
+    - Requires custom services running on remote computer (which ones?)
+  - Git's own custom transport (name?)
+    - Requires custom services running on remote computer (which ones?)
+- For Jit, we're punting on HTTP, viva SSH
+- Git servers allow you to run the `git-upload-pack` program via SSH
+  - `git-upload-pack` works as an agent, fetching info
+  - Protective measure: you can communicate with `git-upload-pack` program only via SSH. It runs sanctioned git commands. You can't run those commands directly
+  - Via SSH, `fetch` reads from output of `git-upload-pack` and writes to input of `git-upload-pack`
+  - "While it's running, `git-upload-pack` acts as a server that the client, the fetch command, can talk to."
+- Git protocol
+  - Message ends with newline
+  - Begins with length header (4 digit hexadecimal number)
+  - Empty message is a "flush packet"
+  - First line, HEAD ref, has list of supported capabilities
+    - ex. multi_ack, thin-pack
+- Pack format: send stream of objects in as small a payload as possible, for faster transfers
+- `fetch` needs to be able to parse this pack
 - Elixir would be more efficient for streaming all this pack data
+- Punting on "delta compression" for now
+- Starting with building a pack writer class instead of reader. Interesting given we're still only on the `fetch` command. Why not build a reader first?
+- Pack::Reader class: author notes that the `input` must respond to certain methods. Would be nice to document that contract somewhere, either in a comment or code (ex. use strong typing, raise error right away if object doesn't respond to required methods, etc.)
+- Re: overfetching problem with the `Pack::Reader` class
+  - We're reading 256 bytes at a time, so inevitably end up overfetching, then having to move the cursor to start read the next object at the correct starting point
+  - Is there a better way? Seems odd to deliberately build in overfetching. Moving the cursor after every object seems potentially error prone as well
+  - For example, could pack's size header include length of compressed data?
+  - Or inflate entire stream first, then parse?
 
 ### Questions
+
+- Has anyone used "Git's own custom transport" protocol?
+- 
 
 ### Discussion notes
 
