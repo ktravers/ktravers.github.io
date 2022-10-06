@@ -43,3 +43,23 @@ I joined a new bookclub that's reading ["The Coding Career Handbook"](https://le
     - Adding resources increases risk
 - Sell tech debt as risk instead when talking to LT
 
+### Group discussion
+
+- Linked blog posts
+  - "Tech debt" isn't a good parallel to financial debt, because you're not really paying it down or anything like that
+  - Better to reframe it as risk
+- Rewriting
+  - Decision to rewrite in new language, framework etc is tricky
+  - If you go with greenfield rewrite, how long do you live maintaining two systems? What about bugs in the old one?
+- Mentorship, Sponsorship, Allyship
+  - People might not welcome an offer of mentorship, but no one turns down sponsorship
+  - Antipattern: taking all the good work yourself, so everyone else is stuck with no opportunities to grow
+  - Invite juniors into meetings/conversations with more experienced folks so they can "be in the room"
+- Business impact
+  - Foolproof way to show biz impact
+    - Find someone who uses your product
+    - Ask them to speak up about something they want added/fixed
+    - Add/fix it
+  - Recommendation: [Dream Machines](http://worrydream.com/refs/Nelson-ComputerLibDreamMachines1975.pdf) by Ted Nelson
+
+## Chapter ?
