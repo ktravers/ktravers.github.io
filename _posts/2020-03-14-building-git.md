@@ -869,12 +869,12 @@ Need to review parts about refspecs.
 - How does the data transfer happen?
   - e.g. how does `fetch` connect to a remote computer and communicate with remote repo?
 - Git supports multiple protocols
-  - SSH
+  - SSH (ssh://)
     - Available on most machines out of the box
     - Encrypted adn authenticated connection
-  - HTTP
+  - HTTP (http://)
     - Requires custom services running on remote computer (which ones?)
-  - Git's own custom transport (name?)
+  - Git's own custom transport (git://)
     - Requires custom services running on remote computer (which ones?)
 - For Jit, we're punting on HTTP, viva SSH
 - Git servers allow you to run the `git-upload-pack` program via SSH
@@ -886,24 +886,41 @@ Need to review parts about refspecs.
   - Message ends with newline
   - Begins with length header (4 digit hexadecimal number)
   - Empty message is a "flush packet"
-  - First line, HEAD ref, has list of supported capabilities
-    - ex. multi_ack, thin-pack
+  - First line, HEAD ref, has list of supported capabilities (ex. multi_ack, thin-pack)
 - Pack format: send stream of objects in as small a payload as possible, for faster transfers
 - `fetch` needs to be able to parse this pack
-- Elixir would be more efficient for streaming all this pack data
 - Punting on "delta compression" for now
-- Starting with building a pack writer class instead of reader. Interesting given we're still only on the `fetch` command. Why not build a reader first?
-- Pack::Reader class: author notes that the `input` must respond to certain methods. Would be nice to document that contract somewhere, either in a comment or code (ex. use strong typing, raise error right away if object doesn't respond to required methods, etc.)
+- Starting with building a pack writer class instead of reader
+- Pack::Reader class
+  - Author notes that the `input` must respond to certain methods. Good case for strong typing!
 - Re: overfetching problem with the `Pack::Reader` class
   - We're reading 256 bytes at a time, so inevitably end up overfetching, then having to move the cursor to start read the next object at the correct starting point
-  - Is there a better way? Seems odd to deliberately build in overfetching. Moving the cursor after every object seems potentially error prone as well
-  - For example, could pack's size header include length of compressed data?
-  - Or inflate entire stream first, then parse?
+  - Could pack's size header include length of compressed data?
+  - Could we inflate entire stream first, then parse?
+
+### Extra credit: Git docs
+
+- [Git docs](https://git-scm.com/book/en/v2/Git-on-the-Server-The-Protocols) on protocols
+  - Mentions "Local" protocol, for remotes on the same host (file://) with shared filesystem
+  - Git protocol
+    - Like ssh, but no auth
+    - Read-only (not safe to allow pushing, since there's no auth)
+    - Very fast, but unsecure
+- [Git docs](https://git-scm.com/book/en/v2/Git-Internals-Transfer-Protocols) describe two transfer protocols: "dumb" protocol and "smart" protocol.
+  - "Dumb"
+    - Appropriate for read-only repos served over HTTP
+    - No Git-specific code required
+    - Can't handle writes
+    - Difficult to secure, rarely used anymore
+  - "Smart"
+    - Requires "git aware" process on remote end
+    - Sounds similar to what we built in this chapter
 
 ### Questions
 
-- Has anyone used "Git's own custom transport" protocol?
-- 
+- The author didn't go into much detail on "Git's own custom transport" protocol. Does anyone know more about it?
+- Code design question: what are some alternatives to the "overfetching" approach in the `Pack::Reader` class?
+- This chapter punted on "delta compression". How tough is that going to be to implement?
 
 ### Discussion notes
 
