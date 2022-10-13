@@ -62,4 +62,36 @@ I joined a new bookclub that's reading ["The Coding Career Handbook"](https://le
     - Add/fix it
   - Recommendation: [Dream Machines](http://worrydream.com/refs/Nelson-ComputerLibDreamMachines1975.pdf) by Ted Nelson
 
-## Chapter ?
+## Chapter 18: Write, A Lot
+
+- Write more docs, discussions, ADRs etc than code
+- "Adjacent" skill to engineering
+- Writing as a "cache" of yourself
+- Helps you scale infinitely
+- Other adjacent skills
+  - Drawing good diagrams
+    - mermaid.live
+  - Project management
+  - "Demos, not memos"
+  - Networking (internally, too)
+- [Google technical writing course](https://developers.google.com/tech-writing)
+- Good writing is minimum bar for senior, but "hustle culture" writing for external audiences isn't necessary
+- Communicating to manager/skip level
+  - Project board
+  - Track things in issues
+  - Keep running brag doc
+
+
+## Chapter 23: Specialist or Generalist
+
+- You can be very successful as either
+- "T Shaped" vs "Pi Shaped" vs "Comb Shaped"
+- When in doubt, specialize
+- Specialist in public, generalist in private
+
+
+## Chapter 24: Betting on Technologies
+
+
+## Chapter 26: Career Ladders
+
