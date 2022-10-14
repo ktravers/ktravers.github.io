@@ -875,7 +875,8 @@ Need to review parts about refspecs.
   - HTTP (http://)
     - Requires custom services running on remote computer (which ones?)
   - Git's own custom transport (git://)
-    - Requires custom services running on remote computer (which ones?)
+    - Requires custom services running on remote computer
+    - Git [daemon](https://github.com/git/git/blob/master/daemon.c)
 - For Jit, we're punting on HTTP, viva SSH
 - Git servers allow you to run the `git-upload-pack` program via SSH
   - `git-upload-pack` works as an agent, fetching info
@@ -920,9 +921,26 @@ Need to review parts about refspecs.
 
 - The author didn't go into much detail on "Git's own custom transport" protocol. Does anyone know more about it?
 - Code design question: what are some alternatives to the "overfetching" approach in the `Pack::Reader` class?
+  - Only a little complicated
+  - Definitely better than checking one byte at a time (worthwhile tradeoff)
+  - Why 256 bytes? Big vs little endian
+  - If the length is variable, then we have to make some smart guesses as a compromise
+  - Probably inescapable problem
+  - Maybe we'll refactor once we get to delta compression?
 - This chapter punted on "delta compression". How tough is that going to be to implement?
 
 ### Discussion notes
+
+- 27.3 (p544) Link to another version of Adder.rb program
+  - Tiny program translates input into output
+- GitHub doesn't support ssh approach used in this chapter
+- Big endian vs little endian
+  - Macs are little endian
+  - PCs are big endian
+  - Comes down to capabilities of chips
+  - Making variable length little endian --> applying computer science basics
+- A [delightful comment](https://github.com/git/git/blob/master/daemon.c#L429-L430) in git daemon source
+
 
 ## Chapter 28: Fetching content
 
