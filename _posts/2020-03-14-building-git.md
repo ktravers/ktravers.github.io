@@ -944,9 +944,21 @@ Need to review parts about refspecs.
 
 ## Chapter 28: Fetching content
 
+- Pack negotiation: produce the smallest possible pack to send over network
+  - We only want the objects we don't already have
+- Rebasing: cool when you're working solo, gets messy otherwise
+
 ### Questions
 
 ### Discussion notes
+
+- Would there ever be a case where we'd "clear the books" and squash everything until a single commit?
+- This chapter, we're writing client and server code
+- Git is just a database
+  - It has tools that allow us to do version control, etc
+  - But at the end of the day, you put stuff in then fetch it back out
+- What would GitHub look like if it, too, was a decentralized system? Everyone runs their own instance of GitHub, and you can fork, etc. across instances
+
 
 ## Chapter 29: Pushing changes
 
