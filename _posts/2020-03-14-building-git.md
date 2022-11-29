@@ -982,6 +982,12 @@ From @jankoszewski:
 
 ### Discussion notes
 
+- This algorithm is a nice example of compromise. Trade-off between performance and legibility
+- Zlib compression is baked into Ruby. Would it be feasible/reasonable to upstream delta compression into Ruby? Are there enough use cases?
+- Tangent: [Strange Loop talk on compressing Super Mario video game](https://youtu.be/vH-D6GdkyCw)
+- Demystify binary data by opening in a hex editor
+
+
 From @aharpole:
 
 - Git uses a variant of XDelta
@@ -1011,6 +1017,13 @@ From @aharpole:
 - What commands did he run to get that nice tree with all the files for each commit? And the nice neat lists for commit, type, size and path? `git ls-tree HEAD -r -l` gets you the list, but still not sure about that nicely formatted tree.
 
 ### Discussion notes
+
+- In real Git, maybe there's something that looks for renames, since that's an easy compress given the content hasn't changed.
+- Tangent: Dropbox used to use S3 for storage, but now has their own homegrown system. Maybe they're using delta compression, too? Might be something on their technical blog about this.
+- "One observation we can make from the above data is that objects tend to compress either very
+well or very poorly". Is this driven by user behavior? If we encouraged users to use Git differently, could we impact this?
+- Nice summary on Git and compression from @matthewmccullough: https://gist.github.com/matthewmccullough/2695758
+- "Ruby Garbage Collection in Under 2 Hours" book recommendation: https://flurly.com/p/ruby-garbage-collection
 
 From @aharpole:
 
