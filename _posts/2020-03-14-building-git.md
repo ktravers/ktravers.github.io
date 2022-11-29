@@ -890,7 +890,7 @@ Need to review parts about refspecs.
   - First line, HEAD ref, has list of supported capabilities (ex. multi_ack, thin-pack)
 - Pack format: send stream of objects in as small a payload as possible, for faster transfers
 - `fetch` needs to be able to parse this pack
-- Punting on "delta compression" for now
+- Punting on "delta compression" for now (see Chapter 30)
 - Starting with building a pack writer class instead of reader
 - Pack::Reader class
   - Author notes that the `input` must respond to certain methods. Good case for strong typing!
@@ -927,7 +927,7 @@ Need to review parts about refspecs.
   - If the length is variable, then we have to make some smart guesses as a compromise
   - Probably inescapable problem
   - Maybe we'll refactor once we get to delta compression?
-- This chapter punted on "delta compression". How tough is that going to be to implement?
+- This chapter punted on "delta compression". How tough is that going to be to implement? Answer: see Chapter 30.
 
 ### Discussion notes
 
@@ -966,6 +966,12 @@ Need to review parts about refspecs.
 
 ### Discussion notes
 
+From @jankoszewski:
+
+- More of an observation, but explaining that the absence of a source ref in a push to i.e. `:my-feature-branch` is the reason why that branch is deleted was very much an "aha" moment for me. It made me wonder about a theoretical push with the absence of a / a nil target branch, i.e. `push origin master:`, and if that would effectively be any different than `push origin master`?
+- The code written/outlined in 29.2.2 indicates that multiple refs can be updated for a given push, but I'm having trouble grokking how this can be given that I believe that the source and target refs for any push operation should be unique. Is it possible to match on ref path here? Or did I misunderstand the code and the code being used is being invoked in a broader/different manner?
+- Is the ABA problem an acceptable tradeoff for push / optimistic concurrency control? and would stacked diffs be a magic bullet to solve or prevent this problem?
+
 ## Chapter 30: Delta compression
 
 - "Myers algorithm performs well on line-oriented text files"
@@ -976,15 +982,53 @@ Need to review parts about refspecs.
 
 ### Discussion notes
 
+From @aharpole:
+
+- Git uses a variant of XDelta
+- XDelta tries to represent a string as a series of operations to construct the string, with the hopes that this representation is smaller than the original string
+- You can either copy data from another place or insert new data. Inserts are less desirable since you're inserting a literal chunk of text.
+- XDelta begins by splitting the string into 16-byte chunks of data, then it performs a "sliding search" by grabbing 16 bytes starting at each part of the target string, then seeing if that 16 bytes is in the index for the source string.
+- If the string isn't found, we take the first character, append to the insert buffer, then move the sliding window over one. We continue until we find a match
+- When we find a matching starting block, we try to expand it by checking to see if the following letter is the same in both strings. If so, that gets included in the matching block. We'll also search backwards and do the same (but if you go backwards and match one, you remove that character from the end of the input buffer)
+- We use this algorithm instead of diffs because diffs are optimized more for line-level changes, and diffs aren't suitable for binary files
+- Diffs also expect things to be in the same order, but words can be ordered differently and still be useful for producing an optimized delta.
+- This approach is really good overall for storing a series of commits that might act on the same file because you store an object, then the delta to produce a modified version of that object.
+- For encoding deltas, we represent an Insert operation as a byte representing the size, followed by the actual contents. The size limit is 127 (0x7f)
+- For a copy, we use 2 numbers, offset and size.
+- Offset can be up to 4 bytes, size can be up to 3 bytes
+- Git saves bytes by cutting out all the zero bytes.
+- There is a header byte that represents whether the seven bytes are kept, and to indicate whether it's a copy. We use 0 to indicate that the byte was 0 and is excluded, and 1 if it wasn't excluded.
+- That leaves the first bit in the header byte. It will be 1 if it's a copy, and 0 if it's an insert.
+- I believe this means that for the insert, you start with 0 and then the other 7 bits represent the size, which is why the size limit is 127.
+
+
 ## Chapter 31: Compressing packs
+
+- Ruby `Forwardable` module seems handy
 
 ### Questions
 
-- What commands did he run to get that nice tree with al lthe files for each commit? And the nice neat lists for commit, type, size and path? `git ls-tree HEAD -r -l` gets you the list, but still not sure about that nicely formatted tree.
+- What commands did he run to get that nice tree with all the files for each commit? And the nice neat lists for commit, type, size and path? `git ls-tree HEAD -r -l` gets you the list, but still not sure about that nicely formatted tree.
 
 ### Discussion notes
 
-## Chapter 32: Packs in the database -- START HERE
+From @aharpole:
+
+- When constructing packs, we find pairs of objects that would compress well together with XDelta called delta pairs.
+- You can't just try every possible pair because that has O(n^2) complexity; if you have N objects to pack, it would take N^2 attempts to identify the best pack. No good.
+- We make some educated guesses about objects. A blob is unlikely to be a good match with a tree or commit object, for instance.
+- Objects with the same path are most likely to be similar to one another.
+- Adjacent versions of a file will probably compress best since there won't be further changes. (of course, depending on the actual changes and what order you did them in, that might not be true!)
+- It's not easy to order versions of the file because they could be on concurrent branches, but we can use file size as a proxy since it's common for files to grow over time.
+- We sort the objects in reverse order by type (commit/tree/blob), name (just the file name, not full path) and size
+also we skip really tiny files and just send them over the network as-is
+- Because of how object data is stored in the database we're able to add a load_info method that can read the type and size without reading the full object.
+- We use a sliding window to try to compress the objects. In this sliding window we will try to make pairs from objects.
+- We keep a limited number of objects in memory to use to consider for making pairs. this also helps us have linear time performance
+- When we make these chains of deltas, we want to make sure that the actual compression savings are worthwhile. In practice, the compression tends to either save a lot or very little with no middle ground.
+
+
+## Chapter 32: Packs in the database
 
 ### Questions
 
