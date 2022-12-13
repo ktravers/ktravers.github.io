@@ -1043,18 +1043,34 @@ also we skip really tiny files and just send them over the network as-is
 
 ## Chapter 32: Packs in the database
 
-### Questions
+- Unexpected way to generate random ID for temp files:
+    ```ruby
+    TEMP_CHARS = ("a".."z").to_a + ("A".."Z").to_a + ("0".."9").to_a
+    id = (1..6).map { TEMP_CHARS.sample }.join("")
+    ```
+- TIL [CRC32 algo](https://en.wikipedia.org/wiki/Cyclic_redundancy_check#CRC-32_algorithm)
+- Re: hash table for git index. This is a new data store, and we can use binary search to get things. Efficient, because binary search is log time.
+- Building hash table and fanout table are separate operations, but they do function essentially the same way. Different data structures, but they perform similar functions.
 
-### Discussion notes
 
 ## Chapter 33: Working with remote branches
 
+- Lots of nice "glue" code in this chapter
+- Builds on stuff / reuses stuff we built chapters ago
+- Nice feature add for safely deleting branches
+
 ### Questions
 
-### Discussion notes
+- Why wait to talk about remote branches now? Why not sooner?
+  - Maybe this was a loose end we had to tie up?
+  - Maybe it's a nice send-off? You're not tied to anything, Git is flexible, go build whatever extension you want.
+- Now that we've read the book, did it inspire any ideas for contributing to Git?
+  - Maybe something(s) to make it more user-friendly?
+    - GitHub makes git more user-friendly. Maybe there's stuff we can port.
+    - More GUI operations, printing out ASCII representations of things
+    - Git Tower is a good example of how the interface can be improved.
+
 
 ## Chapter 34: ...and everything else
 
-### Questions
-
-### Discussion notes
+Not much to cover here. Just a few closing thoughts to send us on our way.
